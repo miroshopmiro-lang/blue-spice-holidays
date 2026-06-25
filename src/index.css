@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --blue-light: #66b5e8;
+  --blue-primary: #1e88e5;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light dark;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible focus for keyboard users across all interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--blue-primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Honor reduced-motion: disable non-essential animation/transition */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply backdrop-blur-md bg-white/10 border border-white/15;
+  }
+  .glass-dark {
+    @apply backdrop-blur-md bg-black/20 border border-white/10;
+  }
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300;
+  }
+  .section-pad {
+    @apply px-5 sm:px-8 lg:px-12 py-20 sm:py-28;
+  }
+}
+
+@layer utilities {
+  .text-gradient-blue {
+    background: linear-gradient(to right, #66b5e8, #1e88e5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .accent-serif {
+    @apply font-serif italic;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

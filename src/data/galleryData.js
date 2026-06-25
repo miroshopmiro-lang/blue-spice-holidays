@@ -1,0 +1,15 @@
+export const galleryData = [
+  { id: 1, src: '/images/gallery-1.webp', alt: 'Sailing along high cliffs in a beautiful bay', category: 'International' },
+  { id: 2, src: '/images/gallery-2.webp', alt: 'Serene mountain lakeside under beautiful sunset skies', category: 'Trending' },
+  { id: 3, src: '/images/gallery-3.webp', alt: 'Tranquil sunset over scenic rivers and valleys', category: 'India' },
+  { id: 4, src: '/images/gallery-4.webp', alt: 'Luxury retreat nestled in lush green hills', category: 'International' },
+  { id: 5, src: '/images/gallery-5.webp', alt: 'Ancient temple facade standing majestically', category: 'India' },
+  { id: 6, src: '/images/gallery-6.webp', alt: 'Scenic road trip through winding mountain passes', category: 'Trending' },
+  { id: 7, src: '/images/gallery-7.webp', alt: 'Stunning overwater villas above crystal clear waters', category: 'International' },
+  { id: 8, src: '/images/gallery-8.webp', alt: 'Vibrant local markets filled with color', category: 'India' },
+  { id: 9, src: '/images/gallery-9.webp', alt: 'Breathtaking panoramic view from a high mountain summit', category: 'International' },
+  { id: 10, src: '/images/gallery-10.webp', alt: 'Cozy luxury bonfire setup under starry skies', category: 'Trending' },
+  { id: 11, src: '/images/gallery-11.webp', alt: 'Serene houseboat cruising down calm backwaters', category: 'India' },
+  { id: 12, src: '/images/gallery-12.webp', alt: 'Bustling modern cityscape illuminated at night', category: 'International' },
+  { id: 13, src: '/images/gallery-13.webp', alt: 'Hidden waterfalls cascading into clear rock pools', category: 'Trending' },
+]
