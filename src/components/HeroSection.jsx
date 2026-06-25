@@ -14,6 +14,15 @@ const slides = [
     videoPortraitMp4: '/images/maldives.mp4',
   },
   {
+    id: 'himalayas',
+    name: 'Himalayas',
+    categories: ['India'],
+    tagline: 'Himalayan calm, elevated.',
+    image: '/images/himalayas.jpg',
+    videoLandscapeMp4: '/images/himalayas.mp4',
+    videoPortraitMp4: '/images/himalayas.mp4',
+  },
+  {
     id: 'taj-mahal',
     name: 'Agra & Taj Mahal',
     categories: ['India', 'Trending'],
@@ -39,15 +48,6 @@ const slides = [
     image: '/images/kerala.jpg',
     videoLandscapeMp4: '/images/kerala.mp4',
     videoPortraitMp4: '/images/kerala.mp4',
-  },
-  {
-    id: 'himalayas',
-    name: 'Himalayas',
-    categories: ['India'],
-    tagline: 'Himalayan calm, elevated.',
-    image: '/images/himalayas.jpg',
-    videoLandscapeMp4: '/images/himalayas.mp4',
-    videoPortraitMp4: '/images/himalayas.mp4',
   }
 ]
 
