@@ -1,12 +1,27 @@
-import { useId, useState } from 'react'
+import { useId, useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { brand, social } from '../data/siteData'
 import { ArrowUpRight } from '../components/Icons'
 
 export default function ContactPage() {
+  const [searchParams] = useSearchParams()
+  const destination = searchParams.get('destination') || ''
+
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [sent, setSent] = useState(false)
   const baseId = useId()
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
+
+  useEffect(() => {
+    if (destination) {
+      setForm((f) => ({
+        ...f,
+        subject: `Inquiry about ${destination}`,
+        message: `Hi! I'm interested in planning a trip to ${destination}.`
+      }))
+    }
+  }, [destination])
+
   const valid = form.name && emailValid && form.subject && form.message
 
   const field = (key, { type = 'text', autoComplete, label, placeholder, spellCheck } = {}) => {

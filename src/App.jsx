@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import SmoothScroll from './components/SmoothScroll'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import BookingModal from './components/BookingModal'
 import Home from './pages/Home'
 import PackagesPage from './pages/PackagesPage'
 import GalleryPage from './pages/GalleryPage'
@@ -18,11 +17,13 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const [booking, setBooking] = useState(false)
-  const [defaultTrip, setDefaultTrip] = useState('')
+  const navigate = useNavigate()
   const openBooking = (destination = '') => {
-    setDefaultTrip(destination)
-    setBooking(true)
+    if (destination) {
+      navigate(`/contact?destination=${encodeURIComponent(destination)}`)
+    } else {
+      navigate('/contact')
+    }
   }
 
   return (
@@ -36,7 +37,6 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
       <Footer />
-      <BookingModal open={booking} onClose={() => setBooking(false)} defaultTrip={defaultTrip} />
     </SmoothScroll>
   )
 }
