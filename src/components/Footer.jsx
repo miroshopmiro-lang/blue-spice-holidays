@@ -53,7 +53,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="overflow-hidden" aria-hidden="true">
-        <p className="select-none whitespace-nowrap text-center font-serif text-[14vw] leading-none text-white/90" translate="no">
+        <p className="select-none whitespace-nowrap text-center font-serif text-[14vw] leading-[1.1] text-white/90 pb-4 px-4" translate="no">
           BLUE SPICE HOLIDAYS
         </p>
       </div>
