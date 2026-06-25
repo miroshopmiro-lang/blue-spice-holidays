@@ -5,16 +5,16 @@ import { cn } from '../lib/cn'
 // stacked left-pane tier marks (Blue Spice has no per-person pricing) styled
 // to match the mockup price treatment: large + bold, small uppercase sub below
 const tierMeta = {
-  general: { mark: 'T1', sub: 'Travel' },
-  vip: { mark: 'T2', sub: 'Executive' },
-  events: { mark: 'T3', sub: 'Events' },
+  general: { mark: 'PKG', sub: 'Vacations' },
+  vip: { mark: 'VIP', sub: 'Executive' },
+  events: { mark: 'E&W', sub: 'Weddings' },
 }
 
 export default function ServiceTiers({ onBook }) {
   return (
     <section className="section-pad bg-night">
       <div className="mx-auto max-w-container text-center">
-        <span className="pill glass-panel text-white"><Sparkle className="w-4 h-4 text-blue-light" /> Our Services</span>
+        <span className="pill glass-panel text-white"><Sparkle className="w-4 h-4 text-sunset" /> Our Services</span>
         <h2 className="mt-5 text-3xl sm:text-4xl font-bold text-white">
           Choose The Right Service For Your{' '}
           <span className="accent-serif text-gradient-blue">Perfect Journey</span>
@@ -38,7 +38,7 @@ export default function ServiceTiers({ onBook }) {
             >
               {/* Left 1/3: stacked tier mark styled like the mockup price */}
               <div className="flex w-1/3 flex-col items-center justify-center px-2 py-8">
-                <span className="text-5xl font-extrabold leading-none tracking-tight">{meta.mark}</span>
+                <span className="text-4xl font-extrabold leading-none tracking-tight">{meta.mark}</span>
                 <span className={cn('mt-2 text-[10px] font-medium uppercase tracking-[0.2em]', light ? 'text-ink-soft' : 'text-white/60')}>{meta.sub}</span>
               </div>
 

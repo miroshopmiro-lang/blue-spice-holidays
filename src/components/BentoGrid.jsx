@@ -21,7 +21,7 @@ export default function BentoGrid() {
             <Link
               key={t.id}
               to="/gallery"
-              className={`group relative block overflow-hidden rounded-card ${i === 0 ? 'col-span-2 row-span-2' : ''}`}
+              className={`group relative block overflow-hidden rounded-card ${i === 0 ? 'col-span-2 lg:row-span-2' : ''}`}
             >
               <motion.div
                 whileHover={{ scale: 0.99 }}

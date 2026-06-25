@@ -29,3 +29,7 @@ export const Close = ({ className = 'w-6 h-6', ...props }) => (
 export const Play = ({ className = 'w-6 h-6', ...props }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}><path d="M8 5v14l11-7z" /></svg>
 )
+
+export const Check = ({ className = 'w-4 h-4', ...props }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}><polyline points="20 6 9 17 4 12" /></svg>
+)
