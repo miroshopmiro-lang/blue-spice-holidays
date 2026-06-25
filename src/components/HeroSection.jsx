@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import gsap from 'gsap'
 import { useReducedMotion } from 'framer-motion'
 import { ArrowUpRight, Sparkle } from './Icons'
@@ -54,10 +55,36 @@ const slides = [
 export default function HeroSection({ onBook }) {
   const root = useRef(null)
   const bgRef = useRef(null)
+  const navigate = useNavigate()
   const [index, setIndex] = useState(0)
   const [isReady, setIsReady] = useState(false)
   const videoRefs = useRef([])
   const reduceMotion = useReducedMotion()
+  const touchStartX = useRef(null)
+
+  const goTo = useCallback((i) => setIndex(i), [])
+
+  const handleTouchStart = useCallback((e) => {
+    touchStartX.current = e.touches[0].clientX
+  }, [])
+
+  const handleTouchEnd = useCallback((e) => {
+    if (touchStartX.current === null) return
+    const dx = e.changedTouches[0].clientX - touchStartX.current
+    touchStartX.current = null
+    if (Math.abs(dx) < 40) return // too small, ignore
+    if (dx < 0) {
+      // swipe left → next
+      setIndex((i) => (i + 1) % slides.length)
+    } else {
+      // swipe right → prev
+      setIndex((i) => (i - 1 + slides.length) % slides.length)
+    }
+  }, [])
+
+  const openDestination = useCallback((destinationName) => {
+    navigate(`/contact?destination=${encodeURIComponent(destinationName)}`)
+  }, [navigate])
 
   useEffect(() => {
     if (reduceMotion) return
@@ -110,11 +137,12 @@ export default function HeroSection({ onBook }) {
 
   const next = () => setIndex((i) => (i + 1) % slides.length)
   const active = slides[index]
-  const track = slides.map((_, i) => slides[(index + i) % slides.length])
+  // track[0] is always active; track[i] maps to slides[(index+i) % length]
+  const track = slides.map((_, i) => ({ slide: slides[(index + i) % slides.length], realIdx: (index + i) % slides.length }))
   const mobileTrack = [
-    slides[(index - 1 + slides.length) % slides.length],
-    slides[index],
-    slides[(index + 1) % slides.length],
+    { slide: slides[(index - 1 + slides.length) % slides.length], realIdx: (index - 1 + slides.length) % slides.length },
+    { slide: slides[index], realIdx: index },
+    { slide: slides[(index + 1) % slides.length], realIdx: (index + 1) % slides.length },
   ]
 
   return (
@@ -195,13 +223,14 @@ export default function HeroSection({ onBook }) {
           {/* Desktop sliding track */}
           <div data-reveal className="hidden md:block w-auto">
             <div className="flex items-end justify-start gap-3 overflow-hidden">
-              {track.map((d, i) => {
+              {track.map(({ slide: d, realIdx }, i) => {
                 const isActive = i === 0
                 return (
                   <div
                     key={`desk-${d.id}`}
+                    onClick={() => !isActive && goTo(realIdx)}
                     className={`relative shrink-0 overflow-hidden rounded-card transition-all duration-500 ${
-                      isActive ? 'h-56 w-72' : 'h-44 w-24'
+                      isActive ? 'h-56 w-72' : 'h-44 w-24 cursor-pointer hover:opacity-80'
                     }`}
                   >
                     <img
@@ -210,20 +239,27 @@ export default function HeroSection({ onBook }) {
                       width={400}
                       height={320}
                       loading="lazy"
-                      className={`h-full w-full object-cover ${d.id === 'taj-mahal' ? 'object-bottom' : ''}`}
+                      className={`h-full w-full object-cover transition-transform duration-700 ${!isActive ? 'group-hover:scale-105' : ''} ${d.id === 'taj-mahal' ? 'object-bottom' : ''}`}
                     />
                     {isActive && (
                       <>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                        <div className="absolute bottom-3 left-3 right-3 text-white">
+                        <div className="absolute bottom-3 left-3 right-14 text-white">
                           <p className="text-xs uppercase tracking-wider text-white/70">{d.categories[0]}</p>
                           <h3 className="text-lg font-semibold leading-tight">{d.name}</h3>
                           <p className="text-xs text-white/80 accent-serif">{d.tagline}</p>
                         </div>
-                        <button onClick={next} aria-label="View destination" className="absolute bottom-3 right-3 grid h-9 w-9 place-items-center rounded-full bg-white text-ink hover:bg-blue-light hover:text-white">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); openDestination(d.name) }}
+                          aria-label={`Inquire about ${d.name}`}
+                          className="absolute bottom-3 right-3 grid h-9 w-9 place-items-center rounded-full bg-white text-ink hover:bg-blue-light hover:text-white transition-colors duration-200"
+                        >
                           <ArrowUpRight className="w-4 h-4" />
                         </button>
                       </>
+                    )}
+                    {!isActive && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     )}
                   </div>
                 )
@@ -238,10 +274,16 @@ export default function HeroSection({ onBook }) {
             </div>
           </div>
 
-          {/* Mobile sliding track (Active in Center) */}
-          <div data-reveal className="block md:hidden w-full">
+          {/* Mobile sliding track (Active in Center) — swipe to change */}
+          <div
+            data-reveal
+            className="block md:hidden w-full"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            style={{ touchAction: 'pan-y' }}
+          >
             <div className="flex items-center justify-center gap-2 overflow-hidden px-4">
-              {mobileTrack.map((d, i) => {
+              {mobileTrack.map(({ slide: d, realIdx }, i) => {
                 const isActive = i === 1
                 return (
                   <div
@@ -265,7 +307,11 @@ export default function HeroSection({ onBook }) {
                           <h3 className="text-sm font-semibold leading-tight">{d.name}</h3>
                           <p className="text-[10px] text-white/80 line-clamp-2 mt-0.5 leading-tight">{d.tagline}</p>
                         </div>
-                        <button onClick={next} aria-label="View destination" className="absolute bottom-3 right-3 grid h-7 w-7 place-items-center rounded-full bg-white text-ink hover:bg-blue-light hover:text-white">
+                        <button
+                          onClick={() => openDestination(d.name)}
+                          aria-label={`Inquire about ${d.name}`}
+                          className="absolute bottom-3 right-3 grid h-7 w-7 place-items-center rounded-full bg-white text-ink hover:bg-blue-light hover:text-white transition-colors duration-200"
+                        >
                           <ArrowUpRight className="w-3.5 h-3.5" />
                         </button>
                       </>

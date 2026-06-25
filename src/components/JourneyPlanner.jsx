@@ -140,7 +140,7 @@ export default function JourneyPlanner() {
               </div>
 
               <span className="text-xs uppercase tracking-wider text-ink-soft">Destination Profile</span>
-              <h3 className="text-2xl font-bold text-ink mt-1">{itinerary.title}</h3>
+              <h3 className="text-xl md:text-xl font-bold text-ink mt-1 leading-snug pr-28 md:pr-28">{itinerary.title}</h3>
               <p className="mt-3 text-sm text-ink-soft leading-relaxed pr-24">
                 {itinerary.description}
               </p>

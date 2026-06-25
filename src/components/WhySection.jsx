@@ -50,9 +50,9 @@ export default function WhySection() {
 
           <div className="mt-8">
             <p className="text-sm font-semibold text-ink mb-3">Our service includes</p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {serviceBadges.map((b) => (
-                <span key={b} className="pill bg-surface-cool text-ink text-xs">{b}</span>
+                <span key={b} className="inline-flex items-center rounded-full bg-surface-cool text-ink text-[11px] font-medium px-3 py-1.5 leading-tight">{b}</span>
               ))}
             </div>
           </div>
