@@ -8,7 +8,7 @@ const columns = [
   },
   {
     title: 'Get in Touch',
-    links: [brand.phone, brand.email, brand.website],
+    links: [brand.phone, brand.email],
   },
   {
     title: 'Connect',

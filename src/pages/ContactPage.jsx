@@ -63,7 +63,6 @@ export default function ContactPage() {
           <dl className="mt-8 space-y-4 text-sm">
             <div><dt className="text-white/50">Phone / WhatsApp</dt><dd><a className="hover:text-blue-light" href={`tel:${brand.phone}`} translate="no">{brand.phone}</a></dd></div>
             <div><dt className="text-white/50">Email</dt><dd><a className="hover:text-blue-light" href={`mailto:${brand.email}`} translate="no">{brand.email}</a></dd></div>
-            <div><dt className="text-white/50">Website</dt><dd><a className="hover:text-blue-light" href={brand.website} target="_blank" rel="noreferrer" translate="no">{brand.website}</a></dd></div>
             <div><dt className="text-white/50">Principal Consultant</dt><dd>{brand.principal}</dd></div>
           </dl>
           <div className="mt-6 flex gap-3">
@@ -78,8 +77,8 @@ export default function ContactPage() {
             <p aria-live="polite" className="text-white">Thank you, {form.name}! We&rsquo;ll be in touch shortly.</p>
           ) : (
             <form className="space-y-3" noValidate onSubmit={(e) => { e.preventDefault(); if (valid) setSent(true) }}>
-              {field('name', { autoComplete: 'name', label: 'Name', placeholder: 'e.g. Priya Sharma' })}
-              {field('email', { type: 'email', autoComplete: 'email', spellCheck: false, label: 'Email', placeholder: 'e.g. priya@email.com' })}
+              {field('name', { autoComplete: 'name', label: 'Name', placeholder: 'Your full name' })}
+              {field('email', { type: 'email', autoComplete: 'email', spellCheck: false, label: 'Email', placeholder: 'your@email.com' })}
               {field('subject', { label: 'Subject', placeholder: 'e.g. Honeymoon in the Maldives' })}
               <div>
                 <label htmlFor={`${baseId}-message`} className="mb-1 block text-sm font-medium text-white/80">Message</label>
