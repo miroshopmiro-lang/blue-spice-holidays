@@ -14,24 +14,6 @@ const slides = [
     videoPortraitMp4: '/images/maldives.mp4',
   },
   {
-    id: 'himalayas',
-    name: 'Himalayas',
-    categories: ['India'],
-    tagline: 'Himalayan calm, elevated.',
-    image: '/images/himalayas-hero.webp',
-    videoLandscapeMp4: '/images/himalayas.mp4',
-    videoPortraitMp4: '/images/himalayas.mp4',
-  },
-  {
-    id: 'taj-mahal',
-    name: 'Agra & Taj Mahal',
-    categories: ['India', 'Trending'],
-    tagline: 'Sunrise over white marble, a monument to timeless love.',
-    image: '/images/taj-mahal-hero.webp',
-    videoLandscapeMp4: '/images/taj-mahal-landscape.mp4',
-    videoPortraitMp4: '/images/taj-mahal-landscape.mp4',
-  },
-  {
     id: 'tiger',
     name: 'Ranthambore & Wildlife',
     categories: ['India', 'Trending'],
@@ -48,6 +30,24 @@ const slides = [
     image: '/images/kerala-hero.webp',
     videoLandscapeMp4: '/images/kerala.mp4',
     videoPortraitMp4: '/images/kerala.mp4',
+  },
+  {
+    id: 'himalayas',
+    name: 'Himalayas',
+    categories: ['India'],
+    tagline: 'Himalayan calm, elevated.',
+    image: '/images/himalayas-hero.webp',
+    videoLandscapeMp4: '/images/himalayas.mp4',
+    videoPortraitMp4: '/images/himalayas.mp4',
+  },
+  {
+    id: 'taj-mahal',
+    name: 'Agra & Taj Mahal',
+    categories: ['India', 'Trending'],
+    tagline: 'Sunrise over white marble, a monument to timeless love.',
+    image: '/images/taj-mahal-hero.webp',
+    videoLandscapeMp4: '/images/taj-mahal-landscape.mp4',
+    videoPortraitMp4: '/images/taj-mahal-landscape.mp4',
   }
 ]
 
