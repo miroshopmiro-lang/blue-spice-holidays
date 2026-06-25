@@ -52,10 +52,18 @@ export default function Footer() {
           <Link to="/contact" className="text-xs text-white/60 hover:text-white">Privacy & Contact</Link>
         </div>
       </div>
-      <div className="overflow-hidden" aria-hidden="true">
-        <p className="select-none whitespace-nowrap text-center font-serif text-[5.2vw] leading-none text-white/90 py-2" translate="no">
-          BLUE SPICE HOLIDAYS
-        </p>
+      <div className="overflow-hidden w-full" aria-hidden="true">
+        <svg viewBox="0 0 1000 120" className="w-full h-auto select-none font-serif text-white/90" translate="no">
+          <text
+            x="50%"
+            y="95"
+            textAnchor="middle"
+            fill="currentColor"
+            className="font-bold uppercase tracking-wider text-[94px]"
+          >
+            BLUE SPICE HOLIDAYS
+          </text>
+        </svg>
       </div>
     </footer>
   )
