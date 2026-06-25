@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --bg-color: #ffffff;
-  --text-color: #1a1a1a;
-  --blue-light: #66b5e8;
-  --blue-primary: #1e88e5;
+  --bg-color: #FAF9F6;
+  --text-color: #0B1F3A;
+  --blue-light: #4EA8DE;
+  --blue-primary: #0077BE;
 }
 
 html {
@@ -66,7 +66,7 @@ select:focus-visible,
 
 @layer utilities {
   .text-gradient-blue {
-    background: linear-gradient(to right, #66b5e8, #1e88e5);
+    background: linear-gradient(to right, var(--blue-light), var(--blue-primary));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

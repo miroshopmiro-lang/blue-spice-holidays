@@ -47,7 +47,7 @@ export default function BentoGrid() {
                     </div>
                   </>
                 ) : (
-                  <div className="flex flex-col items-center justify-center h-full w-full bg-gradient-to-br from-night via-night/95 to-slate-950 text-white p-6 transition-all duration-500 group-hover:from-slate-900 group-hover:to-night">
+                  <div className="flex flex-col items-center justify-center h-full w-full bg-gradient-to-br from-night via-night/95 to-blue-primary/40 text-white p-6 transition-all duration-500 group-hover:from-night group-hover:to-blue-primary/60">
                     <svg className="w-12 h-12 text-blue-light/80 group-hover:scale-110 group-hover:text-blue-light transition-all duration-500 mb-3" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
