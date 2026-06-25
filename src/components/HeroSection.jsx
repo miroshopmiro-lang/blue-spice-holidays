@@ -55,6 +55,8 @@ export default function HeroSection({ onBook }) {
   const root = useRef(null)
   const bgRef = useRef(null)
   const [index, setIndex] = useState(0)
+  const [isReady, setIsReady] = useState(false)
+  const videoRefs = useRef([])
   const reduceMotion = useReducedMotion()
 
   useEffect(() => {
@@ -79,6 +81,33 @@ export default function HeroSection({ onBook }) {
     return () => ctx.revert()
   }, [reduceMotion])
 
+  useEffect(() => {
+    // Play the active video and pause others
+    videoRefs.current.forEach((video, i) => {
+      if (!video) return
+      if (i === index) {
+        video.currentTime = 0
+        video.play().catch((err) => {
+          console.log('Video playback failed/interrupted: ', err)
+        })
+      } else {
+        video.pause()
+      }
+    })
+  }, [index])
+
+  useEffect(() => {
+    // Fallback: hide preloader after 3.5s regardless to prevent getting stuck
+    const timer = setTimeout(() => {
+      setIsReady(true)
+    }, 3500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  const handleFirstVideoLoad = () => {
+    setIsReady(true)
+  }
+
   const next = () => setIndex((i) => (i + 1) % slides.length)
   const active = slides[index]
   const track = slides.map((_, i) => slides[(index + i) % slides.length])
@@ -90,39 +119,52 @@ export default function HeroSection({ onBook }) {
 
   return (
     <section ref={root} className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
-      <div ref={bgRef} className="absolute inset-[-20px]">
-        {(active.videoLandscape || active.videoLandscapeMp4) && (active.videoPortrait || active.videoPortraitMp4) ? (
-          <>
-            <video
-              key={`vid-l-${active.id}`}
-              autoPlay
-              muted
-              playsInline
-              onEnded={next}
-              className="hidden md:block h-full w-full object-cover transition-all duration-700"
-            >
-              {active.videoLandscape && <source src={active.videoLandscape} type="video/webm" />}
-              {active.videoLandscapeMp4 && <source src={active.videoLandscapeMp4} type="video/mp4" />}
-            </video>
-            <video
-              key={`vid-p-${active.id}`}
-              autoPlay
-              muted
-              playsInline
-              onEnded={next}
-              className="block md:hidden h-full w-full object-cover transition-all duration-700"
-            >
-              {active.videoPortrait && <source src={active.videoPortrait} type="video/webm" />}
-              {active.videoPortraitMp4 && <source src={active.videoPortraitMp4} type="video/mp4" />}
-            </video>
-          </>
-        ) : (
-          <img src={active.image} alt="" width={1920} height={1080} fetchpriority="high" className="h-full w-full object-cover transition-all duration-700" />
-        )}
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/80" />
+      {/* Luxury Preloader Overlay */}
+      {!isReady && (
+        <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-night text-white transition-opacity duration-700">
+          <div className="flex flex-col items-center">
+            <span className="font-script text-4xl mb-4 tracking-wider animate-pulse">Blue Spice</span>
+            <div className="h-[2px] w-48 rounded-full bg-white/10 overflow-hidden relative">
+              <div className="absolute top-0 bottom-0 left-0 w-1/2 bg-blue-light animate-loading-bar" />
+            </div>
+            <p className="mt-3 text-[10px] uppercase tracking-[0.2em] text-white/40">Curating Luxury...</p>
+          </div>
+        </div>
+      )}
 
-      <div className="relative z-10 mx-auto flex h-full max-w-container flex-col justify-between px-5 pb-8 pt-28 sm:px-8 lg:px-12">
+      <div ref={bgRef} className="absolute inset-[-20px]">
+        {/* Fallback Static Image (rendered behind videos) */}
+        <img
+          src={active.image}
+          alt=""
+          width={1920}
+          height={1080}
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 opacity-20"
+        />
+
+        {/* Preloaded video elements with opacity crossfades */}
+        {slides.map((slide, i) => (
+          <video
+            key={slide.id}
+            ref={(el) => (videoRefs.current[i] = el)}
+            preload="auto"
+            muted
+            playsInline
+            loop={false}
+            onEnded={next}
+            onLoadedData={i === 0 ? handleFirstVideoLoad : undefined}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+              index === i ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+            }`}
+          >
+            <source src={slide.videoLandscapeMp4} type="video/mp4" />
+          </video>
+        ))}
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/80 z-20" />
+
+      <div className="relative z-30 mx-auto flex h-full max-w-container flex-col justify-between px-5 pb-8 pt-28 sm:px-8 lg:px-12">
         <div className="max-w-2xl pt-6 text-center lg:text-left">
           <h1 data-reveal className="text-balance text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05]">
             Bespoke Journeys Across Every{' '}
