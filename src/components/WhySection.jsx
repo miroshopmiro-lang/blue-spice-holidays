@@ -81,13 +81,15 @@ export default function WhySection() {
 
           <div className="group relative overflow-hidden rounded-card bg-night">
             <video
-              src="/images/highlight-video.mp4"
               autoPlay
               loop
               muted
               playsInline
               className="h-56 w-full object-cover opacity-50"
-            />
+            >
+              <source src="/images/highlight-video.webm" type="video/webm" />
+              <source src="/images/highlight-video.mp4" type="video/mp4" />
+            </video>
             <div className="absolute bottom-0 inset-x-0 flex items-center justify-between bg-gradient-to-t from-black/80 to-transparent p-5 text-white">
               <div>
                 <p className="text-xs text-white/60">Video Highlights</p>

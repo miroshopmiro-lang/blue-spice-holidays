@@ -9,7 +9,7 @@ const slides = [
     name: 'Maldives Beach',
     categories: ['International'],
     tagline: 'Island serenity, expertly held.',
-    image: '/images/maldives.jpg',
+    image: '/images/maldives-hero.webp',
     videoLandscapeMp4: '/images/maldives.mp4',
     videoPortraitMp4: '/images/maldives.mp4',
   },
@@ -18,7 +18,7 @@ const slides = [
     name: 'Himalayas',
     categories: ['India'],
     tagline: 'Himalayan calm, elevated.',
-    image: '/images/himalayas.jpg',
+    image: '/images/himalayas-hero.webp',
     videoLandscapeMp4: '/images/himalayas.mp4',
     videoPortraitMp4: '/images/himalayas.mp4',
   },
@@ -27,7 +27,7 @@ const slides = [
     name: 'Agra & Taj Mahal',
     categories: ['India', 'Trending'],
     tagline: 'Sunrise over white marble, a monument to timeless love.',
-    image: '/images/taj-mahal.jpg',
+    image: '/images/taj-mahal-hero.webp',
     videoLandscapeMp4: '/images/taj-mahal-landscape.mp4',
     videoPortraitMp4: '/images/taj-mahal-landscape.mp4',
   },
@@ -36,7 +36,7 @@ const slides = [
     name: 'Ranthambore & Wildlife',
     categories: ['India', 'Trending'],
     tagline: 'Spot the majestic Bengal tiger in its natural habitat.',
-    image: '/images/tiger.jpg',
+    image: '/images/tiger-hero.webp',
     videoLandscapeMp4: '/images/tiger.mp4',
     videoPortraitMp4: '/images/tiger.mp4',
   },
@@ -45,7 +45,7 @@ const slides = [
     name: 'Kerala Backwaters',
     categories: ['India'],
     tagline: 'Backwaters, stillness, and unhurried luxury.',
-    image: '/images/kerala.jpg',
+    image: '/images/kerala-hero.webp',
     videoLandscapeMp4: '/images/kerala.mp4',
     videoPortraitMp4: '/images/kerala.mp4',
   }
@@ -138,9 +138,9 @@ export default function HeroSection({ onBook }) {
           <div data-reveal className="flex flex-col items-center gap-4 lg:items-start">
             <div className="flex items-center gap-3 text-white">
               <div className="flex -space-x-2">
-                <img src="/images/avatar-proof-1.jpg" alt="" width={36} height={36} loading="lazy" className="h-9 w-9 rounded-full border-2 border-white/70 object-cover" />
-                <img src="/images/avatar-proof-2.jpg" alt="" width={36} height={36} loading="lazy" className="h-9 w-9 rounded-full border-2 border-white/70 object-cover" />
-                <img src="/images/avatar-proof-3.jpg" alt="" width={36} height={36} loading="lazy" className="h-9 w-9 rounded-full border-2 border-white/70 object-cover" />
+                <img src="/images/avatar-proof-1.webp" alt="" width={36} height={36} loading="lazy" className="h-9 w-9 rounded-full border-2 border-white/70 object-cover" />
+                <img src="/images/avatar-proof-2.webp" alt="" width={36} height={36} loading="lazy" className="h-9 w-9 rounded-full border-2 border-white/70 object-cover" />
+                <img src="/images/avatar-proof-3.webp" alt="" width={36} height={36} loading="lazy" className="h-9 w-9 rounded-full border-2 border-white/70 object-cover" />
                 <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white/70 bg-transparent text-[10px] font-bold text-white uppercase">+</span>
               </div>
               <span className="text-sm"><strong>1500+</strong> Happy Travellers</span>
