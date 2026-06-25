@@ -53,7 +53,16 @@ export const serviceTiers = [
 ]
 
 export const serviceBadges = [
-  'Flights', 'Holiday Packages', 'Visa Assistance', 'Forex', 'Cruises', 'Corporate Travel', 'Private Guides', '24/7 Support',
+  'Domestic & International Flights',
+  'Bespoke Holiday Packages',
+  'Visa & Forex Assistance',
+  'Luxury Cruises & Yacht Charters',
+  'VIP Aviation & Private Charters',
+  'Destination Weddings & Events',
+  'Luxury Wedding Cars & Fleets',
+  'Group Coaches & Corporate Transport',
+  'Executive Protection & Security',
+  'Corporate MICE & Conferences',
 ]
 
 export const bookingSteps = [

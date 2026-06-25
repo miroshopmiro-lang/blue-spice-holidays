@@ -23,7 +23,7 @@ export default function PackagesPage({ onBook }) {
                   <li key={i} className="flex items-start gap-2 text-sm text-ink"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-primary" /> {i}</li>
                 ))}
               </ul>
-              <button onClick={onBook} className="pill mt-7 w-full justify-center bg-night text-white font-semibold hover:bg-blue-primary">Get a Quote <ArrowUpRight /></button>
+              <button onClick={() => onBook?.(t.name)} className="pill mt-7 w-full justify-center bg-night text-white font-semibold hover:bg-blue-primary">Get a Quote <ArrowUpRight /></button>
             </div>
           ))}
         </div>

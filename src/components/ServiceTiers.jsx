@@ -57,7 +57,7 @@ export default function ServiceTiers({ onBook }) {
                 </div>
                 <div className="mt-6 flex items-end justify-between gap-3">
                   <h3 className="text-lg font-bold leading-tight">{tier.name}</h3>
-                  <button onClick={onBook} className="flex shrink-0 items-center gap-1 text-sm font-semibold hover:text-blue-primary">
+                  <button onClick={() => onBook?.(tier.name)} className="flex shrink-0 items-center gap-1 text-sm font-semibold hover:text-blue-primary">
                     Get a Quote <ArrowUpRight className="w-4 h-4" />
                   </button>
                 </div>

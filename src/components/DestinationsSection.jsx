@@ -17,7 +17,7 @@ export default function DestinationsSection({ onBook }) {
   const prev = () => setIndex((i) => (i - 1 + items.length) % items.length)
 
   return (
-    <section id="destinations" className="section-pad bg-surface">
+    <section id="destinations" className="section-pad bg-surface scroll-mt-24">
       <div className="mx-auto max-w-container text-center">
         <span className="pill bg-white text-ink"><Sparkle className="w-4 h-4 text-sunset" /> Our Destinations</span>
         <h2 className="mt-5 text-3xl sm:text-4xl font-bold text-ink">

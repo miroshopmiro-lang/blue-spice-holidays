@@ -14,7 +14,7 @@ export default function BentoGrid() {
     <section className="section-pad bg-surface">
       <div className="mx-auto max-w-container">
         <h2 className="text-3xl sm:text-4xl font-bold text-ink">
-          Moments We've <span className="accent-serif text-gradient-blue">Crafted</span>
+          Moments We’ve <span className="accent-serif text-gradient-blue">Crafted</span>
         </h2>
         <div className="mt-8 grid auto-rows-[200px] grid-cols-2 gap-4 lg:grid-cols-4">
           {tiles.map((t, i) => (
@@ -32,6 +32,8 @@ export default function BentoGrid() {
                     <img
                       src={t.src}
                       alt={t.alt}
+                      width={800}
+                      height={600}
                       style={t.position ? { objectPosition: t.position } : undefined}
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />

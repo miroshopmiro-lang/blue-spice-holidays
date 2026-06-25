@@ -127,7 +127,7 @@ export default function HeroSection({ onBook }) {
             <div className="h-[2px] w-48 rounded-full bg-white/10 overflow-hidden relative">
               <div className="absolute top-0 bottom-0 left-0 w-1/2 bg-blue-light animate-loading-bar" />
             </div>
-            <p className="mt-3 text-[10px] uppercase tracking-[0.2em] text-white/40">Curating Luxury...</p>
+            <p className="mt-3 text-[10px] uppercase tracking-[0.2em] text-white/40">Curating Luxury…</p>
           </div>
         </div>
       )}

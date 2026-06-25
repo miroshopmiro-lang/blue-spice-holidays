@@ -6,7 +6,7 @@ export const blogData = [
     date: 'June 12, 2026',
     readTime: '6 min read',
     image: '/images/kerala.webp',
-    content: 'Kerala rewards travellers who slow down. We pair backwater cruising with curated stays and private guides...'
+    content: 'Kerala rewards travellers who slow down. We pair backwater cruising with curated stays and private guides…'
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const blogData = [
     date: 'May 28, 2026',
     readTime: '8 min read',
     image: '/images/maldives.webp',
-    content: 'A destination wedding lives and dies by its logistics. From guest arrivals to the final reception...'
+    content: 'A destination wedding lives and dies by its logistics. From guest arrivals to the final reception…'
   },
   {
     id: 3,
@@ -24,6 +24,6 @@ export const blogData = [
     date: 'May 9, 2026',
     readTime: '5 min read',
     image: '/images/dubai.webp',
-    content: 'Corporate travel is about predictability. Our MICE desk keeps teams moving and costs clear...'
+    content: 'Corporate travel is about predictability. Our MICE desk keeps teams moving and costs clear…'
   },
 ]
