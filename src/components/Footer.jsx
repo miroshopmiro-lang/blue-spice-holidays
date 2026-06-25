@@ -53,13 +53,15 @@ export default function Footer() {
         </div>
       </div>
       <div className="overflow-hidden w-full" aria-hidden="true">
-        <svg viewBox="0 0 1000 120" className="w-full h-auto select-none font-serif text-white/90" translate="no">
+        <svg viewBox="0 0 1700 200" className="w-full h-auto select-none font-serif text-white/90" translate="no">
           <text
             x="50%"
-            y="95"
+            y="145"
             textAnchor="middle"
             fill="currentColor"
-            className="font-bold uppercase tracking-wider text-[94px]"
+            textLength="1600"
+            lengthAdjust="spacing"
+            className="font-bold uppercase text-[130px]"
           >
             BLUE SPICE HOLIDAYS
           </text>
