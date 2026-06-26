@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import gsap from 'gsap'
 import { useReducedMotion } from 'framer-motion'
-import { ArrowUpRight, Sparkle } from './Icons'
+import { ArrowUpRight, ArrowRight, Sparkle, Plane } from './Icons'
 
 const slides = [
   {
@@ -192,11 +192,11 @@ export default function HeroSection({ onBook }) {
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/80 z-20" />
 
-      <div className="relative z-30 mx-auto flex h-full max-w-container flex-col justify-between px-5 pb-8 pt-28 sm:px-8 lg:px-12">
+      <div className="relative z-30 mx-auto flex h-full max-w-container flex-col justify-between px-5 pb-16 pt-28 sm:px-8 sm:pb-20 lg:px-12">
         <div className="max-w-2xl pt-6 text-center lg:text-left">
           <h1 data-reveal className="text-balance text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05]">
-            Bespoke Journeys Across Every{' '}
-            <span className="accent-serif text-gradient-blue">Destination</span>
+            Journeys Designed Around{' '}
+            <span className="accent-serif text-gradient-blue">You.</span>
           </h1>
           <p data-reveal className="mt-5 mx-auto lg:mx-0 max-w-lg text-xs text-white/60 leading-relaxed md:text-base md:text-white/80 lg:text-lg">
             From exotic international getaways to curated domestic tours, grand weddings to corporate events - we craft experiences around how you want to feel.
@@ -206,6 +206,11 @@ export default function HeroSection({ onBook }) {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           {/* bottom: compact booking + social proof (centered on mobile) */}
           <div data-reveal className="flex flex-col items-center gap-4 lg:items-start">
+            <button onClick={onBook} className="group pill w-full justify-center lg:w-fit bg-blue-primary text-white font-semibold px-7 py-3.5 hover:bg-blue-light transition-colors duration-300">
+              <Plane className="w-4 h-4 mr-2 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              Plan My Journey
+              <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
             <div className="flex items-center gap-3 text-white">
               <div className="flex -space-x-2">
                 <img src="/images/avatar-proof-1.webp" alt="" width={36} height={36} loading="lazy" className="h-9 w-9 rounded-full border-2 border-white/70 object-cover" />
@@ -215,9 +220,6 @@ export default function HeroSection({ onBook }) {
               </div>
               <span className="text-sm"><strong>1500+</strong> Happy Travellers</span>
             </div>
-            <button onClick={onBook} className="pill w-full justify-center lg:w-fit bg-white text-ink font-semibold px-7 py-3.5 hover:bg-blue-light hover:text-white">
-              Book Now <ArrowUpRight />
-            </button>
           </div>
 
           {/* Desktop sliding track */}
@@ -289,7 +291,7 @@ export default function HeroSection({ onBook }) {
                   <div
                     key={`mob-${d.id}`}
                     className={`relative shrink-0 overflow-hidden rounded-card transition-all duration-500 ${
-                      isActive ? 'h-64 w-44' : 'h-48 w-20 opacity-50'
+                      isActive ? 'h-[230px] w-[158px]' : 'h-[173px] w-[72px] opacity-50'
                     }`}
                   >
                     <img
