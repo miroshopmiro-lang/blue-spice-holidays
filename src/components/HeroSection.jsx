@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Marquee from './Marquee';
 
@@ -69,6 +69,8 @@ export default function HeroSection() {
   const [prevIndex, setPrevIndex] = useState(null);
   const [progress, setProgress] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const sectionRef = useRef(null);
 
   const activeSlide = HERO_SLIDES[index];
   const nextSlideObj = HERO_SLIDES[(index + 1) % HERO_SLIDES.length];
@@ -84,6 +86,21 @@ export default function HeroSection() {
     setIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
     setProgress(0);
   };
+
+  // Detect section visibility in viewport to pause activity when scrolled away
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -101,29 +118,26 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, [index, prevIndex]);
 
-  // Handle playing/pausing preloaded videos
+  // Handle playing/pausing preloaded videos based on active slide and viewport visibility
   useEffect(() => {
     if (reducedMotion) return;
 
     HERO_SLIDES.forEach((slide, i) => {
       const video = document.getElementById(`hero-video-${slide.id}`);
       if (video) {
-        if (i === index) {
-          video.currentTime = 0;
+        if (i === index && isVisible) {
           video.play().catch((err) => {
             console.warn(`Autoplay blocked or interrupted for video ${slide.id}:`, err);
           });
         } else {
           video.pause();
-          video.currentTime = 0;
         }
       }
     });
-  }, [index, reducedMotion]);
+  }, [index, reducedMotion, isVisible]);
 
   useEffect(() => {
-    if (reducedMotion) {
-      setProgress(0);
+    if (reducedMotion || !isVisible) {
       return;
     }
     let frameId;
@@ -142,10 +156,10 @@ export default function HeroSection() {
         cancelAnimationFrame(frameId);
       }
     };
-  }, [index, activeSlide.id, reducedMotion]);
+  }, [index, activeSlide.id, reducedMotion, isVisible]);
 
   return (
-    <section id="top" className="relative h-screen w-full overflow-hidden bg-ink grain">
+    <section ref={sectionRef} id="top" className="relative h-screen w-full overflow-hidden bg-ink grain">
       {/* Background Media */}
       <div className="absolute inset-0 z-10 w-full h-full overflow-hidden bg-ink">
         {reducedMotion ? (
