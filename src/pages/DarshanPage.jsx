@@ -7,7 +7,7 @@ const DARSHAN_PACKAGES = [
     duration: '5 Nights / 6 Days', 
     route: 'Dehradun ➔ Yamunotri ➔ Gangotri ➔ Kedarnath ➔ Badrinath ➔ Dehradun',
     price: '₹1,95,000', 
-    image: '/images/chardham_heli_yatra.png',
+    image: '/images/chardham_heli_yatra.webp',
     details: 'Luxury helicopter transfers avoiding long treks, VIP temple access, pure veg catering, and local guides.' 
   },
   { 
@@ -16,7 +16,7 @@ const DARSHAN_PACKAGES = [
     duration: '3 Nights / 4 Days', 
     route: 'Varanasi ➔ Sarnath ➔ Varanasi',
     price: '₹24,900', 
-    image: '/images/varanasi_ganga_aarti.png',
+    image: '/images/varanasi_ganga_aarti.webp',
     details: 'Private sunset Ganga Aarti boat, VIP Kashi Vishwanath Darshan, subah-e-banaras morning rituals, and scholar pundits.' 
   },
   { 
@@ -25,7 +25,7 @@ const DARSHAN_PACKAGES = [
     duration: '2 Nights / 3 Days', 
     route: 'Chennai / Tirupati ➔ Tirumala Hills ➔ Tirupati',
     price: '₹18,500', 
-    image: '/images/tirupati_gopuram.png',
+    image: '/images/tirupati_gopuram.webp',
     details: 'VIP Sheegradarshan passes, luxury private sedan transfer, and premium accommodation at Tirumala foothills.' 
   },
   { 
@@ -34,7 +34,7 @@ const DARSHAN_PACKAGES = [
     duration: '6 Nights / 7 Days', 
     route: 'Indore ➔ Ujjain ➔ Omkareshwar ➔ Maheshwar ➔ Indore',
     price: '₹38,400', 
-    image: '/images/jyotirlinga_shrine.png',
+    image: '/images/jyotirlinga_shrine.webp',
     details: 'VIP queues at Mahakaleshwar & Omkareshwar, clean luxury accommodation, pure vegetarian catering, and local guides.' 
   },
 ];

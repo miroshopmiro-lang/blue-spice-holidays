@@ -8,7 +8,7 @@ const FEATURED_CRUISES = [
     duration: '5 Nights / 6 Days', 
     route: 'Mumbai ➔ Goa ➔ Lakshadweep ➔ Mumbai',
     price: '₹42,500', 
-    image: '/images/goa_cruise.jpg',
+    image: '/images/goa_cruise.webp',
     highlights: ['Ocean View Cabins', 'Casino & Lounges', 'Pure Veg Dining Options']
   },
   { 
@@ -18,7 +18,7 @@ const FEATURED_CRUISES = [
     duration: '4 Nights / 5 Days', 
     route: 'Singapore ➔ Penang ➔ Phuket ➔ Singapore',
     price: '₹54,900', 
-    image: '/images/singapore_malaysia_cruise.jpg',
+    image: '/images/singapore_malaysia_cruise.webp',
     highlights: ['Broadway-style Shows', 'FlowRider Surf Simulator', 'Multiple Theme Restaurants']
   },
   { 
@@ -28,7 +28,7 @@ const FEATURED_CRUISES = [
     duration: '7 Nights / 8 Days', 
     route: 'Athens ➔ Santorini ➔ Mykonos ➔ Ephesus ➔ Athens',
     price: '₹1,28,000', 
-    image: '/images/grecian_island_cruise.jpg',
+    image: '/images/grecian_island_cruise.webp',
     highlights: ['Luxury Staterooms', 'Infinite Verandas', 'Michelin-starred Menus']
   },
 ];

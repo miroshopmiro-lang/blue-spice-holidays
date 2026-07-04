@@ -9,8 +9,8 @@ const HERO_SLIDES = [
     shortName: 'Backwaters',
     tagline: 'Serenity on Floating Palaces',
     description: 'Drift along tranquil emerald waterways on a luxury private houseboat, cocooned by swaying palms and slow-paced coastal rhythms.',
-    video: '/images/kerala.mp4',
-    fallback: '/images/hero-kerala-houseboat.png'
+    video: '/images/kerala.webm',
+    fallback: '/images/hero-kerala-houseboat.webp'
   },
   {
     id: 'munnar',
@@ -18,8 +18,8 @@ const HERO_SLIDES = [
     shortName: 'Munnar',
     tagline: 'Emerald Whispers of the Hills',
     description: 'Wander through rolling tea plantations, mist-laden valleys, and the gentle mountain breeze of the Western Ghats.',
-    video: '/images/munnar.mp4',
-    fallback: '/images/munnar-tea-trails.png'
+    video: '/images/munnar.webm',
+    fallback: '/images/munnar-tea-trails.webp'
   },
   {
     id: 'taj-mahal',
@@ -27,7 +27,7 @@ const HERO_SLIDES = [
     shortName: 'Taj Mahal',
     tagline: 'A Timeless Monument of Love',
     description: 'Marvel at the ethereal white marble glowing under the golden sunrise, capturing India’s rich architectural heritage.',
-    video: '/images/taj-mahal.mp4',
+    video: '/images/taj-mahal.webm',
     fallback: '/images/taj-mahal-hero.webp'
   },
   {
@@ -36,7 +36,7 @@ const HERO_SLIDES = [
     shortName: 'Maya Beach',
     tagline: 'The Ultimate Tropical Escape',
     description: 'Relax on sun-kissed white sands framed by dramatic limestone cliffs and pristine turquoise waters of Thailand.',
-    video: '/images/maya-beach.mp4',
+    video: '/images/maya-beach.webm',
     fallback: '/images/thailand-phiphi.webp'
   },
   {
@@ -45,7 +45,7 @@ const HERO_SLIDES = [
     shortName: 'Himalayas',
     tagline: 'Whispers of the Snowy Giants',
     description: 'Gaze upon the eternal snow-clad peaks, pristine high-altitude valleys, and whispering pine forests of the giants.',
-    video: '/images/himalaya.mp4',
+    video: '/images/himalaya.webm',
     fallback: '/images/himalayas-hero.webp'
   }
 ];

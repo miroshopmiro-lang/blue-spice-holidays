@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const PANELS = [
   {
     tag: 'DOMESTIC CURATION',
-    image: '/images/domestic_curation_hero.jpg',
+    image: '/images/domestic_curation_hero.webp',
     link: '/holidays/domestic',
     actionText: 'EXPLORE DOMESTIC CURATION',
     items: [
@@ -17,7 +17,7 @@ const PANELS = [
   },
   {
     tag: 'GLOBAL ESCAPES',
-    image: '/images/global_escapes_hero.jpg',
+    image: '/images/global_escapes_hero.webp',
     link: '/holidays/international',
     actionText: 'DESIGN INTERNATIONAL ESCAPE',
     items: [

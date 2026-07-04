@@ -17,7 +17,7 @@ const RETREATS = [
     location: 'Narendra Nagar, Uttarakhand Himalayas', 
     duration: '5 Nights / 6 Days', 
     price: '₹1,45,000', 
-    image: '/images/ananda.jpg',
+    image: '/images/ananda.webp',
     focus: 'Stress Management & Mind Rejuvenation',
     inclusions: ['Individual Ayurvedic Body-type profiling', 'Ganges water hydrotherapy', 'Pranayama & Tibetan singing bowl sessions', 'Organic farm-to-table dining']
   },
