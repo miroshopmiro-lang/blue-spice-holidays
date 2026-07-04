@@ -101,6 +101,26 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, [index, prevIndex]);
 
+  // Handle playing/pausing preloaded videos
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    HERO_SLIDES.forEach((slide, i) => {
+      const video = document.getElementById(`hero-video-${slide.id}`);
+      if (video) {
+        if (i === index) {
+          video.currentTime = 0;
+          video.play().catch((err) => {
+            console.warn(`Autoplay blocked or interrupted for video ${slide.id}:`, err);
+          });
+        } else {
+          video.pause();
+          video.currentTime = 0;
+        }
+      }
+    });
+  }, [index, reducedMotion]);
+
   useEffect(() => {
     if (reducedMotion) {
       setProgress(0);
@@ -137,14 +157,13 @@ export default function HeroSection() {
         ) : (
           HERO_SLIDES.map((slide, i) => {
             const isActive = i === index;
-            const isOutgoing = i === prevIndex;
-            const videoSrc = (isActive || isOutgoing) ? slide.video : '';
 
             return (
               <video
                 id={`hero-video-${slide.id}`}
                 key={slide.id}
-                src={videoSrc}
+                src={slide.video}
+                preload="auto"
                 autoPlay={isActive}
                 loop={false}
                 muted={true}
