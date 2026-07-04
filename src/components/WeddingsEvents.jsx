@@ -48,7 +48,7 @@ function WeddingTile({ service, index }) {
 
   return (
     <Item
-      className="group relative flex min-w-0 items-end overflow-hidden rounded-2xl bg-navy p-7 text-white shadow-soft transition-[transform,box-shadow] duration-500 ease-lux hover:-translate-y-1 hover:shadow-float grain min-h-[220px]"
+      className="group relative flex min-w-0 items-end overflow-hidden rounded-2xl bg-navy p-7 text-white shadow-soft card-interactive grain min-h-[220px]"
     >
       {/* Fallback image */}
       <div className="img-fallback absolute inset-0" aria-hidden="true" />

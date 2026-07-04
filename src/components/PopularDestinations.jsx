@@ -85,7 +85,7 @@ export default function PopularDestinations() {
                 type="button"
                 key={dest.id}
                 onClick={() => handleDestinationClick(dest.name)}
-                className="relative overflow-hidden group rounded-2xl cursor-pointer border border-hairline shadow-soft hover:shadow-float transition-[transform,box-shadow] duration-500 h-[280px] w-full text-left block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                className="relative overflow-hidden group rounded-2xl cursor-pointer border border-hairline shadow-soft card-interactive h-[280px] w-full text-left block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
               >
                 {/* Fallback sits below the image */}
                 <div className="img-fallback absolute inset-0" aria-hidden="true" />
@@ -105,7 +105,7 @@ export default function PopularDestinations() {
 
                 {/* Tag Overlay top-right */}
                 <div className="absolute right-4 top-4 z-20">
-                  <span className="bg-white/90 backdrop-blur-sm text-royal font-bold text-[9px] uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+                  <span className="bg-white text-royal font-bold text-[9px] uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
                     {Array.isArray(dest.categories) ? dest.categories[0] : activeCategory}
                   </span>
                 </div>

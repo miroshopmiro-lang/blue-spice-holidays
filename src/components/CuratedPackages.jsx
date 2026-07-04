@@ -41,10 +41,10 @@ function MapIcon() {
 
 function MetaRow({ icon, label }) {
   return (
-    <span className="flex items-center gap-1.5 text-xs text-body font-medium bg-canvas border border-hairline px-3 py-1.5 rounded-full">
+    <div className="flex items-center gap-1.5 text-xs text-body font-medium bg-canvas border border-hairline px-3 py-1.5 rounded-full">
       <span className="text-royal/80">{icon}</span>
       {label}
-    </span>
+    </div>
   );
 }
 
@@ -183,11 +183,11 @@ export default function CuratedPackages() {
           {visible.map((pkg) => (
             <article
               key={pkg.id}
-              className="flex flex-col overflow-hidden rounded-2xl border border-hairline bg-white shadow-soft transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-float"
+              className="flex flex-col overflow-hidden rounded-2xl border border-hairline bg-white shadow-soft card-interactive"
             >
               <div className="relative overflow-hidden">
                 <img src={pkg.image} alt={pkg.title} width={400} height={224} className="h-56 w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
-                <span className="absolute left-4 top-4 rounded-full bg-white/90 backdrop-blur-sm px-3.5 py-1 text-[10px] font-bold uppercase tracking-wider text-royal shadow-sm">{pkg.tag}</span>
+                <span className="absolute left-4 top-4 rounded-full bg-white px-3.5 py-1 text-[10px] font-bold uppercase tracking-wider text-royal shadow-sm">{pkg.tag}</span>
               </div>
 
               <div className="flex flex-1 flex-col p-6">
@@ -203,6 +203,7 @@ export default function CuratedPackages() {
 
                 {/* Rating */}
                 <div className="mt-4 flex items-center gap-1.5 [font-variant-numeric:tabular-nums]">
+
                   <span className="text-gold text-sm leading-none">★</span>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-ink">{pkg.rating}</span>
                   <span className="text-[10px] text-body">({pkg.reviews} reviews)</span>
