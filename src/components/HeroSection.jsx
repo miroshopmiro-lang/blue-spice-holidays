@@ -44,6 +44,14 @@ const HERO_SLIDES = [
     video: '/images/kerala-waterfalls.webm'
   },
   {
+    id: 'kerala-wildlife',
+    name: 'Kerala Wildlife',
+    shortName: 'Wildlife',
+    tagline: 'Sanctuaries of the Wilderness',
+    description: 'Encounter majestic Asian elephants roaming freely in their natural jungle habitat, set amidst the ancient rain forests of Western Ghats.',
+    video: '/images/kerala-wildlife.webm'
+  },
+  {
     id: 'kerala',
     name: 'Kerala Backwaters',
     shortName: 'Backwaters',
@@ -81,7 +89,7 @@ const HERO_SLIDES = [
     shortName: 'Wellness',
     tagline: 'Yoga, Meditation & Rejuvenation',
     description: 'Find absolute peace and spiritual harmony in the serene high-altitude valleys, perfect for yoga, rejuvenation, and quiet reflection.',
-    video: '/images/himalaya.webm'
+    video: '/images/himalaya-v2.webm'
   }
 ];
 

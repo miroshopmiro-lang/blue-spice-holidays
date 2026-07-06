@@ -27,7 +27,7 @@ export default defineConfig({
 
         // Cache name includes a version → when you bump it, all old caches
         // are purged on the next SW activation (manual cache busting lever).
-        cacheId: 'bluespice-v1',
+        cacheId: 'bluespice-v2',
 
         // Precache all Vite-built assets (they have content hashes in their
         // filenames, so they are always fresh and safe to serve from cache).

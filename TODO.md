@@ -11,5 +11,6 @@
 - [x] Optimize HeroSection video playback performance using Page Visibility API, GPU promotion, and browser media controls restrictions on both PC and mobile.
 - [x] Convert and compress Kerala Waterfalls drone video to WebM and insert it in the HeroSection.
 - [x] Restore missing Thailand travel asset (thailand-phiphi.webp) from Git history for the Thailand getaway package.
+- [x] Convert and compress Kerala Wildlife drone video to WebM and insert it in the HeroSection.
 - [x] Build to ensure changes compile.
 
