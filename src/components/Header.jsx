@@ -36,6 +36,7 @@ export default function Header() {
   }, [open]);
 
   return (
+    <>
     <header
       className={`fixed left-0 right-0 top-0 z-50 w-full transition-[background-color,box-shadow,backdrop-filter] duration-500 ease-lux ${showSolidHeader
         ? 'glass shadow-soft py-4'
@@ -140,98 +141,102 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Drawer (with slide-in transitions) */}
-      <AnimatePresence>
-        {open && (
-          <div className="fixed inset-0 z-50 lg:hidden">
-            {/* Backdrop */}
-            <motion.div
-              className="absolute inset-0 bg-ink/40"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={() => setOpen(false)}
-            />
-            {/* Slide-out Panel */}
-            <motion.div
-              className="absolute right-0 top-0 flex h-full w-[82%] max-w-sm flex-col bg-white p-6 shadow-float [overscroll-behavior:contain]"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-display text-lg font-semibold text-ink">Menu</span>
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-hairline text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-                  aria-label="Close menu"
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
-                  </svg>
-                </button>
-              </div>
-              <nav className="mt-8 flex flex-col gap-1 overflow-y-auto">
-                <Link to="/" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                  Home
-                </Link>
-
-                <div className="border-t border-hairline my-2 pt-3">
-                  <span className="text-[10px] uppercase font-mono tracking-widemono text-royal block mb-2 px-3.5">Holidays</span>
-                  <div className="flex flex-col gap-1 pl-4">
-                    <Link to="/holidays" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-2.5 text-base text-body hover:bg-canvas hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                      Holidays Hub
-                    </Link>
-                    <Link to="/holidays/domestic" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-2.5 text-base text-body hover:bg-canvas hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                      Domestic Curation
-                    </Link>
-                    <Link to="/holidays/international" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-2.5 text-base text-body hover:bg-canvas hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                      Global Escapes
-                    </Link>
-                    <Link to="/wellness" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-2.5 text-base text-body hover:bg-canvas hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                      Holistic Wellness
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="border-t border-hairline my-2 pt-3 flex flex-col gap-1">
-                  <Link to="/darshan" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                    Darshan
-                  </Link>
-                  <Link to="/forex" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                    Forex
-                  </Link>
-                  <Link to="/flights" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                    Flights
-                  </Link>
-                  <Link to="/cruises" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                    Cruises
-                  </Link>
-                </div>
-              </nav>
-
-              <div className="mt-auto pt-6 border-t border-hairline flex flex-col gap-4">
-                <a href="tel:+919388599000" className="text-xs text-body px-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm">
-                  Talk to a Specialist: <span className="text-ink font-semibold">+91 93885 99000</span>
-                </a>
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-full bg-navy py-3 text-center text-sm font-medium text-white hover:bg-navy/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
-                  onClick={() => setOpen(false)}
-                >
-                  <WhatsAppIcon className="" />
-                  Chat on WhatsApp
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      {/* Mobile Drawer — rendered outside <header> via portal-like sibling placement
+           because .glass applies transform: translate3d(0,0,0) which creates a new
+           containing block and breaks position: fixed on children */}
     </header>
+
+    <AnimatePresence>
+      {open && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          {/* Backdrop */}
+          <motion.div
+            className="absolute inset-0 bg-ink/40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={() => setOpen(false)}
+          />
+          {/* Slide-out Panel */}
+          <motion.div
+            className="absolute right-0 top-0 flex h-full w-[82%] max-w-sm flex-col bg-white p-6 shadow-float [overscroll-behavior:contain]"
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="flex items-center justify-between">
+              <span className="font-display text-lg font-semibold text-ink">Menu</span>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-hairline text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                aria-label="Close menu"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+                </svg>
+              </button>
+            </div>
+            <nav className="mt-8 flex flex-col gap-1 overflow-y-auto">
+              <Link to="/" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+                Home
+              </Link>
+
+              <div className="border-t border-hairline my-2 pt-3">
+                <span className="text-[10px] uppercase font-mono tracking-widemono text-royal block mb-2 px-3.5">Holidays</span>
+                <div className="flex flex-col gap-1 pl-4">
+                  <Link to="/holidays" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-2.5 text-base text-body hover:bg-canvas hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+                    Holidays Hub
+                  </Link>
+                  <Link to="/holidays/domestic" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-2.5 text-base text-body hover:bg-canvas hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+                    Domestic Curation
+                  </Link>
+                  <Link to="/holidays/international" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-2.5 text-base text-body hover:bg-canvas hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+                    Global Escapes
+                  </Link>
+                  <Link to="/wellness" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-2.5 text-base text-body hover:bg-canvas hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+                    Holistic Wellness
+                  </Link>
+                </div>
+              </div>
+
+              <div className="border-t border-hairline my-2 pt-3 flex flex-col gap-1">
+                <Link to="/darshan" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+                  Darshan
+                </Link>
+                <Link to="/forex" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+                  Forex
+                </Link>
+                <Link to="/flights" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+                  Flights
+                </Link>
+                <Link to="/cruises" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+                  Cruises
+                </Link>
+              </div>
+            </nav>
+
+            <div className="mt-auto pt-6 border-t border-hairline flex flex-col gap-4">
+              <a href="tel:+919388599000" className="text-xs text-body px-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm">
+                Talk to a Specialist: <span className="text-ink font-semibold">+91 93885 99000</span>
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 rounded-full bg-navy py-3 text-center text-sm font-medium text-white hover:bg-navy/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                onClick={() => setOpen(false)}
+              >
+                <WhatsAppIcon className="" />
+                Chat on WhatsApp
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  </>
   );
 }
