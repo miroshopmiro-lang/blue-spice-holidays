@@ -86,6 +86,20 @@
     }
   }
 
+  /* GPU-hardening/compositing helper utilities to force elements onto their own GPU layer
+     and prevent mobile GPU rendering, smearing, and trailing artifacts */
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .translate-z-0 {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+  }
+
   /* Subtle film grain — uses a static pre-baked PNG tile instead of SVG
      feTurbulence to avoid mobile GPU repaint glitching.
      Using position: absolute restricted to the element's bounds, avoiding 

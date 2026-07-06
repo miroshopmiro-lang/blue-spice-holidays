@@ -182,14 +182,14 @@ export default function CuratedPackages() {
           {visible.map((pkg) => (
             <article
               key={pkg.id}
-              className="flex flex-col overflow-hidden rounded-2xl border border-hairline bg-white shadow-soft card-interactive"
+              className="flex flex-col overflow-hidden rounded-2xl border border-hairline bg-white shadow-soft card-interactive transform-gpu translate-z-0 backface-hidden will-change-transform"
             >
               <div className="relative overflow-hidden">
                 <img src={pkg.image} alt={pkg.title} width={400} height={224} className="h-56 w-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" />
                 <span className="absolute left-4 top-4 rounded-full bg-white px-3.5 py-1 text-[10px] font-bold uppercase tracking-wider text-royal shadow-sm">{pkg.tag}</span>
               </div>
 
-              <div className="flex flex-1 flex-col p-6">
+              <div className="flex flex-1 flex-col p-6 bg-white transform-gpu translate-z-0 backface-hidden will-change-transform">
                 <h3 className="font-display text-lg font-semibold leading-snug text-ink">{pkg.title}</h3>
                 <p className="mt-2 text-xs font-medium text-body">{pkg.duration} · {pkg.location}</p>
 
