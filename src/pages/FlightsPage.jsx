@@ -177,7 +177,7 @@ export default function FlightsPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-accent">POPULAR CURATIONS</p>
               <h2 className="serif-font text-2xl sm:text-3xl font-bold text-brand-ink mt-2">Trending Routes</h2>
             </div>
-            <p className="text-sm text-brand-muted mt-2 md:mt-0">Prices are indicative. All flights are quoted live at time of booking.</p>
+            <p className="text-sm text-brand-muted mt-2 md:mt-0">All flights are custom-quoted live based on scheduling and cabin preferences.</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -191,7 +191,7 @@ export default function FlightsPage() {
                 </div>
                 <div className="mt-4 flex items-center justify-between text-xs border-t border-brand-surface-cool pt-4">
                   <span className="text-brand-muted">{route.type}</span>
-                  <span className="font-bold text-brand-ink text-sm [font-variant-numeric:tabular-nums]">Starting {route.price}</span>
+                  <span className="font-bold text-brand-ink text-sm">Quote on Request</span>
                 </div>
               </div>
             ))}

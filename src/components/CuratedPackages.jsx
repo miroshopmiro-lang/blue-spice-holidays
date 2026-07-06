@@ -92,8 +92,7 @@ function ItineraryDrawer({ pkg, onClose }) {
           <h3 className="font-display mt-2 text-2xl font-bold leading-tight text-ink">{pkg.title}</h3>
           <p className="mt-2 text-sm text-body">{pkg.duration} · {pkg.location}</p>
           <p className="mt-4 text-base font-semibold text-ink">
-            Starting from <span className="text-gold text-lg">{pkg.price}</span>
-            <span className="text-xs font-normal text-body"> per person</span>
+            Price: <span className="text-gold text-lg font-bold">On Request</span>
           </p>
 
           <h4 className="font-display mt-8 text-lg font-bold text-ink border-t border-hairline pt-6">Day by Day Itinerary</h4>
@@ -212,9 +211,9 @@ export default function CuratedPackages() {
                 {/* Pricing block */}
                 <div className="mt-5 border-t border-hairline pt-4 flex justify-between items-end">
                   <div>
-                    <span className="text-[9px] font-bold uppercase tracking-wider text-mute block mb-0.5">Starting from</span>
-                    <p className="text-xl font-bold text-ink">
-                      {pkg.price} <span className="text-xs font-normal text-body">/ person</span>
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-mute block mb-0.5">Price</span>
+                    <p className="text-lg font-bold text-ink">
+                      On Request
                     </p>
                   </div>
                   

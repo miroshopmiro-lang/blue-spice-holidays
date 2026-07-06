@@ -144,8 +144,8 @@ export default function DarshanPage() {
 
               <div className="p-6 border-t border-brand-surface-cool bg-brand-surface/40 flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] uppercase text-brand-muted block font-semibold">Starting Price</span>
-                  <span className="serif-font text-lg font-bold text-brand-ink [font-variant-numeric:tabular-nums]">{pkg.price}</span>
+                  <span className="text-[10px] uppercase text-brand-muted block font-semibold">Price</span>
+                  <span className="serif-font text-base font-bold text-brand-ink">On Request</span>
                 </div>
                 <button 
                   onClick={() => handleRequest(pkg.name)}
