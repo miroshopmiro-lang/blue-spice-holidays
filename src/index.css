@@ -68,13 +68,18 @@
     -webkit-backface-visibility: hidden;
   }
 
-  /* Interactive cards - transitions are enabled, but transforms/shadows are limited 
-     to desktop hover-capable pointer devices to prevent mobile Chrome compositing bugs */
+  /* Interactive cards — contain: paint prevents cross-element raster ghosting on mobile.
+     Transition + hover transform are scoped to hover-capable devices only so that
+     mobile browsers never promote cards to individual GPU compositing layers for a
+     hover animation that can't fire on touch. */
   .card-interactive {
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    contain: paint;
   }
 
   @media (hover: hover) {
+    .card-interactive {
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
     .card-interactive:hover {
       transform: translateY(-6px);
       box-shadow: 0px 2px 4px rgba(15,23,42,0.04), 0px 18px 40px -12px rgba(11,45,107,0.18), 0 0 0 1px rgba(15,23,42,0.06) !important;
