@@ -235,9 +235,9 @@ export default function HeroSection() {
               disableRemotePlayback={true}
               controlsList="nodownload nofullscreen noremoteplayback"
               onEnded={isActive && !reducedMotion ? nextSlide : undefined}
-              style={{ willChange: 'opacity' }}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'
-                }`}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                slide.id === 'himalayas' ? 'object-[65%_center] sm:object-center' : 'object-center'
+              } ${isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'}`}
             />
           );
         })}
