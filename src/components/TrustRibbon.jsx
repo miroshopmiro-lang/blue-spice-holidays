@@ -31,9 +31,9 @@ function CountUp({ value }) {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const easeProgress = progress * (2 - progress); // Ease-out quad
-      
+
       const current = easeProgress * targetNum;
-      
+
       if (Number.isInteger(targetNum)) {
         setDisplayValue(Math.floor(current) + suffix);
       } else {
@@ -53,19 +53,20 @@ function CountUp({ value }) {
 
 const TRUST_ITEMS = [
   { value: '18+', title: 'Years of Curation', sub: 'Designing holidays since 2008' },
+  { value: '50+', title: 'Worldwide Destinations', sub: 'A broad portfolio of places to explore' },
   { value: '100%', title: 'Customized', sub: 'Itineraries built around your pace' },
-  { value: 'MOT', title: 'Ministry Approved', sub: 'Govt. Registered Operator · MOT-11/984' },
   { value: '24/7', title: 'Specialist Support', sub: 'On-trip direct support line' },
 ];
+
 
 export default function TrustRibbon() {
   const ref = useRef(null);
 
   return (
-    <section 
-      id="stats" 
-      ref={ref} 
-      className="relative overflow-hidden bg-brand-ink py-16 text-white grain" 
+    <section
+      id="stats"
+      ref={ref}
+      className="relative overflow-hidden bg-brand-ink py-16 text-white grain"
       style={{ colorScheme: 'dark' }}
     >
       {/* Radial mesh background overlays */}
@@ -77,14 +78,14 @@ export default function TrustRibbon() {
         }}
         aria-hidden="true"
       />
-      
+
       <div className="mx-auto max-w-7xl relative z-10 px-6 lg:px-8">
         <dl
           className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4"
         >
           {TRUST_ITEMS.map((item) => (
-            <div 
-              key={item.title} 
+            <div
+              key={item.title}
               className="text-center flex flex-col items-center justify-between h-full"
             >
               <div className="w-full">

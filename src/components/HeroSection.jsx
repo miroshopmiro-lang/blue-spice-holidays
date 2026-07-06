@@ -4,13 +4,28 @@ import Marquee from './Marquee';
 
 const HERO_SLIDES = [
   {
-    id: 'kerala',
-    name: 'Kerala Backwaters',
-    shortName: 'Backwaters',
-    tagline: 'Serenity on Floating Palaces',
-    description: 'Drift along tranquil emerald waterways on a luxury private houseboat, cocooned by swaying palms and slow-paced coastal rhythms.',
-    video: '/images/kerala.webm',
-    fallback: '/images/hero-kerala-houseboat.webp'
+    id: 'taj-mahal',
+    name: 'Agra & Taj Mahal',
+    shortName: 'Taj Mahal',
+    tagline: 'A Timeless Monument of Love',
+    description: 'Marvel at the ethereal white marble glowing under the golden sunrise, capturing India’s rich architectural heritage.',
+    video: '/images/taj-mahal.webm'
+  },
+  {
+    id: 'rajasthan',
+    name: 'Royal Rajasthan',
+    shortName: 'Rajasthan',
+    tagline: 'Heritage, Fortresses & The Blue City',
+    description: 'Wander through the maze of blue-painted streets in Jodhpur, gaze at majestic hill fortresses, and immerse yourself in the vibrant colors of desert heritage.',
+    video: '/images/rajasthan.webm'
+  },
+  {
+    id: 'goa-beach',
+    name: 'Goa Beaches',
+    shortName: 'Goa',
+    tagline: 'Sun-Kissed Golden Shores',
+    description: 'Bask in the serene coastal charm, sway with the palms, and feel the gentle waves along Goa’s pristine beaches.',
+    video: '/images/goa-beach.webm'
   },
   {
     id: 'munnar',
@@ -18,17 +33,39 @@ const HERO_SLIDES = [
     shortName: 'Munnar',
     tagline: 'Emerald Whispers of the Hills',
     description: 'Wander through rolling tea plantations, mist-laden valleys, and the gentle mountain breeze of the Western Ghats.',
-    video: '/images/munnar.webm',
-    fallback: '/images/munnar-tea-trails.webp'
+    video: '/images/munnar.webm'
   },
   {
-    id: 'taj-mahal',
-    name: 'Agra & Taj Mahal',
-    shortName: 'Taj Mahal',
-    tagline: 'A Timeless Monument of Love',
-    description: 'Marvel at the ethereal white marble glowing under the golden sunrise, capturing India’s rich architectural heritage.',
-    video: '/images/taj-mahal.webm',
-    fallback: '/images/taj-mahal-hero.webp'
+    id: 'kerala-waterfalls',
+    name: 'Kerala Waterfalls',
+    shortName: 'Waterfalls',
+    tagline: 'Cascades of Athirappilly',
+    description: 'Witness the roaring grandeur of forest waterfalls crashing down into deep green glades, cocooned by tropical wilderness.',
+    video: '/images/kerala-waterfalls.webm'
+  },
+  {
+    id: 'kerala',
+    name: 'Kerala Backwaters',
+    shortName: 'Backwaters',
+    tagline: 'Serenity on Floating Palaces',
+    description: 'Drift along tranquil emerald waterways on a luxury private houseboat, cocooned by swaying palms and slow-paced coastal rhythms.',
+    video: '/images/kerala.webm'
+  },
+  {
+    id: 'dubai',
+    name: 'Dubai & Burj Khalifa',
+    shortName: 'Dubai',
+    tagline: 'Skylines of Wonder & Luxury',
+    description: 'Soar above the iconic Burj Khalifa, witness architectural wonders, and immerse yourself in the luxurious charm of this global oasis.',
+    video: '/images/dubai.webm'
+  },
+  {
+    id: 'london',
+    name: 'London Landmarks',
+    shortName: 'London',
+    tagline: 'Classic Elegance & Historic Bridges',
+    description: 'Savor the timeless beauty of London. Glide past the historic Big Ben and iconic bridges spanning the majestic River Thames.',
+    video: '/images/london.webm'
   },
   {
     id: 'maya-beach',
@@ -36,17 +73,15 @@ const HERO_SLIDES = [
     shortName: 'Maya Beach',
     tagline: 'The Ultimate Tropical Escape',
     description: 'Relax on sun-kissed white sands framed by dramatic limestone cliffs and pristine turquoise waters of Thailand.',
-    video: '/images/maya-beach.webm',
-    fallback: '/images/thailand-phiphi.webp'
+    video: '/images/maya-beach.webm'
   },
   {
     id: 'himalayas',
-    name: 'The Great Himalayas',
-    shortName: 'Himalayas',
-    tagline: 'Whispers of the Snowy Giants',
-    description: 'Gaze upon the eternal snow-clad peaks, pristine high-altitude valleys, and whispering pine forests of the giants.',
-    video: '/images/himalaya.webm',
-    fallback: '/images/himalayas-hero.webp'
+    name: 'Himalayan Wellness',
+    shortName: 'Wellness',
+    tagline: 'Yoga, Meditation & Rejuvenation',
+    description: 'Find absolute peace and spiritual harmony in the serene high-altitude valleys, perfect for yoga, rejuvenation, and quiet reflection.',
+    video: '/images/himalaya.webm'
   }
 ];
 
@@ -70,6 +105,7 @@ export default function HeroSection() {
   const [progress, setProgress] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isTabVisible, setIsTabVisible] = useState(true);
   const sectionRef = useRef(null);
 
   const activeSlide = HERO_SLIDES[index];
@@ -102,6 +138,15 @@ export default function HeroSection() {
     return () => observer.disconnect();
   }, []);
 
+  // Listen for tab focus/blur and browser minimizing (Page Visibility API)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setIsTabVisible(document.visibilityState === 'visible');
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
+
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     const update = () => setReducedMotion(mq.matches);
@@ -118,14 +163,16 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, [index, prevIndex]);
 
-  // Handle playing/pausing preloaded videos based on active slide and viewport visibility
+  // Handle playing/pausing preloaded videos based on active slide, viewport visibility, and tab focus
   useEffect(() => {
     if (reducedMotion) return;
 
     HERO_SLIDES.forEach((slide, i) => {
       const video = document.getElementById(`hero-video-${slide.id}`);
       if (video) {
-        if (i === index && isVisible) {
+        if (i === index && isVisible && isTabVisible) {
+          // Double-check element muted state explicitly to prevent browser blocking playback
+          video.muted = true;
           video.play().catch((err) => {
             console.warn(`Autoplay blocked or interrupted for video ${slide.id}:`, err);
           });
@@ -134,10 +181,11 @@ export default function HeroSection() {
         }
       }
     });
-  }, [index, reducedMotion, isVisible]);
+  }, [index, reducedMotion, isVisible, isTabVisible]);
 
+  // Track and update progress bar
   useEffect(() => {
-    if (reducedMotion || !isVisible) {
+    if (reducedMotion || !isVisible || !isTabVisible) {
       return;
     }
     let frameId;
@@ -156,40 +204,35 @@ export default function HeroSection() {
         cancelAnimationFrame(frameId);
       }
     };
-  }, [index, activeSlide.id, reducedMotion, isVisible]);
+  }, [index, activeSlide.id, reducedMotion, isVisible, isTabVisible]);
 
   return (
     <section ref={sectionRef} id="top" className="relative h-screen w-full overflow-hidden bg-ink grain">
       {/* Background Media */}
       <div className="absolute inset-0 z-10 w-full h-full overflow-hidden bg-ink">
-        {reducedMotion ? (
-          <img
-            src={activeSlide.fallback}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover opacity-90 z-20"
-          />
-        ) : (
-          HERO_SLIDES.map((slide, i) => {
-            const isActive = i === index;
+        {HERO_SLIDES.map((slide, i) => {
+          const isActive = i === index;
 
-            return (
-              <video
-                id={`hero-video-${slide.id}`}
-                key={slide.id}
-                src={slide.video}
-                preload="auto"
-                autoPlay={isActive}
-                loop={false}
-                muted={true}
-                playsInline
-                onEnded={isActive ? nextSlide : undefined}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                  isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'
+          return (
+            <video
+              id={`hero-video-${slide.id}`}
+              key={slide.id}
+              src={slide.video}
+              preload="auto"
+              autoPlay={isActive && !reducedMotion}
+              loop={false}
+              muted={true}
+              playsInline
+              disablePictureInPicture={true}
+              disableRemotePlayback={true}
+              controlsList="nodownload nofullscreen noremoteplayback"
+              onEnded={isActive && !reducedMotion ? nextSlide : undefined}
+              style={{ willChange: 'opacity' }}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'
                 }`}
-              />
-            );
-          })
-        )}
+            />
+          );
+        })}
       </div>
 
 
@@ -206,7 +249,8 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-gold font-mono"
           >
-            ESTABLISHED 2008 · CURATORS OF SLOW TRAVEL
+            BORN IN 2008 · MICRO LEVEL CUSTOMISED PLANNING
+
           </motion.p>
 
           <motion.h1
@@ -277,8 +321,11 @@ export default function HeroSection() {
 
           </div>
 
-          {/* Desktop Layout: 5 columns progress track */}
-          <div className="hidden sm:grid grid-cols-5 gap-4 flex-1">
+          {/* Desktop Layout: Dynamic progress track */}
+          <div
+            className="hidden sm:grid gap-4 flex-1"
+            style={{ gridTemplateColumns: `repeat(${HERO_SLIDES.length}, minmax(0, 1fr))` }}
+          >
 
 
             {HERO_SLIDES.map((slide, i) => {
