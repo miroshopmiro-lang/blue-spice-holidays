@@ -90,6 +90,14 @@ const HERO_SLIDES = [
     tagline: 'Yoga, Meditation & Rejuvenation',
     description: 'Find absolute peace and spiritual harmony in the serene high-altitude valleys, perfect for yoga, rejuvenation, and quiet reflection.',
     video: '/images/himalaya-v2.webm'
+  },
+  {
+    id: 'himalayas-2',
+    name: 'Himalayan Wellness',
+    shortName: 'Himalayas',
+    tagline: 'Ancient Peaks, Timeless Peace',
+    description: 'Let the majestic snow-capped Himalayas inspire stillness — a sanctuary above the clouds where every breath is a step toward renewal.',
+    video: '/images/himalaya-v1.webm'
   }
 ];
 
@@ -236,7 +244,7 @@ export default function HeroSection() {
               controlsList="nodownload nofullscreen noremoteplayback"
               onEnded={isActive && !reducedMotion ? nextSlide : undefined}
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                slide.id === 'himalayas' ? 'object-[65%_center] sm:object-center' : 'object-center'
+                (slide.id === 'himalayas' || slide.id === 'himalayas-2') ? 'object-[65%_center] sm:object-center' : 'object-center'
               } ${isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'}`}
             />
           );
