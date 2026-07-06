@@ -18,7 +18,7 @@ export default function ParallaxImage({ src, alt, width, height, className = '' 
   }, [])
 
   const { scrollYProgress } = useScroll({ 
-    target: isMobile ? null : ref, 
+    target: ref, 
     offset: ['start end', 'end start'] 
   })
   

@@ -77,7 +77,7 @@ function ServiceTile({ service, index }) {
         <h3 className="mt-2 font-display text-xl font-semibold tracking-tight md:text-2xl">
           {service.title}
         </h3>
-        <p className="mt-2 max-w-md text-xs leading-relaxed text-white/75 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        <p className="mt-2 max-w-md text-xs leading-relaxed text-white/75 opacity-0 transition-opacity duration-500 group-hover:opacity-100 [@media(hover:none)]:opacity-100">
           {service.outcome}
         </p>
 
