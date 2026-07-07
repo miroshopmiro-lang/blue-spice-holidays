@@ -17,8 +17,8 @@ export default function PopularDestinations() {
   // This guarantees India/International/Trending always show content.
   const DESTINATION_IDS_BY_TAB = {
     India: new Set(['kerala', 'andaman', 'kashmir', 'manali', 'gangtok', 'taj-mahal', 'rajasthan']),
-    International: new Set(['dubai', 'bali', 'thailand', 'singapore', 'maldives', 'vietnam', 'georgia', 'sri-lanka', 'malaysia']),
-    Trending: new Set(['andaman', 'vietnam', 'georgia', 'taj-mahal', 'rajasthan', 'kashmir']),
+    International: new Set(['dubai', 'bali', 'thailand', 'singapore', 'maldives', 'vietnam', 'georgia', 'sri-lanka', 'malaysia', 'london']),
+    Trending: new Set(['andaman', 'vietnam', 'georgia', 'taj-mahal', 'rajasthan', 'kashmir', 'london']),
   };
 
   const visibleDestinations = DESTINATIONS.filter((dest) => {

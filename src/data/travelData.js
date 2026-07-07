@@ -139,6 +139,29 @@ export const CURATED_PACKAGES = [
       { day: 5, title: "Departure", detail: "Transfer to Jewel Changi airport for shopping and flight connection." }
     ],
     accommodations: "4-star luxury hotels centrally located in Orchard Road or Marina Bay."
+  },
+  {
+    id: 7,
+    title: "Classic London Discovery & City Curation",
+    location: "London, UK",
+    duration: "6 Nights / 7 Days",
+    rating: "4.9",
+    reviews: "32",
+    tag: "Couples Escapes",
+    price: "On Request",
+    inclusions: "Bespoke Accommodations, Wembley Stadium Pass, River Cruise, In association with Rediscover Tourism",
+    image: "/images/london.webp",
+    metadata: { stay: "Premium Hotel Stays", driver: "Airport Transfers & City Tour", guide: "Rediscover Tourism Curation" },
+    itinerary: [
+      { day: 1, title: "Welcome to London", detail: "Warm welcome and private transfer from London airport to your premium accommodation." },
+      { day: 2, title: "Wembley & Ealing Road Curation", detail: "Day trip to the world-famous Wembley Stadium, beautiful Hindu temples, and boutique shopping on Ealing Road (the 'Delhi of UK'). Experience London's iconic nightlife in the evening." },
+      { day: 3, title: "Historic Westminster & London Eye", detail: "Guided day trip to Westminster Abbey, Houses of Parliament, Parliament Square, Big Ben, and a flight on the iconic London Eye." },
+      { day: 4, title: "Royal Palaces & Squares", detail: "Excursion to Buckingham Palace, Trafalgar Square, National Gallery, and the lively Leicester Square." },
+      { day: 5, title: "Hyde Park & Science Museum", detail: "Unwind at Hyde Park, stroll through Covent Garden's markets, and explore the interactive exhibits at the Science Museum." },
+      { day: 6, title: "Royal Park Leisure & River Cruise", detail: "A relaxing day in the Royal Parks followed by an enchanting River Thames cruise to view the city skyline." },
+      { day: 7, title: "Farewell London", detail: "Private transfer from your accommodation to the airport. End of your 7-day tour with happy memories." }
+    ],
+    accommodations: "Curated premium accommodations in central London, organized in association with our UK partner Rediscover Tourism."
   }
 ];
 
@@ -188,5 +211,6 @@ export const DESTINATIONS = [
   { id: 'andaman', name: 'Andaman', categories: ['India', 'Trending'], tagline: 'Private shores and turquoise solitude.', image: '/images/andaman.webp' },
   { id: 'vietnam', name: 'Vietnam', categories: ['International', 'Trending'], tagline: 'Heritage and green horizon in one journey.', image: '/images/vietnam.webp' },
   { id: 'georgia', name: 'Georgia', categories: ['International', 'Trending'], tagline: 'Old-world charm, new-world ease.', image: '/images/georgia.webp' },
-  { id: 'taj-mahal', name: 'Agra & Taj Mahal', categories: ['India', 'Trending'], tagline: 'Sunrise over white marble, timeless love.', image: '/images/taj-mahal.webp' }
+  { id: 'taj-mahal', name: 'Agra & Taj Mahal', categories: ['India', 'Trending'], tagline: 'Sunrise over white marble, timeless love.', image: '/images/taj-mahal.webp' },
+  { id: 'london', name: 'London', categories: ['International', 'Trending'], tagline: 'Royal heritage, historic streets, and partner-curated charm.', image: '/images/london.webp' }
 ];

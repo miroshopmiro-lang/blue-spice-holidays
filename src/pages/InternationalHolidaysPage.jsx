@@ -64,6 +64,28 @@ const INT_PACKAGES = [
       { day: 6, title: "Ananuri & Kazbegi", detail: "Mountain roads to Gergeti Trinity church under high peaks." },
       { day: 7, title: "Departure", detail: "Transfer to Tbilisi airport." }
     ]
+  },
+  {
+    id: 204,
+    title: "Classic London Discovery & City Curation",
+    location: "London, UK",
+    duration: "6 Nights / 7 Days",
+    rating: "4.9",
+    reviews: "32",
+    tag: "Couples Escapes",
+    price: "On Request",
+    inclusions: "Bespoke Accommodations, Wembley Stadium Pass, River Cruise, In association with Rediscover Tourism",
+    image: "/images/london.webp",
+    accommodations: "Curated premium accommodations in central London, organized in association with our UK partner Rediscover Tourism.",
+    itinerary: [
+      { day: 1, title: "Welcome to London", detail: "Warm welcome and private transfer from London airport to your premium accommodation." },
+      { day: 2, title: "Wembley & Ealing Road Curation", detail: "Day trip to the world-famous Wembley Stadium, beautiful Hindu temples, and boutique shopping on Ealing Road (the 'Delhi of UK'). Experience London's iconic nightlife in the evening." },
+      { day: 3, title: "Historic Westminster & London Eye", detail: "Guided day trip to Westminster Abbey, Houses of Parliament, Parliament Square, Big Ben, and a flight on the iconic London Eye." },
+      { day: 4, title: "Royal Palaces & Squares", detail: "Excursion to Buckingham Palace, Trafalgar Square, National Gallery, and the lively Leicester Square." },
+      { day: 5, title: "Hyde Park & Science Museum", detail: "Unwind at Hyde Park, stroll through Covent Garden's markets, and explore the interactive exhibits at the Science Museum." },
+      { day: 6, title: "Royal Park Leisure & River Cruise", detail: "A relaxing day in the Royal Parks followed by an enchanting River Thames cruise to view the city skyline." },
+      { day: 7, title: "Farewell London", detail: "Private transfer from your accommodation to the airport. End of your 7-day tour with happy memories." }
+    ]
   }
 ];
 

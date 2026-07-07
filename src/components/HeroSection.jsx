@@ -10,7 +10,7 @@ const HERO_SLIDES = [
     tagline: 'A Timeless Monument of Love',
     description: 'Marvel at the ethereal white marble glowing under the golden sunrise, capturing India’s rich architectural heritage.',
     video: '/images/taj-mahal.webm',
-    poster: '/images/taj-mahal.webp'
+    poster: '/images/taj-mahal-poster.webp'
   },
   {
     id: 'rajasthan',
@@ -19,7 +19,7 @@ const HERO_SLIDES = [
     tagline: 'Heritage, Fortresses & The Blue City',
     description: 'Wander through the maze of blue-painted streets in Jodhpur, gaze at majestic hill fortresses, and immerse yourself in the vibrant colors of desert heritage.',
     video: '/images/rajasthan.webm',
-    poster: '/images/rajasthan.webp'
+    poster: '/images/rajasthan-poster.webp'
   },
   {
     id: 'goa-beach',
@@ -28,7 +28,7 @@ const HERO_SLIDES = [
     tagline: 'Sun-Kissed Golden Shores',
     description: 'Bask in the serene coastal charm, sway with the palms, and feel the gentle waves along Goa’s pristine beaches.',
     video: '/images/goa-beach.webm',
-    poster: '/images/goa-beach.webp'
+    poster: '/images/goa-beach-poster.webp'
   },
   {
     id: 'munnar',
@@ -37,7 +37,7 @@ const HERO_SLIDES = [
     tagline: 'Emerald Whispers of the Hills',
     description: 'Wander through rolling tea plantations, mist-laden valleys, and the gentle mountain breeze of the Western Ghats.',
     video: '/images/munnar.webm',
-    poster: '/images/munnar.webp'
+    poster: '/images/munnar-poster.webp'
   },
   {
     id: 'kerala-waterfalls',
@@ -46,7 +46,7 @@ const HERO_SLIDES = [
     tagline: 'Cascades of Athirappilly',
     description: 'Witness the roaring grandeur of forest waterfalls crashing down into deep green glades, cocooned by tropical wilderness.',
     video: '/images/kerala-waterfalls.webm',
-    poster: '/images/kerala-waterfalls.webp'
+    poster: '/images/kerala-waterfalls-poster.webp'
   },
   {
     id: 'kerala-wildlife',
@@ -55,7 +55,7 @@ const HERO_SLIDES = [
     tagline: 'Sanctuaries of the Wilderness',
     description: 'Encounter majestic Asian elephants roaming freely in their natural jungle habitat, set amidst the ancient rain forests of Western Ghats.',
     video: '/images/kerala-wildlife.webm',
-    poster: '/images/kerala-wildlife.webp'
+    poster: '/images/kerala-wildlife-poster.webp'
   },
   {
     id: 'kerala',
@@ -64,7 +64,7 @@ const HERO_SLIDES = [
     tagline: 'Serenity on Floating Palaces',
     description: 'Drift along tranquil emerald waterways on a luxury private houseboat, cocooned by swaying palms and slow-paced coastal rhythms.',
     video: '/images/kerala.webm',
-    poster: '/images/kerala.webp'
+    poster: '/images/kerala-poster.webp'
   },
   {
     id: 'dubai',
@@ -73,7 +73,7 @@ const HERO_SLIDES = [
     tagline: 'Skylines of Wonder & Luxury',
     description: 'Soar above the iconic Burj Khalifa, witness architectural wonders, and immerse yourself in the luxurious charm of this global oasis.',
     video: '/images/dubai.webm',
-    poster: '/images/dubai.webp'
+    poster: '/images/dubai-poster.webp'
   },
   {
     id: 'london',
@@ -82,7 +82,7 @@ const HERO_SLIDES = [
     tagline: 'Classic Elegance & Historic Bridges',
     description: 'Savor the timeless beauty of London. Glide past the historic Big Ben and iconic bridges spanning the majestic River Thames.',
     video: '/images/london.webm',
-    poster: '/images/london.webp'
+    poster: '/images/london-poster.webp'
   },
   {
     id: 'maya-beach',
@@ -91,7 +91,7 @@ const HERO_SLIDES = [
     tagline: 'The Ultimate Tropical Escape',
     description: 'Relax on sun-kissed white sands framed by dramatic limestone cliffs and pristine turquoise waters of Thailand.',
     video: '/images/maya-beach.webm',
-    poster: '/images/maya-beach.webp'
+    poster: '/images/maya-beach-poster.webp'
   },
   {
     id: 'himalayas',
@@ -100,7 +100,7 @@ const HERO_SLIDES = [
     tagline: 'Yoga, Meditation & Rejuvenation',
     description: 'Find absolute peace and spiritual harmony in the serene high-altitude valleys, perfect for yoga, rejuvenation, and quiet reflection.',
     video: '/images/himalaya-v2.webm',
-    poster: '/images/himalaya-v2.webp'
+    poster: '/images/himalaya-v2-poster.webp'
   },
   {
     id: 'himalayas-2',
@@ -109,7 +109,7 @@ const HERO_SLIDES = [
     tagline: 'Ancient Peaks, Timeless Peace',
     description: 'Let the majestic snow-capped Himalayas inspire stillness — a sanctuary above the clouds where every breath is a step toward renewal.',
     video: '/images/himalaya-v1.webm',
-    poster: '/images/himalaya-v1.webp'
+    poster: '/images/himalaya-v1-poster.webp'
   }
 ];
 

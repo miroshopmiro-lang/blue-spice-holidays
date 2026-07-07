@@ -7,6 +7,7 @@ const DESTINATIONS = [
   { label: 'Kashmir Valleys', to: '/holidays/domestic' },
   { label: 'Himalayan Peaks', to: '/holidays/domestic' },
   { label: 'Maldives Lagoon', to: '/holidays/international' },
+  { label: 'London Curation', to: '/holidays/international' },
 ];
 const TRAVEL_STYLES = [
   { label: 'Domestic Curation', to: '/holidays/domestic' },
