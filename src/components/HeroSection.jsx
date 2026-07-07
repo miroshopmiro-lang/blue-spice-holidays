@@ -9,7 +9,8 @@ const HERO_SLIDES = [
     shortName: 'Taj Mahal',
     tagline: 'A Timeless Monument of Love',
     description: 'Marvel at the ethereal white marble glowing under the golden sunrise, capturing India’s rich architectural heritage.',
-    video: '/images/taj-mahal.webm'
+    video: '/images/taj-mahal.webm',
+    poster: '/images/taj-mahal.webp'
   },
   {
     id: 'rajasthan',
@@ -17,7 +18,8 @@ const HERO_SLIDES = [
     shortName: 'Rajasthan',
     tagline: 'Heritage, Fortresses & The Blue City',
     description: 'Wander through the maze of blue-painted streets in Jodhpur, gaze at majestic hill fortresses, and immerse yourself in the vibrant colors of desert heritage.',
-    video: '/images/rajasthan.webm'
+    video: '/images/rajasthan.webm',
+    poster: '/images/rajasthan.webp'
   },
   {
     id: 'goa-beach',
@@ -25,7 +27,8 @@ const HERO_SLIDES = [
     shortName: 'Goa',
     tagline: 'Sun-Kissed Golden Shores',
     description: 'Bask in the serene coastal charm, sway with the palms, and feel the gentle waves along Goa’s pristine beaches.',
-    video: '/images/goa-beach.webm'
+    video: '/images/goa-beach.webm',
+    poster: '/images/goa-beach.webp'
   },
   {
     id: 'munnar',
@@ -33,7 +36,8 @@ const HERO_SLIDES = [
     shortName: 'Munnar',
     tagline: 'Emerald Whispers of the Hills',
     description: 'Wander through rolling tea plantations, mist-laden valleys, and the gentle mountain breeze of the Western Ghats.',
-    video: '/images/munnar.webm'
+    video: '/images/munnar.webm',
+    poster: '/images/munnar.webp'
   },
   {
     id: 'kerala-waterfalls',
@@ -41,7 +45,8 @@ const HERO_SLIDES = [
     shortName: 'Waterfalls',
     tagline: 'Cascades of Athirappilly',
     description: 'Witness the roaring grandeur of forest waterfalls crashing down into deep green glades, cocooned by tropical wilderness.',
-    video: '/images/kerala-waterfalls.webm'
+    video: '/images/kerala-waterfalls.webm',
+    poster: '/images/kerala-waterfalls.webp'
   },
   {
     id: 'kerala-wildlife',
@@ -49,7 +54,8 @@ const HERO_SLIDES = [
     shortName: 'Wildlife',
     tagline: 'Sanctuaries of the Wilderness',
     description: 'Encounter majestic Asian elephants roaming freely in their natural jungle habitat, set amidst the ancient rain forests of Western Ghats.',
-    video: '/images/kerala-wildlife.webm'
+    video: '/images/kerala-wildlife.webm',
+    poster: '/images/kerala-wildlife.webp'
   },
   {
     id: 'kerala',
@@ -57,7 +63,8 @@ const HERO_SLIDES = [
     shortName: 'Backwaters',
     tagline: 'Serenity on Floating Palaces',
     description: 'Drift along tranquil emerald waterways on a luxury private houseboat, cocooned by swaying palms and slow-paced coastal rhythms.',
-    video: '/images/kerala.webm'
+    video: '/images/kerala.webm',
+    poster: '/images/kerala.webp'
   },
   {
     id: 'dubai',
@@ -65,7 +72,8 @@ const HERO_SLIDES = [
     shortName: 'Dubai',
     tagline: 'Skylines of Wonder & Luxury',
     description: 'Soar above the iconic Burj Khalifa, witness architectural wonders, and immerse yourself in the luxurious charm of this global oasis.',
-    video: '/images/dubai.webm'
+    video: '/images/dubai.webm',
+    poster: '/images/dubai.webp'
   },
   {
     id: 'london',
@@ -73,7 +81,8 @@ const HERO_SLIDES = [
     shortName: 'London',
     tagline: 'Classic Elegance & Historic Bridges',
     description: 'Savor the timeless beauty of London. Glide past the historic Big Ben and iconic bridges spanning the majestic River Thames.',
-    video: '/images/london.webm'
+    video: '/images/london.webm',
+    poster: '/images/london.webp'
   },
   {
     id: 'maya-beach',
@@ -81,7 +90,8 @@ const HERO_SLIDES = [
     shortName: 'Maya Beach',
     tagline: 'The Ultimate Tropical Escape',
     description: 'Relax on sun-kissed white sands framed by dramatic limestone cliffs and pristine turquoise waters of Thailand.',
-    video: '/images/maya-beach.webm'
+    video: '/images/maya-beach.webm',
+    poster: '/images/maya-beach.webp'
   },
   {
     id: 'himalayas',
@@ -89,7 +99,8 @@ const HERO_SLIDES = [
     shortName: 'Wellness',
     tagline: 'Yoga, Meditation & Rejuvenation',
     description: 'Find absolute peace and spiritual harmony in the serene high-altitude valleys, perfect for yoga, rejuvenation, and quiet reflection.',
-    video: '/images/himalaya-v2.webm'
+    video: '/images/himalaya-v2.webm',
+    poster: '/images/himalaya-v2.webp'
   },
   {
     id: 'himalayas-2',
@@ -97,7 +108,8 @@ const HERO_SLIDES = [
     shortName: 'Himalayas',
     tagline: 'Ancient Peaks, Timeless Peace',
     description: 'Let the majestic snow-capped Himalayas inspire stillness — a sanctuary above the clouds where every breath is a step toward renewal.',
-    video: '/images/himalaya-v1.webm'
+    video: '/images/himalaya-v1.webm',
+    poster: '/images/himalaya-v1.webp'
   }
 ];
 
@@ -114,6 +126,75 @@ const MARQUEE_ITEMS = [
   'Curated International Escapes'
 ];
 
+function HeroVideo({ slide, isActive, isPrev, nextSlide, reducedMotion, isVisible, isTabVisible, activeVideoRef }) {
+  const videoRef = useRef(null);
+  const [videoSrc, setVideoSrc] = useState(null);
+
+  // Delay loading the video source until core page assets (CSS, fonts) are loaded
+  useEffect(() => {
+    if (document.readyState === 'complete') {
+      const timer = setTimeout(() => {
+        setVideoSrc(slide.video);
+      }, 50);
+      return () => clearTimeout(timer);
+    } else {
+      const handleLoad = () => {
+        setVideoSrc(slide.video);
+      };
+      window.addEventListener('load', handleLoad);
+      return () => window.removeEventListener('load', handleLoad);
+    }
+  }, [slide.video]);
+
+  // Handle play/pause state dynamically
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || reducedMotion || !videoSrc) return;
+
+    if (isActive && isVisible && isTabVisible) {
+      video.muted = true;
+      video.play().catch((err) => {
+        if (err.name !== 'AbortError') {
+          console.warn(`Autoplay blocked or interrupted for video ${slide.id}:`, err);
+        }
+      });
+    } else {
+      video.pause();
+    }
+  }, [isActive, isVisible, isTabVisible, reducedMotion, slide.id, videoSrc]);
+
+  // Sync reference when this video becomes active
+  useEffect(() => {
+    if (isActive && activeVideoRef) {
+      activeVideoRef.current = videoRef.current;
+    }
+  }, [isActive, activeVideoRef, videoSrc]);
+
+  return (
+    <video
+      ref={(el) => {
+        videoRef.current = el;
+        if (isActive && activeVideoRef) {
+          activeVideoRef.current = el;
+        }
+      }}
+      id={`hero-video-${slide.id}`}
+      src={videoSrc || undefined}
+      poster={slide.poster}
+      preload="metadata"
+      loop={false}
+      muted={true}
+      playsInline
+      disablePictureInPicture={true}
+      disableRemotePlayback={true}
+      controlsList="nodownload nofullscreen noremoteplayback"
+      onEnded={isActive && !reducedMotion ? nextSlide : undefined}
+      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+        (slide.id === 'himalayas' || slide.id === 'himalayas-2') ? 'object-[65%_center] sm:object-center' : 'object-center'
+      } ${isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'}`}
+    />
+  );
+}
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
@@ -123,6 +204,7 @@ export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(true);
   const [isTabVisible, setIsTabVisible] = useState(true);
   const sectionRef = useRef(null);
+  const activeVideoRef = useRef(null);
 
   const activeSlide = HERO_SLIDES[index];
   const nextSlideObj = HERO_SLIDES[(index + 1) % HERO_SLIDES.length];
@@ -179,26 +261,6 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, [index, prevIndex]);
 
-  // Handle playing/pausing preloaded videos based on active slide, viewport visibility, and tab focus
-  useEffect(() => {
-    if (reducedMotion) return;
-
-    HERO_SLIDES.forEach((slide, i) => {
-      const video = document.getElementById(`hero-video-${slide.id}`);
-      if (video) {
-        if (i === index && isVisible && isTabVisible) {
-          // Double-check element muted state explicitly to prevent browser blocking playback
-          video.muted = true;
-          video.play().catch((err) => {
-            console.warn(`Autoplay blocked or interrupted for video ${slide.id}:`, err);
-          });
-        } else {
-          video.pause();
-        }
-      }
-    });
-  }, [index, reducedMotion, isVisible, isTabVisible]);
-
   // Track and update progress bar
   useEffect(() => {
     if (reducedMotion || !isVisible || !isTabVisible) {
@@ -206,7 +268,7 @@ export default function HeroSection() {
     }
     let frameId;
     const updateProgress = () => {
-      const video = document.getElementById(`hero-video-${activeSlide.id}`);
+      const video = activeVideoRef.current;
       if (video && video.duration) {
         const pct = (video.currentTime / video.duration) * 100;
         setProgress(pct);
@@ -220,7 +282,7 @@ export default function HeroSection() {
         cancelAnimationFrame(frameId);
       }
     };
-  }, [index, activeSlide.id, reducedMotion, isVisible, isTabVisible]);
+  }, [index, reducedMotion, isVisible, isTabVisible]);
 
   return (
     <section ref={sectionRef} id="top" className="relative h-screen w-full overflow-hidden bg-ink grain">
@@ -228,24 +290,22 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-10 w-full h-full overflow-hidden bg-ink">
         {HERO_SLIDES.map((slide, i) => {
           const isActive = i === index;
+          const isPrev = i === prevIndex;
+
+          // Dynamic Rendering: Only mount active or fading out slide in DOM
+          if (!isActive && !isPrev) return null;
 
           return (
-            <video
-              id={`hero-video-${slide.id}`}
+            <HeroVideo
               key={slide.id}
-              src={slide.video}
-              preload="auto"
-              autoPlay={isActive && !reducedMotion}
-              loop={false}
-              muted={true}
-              playsInline
-              disablePictureInPicture={true}
-              disableRemotePlayback={true}
-              controlsList="nodownload nofullscreen noremoteplayback"
-              onEnded={isActive && !reducedMotion ? nextSlide : undefined}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                (slide.id === 'himalayas' || slide.id === 'himalayas-2') ? 'object-[65%_center] sm:object-center' : 'object-center'
-              } ${isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'}`}
+              slide={slide}
+              isActive={isActive}
+              isPrev={isPrev}
+              nextSlide={nextSlide}
+              reducedMotion={reducedMotion}
+              isVisible={isVisible}
+              isTabVisible={isTabVisible}
+              activeVideoRef={activeVideoRef}
             />
           );
         })}
