@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useRef } from 'react';
+import { useEffect, useMemo, useState, useRef, memo } from 'react';
 import { motion } from 'framer-motion';
 import Marquee from './Marquee';
 
@@ -126,12 +126,21 @@ const MARQUEE_ITEMS = [
   'Curated International Escapes'
 ];
 
-function HeroVideo({ slide, isActive, isPrev, nextSlide, reducedMotion, isVisible, isTabVisible, activeVideoRef }) {
+const HeroVideo = memo(function HeroVideo({ slide, isActive, isPrev, isNext, nextSlide, reducedMotion, isVisible, isTabVisible, activeVideoRef }) {
   const videoRef = useRef(null);
-  const [videoSrc, setVideoSrc] = useState(null);
 
-  // Delay loading the video source until core page assets (CSS, fonts) are loaded
+  // Initialize source immediately if page has already loaded to prevent mounting delay
+  const [videoSrc, setVideoSrc] = useState(() => {
+    if (typeof document !== 'undefined' && document.readyState === 'complete') {
+      return slide.video;
+    }
+    return null;
+  });
+
+  // Delay loading the video source until core page assets (CSS, fonts) are loaded (only if page isn't complete yet)
   useEffect(() => {
+    if (videoSrc) return;
+
     if (document.readyState === 'complete') {
       const timer = setTimeout(() => {
         setVideoSrc(slide.video);
@@ -144,7 +153,7 @@ function HeroVideo({ slide, isActive, isPrev, nextSlide, reducedMotion, isVisibl
       window.addEventListener('load', handleLoad);
       return () => window.removeEventListener('load', handleLoad);
     }
-  }, [slide.video]);
+  }, [slide.video, videoSrc]);
 
   // Handle play/pause state dynamically
   useEffect(() => {
@@ -181,7 +190,7 @@ function HeroVideo({ slide, isActive, isPrev, nextSlide, reducedMotion, isVisibl
       id={`hero-video-${slide.id}`}
       src={videoSrc || undefined}
       poster={slide.poster}
-      preload="metadata"
+      preload={isActive || isNext ? "auto" : "metadata"}
       loop={false}
       muted={true}
       playsInline
@@ -194,31 +203,37 @@ function HeroVideo({ slide, isActive, isPrev, nextSlide, reducedMotion, isVisibl
       } ${isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'}`}
     />
   );
-}
+});
 
 export default function HeroSection() {
   const [index, setIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(null);
-  const [progress, setProgress] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isTabVisible, setIsTabVisible] = useState(true);
   const sectionRef = useRef(null);
   const activeVideoRef = useRef(null);
 
+  // Refs for direct DOM manipulation of progress bars (avoids 60fps React state re-renders)
+  const mobileProgressRef = useRef(null);
+  const desktopProgressRefs = useRef([]);
+
   const activeSlide = HERO_SLIDES[index];
   const nextSlideObj = HERO_SLIDES[(index + 1) % HERO_SLIDES.length];
+
+  // Initialize desktop refs array
+  if (desktopProgressRefs.current.length === 0) {
+    desktopProgressRefs.current = HERO_SLIDES.map(() => null);
+  }
 
   const nextSlide = () => {
     setPrevIndex(index);
     setIndex((prev) => (prev + 1) % HERO_SLIDES.length);
-    setProgress(0);
   };
 
   const prevSlide = () => {
     setPrevIndex(index);
     setIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
-    setProgress(0);
   };
 
   // Detect section visibility in viewport to pause activity when scrolled away
@@ -261,7 +276,17 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, [index, prevIndex]);
 
-  // Track and update progress bar
+  // Reset progress bar widths on index change
+  useEffect(() => {
+    if (mobileProgressRef.current) {
+      mobileProgressRef.current.style.width = '0%';
+    }
+    desktopProgressRefs.current.forEach((el) => {
+      if (el) el.style.width = '0%';
+    });
+  }, [index]);
+
+  // Track and update progress bars directly in DOM to bypass React re-renders at 60fps
   useEffect(() => {
     if (reducedMotion || !isVisible || !isTabVisible) {
       return;
@@ -271,7 +296,17 @@ export default function HeroSection() {
       const video = activeVideoRef.current;
       if (video && video.duration) {
         const pct = (video.currentTime / video.duration) * 100;
-        setProgress(pct);
+
+        // Update mobile progress bar
+        if (mobileProgressRef.current) {
+          mobileProgressRef.current.style.width = `${pct}%`;
+        }
+
+        // Update active desktop progress bar
+        const activeDesktopBar = desktopProgressRefs.current[index];
+        if (activeDesktopBar) {
+          activeDesktopBar.style.width = `${pct}%`;
+        }
       }
       frameId = requestAnimationFrame(updateProgress);
     };
@@ -291,9 +326,10 @@ export default function HeroSection() {
         {HERO_SLIDES.map((slide, i) => {
           const isActive = i === index;
           const isPrev = i === prevIndex;
+          const isNext = i === (index + 1) % HERO_SLIDES.length;
 
-          // Dynamic Rendering: Only mount active or fading out slide in DOM
-          if (!isActive && !isPrev) return null;
+          // Dynamic Rendering: Only mount active, fading out, or next (preloading) slide in DOM
+          if (!isActive && !isPrev && !isNext) return null;
 
           return (
             <HeroVideo
@@ -301,6 +337,7 @@ export default function HeroSection() {
               slide={slide}
               isActive={isActive}
               isPrev={isPrev}
+              isNext={isNext}
               nextSlide={nextSlide}
               reducedMotion={reducedMotion}
               isVisible={isVisible}
@@ -371,8 +408,11 @@ export default function HeroSection() {
               <div className="flex items-center gap-6">
                 <div className="relative flex flex-col pt-1.5 min-w-[70px]">
                   <div className="absolute top-0 inset-x-0 h-[2.5px] bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-gold" style={{ width: `${progress}%` }} />
-
+                    <div
+                      ref={mobileProgressRef}
+                      className="h-full bg-gold"
+                      style={{ width: '0%' }}
+                    />
                   </div>
                   <span className="text-sm font-bold text-white tracking-wide">{activeSlide.shortName}</span>
                 </div>
@@ -412,7 +452,6 @@ export default function HeroSection() {
                   onClick={() => {
                     setPrevIndex(index);
                     setIndex(i);
-                    setProgress(0);
                   }}
                   aria-label={`Select slide ${i + 1}: ${slide.name}`}
                   className="group flex flex-col text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 font-sans rounded-md p-1"
@@ -433,9 +472,12 @@ export default function HeroSection() {
 
                   <div className="mt-2 h-[2px] w-full bg-white/10 rounded-full overflow-hidden">
                     <div
+                      ref={(el) => {
+                        desktopProgressRefs.current[i] = el;
+                      }}
                       className={`h-full bg-gold transition-opacity duration-300 ${isActive ? 'opacity-100' : 'w-0 opacity-0'
                         }`}
-                      style={{ width: isActive ? `${progress}%` : '0%' }}
+                      style={{ width: '0%' }}
                     />
 
                   </div>
