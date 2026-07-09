@@ -53,7 +53,7 @@ function CountUp({ value }) {
 
 const TRUST_ITEMS = [
   { value: '18+', title: 'Years of Curation', sub: 'Designing holidays since 2008' },
-  { value: '50+', title: 'Worldwide Destinations', sub: 'A broad portfolio of places to explore' },
+  { value: 'Worldwide', title: 'Destinations', sub: 'Custom itineraries across India and globally' },
   { value: '100%', title: 'Customized', sub: 'Itineraries built around your pace' },
   { value: '24/7', title: 'Specialist Support', sub: 'On-trip direct support line' },
 ];

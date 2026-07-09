@@ -13,13 +13,66 @@ function WhatsAppIcon({ className }) {
   );
 }
 
+
+const LANGUAGES = [
+  { code: 'en', name: 'English', iso: 'gb' },
+  { code: 'de', name: 'German', iso: 'de' },
+  { code: 'fr', name: 'French', iso: 'fr' },
+  { code: 'ja', name: 'Japanese', iso: 'jp' },
+  { code: 'th', name: 'Thai', iso: 'th' },
+  { code: 'ms', name: 'Malay', iso: 'my' },
+  { code: 'es', name: 'Spanish', iso: 'es' },
+];
+
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [mobileHolidaysOpen, setMobileHolidaysOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const location = useLocation();
 
   const isHome = location.pathname === '/';
   const showSolidHeader = scrolled || !isHome;
+
+  // Drives the real Google Translate widget select element.
+  // Retries up to ~3 s while the async script is still loading.
+  const applyTranslation = (code, attempts = 0) => {
+    const select = document.querySelector('.goog-te-combo');
+    if (select) {
+      select.value = code;
+      select.dispatchEvent(new Event('change'));
+    } else if (attempts < 15) {
+      // Widget not ready yet — retry every 200 ms
+      setTimeout(() => applyTranslation(code, attempts + 1), 200);
+    }
+  };
+
+  const handleLanguageChange = (code) => {
+    setLangDropdownOpen(false);
+    
+    const select = document.querySelector('.goog-te-combo');
+    if (select) {
+      select.value = code;
+      select.dispatchEvent(new Event('change'));
+      return;
+    }
+
+    // Fallback if widget script is blocked (e.g. by AdBlocker/Shields) or still loading
+    const hostname = window.location.hostname;
+    const isLocal = hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.');
+    
+    if (isLocal) {
+      alert(
+        "Google Translate widget is still loading or blocked by an AdBlocker/Shield on localhost.\n\n" +
+        "1. Please disable AdBlocker or Brave Shields on this page to let the script load.\n" +
+        "2. Note: Google Translate's proxy cannot translate 'localhost' pages because local files are not accessible on the public internet. It will work 100% on the live public domain."
+      );
+    } else {
+      const pageUrl = encodeURIComponent(window.location.href);
+      window.open(`https://translate.google.com/translate?sl=auto&tl=${code}&u=${pageUrl}`, '_blank');
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,81 +102,132 @@ export default function Header() {
           className={`font-display text-2xl font-semibold tracking-tight transition-colors duration-300 ${showSolidHeader ? 'text-ink' : 'text-white'
             }`}
         >
-          Blue Spice <span className="text-gold">Holidays</span>
+          Blue Spice <span className={`transition-colors duration-300 ${showSolidHeader ? 'text-[#B0891A]' : 'text-gold'}`}>Holidays</span>
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-1.5 lg:flex" aria-label="Main navigation">
+
           {/* Holidays Dropdown */}
           <div className="relative group py-2">
             <Link
               to="/holidays"
-              className={`nav-link flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm ${showSolidHeader ? 'text-body hover:text-ink' : 'text-white/90 hover:text-white'
-                }`}
+              className={`nav-link flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm ${showSolidHeader ? 'text-body hover:text-ink' : 'text-white/90 hover:text-white'}`}
             >
               Holidays
               <svg className="w-3 h-3 translate-y-[0.5px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
               </svg>
             </Link>
-
-            {/* Dropdown Menu Panel */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 hidden group-hover:block w-48 bg-white border border-hairline rounded-premium shadow-float py-2 z-50 animate-fadeIn">
-              <Link to="/holidays" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2">
-                Holidays Hub
-              </Link>
-              <Link to="/holidays/domestic" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2">
-                Domestic Curation
-              </Link>
-              <Link to="/holidays/international" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2">
-                Global Escapes
-              </Link>
-              <Link to="/wellness" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2">
-                Holistic Wellness
-              </Link>
+            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 hidden group-hover:block w-48 bg-white border border-hairline rounded-premium shadow-float py-2 z-50">
+              <Link to="/holidays" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Holidays Hub</Link>
+              <Link to="/holidays/domestic" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Domestic Curation</Link>
+              <Link to="/holidays/international" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Global Escapes</Link>
+              <Link to="/wellness" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Holistic Wellness</Link>
             </div>
           </div>
 
+          {/* Services Dropdown */}
+          <div className="relative group py-2">
+            <button
+              className={`nav-link flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm ${showSolidHeader ? 'text-body hover:text-ink' : 'text-white/90 hover:text-white'}`}
+              aria-haspopup="true"
+            >
+              Services
+              <svg className="w-3 h-3 translate-y-[0.5px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 hidden group-hover:block w-40 bg-white border border-hairline rounded-premium shadow-float py-2 z-50">
+              <Link to="/forex" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Forex</Link>
+              <Link to="/flights" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Flights</Link>
+              <Link to="/cruises" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Cruises</Link>
+            </div>
+          </div>
+
+          {/* Flat Links */}
           {[
             { to: '/darshan', label: 'Darshan' },
-            { to: '/forex', label: 'Forex' },
-            { to: '/flights', label: 'Flights' },
-            { to: '/cruises', label: 'Cruises' },
+            { to: '/brochures', label: 'Brochures' },
+            { to: '/about', label: 'About Us' },
           ].map((item) => (
             <Link
               key={item.to}
               to={item.to}
-              className={`nav-link px-3.5 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm ${showSolidHeader ? 'text-body hover:text-ink' : 'text-white/90 hover:text-white'
-                }`}
+              className={`nav-link px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm ${showSolidHeader ? 'text-body hover:text-ink' : 'text-white/90 hover:text-white'}`}
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-5 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
+
+          {/* Translate Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+              className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-xs font-semibold transition-all duration-300 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
+                showSolidHeader
+                  ? 'border-navy/20 text-navy hover:bg-navy/5'
+                  : 'border-white/20 text-white hover:bg-white/10'
+              }`}
+              aria-expanded={langDropdownOpen}
+              aria-haspopup="true"
+              aria-label="Select Language"
+            >
+              <span className="text-base leading-none">🌐</span>
+              <span className="hidden xl:inline">Translate</span>
+              <svg className={`w-3 h-3 transition-transform duration-200 ${langDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            {langDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-44 bg-white border border-hairline rounded-premium shadow-float py-1.5 z-[100]">
+                {LANGUAGES.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => handleLanguageChange(lang.code)}
+                    className="w-full text-left px-4 py-2 text-xs font-semibold transition-colors flex items-center gap-2.5 hover:bg-canvas hover:text-royal text-ink"
+                  >
+                    <img
+                      src={`https://flagcdn.com/w20/${lang.iso}.png`}
+                      alt={lang.name}
+                      className="w-5 h-3.5 object-cover rounded-sm shrink-0 border border-hairline"
+                    />
+                    <span>{lang.name}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Phone */}
           <a
             href="tel:+919388599000"
-            className={`text-sm font-medium transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm ${showSolidHeader ? 'text-body' : 'text-white/70'
-              }`}
+            className={`text-xs font-medium transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm hidden xl:block ${
+              showSolidHeader ? 'text-body hover:text-ink' : 'text-white/70 hover:text-white'
+            }`}
           >
-            Talk to a Specialist:{' '}
-            <span className={showSolidHeader ? 'text-ink' : 'text-white'}>
-              +91 93885 99000
-            </span>
+            +91 93885 99000
           </a>
+
+          {/* WhatsApp CTA */}
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors duration-300 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 ${showSolidHeader
-              ? 'border-navy text-navy hover:bg-navy hover:text-white'
-              : 'border-white text-white hover:bg-white hover:text-navy'
-              }`}
+            className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-300 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 ${
+              showSolidHeader
+                ? 'border-navy text-navy hover:bg-navy hover:text-white'
+                : 'border-white text-white hover:bg-white hover:text-navy'
+            }`}
           >
-            <WhatsAppIcon className="" />
-            Chat on WhatsApp
+            <WhatsAppIcon />
+            <span className="hidden xl:inline">WhatsApp</span>
+            <span className="xl:hidden">Chat</span>
           </a>
+
         </div>
 
         <button
@@ -180,43 +284,103 @@ export default function Header() {
               </button>
             </div>
             <nav className="mt-8 flex flex-col gap-1 overflow-y-auto">
-              <Link to="/" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+              <Link to="/" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas">
                 Home
               </Link>
 
-              <div className="border-t border-hairline my-2 pt-3">
-                <span className="text-[10px] uppercase font-mono tracking-widemono text-royal block mb-2 px-3.5">Holidays</span>
-                <div className="flex flex-col gap-1 pl-4">
-                  <Link to="/holidays" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-2.5 text-base text-body hover:bg-canvas hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                    Holidays Hub
-                  </Link>
-                  <Link to="/holidays/domestic" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-2.5 text-base text-body hover:bg-canvas hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                    Domestic Curation
-                  </Link>
-                  <Link to="/holidays/international" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-2.5 text-base text-body hover:bg-canvas hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                    Global Escapes
-                  </Link>
-                  <Link to="/wellness" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-2.5 text-base text-body hover:bg-canvas hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                    Holistic Wellness
-                  </Link>
-                </div>
+              {/* Mobile Holidays Accordion */}
+              <div className="border-t border-hairline my-2 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setMobileHolidaysOpen(!mobileHolidaysOpen)}
+                  className="w-full flex items-center justify-between rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                >
+                  <span>Holidays</span>
+                  <svg className={`w-4 h-4 text-royal transition-transform duration-300 ${mobileHolidaysOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </button>
+                {mobileHolidaysOpen && (
+                  <div className="flex flex-col gap-1 pl-6 pr-2 py-1 bg-canvas rounded-xl mt-1 animate-fadeIn">
+                    <Link to="/holidays" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
+                      Holidays Hub
+                    </Link>
+                    <Link to="/holidays/domestic" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
+                      Domestic Curation
+                    </Link>
+                    <Link to="/holidays/international" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
+                      Global Escapes
+                    </Link>
+                    <Link to="/wellness" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
+                      Holistic Wellness
+                    </Link>
+                  </div>
+                )}
               </div>
 
-              <div className="border-t border-hairline my-2 pt-3 flex flex-col gap-1">
-                <Link to="/darshan" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+              {/* Mobile Services Accordion */}
+              <div className="border-t border-hairline my-2 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  className="w-full flex items-center justify-between rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                >
+                  <span>Services</span>
+                  <svg className={`w-4 h-4 text-royal transition-transform duration-300 ${mobileServicesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </button>
+                {mobileServicesOpen && (
+                  <div className="flex flex-col gap-1 pl-6 pr-2 py-1 bg-canvas rounded-xl mt-1 animate-fadeIn">
+                    <Link to="/forex" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
+                      Forex
+                    </Link>
+                    <Link to="/flights" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
+                      Flights
+                    </Link>
+                    <Link to="/cruises" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
+                      Cruises
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Flat Links */}
+              <div className="border-t border-hairline my-2 pt-2 flex flex-col gap-1">
+                <Link to="/darshan" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas">
                   Darshan
                 </Link>
-                <Link to="/forex" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                  Forex
+                <Link to="/brochures" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas">
+                  Brochures
                 </Link>
-                <Link to="/flights" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                  Flights
-                </Link>
-                <Link to="/cruises" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-medium text-ink hover:bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-                  Cruises
+                <Link to="/about" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas">
+                  About Us
                 </Link>
               </div>
             </nav>
+
+            <div className="border-t border-hairline my-2 pt-3">
+              <span className="text-[10px] uppercase font-mono tracking-widemono text-royal block mb-2 px-3.5">Language</span>
+              <div className="grid grid-cols-2 gap-2 px-3.5">
+                {LANGUAGES.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      handleLanguageChange(lang.code);
+                      setOpen(false);
+                    }}
+                    className="text-xs font-semibold py-2 px-3 rounded-lg border text-left flex items-center gap-2.5 transition-colors bg-canvas text-body border-hairline hover:border-navy hover:text-navy hover:bg-navy/5 animate-fadeIn"
+                  >
+                    <img
+                      src={`https://flagcdn.com/w20/${lang.iso}.png`}
+                      alt={lang.name}
+                      className="w-5 h-3.5 object-cover rounded-sm shrink-0 border border-hairline"
+                    />
+                    <span>{lang.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <div className="mt-auto pt-6 border-t border-hairline flex flex-col gap-4">
               <a href="tel:+919388599000" className="text-xs text-body px-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm">

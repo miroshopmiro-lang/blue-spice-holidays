@@ -41,21 +41,21 @@ const HERO_SLIDES = [
   },
   {
     id: 'kerala-waterfalls',
-    name: 'Kerala Waterfalls',
+    name: 'Cascading Waterfalls',
     shortName: 'Waterfalls',
-    tagline: 'Cascades of Athirappilly',
+    tagline: 'India’s Most Breathtaking Cascades',
     description: 'Witness the roaring grandeur of forest waterfalls crashing down into deep green glades, cocooned by tropical wilderness.',
     video: '/images/kerala-waterfalls.webm',
     poster: '/images/kerala-waterfalls-poster.webp'
   },
   {
     id: 'kerala-wildlife',
-    name: 'Kerala Wildlife',
+    name: 'India’s Wild Sanctuaries',
     shortName: 'Wildlife',
-    tagline: 'Sanctuaries of the Wilderness',
-    description: 'Encounter majestic Asian elephants roaming freely in their natural jungle habitat, set amidst the ancient rain forests of Western Ghats.',
-    video: '/images/kerala-wildlife.webm',
-    poster: '/images/kerala-wildlife-poster.webp'
+    tagline: 'Untamed Valley Flyovers & Mountain Horizons',
+    description: 'Soar above rugged valleys, deep green canyons, and pristine wild terrains, capturing the untamed beauty of India’s diverse ecosystems from above.',
+    video: '/images/wildlife.webm',
+    poster: '/images/wildlife-poster.webp'
   },
   {
     id: 'kerala',
@@ -95,7 +95,7 @@ const HERO_SLIDES = [
   },
   {
     id: 'himalayas',
-    name: 'Himalayan Wellness',
+    name: 'Yoga & Wellness Retreats',
     shortName: 'Wellness',
     tagline: 'Yoga, Meditation & Rejuvenation',
     description: 'Find absolute peace and spiritual harmony in the serene high-altitude valleys, perfect for yoga, rejuvenation, and quiet reflection.',
@@ -104,10 +104,10 @@ const HERO_SLIDES = [
   },
   {
     id: 'himalayas-2',
-    name: 'Himalayan Wellness',
+    name: 'The Great Himalayas',
     shortName: 'Himalayas',
     tagline: 'Ancient Peaks, Timeless Peace',
-    description: 'Let the majestic snow-capped Himalayas inspire stillness — a sanctuary above the clouds where every breath is a step toward renewal.',
+    description: 'Let the majestic snow-capped Himalayas inspire stillness, a sanctuary above the clouds where every breath is a step toward renewal.',
     video: '/images/himalaya-v1.webm',
     poster: '/images/himalaya-v1-poster.webp'
   }
@@ -383,7 +383,7 @@ export default function HeroSection() {
           >
             {activeSlide.name}
             <span className="block mt-2 text-gold text-2xl sm:text-3xl lg:text-4xl font-normal italic font-display">
-              — {activeSlide.tagline}
+              {activeSlide.tagline}
             </span>
           </motion.h1>
 

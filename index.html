@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blue Spice Holidays · Bespoke Indian Journeys</title>
-    <meta name="description" content="Bespoke, curated journeys across India for families, couples and corporate travelers. Ministry of Tourism approved operator since 2011." />
+    <meta name="description" content="Bespoke, curated journeys across India for families, couples and corporate travelers. Established in 2010." />
     <meta name="theme-color" content="#0B2D6B" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,6 +25,18 @@
       Skip to main content
     </a>
     <div id="root"></div>
+    <!-- Google Translate: hidden widget, triggered via styled select in Header -->
+    <div id="google_translate_element" style="position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none;"></div>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'de,en,fr,ja,th,ms,es,ar,zh-CN,ko',
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

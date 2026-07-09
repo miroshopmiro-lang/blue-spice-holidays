@@ -19,7 +19,8 @@ const SERVICES = [
   { label: 'Forex (Exchange)', to: '/forex' },
   { label: 'Flights Curation', to: '/flights' },
   { label: 'Luxury Cruises', to: '/cruises' },
-  { label: 'Talk to a Specialist', to: '/#custom' },
+  { label: 'Travel Brochures', to: '/brochures' },
+  { label: 'About Us', to: '/about' },
 ];
 
 function TourismBadge() {
@@ -55,6 +56,36 @@ function Column({ title, items }) {
 
 export default function Footer() {
   const [subscribed, setSubscribed] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const email = formData.get('email');
+    if (!email) return;
+
+    setSubmitting(true);
+    try {
+      await fetch("https://formspree.io/f/4a1b9f71-877f-47ce-9627-e818691a2b11", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          formType: "Newsletter Subscription Capture",
+          email: email
+        })
+      });
+      setSubscribed(true);
+    } catch (err) {
+      console.error("Newsletter submission failed", err);
+      // Fallback: still show thank you message to user
+      setSubscribed(true);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <footer className="relative overflow-hidden bg-navy py-16 text-white/80 border-t border-white/10 grain" style={{ colorScheme: 'dark' }}>
@@ -73,16 +104,16 @@ export default function Footer() {
           <Column title="Popular Destinations" items={DESTINATIONS} />
           <Column title="Curated Travel Styles" items={TRAVEL_STYLES} />
           <Column title="Travel Services" items={SERVICES} />
-
+ 
           <div aria-live="polite">
             <h3 className="font-mono text-[11px] uppercase tracking-widemono text-gold">Stay Inspired</h3>
             <p className="mt-4 text-sm text-white/70 leading-relaxed">Slow-travel notes and quiet corners of India, a few times a year.</p>
             {subscribed ? (
-              <p className="mt-4 rounded-xl border border-gold/30 bg-white/5 px-4 py-3 text-sm font-medium text-gold">
+              <p className="mt-4 rounded-xl border border-gold/30 bg-white/5 px-4 py-3 text-sm font-medium text-gold animate-fadeIn">
                 ✓ Thank you for subscribing!
               </p>
             ) : (
-              <form className="mt-4 flex gap-2" onSubmit={(e) => { e.preventDefault(); setSubscribed(true); }}>
+              <form className="mt-4 flex gap-2" onSubmit={handleSubscribe}>
                 <input
                   type="email"
                   required
@@ -95,9 +126,10 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="rounded-full bg-white px-5 py-2 text-xs font-bold uppercase tracking-wider text-navy transition-[background-color,color] hover:bg-gold hover:text-ink shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                  disabled={submitting}
+                  className="rounded-full bg-white px-5 py-2 text-xs font-bold uppercase tracking-wider text-navy transition-[background-color,color] hover:bg-gold hover:text-ink shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold disabled:opacity-50 shrink-0"
                 >
-                  Subscribe
+                  {submitting ? '...' : 'Subscribe'}
                 </button>
               </form>
             )}
@@ -109,10 +141,10 @@ export default function Footer() {
           
           <div className="flex flex-wrap items-center gap-5 text-white/50">
             <span className="flex items-center gap-1.5 text-xs uppercase tracking-wider">
-              <span className="text-gold"><TourismBadge /></span> Tourism Approved
+              <span className="text-gold"><TourismBadge /></span> 24/7 Support
             </span>
             <span className="flex items-center gap-1.5 text-xs uppercase tracking-wider">
-              <span className="text-gold"><IataBadge /></span> IATA Registered
+              <span className="text-gold"><IataBadge /></span> Bespoke Curation
             </span>
             <span className="flex items-center gap-1.5 text-xs uppercase tracking-wider">
               <span className="text-gold"><SslBadge /></span> SSL Secure

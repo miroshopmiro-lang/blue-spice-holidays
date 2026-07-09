@@ -14,9 +14,27 @@ function ItineraryDrawer({ dest, onClose, onEnquire }) {
     onEnquire(dest.name);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (form.name && form.email) {
+      try {
+        await fetch("https://formspree.io/f/4a1b9f71-877f-47ce-9627-e818691a2b11", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            formType: "Fast Destination Inquiry",
+            destination: dest.name,
+            name: form.name,
+            email: form.email,
+            notes: form.notes || 'None'
+          })
+        });
+      } catch (err) {
+        console.error("Fast inquiry submission failed", err);
+      }
       setSent(true);
     }
   };
@@ -139,9 +157,9 @@ export default function PopularDestinations() {
   // Robust filtering: UI tabs must not depend on fragile dataset category strings.
   // This guarantees India/International/Trending always show content.
   const DESTINATION_IDS_BY_TAB = {
-    India: new Set(['kerala', 'andaman', 'kashmir', 'manali', 'gangtok', 'taj-mahal', 'rajasthan']),
-    International: new Set(['dubai', 'bali', 'thailand', 'singapore', 'maldives', 'vietnam', 'georgia', 'sri-lanka', 'malaysia', 'london']),
-    Trending: new Set(['andaman', 'vietnam', 'georgia', 'taj-mahal', 'rajasthan', 'kashmir', 'london']),
+    India: new Set(['kerala', 'andaman', 'kashmir', 'manali', 'gangtok', 'taj-mahal', 'rajasthan', 'tamil-nadu', 'karnataka']),
+    International: new Set(['dubai', 'bali', 'thailand', 'singapore', 'maldives', 'vietnam', 'georgia', 'sri-lanka', 'malaysia', 'london', 'bhutan']),
+    Trending: new Set(['andaman', 'vietnam', 'georgia', 'taj-mahal', 'rajasthan', 'kashmir', 'london', 'bhutan', 'karnataka']),
   };
 
   const visibleDestinations = DESTINATIONS.filter((dest) => {

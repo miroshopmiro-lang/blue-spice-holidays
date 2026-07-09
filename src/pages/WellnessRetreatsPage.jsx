@@ -125,16 +125,35 @@ export default function WellnessRetreatsPage() {
       </section>
 
       {/* Wellness Philosophy Section */}
-      <section className="bg-brand-surface-cool/30 py-20 px-6 border-t border-b border-brand-surface-cool">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-accent">AYURVEDA & MINDFULNESS</p>
-          <h3 className="serif-font text-2xl sm:text-3xl font-bold text-brand-ink mt-2 mb-6">Our Curation Philosophy</h3>
-          <p className="text-brand-muted text-sm sm:text-base leading-relaxed mb-6">
-            We partner exclusively with authentic Ayurvedic resorts and wellness properties holding valid credentials (such as Ayur Gold status from Govt. of Kerala).
-          </p>
-          <p className="text-brand-muted text-sm sm:text-base leading-relaxed">
-            Every booking is paired with a dedicated wellness coordinator who ensures your dietary preferences, medical focus areas, and travel loops are communicated directly to the resident physicians at the properties before your arrival.
-          </p>
+      <section className="bg-brand-surface-cool/60 py-20 px-6 border-t border-brand-surface-cool">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-accent">AYURVEDA & MINDFULNESS</span>
+            <h2 className="serif-font text-3xl font-bold text-brand-ink mt-2 sm:text-4xl">Our Curation Philosophy</h2>
+            <p className="mt-3 text-brand-muted text-sm sm:text-base max-w-2xl mx-auto">How we ensure the highest standards of safety, authenticity, and personalized healing.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white p-8 rounded-premium border border-brand-surface-cool shadow-soft flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-6 font-display font-semibold text-sm">01</div>
+                <h3 className="serif-font text-xl font-bold text-brand-ink mb-4">Certified Ayurvedic Partners</h3>
+                <p className="text-brand-muted text-sm sm:text-base leading-relaxed">
+                  We partner exclusively with authentic Ayurvedic resorts and wellness properties holding valid credentials, premium hospitality standards, and certified resident doctors.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white p-8 rounded-premium border border-brand-surface-cool shadow-soft flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-6 font-display font-semibold text-sm">02</div>
+                <h3 className="serif-font text-xl font-bold text-brand-ink mb-4">Dedicated Wellness Coordinator</h3>
+                <p className="text-brand-muted text-sm sm:text-base leading-relaxed">
+                  Every booking is paired with a dedicated wellness coordinator who ensures your dietary preferences, medical focus areas, and travel loops are communicated directly to the resident physicians at the properties before your arrival.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

@@ -391,17 +391,104 @@ export const DESTINATIONS = [
       { day: 3, title: "Wembley Stadium & Ealing Road Curation", detail: "VIP Wembley Stadium access. Shopping and street snacks at the Delhi of UK." },
       { day: 4, title: "Departure", detail: "Private transfer to London Heathrow or Gatwick airport." }
     ]
+  },
+  {
+    id: 'tamil-nadu',
+    name: 'Tamil Nadu',
+    categories: ['India'],
+    tagline: 'Ancient Dravidian temples, rich heritage, and green hills of Ooty.',
+    image: '/images/tamilnadu.png',
+    sampleItinerary: [
+      { day: 1, title: "Madurai Meenakshi Temple", detail: "Guided historical walkthrough of the towering gopurams and pillared halls of the ancient Meenakshi Sundareswarar temple." },
+      { day: 2, title: "Chettinad Mansion Heritage", detail: "Explore the majestic, teakwood-laden merchant mansions of Karaikudi and taste authentic Chettinad cuisine." },
+      { day: 3, title: "Nilgiri Mountain Railway to Ooty", detail: "Board the heritage toy train winding up through dense forests and tea gardens into the cool Nilgiri Hills." },
+      { day: 4, title: "Departure", detail: "Assisted private transfer to Coimbatore airport for onward journey." }
+    ]
+  },
+  {
+    id: 'karnataka',
+    name: 'Karnataka',
+    categories: ['India'],
+    tagline: 'Cascade waterfalls, coffee valleys, and royal palace gardens.',
+    image: '/images/karnataka.png',
+    sampleItinerary: [
+      { day: 1, title: "Mysore Palace Royal Splendour", detail: "Arrive in Mysore. Guided private tour of the illuminated Amba Vilas Palace and Devaraja market." },
+      { day: 2, title: "Coorg Coffee Estate Walk", detail: "Drive into the misty hills of Coorg. Walk through lush cardamom and Robusta coffee estates with a local planter." },
+      { day: 3, title: "Shivanasamudra Falls Excursion", detail: "Witness the roaring Gaganachukki and Bharachukki waterfalls amidst beautiful river valleys." },
+      { day: 4, title: "Departure", detail: "Assisted private transfer to Bangalore airport." }
+    ]
+  },
+  {
+    id: 'bhutan',
+    name: 'Bhutan',
+    categories: ['International'],
+    tagline: 'High mountain dzongs, prayer flags, and land of tranquility.',
+    image: '/images/bhutan.png',
+    sampleItinerary: [
+      { day: 1, title: "Paro Valley Arrival & Rinpung Dzong", detail: "Scenic mountain flight landing. Visit the massive Paro Rinpung Dzong fortress and watch traditional archery." },
+      { day: 2, title: "Tiger’s Nest Sacred Hike", detail: "Hike to the legendary Taktsang Monastery clinging to a granite cliff 3,000 feet above the valley floor." },
+      { day: 3, title: "Thimphu City Curation", detail: "Explore Thimphu's folk heritage museums, Tashichho Dzong, and the giant golden Buddha Dordenma statue." },
+      { day: 4, title: "Departure", detail: "Assisted transfer to Paro International airport." }
+    ]
   }
 ];
 
 export const GROUND_TEAMS = [
   {
+    id: 'gangtok',
+    name: 'Ms Doma ji and team',
+    location: 'Gangtok, Sikkim',
+    role: 'Gangtok Operations Lead',
+    scope: 'Domestic Curation',
+    description: 'Gangtok ground operation is headed by Ms Doma ji and beautiful team.'
+  },
+  {
+    id: 'thailand',
+    name: 'Mr Prasad ji and team',
+    location: 'Phuket & Bangkok, Thailand',
+    role: 'Thailand Operations Director',
+    scope: 'International Curation',
+    description: 'Thailand\'s ground operation is headed by Mr Prasad ji and his highly professional team.'
+  },
+  {
+    id: 'vietnam',
+    name: 'Ms Han and team',
+    location: 'Hanoi & Saigon, Vietnam',
+    role: 'Vietnam Operations Lead',
+    scope: 'International Curation',
+    description: 'Vietnam ground operation is headed by Ms Han and her lovely team.'
+  },
+  {
+    id: 'srilanka',
+    name: 'Mr Senaka and Mr Siva\'s team',
+    location: 'Colombo & Kandy, Sri Lanka',
+    role: 'Sri Lanka Operations Director',
+    scope: 'International Curation',
+    description: 'Srilanka ground operation is headed by Mr Senaka and Mr Siva\'s team.'
+  },
+  {
+    id: 'dubai',
+    name: 'Mr Hussain and team',
+    location: 'Dubai, UAE',
+    role: 'Dubai Operations Director',
+    scope: 'International Curation',
+    description: 'Dubai ground operation is headed by Mr Hussain and his prompt team.'
+  },
+  {
+    id: 'malaysia',
+    name: 'Mr Sahil and team',
+    location: 'Kuala Lumpur, Malaysia',
+    role: 'Malaysia Operations Director',
+    scope: 'International Curation',
+    description: 'Malaysia ground operation is headed by Mr Sahil and his dashing team.'
+  },
+  {
     id: 'andaman',
-    name: 'Ms Tofah and Team',
+    name: 'Ms Tohfa ji and team',
     location: 'Port Blair, Andaman',
     role: 'Andaman Operations Lead',
     scope: 'Domestic Curation',
-    description: 'Coordinates private island clearances, speedboat transfers, and direct beachside support across Havelock, Neil, and Port Blair.'
+    description: 'Andaman ground operation is headed by Ms Tohfa ji and her lovely team.'
   },
   {
     id: 'london',

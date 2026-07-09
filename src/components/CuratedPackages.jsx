@@ -52,6 +52,32 @@ function ItineraryDrawer({ pkg, onClose }) {
   const [form, setForm] = useState({ name: '', email: '', notes: '' });
   const [sent, setSent] = useState(false);
 
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    if (form.name && form.email) {
+      try {
+        await fetch("https://formspree.io/f/4a1b9f71-877f-47ce-9627-e818691a2b11", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            formType: "Curated Package Inquiry",
+            packageTitle: pkg.title,
+            packageLocation: pkg.location,
+            name: form.name,
+            email: form.email,
+            notes: form.notes || 'None'
+          })
+        });
+      } catch (err) {
+        console.error("Package inquiry submission failed", err);
+      }
+      setSent(true);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-[60] flex justify-end">
       {/* Backdrop */}
@@ -120,7 +146,7 @@ function ItineraryDrawer({ pkg, onClose }) {
           ) : (
             <form
               className="mt-4 space-y-4"
-              onSubmit={(e) => { e.preventDefault(); if (form.name && form.email) setSent(true); }}
+              onSubmit={handleFormSubmit}
             >
               <input
                 type="text" required placeholder="Your name…" value={form.name}

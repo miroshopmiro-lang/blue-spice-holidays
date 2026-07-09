@@ -12,7 +12,6 @@ import CustomItineraryForm from './components/CustomItineraryForm';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
-import GroundTeams from './components/GroundTeams';
 
 // Subpages using React lazy loading
 const HolidaysHubPage = lazy(() => import('./pages/HolidaysHubPage'));
@@ -23,6 +22,8 @@ const FlightsPage = lazy(() => import('./pages/FlightsPage'));
 const ForexPage = lazy(() => import('./pages/ForexPage'));
 const CruisesPage = lazy(() => import('./pages/CruisesPage'));
 const DarshanPage = lazy(() => import('./pages/DarshanPage'));
+const AboutUsPage = lazy(() => import('./pages/AboutUsPage'));
+const BrochuresPage = lazy(() => import('./pages/BrochuresPage'));
 
 // Premium, minimal page loader matching the luxury travel brand aesthetic
 function PageLoader() {
@@ -70,7 +71,6 @@ function Home() {
       <CuratedPackages />
       <WeddingsEvents />
       <FullscreenPromoCards />
-      <GroundTeams />
       <CustomItineraryForm />
       <Testimonials />
     </>
@@ -95,6 +95,8 @@ export default function App() {
               <Route path="/forex" element={<ForexPage />} />
               <Route path="/cruises" element={<CruisesPage />} />
               <Route path="/darshan" element={<DarshanPage />} />
+              <Route path="/about" element={<AboutUsPage />} />
+              <Route path="/brochures" element={<BrochuresPage />} />
             </Routes>
           </Suspense>
         </main>

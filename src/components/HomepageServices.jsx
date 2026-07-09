@@ -55,7 +55,7 @@ export default function HomepageServices() {
             Choose The Right Service For Your <span className="accent-serif text-brand-accent">Perfect Journey</span>
           </h2>
           <p className="mt-4 text-white/60 text-sm sm:text-base leading-relaxed">
-            No planning fees and no-obligation quotes — every package is tailored with transparent, premium handling.
+            No planning fees and no-obligation quotes, every package is tailored with transparent, premium handling.
           </p>
         </div>
 

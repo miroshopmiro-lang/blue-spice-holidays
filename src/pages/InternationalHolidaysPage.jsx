@@ -119,7 +119,7 @@ export default function InternationalHolidaysPage() {
             Discover International <span className="accent-serif text-brand-accent">Paradises</span>
           </h1>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto text-base sm:text-lg">
-            Ocean villas, mountain valleys, and ancient cultural trails. We take care of everything—from visa processes to bespoke local itineraries.
+            Ocean villas, mountain valleys, and ancient cultural trails. We take care of everything, from visa processes to bespoke local itineraries.
           </p>
         </div>
       </section>

@@ -147,3 +147,14 @@
     transform-origin: left;
   }
 }
+
+/* ── Google Translate cleanup ─────────────────────────────────────────────── */
+/* Suppress the floating toolbar & body offset Google injects after translation */
+body { top: 0 !important; position: static !important; }
+.skiptranslate,
+.goog-te-banner-frame,
+.goog-te-gadget-icon,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf { display: none !important; }
+.goog-text-highlight { background: none !important; box-shadow: none !important; }
