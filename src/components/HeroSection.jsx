@@ -404,7 +404,7 @@ export default memo(function HeroSection({
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex items-center gap-2 bg-black/20 backdrop-blur-[1.5px] p-1.5 rounded-full border border-white/10"
+          className="flex items-center gap-2.5 bg-black/20 backdrop-blur-[1.5px] p-2 rounded-full border border-white/10"
         >
           {LANGUAGES.map((lang) => (
             <button
@@ -412,12 +412,12 @@ export default memo(function HeroSection({
               key={lang.code}
               onClick={() => handleLanguageChange(lang.code)}
               title={lang.name}
-              className="flex items-center justify-center w-7 h-7 rounded-full border border-white/10 bg-white/5 hover:bg-gold hover:border-gold hover:scale-110 transition-all duration-300 focus:outline-none"
+              className="flex items-center justify-center w-9 h-9 sm:w-7.5 sm:h-7.5 rounded-full border border-white/10 bg-white/5 hover:bg-gold hover:border-gold hover:scale-110 transition-all duration-300 focus:outline-none cursor-pointer"
             >
               <img
                 src={`https://flagcdn.com/w20/${lang.iso}.png`}
                 alt={lang.name}
-                className="w-4 h-3 object-cover rounded-sm border border-white/10"
+                className="w-5.5 h-4 sm:w-4.5 sm:h-3.5 object-cover rounded-sm border border-white/10"
               />
             </button>
           ))}
