@@ -2,6 +2,16 @@ import { useEffect, useMemo, useState, useRef, memo } from 'react';
 import { motion } from 'framer-motion';
 import Marquee from './Marquee';
 
+const LANGUAGES = [
+  { code: 'en', name: 'English', iso: 'gb' },
+  { code: 'de', name: 'German', iso: 'de' },
+  { code: 'fr', name: 'French', iso: 'fr' },
+  { code: 'ja', name: 'Japanese', iso: 'jp' },
+  { code: 'th', name: 'Thai', iso: 'th' },
+  { code: 'ms', name: 'Malay', iso: 'my' },
+  { code: 'es', name: 'Spanish', iso: 'es' },
+];
+
 const HERO_SLIDES = [
   {
     id: 'taj-mahal',
@@ -213,14 +223,41 @@ const HeroVideo = memo(function HeroVideo({ slide, isActive, isPrev, isNext, nex
   );
 });
 
-export default function HeroSection() {
+export default memo(function HeroSection({
+  reducedMotion: propsReducedMotion = false,
+  isVisible: propsIsVisible = true,
+  isTabVisible: propsIsTabVisible = true
+}) {
   const [index, setIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(null);
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [isTabVisible, setIsTabVisible] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(propsReducedMotion);
+  const [isVisible, setIsVisible] = useState(propsIsVisible);
+  const [isTabVisible, setIsTabVisible] = useState(propsIsTabVisible);
   const sectionRef = useRef(null);
   const activeVideoRef = useRef(null);
+
+  const handleLanguageChange = (code) => {
+    const select = document.querySelector('.goog-te-combo');
+    if (select) {
+      select.value = code;
+      select.dispatchEvent(new Event('change'));
+      return;
+    }
+
+    const hostname = window.location.hostname;
+    const isLocal = hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.');
+    
+    if (isLocal) {
+      alert(
+        "Google Translate widget is still loading or blocked by an AdBlocker/Shield on localhost.\n\n" +
+        "1. Please disable AdBlocker or Brave Shields on this page to let the script load.\n" +
+        "2. Note: Google Translate's proxy cannot translate 'localhost' pages because local files are not accessible on the public internet. It will work 100% on the live public domain."
+      );
+    } else {
+      const pageUrl = encodeURIComponent(window.location.href);
+      window.open(`https://translate.google.com/translate?sl=auto&tl=${code}&u=${pageUrl}`, '_blank');
+    }
+  };
 
   // Refs for direct DOM manipulation of progress bars (avoids 60fps React state re-renders)
   const mobileProgressRef = useRef(null);
@@ -360,6 +397,32 @@ export default function HeroSection() {
       {/* Soft left-to-right and bottom gradient overlay for localized text legibility */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/15 to-transparent z-20" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20" />
+
+      {/* Quick Translate Flags - Listed out horizontally under the nav bar */}
+      <div className="absolute top-24 sm:top-28 left-0 right-0 z-30 flex justify-center px-6">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="flex items-center gap-2 bg-black/20 backdrop-blur-[1.5px] p-1.5 rounded-full border border-white/10"
+        >
+          {LANGUAGES.map((lang) => (
+            <button
+              type="button"
+              key={lang.code}
+              onClick={() => handleLanguageChange(lang.code)}
+              title={lang.name}
+              className="flex items-center justify-center w-7 h-7 rounded-full border border-white/10 bg-white/5 hover:bg-gold hover:border-gold hover:scale-110 transition-all duration-300 focus:outline-none"
+            >
+              <img
+                src={`https://flagcdn.com/w20/${lang.iso}.png`}
+                alt={lang.name}
+                className="w-4 h-3 object-cover rounded-sm border border-white/10"
+              />
+            </button>
+          ))}
+        </motion.div>
+      </div>
 
       {/* Content overlay */}
       <div className="relative z-30 mx-auto flex h-full max-w-7xl flex-col justify-between px-6 pb-28 pt-32 lg:px-8">
@@ -504,4 +567,4 @@ export default function HeroSection() {
       </div>
     </section>
   );
-}
+});
