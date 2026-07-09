@@ -18,14 +18,17 @@ function ItineraryDrawer({ dest, onClose, onEnquire }) {
     e.preventDefault();
     if (form.name && form.email) {
       try {
-        await fetch("https://formspree.io/f/4a1b9f71-877f-47ce-9627-e818691a2b11", {
+        await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
           },
           body: JSON.stringify({
-            formType: "Fast Destination Inquiry",
+            access_key: "4a1b9f71-877f-47ce-9627-e818691a2b11",
+            subject: `Fast Destination Inquiry: ${dest.name}`,
+            from_name: "Blue Spice Holidays Website",
+            replyto: form.email,
             destination: dest.name,
             name: form.name,
             email: form.email,

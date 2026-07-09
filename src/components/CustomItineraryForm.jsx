@@ -151,20 +151,26 @@ export default function CustomItineraryForm() {
             (data.specialReqs.includes('Other') && data.otherRequirement ? ` (${data.otherRequirement})` : '')
         };
 
-        const response = await fetch("https://formspree.io/f/4a1b9f71-877f-47ce-9627-e818691a2b11", {
+        const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
           },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({
+            access_key: "4a1b9f71-877f-47ce-9627-e818691a2b11",
+            subject: "New Custom Itinerary Inquiry",
+            from_name: "Blue Spice Holidays Website",
+            replyto: payload.email,
+            ...payload
+          })
         });
 
         if (response.ok) {
           setSubmitted(true);
         } else {
           const errData = await response.json();
-          setErrorMsg(errData.error || 'Failed to submit inquiry. Please try again.');
+          setErrorMsg(errData.message || 'Failed to submit inquiry. Please try again.');
         }
       } catch (err) {
         setErrorMsg('Network error. Please check your internet connection and try again.');

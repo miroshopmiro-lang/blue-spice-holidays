@@ -66,14 +66,17 @@ export default function Footer() {
 
     setSubmitting(true);
     try {
-      await fetch("https://formspree.io/f/4a1b9f71-877f-47ce-9627-e818691a2b11", {
+      await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
         body: JSON.stringify({
-          formType: "Newsletter Subscription Capture",
+          access_key: "4a1b9f71-877f-47ce-9627-e818691a2b11",
+          subject: "New Newsletter Subscription",
+          from_name: "Blue Spice Holidays Website",
+          replyto: email,
           email: email
         })
       });
