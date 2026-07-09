@@ -399,7 +399,7 @@ export default memo(function HeroSection({
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20" />
 
       {/* Quick Translate Flags - Listed out horizontally under the nav bar */}
-      <div className="absolute top-24 sm:top-28 left-0 right-0 z-30 flex justify-center px-6">
+      <div className="absolute top-24 sm:top-28 left-0 right-0 z-50 flex justify-center px-6">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
