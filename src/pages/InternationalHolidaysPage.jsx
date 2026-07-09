@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import GroundTeams from '../components/GroundTeams';
 
 const INT_PACKAGES = [
   {
@@ -204,6 +205,8 @@ export default function InternationalHolidaysPage() {
           ))}
         </div>
       </section>
+
+      <GroundTeams filterScope="International Curation" />
     </div>
   );
 }

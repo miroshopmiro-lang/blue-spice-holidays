@@ -12,6 +12,7 @@ import CustomItineraryForm from './components/CustomItineraryForm';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
+import GroundTeams from './components/GroundTeams';
 
 // Subpages using React lazy loading
 const HolidaysHubPage = lazy(() => import('./pages/HolidaysHubPage'));
@@ -69,6 +70,7 @@ function Home() {
       <CuratedPackages />
       <WeddingsEvents />
       <FullscreenPromoCards />
+      <GroundTeams />
       <CustomItineraryForm />
       <Testimonials />
     </>

@@ -23,10 +23,10 @@ const HERO_SLIDES = [
   },
   {
     id: 'goa-beach',
-    name: 'Goa Beaches',
-    shortName: 'Goa',
-    tagline: 'Sun-Kissed Golden Shores',
-    description: 'Bask in the serene coastal charm, sway with the palms, and feel the gentle waves along Goa’s pristine beaches.',
+    name: 'Goa & Andaman Beaches',
+    shortName: 'Goa & Andaman',
+    tagline: 'Sun-Kissed Golden Shores & Coral Coves',
+    description: 'Bask in the serene coastal charm of Goa’s pristine beaches or escape to the turquoise waters and private coral coves of the Andaman Islands.',
     video: '/images/goa-beach.webm',
     poster: '/images/goa-beach-poster.webp'
   },
@@ -86,8 +86,8 @@ const HERO_SLIDES = [
   },
   {
     id: 'maya-beach',
-    name: 'Phi Phi & Maya Beach',
-    shortName: 'Maya Beach',
+    name: 'Phi Phi & Maya Bay',
+    shortName: 'Maya Bay',
     tagline: 'The Ultimate Tropical Escape',
     description: 'Relax on sun-kissed white sands framed by dramatic limestone cliffs and pristine turquoise waters of Thailand.',
     video: '/images/maya-beach.webm',
@@ -128,37 +128,12 @@ const MARQUEE_ITEMS = [
 
 const HeroVideo = memo(function HeroVideo({ slide, isActive, isPrev, isNext, nextSlide, reducedMotion, isVisible, isTabVisible, activeVideoRef }) {
   const videoRef = useRef(null);
-
-  // Initialize source immediately if page has already loaded to prevent mounting delay
-  const [videoSrc, setVideoSrc] = useState(() => {
-    if (typeof document !== 'undefined' && document.readyState === 'complete') {
-      return slide.video;
-    }
-    return null;
-  });
-
-  // Delay loading the video source until core page assets (CSS, fonts) are loaded (only if page isn't complete yet)
-  useEffect(() => {
-    if (videoSrc) return;
-
-    if (document.readyState === 'complete') {
-      const timer = setTimeout(() => {
-        setVideoSrc(slide.video);
-      }, 50);
-      return () => clearTimeout(timer);
-    } else {
-      const handleLoad = () => {
-        setVideoSrc(slide.video);
-      };
-      window.addEventListener('load', handleLoad);
-      return () => window.removeEventListener('load', handleLoad);
-    }
-  }, [slide.video, videoSrc]);
+  const [isBuffering, setIsBuffering] = useState(false);
 
   // Handle play/pause state dynamically
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || reducedMotion || !videoSrc) return;
+    if (!video || reducedMotion) return;
 
     if (isActive && isVisible && isTabVisible) {
       video.muted = true;
@@ -166,42 +141,75 @@ const HeroVideo = memo(function HeroVideo({ slide, isActive, isPrev, isNext, nex
         if (err.name !== 'AbortError') {
           console.warn(`Autoplay blocked or interrupted for video ${slide.id}:`, err);
         }
+        // If autoplay is blocked by Low Power Mode or device capability, clear spinner
+        setIsBuffering(false);
       });
     } else {
       video.pause();
     }
-  }, [isActive, isVisible, isTabVisible, reducedMotion, slide.id, videoSrc]);
+  }, [isActive, isVisible, isTabVisible, reducedMotion, slide.id]);
+
+  // Ensure spinner is cleared if slide is inactive
+  useEffect(() => {
+    if (!isActive) {
+      setIsBuffering(false);
+    }
+  }, [isActive]);
 
   // Sync reference when this video becomes active
   useEffect(() => {
     if (isActive && activeVideoRef) {
       activeVideoRef.current = videoRef.current;
     }
-  }, [isActive, activeVideoRef, videoSrc]);
+  }, [isActive, activeVideoRef]);
 
   return (
-    <video
-      ref={(el) => {
-        videoRef.current = el;
-        if (isActive && activeVideoRef) {
-          activeVideoRef.current = el;
-        }
-      }}
-      id={`hero-video-${slide.id}`}
-      src={videoSrc || undefined}
-      poster={slide.poster}
-      preload={isActive || isNext ? "auto" : "metadata"}
-      loop={false}
-      muted={true}
-      playsInline
-      disablePictureInPicture={true}
-      disableRemotePlayback={true}
-      controlsList="nodownload nofullscreen noremoteplayback"
-      onEnded={isActive && !reducedMotion ? nextSlide : undefined}
-      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-        (slide.id === 'himalayas' || slide.id === 'himalayas-2') ? 'object-[65%_center] sm:object-center' : 'object-center'
-      } ${isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'}`}
-    />
+    <div
+      className={`absolute inset-0 w-full h-full overflow-hidden transition-opacity duration-1000 ${
+        isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'
+      }`}
+    >
+      <video
+        ref={(el) => {
+          videoRef.current = el;
+          if (isActive && activeVideoRef) {
+            activeVideoRef.current = el;
+          }
+        }}
+        id={`hero-video-${slide.id}`}
+        src={slide.video}
+        poster={slide.poster}
+        preload={isActive || isNext ? "auto" : "metadata"}
+        loop={false}
+        muted={true}
+        playsInline
+        disablePictureInPicture={true}
+        disableRemotePlayback={true}
+        controlsList="nodownload nofullscreen noremoteplayback"
+        onEnded={isActive && !reducedMotion ? nextSlide : undefined}
+        onWaiting={() => setIsBuffering(true)}
+        onPlaying={() => setIsBuffering(false)}
+        onCanPlay={() => setIsBuffering(false)}
+        onSeeked={() => setIsBuffering(false)}
+        onLoadStart={() => setIsBuffering(true)}
+        onLoadedData={() => setIsBuffering(false)}
+        onError={() => setIsBuffering(false)}
+        className={`w-full h-full object-cover ${
+          (slide.id === 'himalayas' || slide.id === 'himalayas-2') ? 'object-[65%_center] sm:object-center' : 'object-center'
+        }`}
+      />
+
+      {/* Premium buffering spinner overlay */}
+      {isBuffering && isActive && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/25 backdrop-blur-[1px] z-30 transition-opacity duration-300">
+          <div className="flex flex-col items-center gap-3 animate-fadeIn">
+            {/* Spinning Gold Circle */}
+            <div className="h-10 w-10 animate-spin rounded-full border-2 border-gold border-t-transparent" />
+            <span className="text-[10px] uppercase font-mono tracking-[0.2em] text-white/80">Buffering...</span>
+          </div>
+        </div>
+      )}
+    </div>
   );
 });
 

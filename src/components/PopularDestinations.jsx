@@ -1,11 +1,134 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { DESTINATIONS } from '../data/travelData';
 
 const CATEGORIES = ['India', 'International', 'Trending'];
 
+function ItineraryDrawer({ dest, onClose, onEnquire }) {
+  const [form, setForm] = useState({ name: '', email: '', notes: '' });
+  const [sent, setSent] = useState(false);
+
+  const handleDrawerEnquire = () => {
+    onClose();
+    onEnquire(dest.name);
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (form.name && form.email) {
+      setSent(true);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-[60] flex justify-end">
+      {/* Backdrop */}
+      <motion.div
+        className="absolute inset-0 bg-ink/40 backdrop-blur-[1px]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      {/* Drawer Panel */}
+      <motion.aside
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Sample itinerary for ${dest.name}`}
+        className="relative h-full w-full max-w-md overflow-y-auto bg-white shadow-float [overscroll-behavior:contain]"
+        initial={{ x: '100%' }}
+        animate={{ x: 0 }}
+        exit={{ x: '100%' }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className="relative">
+          <img src={dest.image} alt={dest.name} width={448} height={208} className="h-52 w-full object-cover" />
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-ink shadow-soft hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="p-6">
+          <span className="font-mono text-[10px] uppercase tracking-widemono text-royal block">SAMPLE ITINERARY</span>
+          <h3 className="font-display mt-2 text-2xl font-bold leading-tight text-ink">{dest.name}</h3>
+          <p className="mt-2 text-sm text-body">{dest.tagline}</p>
+
+          <h4 className="font-display mt-8 text-lg font-bold text-ink border-t border-hairline pt-6">Suggested Day-by-Day Curation</h4>
+          {dest.sampleItinerary && dest.sampleItinerary.length > 0 ? (
+            <ol className="mt-6 space-y-6">
+              {dest.sampleItinerary.map((d) => (
+                <li key={d.day} className="relative pl-6 border-l border-hairline pb-2 last:pb-0">
+                  {/* Timeline Dot */}
+                  <div className="absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full bg-gold ring-4 ring-white" aria-hidden="true" />
+                  <p className="font-mono text-[10px] uppercase tracking-wider text-royal">Day {d.day}</p>
+                  <p className="text-sm font-semibold text-ink mt-0.5">{d.title}</p>
+                  <p className="mt-1.5 text-xs text-body leading-relaxed">{d.detail}</p>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <p className="text-xs text-body mt-4">Customized itineraries are tailor-made for this destination. Contact our curation team below.</p>
+          )}
+
+          <div className="mt-8 pt-6 border-t border-hairline">
+            <button
+              onClick={handleDrawerEnquire}
+              className="w-full bg-navy text-white text-xs font-bold uppercase tracking-wider py-4 rounded-full transition-colors hover:bg-gold hover:text-ink shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+            >
+              Enquire & Customise This Journey
+            </button>
+          </div>
+
+          <h4 className="font-display mt-8 text-lg font-bold text-ink border-t border-hairline pt-6">Plan Instantly</h4>
+          {sent ? (
+            <div className="mt-4 rounded-2xl border border-hairline bg-canvas p-5" aria-live="polite">
+              <p className="text-sm font-semibold text-ink">Thank you, {form.name}!</p>
+              <p className="mt-1 text-xs text-body leading-relaxed">Our specialists are preparing your custom {dest.name} travel options and will reach out to you within 24 hours.</p>
+            </div>
+          ) : (
+            <form className="mt-4 space-y-4" onSubmit={handleFormSubmit}>
+              <input
+                type="text" required placeholder="Your name…" value={form.name}
+                name="name" autoComplete="name" aria-label="Your full name"
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="w-full bg-canvas border border-hairline rounded-xl text-ink placeholder:text-mute px-4 py-3 focus:border-royal focus-visible:ring-2 focus-visible:ring-royal/20 focus-visible:outline-none transition-[border-color,box-shadow] text-sm"
+              />
+              <input
+                type="email" required placeholder="Email address…" value={form.email}
+                name="email" autoComplete="email" spellCheck={false} aria-label="Email address"
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="w-full bg-canvas border border-hairline rounded-xl text-ink placeholder:text-mute px-4 py-3 focus:border-royal focus-visible:ring-2 focus-visible:ring-royal/20 focus-visible:outline-none transition-[border-color,box-shadow] text-sm"
+              />
+              <textarea
+                rows="3" placeholder="Any specific requirements or preferences…" value={form.notes}
+                name="notes" autoComplete="off" aria-label="Any specific requirements or preferences"
+                onChange={(e) => setForm({ ...form, notes: e.target.value })}
+                className="w-full bg-canvas border border-hairline rounded-xl text-ink placeholder:text-mute px-4 py-3 focus:border-royal focus-visible:ring-2 focus-visible:ring-royal/20 focus-visible:outline-none transition-[border-color,box-shadow] text-sm resize-none"
+              />
+              <button type="submit" className="w-full rounded-full bg-navy px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition-[background-color,box-shadow] hover:bg-navy/90 shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+                Send Fast Request
+              </button>
+            </form>
+          )}
+        </div>
+      </motion.aside>
+    </div>
+  );
+}
+
 export default function PopularDestinations() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [activeItineraryDest, setActiveItineraryDest] = useState(null);
   const activeCategory = searchParams.get('category') || 'India';
 
   const setActiveCategory = (cat) => {
@@ -81,11 +204,9 @@ export default function PopularDestinations() {
             className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
           >
             {safeDestinations.map((dest) => (
-              <button
-                type="button"
+              <div
                 key={dest.id}
-                onClick={() => handleDestinationClick(dest.name)}
-                className="relative overflow-hidden group rounded-2xl cursor-pointer border border-hairline shadow-soft card-interactive h-[280px] w-full text-left block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                className="relative overflow-hidden group rounded-2xl border border-hairline shadow-soft card-interactive h-[280px] w-full text-left block"
               >
                 {/* Fallback sits below the image */}
                 <div className="img-fallback absolute inset-0" aria-hidden="true" />
@@ -119,20 +240,50 @@ export default function PopularDestinations() {
                     {dest.tagline}
                   </p>
 
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-gold tracking-wide hover:text-white transition-colors duration-200">
-                    Enquire Now
-                    <svg className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </span>
+                  <div className="mt-4 flex items-center gap-3 w-full">
+                    <button
+                      type="button"
+                      onClick={() => handleDestinationClick(dest.name)}
+                      className="inline-flex items-center gap-1 text-[11px] font-bold text-gold tracking-wide hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold"
+                    >
+                      Enquire Now
+                      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </button>
+
+                    <span className="text-white/25">|</span>
+
+                    <button
+                      type="button"
+                      onClick={() => setActiveItineraryDest(dest)}
+                      className="inline-flex items-center gap-1 text-[11px] font-bold text-white/80 hover:text-gold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold"
+                    >
+                      View Itinerary
+                      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
 
                   <span className="mt-4 block h-px w-0 bg-gold transition-[width] duration-500 ease-lux group-hover:w-16" aria-hidden="true" />
                 </div>
-              </button>
+              </div>
             ))}
           </div>
         )}
       </div>
+
+      {/* Slide-out Itinerary Drawer */}
+      <AnimatePresence>
+        {activeItineraryDest && (
+          <ItineraryDrawer
+            dest={activeItineraryDest}
+            onClose={() => setActiveItineraryDest(null)}
+            onEnquire={handleDestinationClick}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }

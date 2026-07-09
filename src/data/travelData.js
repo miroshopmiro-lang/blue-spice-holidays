@@ -198,19 +198,218 @@ export const TESTIMONIALS = [
 export const DESTINATIONS = [
   // Matches blue-spice-inspo popular destination images for overlapping names.
   // Keep rebuild-only destinations as-is (e.g., Rajasthan, Maldives, Georgia, Agra & Taj Mahal).
-  { id: 'kerala', name: 'Kerala', categories: ['India'], tagline: 'Backwaters, stillness, and unhurried luxury.', image: '/images/munnar.webp' },
-  { id: 'rajasthan', name: 'Rajasthan', categories: ['India'], tagline: 'Fortresses, royalty, and glowing desert dunes.', image: '/images/rajasthan.webp' },
-  { id: 'manali', name: 'Manali', categories: ['India'], tagline: 'Mountain air, mapped to your pace.', image: '/images/himachal.webp' },
-  { id: 'gangtok', name: 'Gangtok', categories: ['India'], tagline: 'Himalayan calm, elevated.', image: '/images/gangtok.webp' },
-  { id: 'kashmir', name: 'Kashmir', categories: ['India'], tagline: 'Alpine grandeur with five-star comfort.', image: '/images/kashmir.webp' },
-  { id: 'dubai', name: 'Dubai', categories: ['International'], tagline: 'Where ambition meets indulgence.', image: '/images/dubai.webp' },
-  { id: 'thailand', name: 'Thailand', categories: ['International'], tagline: 'Pristine coastlines curated for you.', image: '/images/thailand-phiphi.webp' },
-  { id: 'maldives', name: 'Maldives', categories: ['International'], tagline: 'Island serenity, expertly held.', image: '/images/maldives.webp' },
-  { id: 'bali', name: 'Bali', categories: ['International'], tagline: 'Sanctuary, temple ceremonies, and sea.', image: '/images/bali.webp' },
-  { id: 'singapore', name: 'Singapore', categories: ['International'], tagline: 'Precision, polish, and metropolitan pace.', image: '/images/singapore.webp' },
-  { id: 'andaman', name: 'Andaman', categories: ['India', 'Trending'], tagline: 'Private shores and turquoise solitude.', image: '/images/andaman.webp' },
-  { id: 'vietnam', name: 'Vietnam', categories: ['International', 'Trending'], tagline: 'Heritage and green horizon in one journey.', image: '/images/vietnam.webp' },
-  { id: 'georgia', name: 'Georgia', categories: ['International', 'Trending'], tagline: 'Old-world charm, new-world ease.', image: '/images/georgia.webp' },
-  { id: 'taj-mahal', name: 'Agra & Taj Mahal', categories: ['India', 'Trending'], tagline: 'Sunrise over white marble, timeless love.', image: '/images/taj-mahal.webp' },
-  { id: 'london', name: 'London', categories: ['International', 'Trending'], tagline: 'Royal heritage, historic streets, and partner-curated charm.', image: '/images/london.webp' }
+  {
+    id: 'kerala',
+    name: 'Kerala',
+    categories: ['India'],
+    tagline: 'Backwaters, stillness, and unhurried luxury.',
+    image: '/images/munnar.webp',
+    sampleItinerary: [
+      { day: 1, title: "Cochin Arrival & Heritage Walk", detail: "Check into a boutique Fort Kochi hotel. Explore historic spice markets and Chinese fishing nets." },
+      { day: 2, title: "Drive to Munnar Tea Country", detail: "Scenic drive past cascading waterfalls into emerald tea plantations. Guided cardamom estate walk." },
+      { day: 3, title: "Kumarakom Backwater Houseboat", detail: "Board a private, luxury wood-carved houseboat. Slow cruise along palm-fringed backwater canals." },
+      { day: 4, title: "Departure", detail: "Unhurried breakfast on the water followed by private transfer to Kochi airport." }
+    ]
+  },
+  {
+    id: 'rajasthan',
+    name: 'Rajasthan',
+    categories: ['India'],
+    tagline: 'Fortresses, royalty, and glowing desert dunes.',
+    image: '/images/rajasthan.webp',
+    sampleItinerary: [
+      { day: 1, title: "Jaipur Pink City Welcomes", detail: "Settle into a restored royal haveli. Explore the local gemstone and textile bazaars at leisure." },
+      { day: 2, title: "Amber Fort & Scholar Tour", detail: "Scholar-led tour of Amber Fort, Stepwells, and Jantar Mantar royal observatory." },
+      { day: 3, title: "Desert Luxury in Jaisalmer", detail: "Drive to the Golden City, private camel safari, and sunset dinner at a luxury desert camp." },
+      { day: 4, title: "Departure", detail: "Assisted transfer to Udaipur/Jodhpur for onward flights." }
+    ]
+  },
+  {
+    id: 'manali',
+    name: 'Manali',
+    categories: ['India'],
+    tagline: 'Mountain air, mapped to your pace.',
+    image: '/images/himachal.webp',
+    sampleItinerary: [
+      { day: 1, title: "Arrive Manali & Riverside Chalet", detail: "Check into a cozy valley chalet. Slow walk through old pine-forested lanes and local cafes." },
+      { day: 2, title: "Solang Valley & Cedar Trails", detail: "Trek through majestic deodar forests and visit the ancient Hadimba Temple shrine." },
+      { day: 3, title: "Rohtang Pass & Atal Tunnel", detail: "Cross the high engineering wonder into the stark, snow-capped valleys of Lahaul." },
+      { day: 4, title: "Departure", detail: "Assisted private transfer back to Chandigarh airport." }
+    ]
+  },
+  {
+    id: 'gangtok',
+    name: 'Gangtok',
+    categories: ['India'],
+    tagline: 'Himalayan calm, elevated.',
+    image: '/images/gangtok.webp',
+    sampleItinerary: [
+      { day: 1, title: "Himalayan Drive & MG Marg", detail: "Scenic drive along the Teesta river. Evening walk on the clean, pedestrian MG Marg." },
+      { day: 2, title: "Tsomgo Glacial Lake Route", detail: "Excursion to the sacred high-altitude lake at 12,400 ft and Baba Mandir border pass." },
+      { day: 3, title: "Pelling Glass Skywalk", detail: "Scenic transfer to Pelling. Walk the glass bridge and explore ancient Rabdentse royal ruins." },
+      { day: 4, title: "Departure", detail: "Assisted private transfer back to Bagdogra airport." }
+    ]
+  },
+  {
+    id: 'kashmir',
+    name: 'Kashmir',
+    categories: ['India'],
+    tagline: 'Alpine grandeur with five-star comfort.',
+    image: '/images/kashmir.webp',
+    sampleItinerary: [
+      { day: 1, title: "Srinagar Cedar Houseboat", detail: "Board a luxury hand-carved cedar houseboat on Dal Lake. Evening sunset shikara ride." },
+      { day: 2, title: "Pahalgam Valley & Pines", detail: "Drive to the valley of shepherds, horse ride through pine glades, and watch the Lidder river." },
+      { day: 3, title: "Gulmarg Meadow Gondola", detail: "Ride the world's highest cable car to Apharwat peak. Slow walk through wildflower meadows." },
+      { day: 4, title: "Departure", detail: "Transfer to Srinagar airport for your flight home." }
+    ]
+  },
+  {
+    id: 'dubai',
+    name: 'Dubai',
+    categories: ['International'],
+    tagline: 'Where ambition meets indulgence.',
+    image: '/images/dubai.webp',
+    sampleItinerary: [
+      { day: 1, title: "Arrive Dubai & Burj Skyline", detail: "Private transfer to a premium hotel. Sunset at the world's highest observatory." },
+      { day: 2, title: "Private Desert Safari Curation", detail: "Jeep dune bashing, sunset photography, and luxury Bedouin camp dining under stars." },
+      { day: 3, title: "Heritage Al Fahidi & Souks", detail: "Slow walk through old wind-tower lanes, Abra boat ride, and spice/gold souks." },
+      { day: 4, title: "Departure", detail: "Assisted transfer to Dubai International airport." }
+    ]
+  },
+  {
+    id: 'thailand',
+    name: 'Thailand',
+    categories: ['International'],
+    tagline: 'Pristine coastlines curated for you.',
+    image: '/images/thailand-phiphi.webp',
+    sampleItinerary: [
+      { day: 1, title: "Arrive Phuket Beachfront", detail: "Private pickup. Evening sunset drinks overlooking the Andaman Sea." },
+      { day: 2, title: "Speedboat Curation to Maya Bay", detail: "Private speedboat charter to Phi Phi Leh. Snorkel in Maya Bay's pristine reefs." },
+      { day: 3, title: "Bangkok Cruise & Temples", detail: "Fly to Bangkok. Evening dinner cruise on Chao Phraya. Guided Wat Pho temple walk." },
+      { day: 4, title: "Departure", detail: "Private transfer to Suvarnabhumi airport." }
+    ]
+  },
+  {
+    id: 'maldives',
+    name: 'Maldives',
+    categories: ['International'],
+    tagline: 'Island serenity, expertly held.',
+    image: '/images/maldives.webp',
+    sampleItinerary: [
+      { day: 1, title: "Seaplane over Coral Atolls", detail: "Scenic flight to your private overwater pool villa. Champagne sunset welcome." },
+      { day: 2, title: "Marine Scholar Snorkeling", detail: "Guided excursion with a resident marine biologist to check healthy house reefs." },
+      { day: 3, title: "Private Sandbank Curation", detail: "Escape by speedboat to a deserted sandbank for a private picnic lunch and swim." },
+      { day: 4, title: "Departure", detail: "Assisted seaplane return transfer to Malé airport." }
+    ]
+  },
+  {
+    id: 'bali',
+    name: 'Bali',
+    categories: ['International'],
+    tagline: 'Sanctuary, temple ceremonies, and sea.',
+    image: '/images/bali.webp',
+    sampleItinerary: [
+      { day: 1, title: "Arrive Ubud Jungle Villa", detail: "Private transfer to a luxury pool villa overlooking deep tropical valleys." },
+      { day: 2, title: "Sacred Groves & Rice Terraces", detail: "Walk the Tegalalang terraces, experience jungle swings, and monkey forest sanctuary." },
+      { day: 3, title: "Uluwatu Sunset Kecak Curation", detail: "Cliff temple visit followed by the dramatic traditional Kecak fire dance." },
+      { day: 4, title: "Departure", detail: "Private transfer to Denpasar airport." }
+    ]
+  },
+  {
+    id: 'singapore',
+    name: 'Singapore',
+    categories: ['International'],
+    tagline: 'Precision, polish, and metropolitan pace.',
+    image: '/images/singapore.webp',
+    sampleItinerary: [
+      { day: 1, title: "Arrive Singapore & Night Safari", detail: "Check into a luxury city center hotel. Evening tram safari through the rainforest zoo." },
+      { day: 2, title: "Gardens by the Bay Domes", detail: "Explore the massive domes, Cloud Forest, and walk the high OCBC Skyway." },
+      { day: 3, title: "Sentosa Yacht & Cable Car", detail: "Cable car crossing to Sentosa, SEA Aquarium VIP tour, and sunset beach club relaxation." },
+      { day: 4, title: "Departure", detail: "Transfer to Jewel Changi airport for shopping and flight connection." }
+    ]
+  },
+  {
+    id: 'andaman',
+    name: 'Andaman',
+    categories: ['India', 'Trending'],
+    tagline: 'Private shores and turquoise solitude.',
+    image: '/images/andaman.webp',
+    sampleItinerary: [
+      { day: 1, title: "Port Blair Historical Welcomes", detail: "Arrive at Port Blair. Check in and visit Cellular Jail for the evening light show." },
+      { day: 2, title: "Private Ferry to Havelock Island", detail: "Board a high-speed private catamaran. Sunset walk on the famous Radhanagar Beach." },
+      { day: 3, title: "Coral Snorkeling at Elephant Beach", detail: "Guided marine snorkel through shallow reefs. Afternoon forest trail walk." },
+      { day: 4, title: "Departure", detail: "Return ferry to Port Blair and assisted transfer to the airport." }
+    ]
+  },
+  {
+    id: 'vietnam',
+    name: 'Vietnam',
+    categories: ['International', 'Trending'],
+    tagline: 'Heritage and green horizon in one journey.',
+    image: '/images/vietnam.webp',
+    sampleItinerary: [
+      { day: 1, title: "Hanoi French Quarter Cyclo", detail: "Arrive Hanoi, private hotel check-in. Evening cyclo tour and local street food walk." },
+      { day: 2, title: "Halong Bay Luxury Cruise", detail: "Board a heritage boutique cruise. Kayak past limestone islets and sleep under stars." },
+      { day: 3, title: "Hoi An Ancient Lantern Walk", detail: "Fly to Da Nang. Slow walk in Hoi An's lantern-lit streets and tailor shops." },
+      { day: 4, title: "Departure", detail: "Private transfer to Da Nang airport." }
+    ]
+  },
+  {
+    id: 'georgia',
+    name: 'Georgia',
+    categories: ['International', 'Trending'],
+    tagline: 'Old-world charm, new-world ease.',
+    image: '/images/georgia.webp',
+    sampleItinerary: [
+      { day: 1, title: "Tbilisi Cable Car & Sulfur Baths", detail: "Check in. Panoramic cable car ride, evening sulfur bath soak in Old Town." },
+      { day: 2, title: "Kakheti Clay Jar Wine Trails", detail: "Excursion to the cradle of winemaking. Qvevri tasting with a local master." },
+      { day: 3, title: "Kazbegi Gergeti Church Crossing", detail: "Drive the military highway, explore high peaks and Gergeti church at 7,000 ft." },
+      { day: 4, title: "Departure", detail: "Assisted transfer to Tbilisi International airport." }
+    ]
+  },
+  {
+    id: 'taj-mahal',
+    name: 'Agra & Taj Mahal',
+    categories: ['India', 'Trending'],
+    tagline: 'Sunrise over white marble, timeless love.',
+    image: '/images/taj-mahal.webp',
+    sampleItinerary: [
+      { day: 1, title: "Agra Mughal Sunset View", detail: "Private transfer from Delhi. Settle in and enjoy sunset Taj views from Mehtab Bagh gardens." },
+      { day: 2, title: "Taj Mahal Sunrise & Agra Fort", detail: "Private sunrise entry to the Taj. Afternoon tour of Agra Fort with a historian." },
+      { day: 3, title: "Fatehpur Sikri & Return Delhi", detail: "Guided walk of the ghost city of Fatehpur Sikri, followed by private drive to Delhi." }
+    ]
+  },
+  {
+    id: 'london',
+    name: 'London',
+    categories: ['International', 'Trending'],
+    tagline: 'Royal heritage, historic streets, and partner-curated charm.',
+    image: '/images/london.webp',
+    sampleItinerary: [
+      { day: 1, title: "London Welcome & Thames Walk", detail: "Private airport pickup. Settle into central hotel. Evening Thames riverside stroll." },
+      { day: 2, title: "Westminster Abbey & London Eye", detail: "Guided Westminster history walk, Big Ben, and high flight on the London Eye." },
+      { day: 3, title: "Wembley Stadium & Ealing Road Curation", detail: "VIP Wembley Stadium access. Shopping and street snacks at the Delhi of UK." },
+      { day: 4, title: "Departure", detail: "Private transfer to London Heathrow or Gatwick airport." }
+    ]
+  }
 ];
+
+export const GROUND_TEAMS = [
+  {
+    id: 'andaman',
+    name: 'Ms Tofah and Team',
+    location: 'Port Blair, Andaman',
+    role: 'Andaman Operations Lead',
+    scope: 'Domestic Curation',
+    description: 'Coordinates private island clearances, speedboat transfers, and direct beachside support across Havelock, Neil, and Port Blair.'
+  },
+  {
+    id: 'london',
+    name: 'Mr Vineesh',
+    location: 'London, UK',
+    role: 'UK Operations Director',
+    scope: 'International Curation',
+    description: 'Directs central London airport arrivals, chauffeured transfers, and exclusive VIP entry to Wembley Stadium and historic landmarks in partnership with Rediscover Tourism.'
+  }
+];
+

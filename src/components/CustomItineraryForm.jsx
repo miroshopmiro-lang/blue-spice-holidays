@@ -250,11 +250,16 @@ export default function CustomItineraryForm() {
 
                 {/* 12. Any special request regarding food or any other request */}
                 <div className="sm:col-span-2">
-                  <label htmlFor="custom-requests" className="block text-[10px] font-semibold uppercase tracking-wider text-brand-surface-cool/60 mb-1">Special requests (food, accessibility, etc.)</label>
+                  <label htmlFor="custom-requests" className="block text-[10px] font-semibold uppercase tracking-wider text-brand-surface-cool/60 mb-1">
+                    Special requests (food, accessibility, etc.)
+                  </label>
+                  <p className="text-[10px] text-brand-surface-cool/40 mb-2">
+                    Please mention if your journey requires arrangements for Senior citizens, Celebrities, VIPs, Veg, Jain, Kids, or School & College trips.
+                  </p>
                   <textarea
                     id="custom-requests" name="specialRequests" autoComplete="off"
                     rows="3" value={data.specialRequests} onChange={(e) => set('specialRequests', e.target.value)}
-                    placeholder="e.g. Vegetarian food only, wheelchair access, high floor rooms, etc.…"
+                    placeholder="e.g. Vegetarian/Jain meals only, wheelchair accessibility, VIP/Celebrity hosting, senior citizens, school or college trip guidelines..."
                     className="w-full bg-transparent border border-brand-surface-cool/20 rounded-xl text-brand-surface placeholder:text-brand-surface-cool/30 p-4 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent focus-visible:ring-1 focus-visible:ring-brand-accent focus:outline-none text-sm transition-[border-color,box-shadow] resize-none"
                   />
                 </div>

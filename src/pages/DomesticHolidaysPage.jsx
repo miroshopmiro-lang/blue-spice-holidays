@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CURATED_PACKAGES } from '../data/travelData';
+import GroundTeams from '../components/GroundTeams';
 
 // Filter packages that are domestic (location in India)
 const DOMESTIC_PACKAGES = [
@@ -167,6 +168,8 @@ export default function DomesticHolidaysPage() {
           ))}
         </div>
       </section>
+
+      <GroundTeams filterScope="Domestic Curation" />
     </div>
   );
 }
