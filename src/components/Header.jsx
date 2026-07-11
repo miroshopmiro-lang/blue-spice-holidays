@@ -252,7 +252,7 @@ export default function Header() {
 
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-50 lg:hidden">
+        <div className="fixed inset-0 z-[100] lg:hidden">
           {/* Backdrop */}
           <motion.div
             className="absolute inset-0 bg-ink/40"
