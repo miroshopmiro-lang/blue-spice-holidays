@@ -8,49 +8,46 @@ export const PACKAGE_CATEGORIES = [
 export const CURATED_PACKAGES = [
   {
     id: 1,
-    title: "Misty Hills & Spice Plantations of Munnar",
+    title: "Central Kerala Tour (Plan 1)",
     location: "Kerala",
     duration: "5 Nights / 6 Days",
     rating: "4.9",
     reviews: "42",
-    tag: "Couples Escapes",
-    price: "₹32,500",
-    inclusions: "Private Chauffeur, Heritage Bungalows, Tea Trails Guide",
+    tag: "Family Heritage",
+    price: "On Request",
+    inclusions: "Private Chauffeur, Kochi & Munnar Curation, Backwater Boating",
     image: "/images/munnar.webp",
-    metadata: { stay: "Heritage Bungalows", driver: "Private Chauffeur", guide: "Tea Trails Guide" },
+    metadata: { stay: "Premium Stays", driver: "Private Vehicle", guide: "Local Sightseeing" },
     itinerary: [
-      { day: 1, title: "Arrival & Tea Country Drive", detail: "Private transfer into the hills, evening at a colonial tea bungalow." },
-      { day: 2, title: "Spice Plantation Walk", detail: "Guided morning through cardamom and pepper estates with a resident planter." },
-      { day: 3, title: "Eravikulam & Misty Trails", detail: "Early national park visit, slow afternoon by the lake." },
-      { day: 4, title: "Tea Tasting & Local Kitchen", detail: "Factory tour, hands-on Kerala cooking session with a homestay family." },
-      { day: 5, title: "Free Day at Your Pace", detail: "Optional backwater add-on or a quiet day at the estate." },
-      { day: 6, title: "Departure", detail: "Unhurried breakfast and assisted transfer to your onward journey." },
+      { day: 1, title: "Kochi Arrival & Sightseeing", detail: "Warm welcome at Kochi airport or rw stn and proceed to Kochi city. Eroute visit the following points.\n\n•	Vasco Memorial\n•	St Francis Church\n•	Jain Temple\n•	Chinese Fishing Nets\n•	Fort Kochi beach\n•	Dutch Palace (Fri Closed)\n•	Jew Synagogue (Fri Closed)\n•	Marine Drive sunset visit\n•	Drive through MG Road.\n\nOvernight stay at Kochi. End of day 1" },
+      { day: 2, title: "Checkout & Drive to Munnar", detail: "After breakfast, checkout and proceed to Munnar enroute local sightseeing options \n\n•	Cheeyappara waterfalls\n•	Valara waterfalls\n•	Spice garden\n•	Animal park \n•	Zip line\n\nOvernight stay at Munnar. End of day 2" },
+      { day: 3, title: "Munnar Local Sightseeing", detail: "After breakfast, proceed for Munnar local sightseeing options\n\n•	National park \n•	Flower garden\n•	Echo point\n•	Mattupetty Dam\n\nOvernight stay at Munnar. End of day 3" },
+      { day: 4, title: "Checkout & Drive to Thekkady", detail: "After breakfast, checkout and proceed to Thekkady local sightseeing options \n\n•	Periyar sanctuary \n•	Option of boating\n•	Kalari martial art show\n•	Kathakali show\n•	Jeep ride\n•	Elephant ride & Bath\n\nOvernight stay at Thekkady. End of day 4" },
+      { day: 5, title: "Checkout & Drive to Alleppey", detail: "After breakfast Checkout and proceed to Alleppey.4 to 5 hrs drive.\n\n•	Boating in back waters (2-3 hrs)\n•	Visit Alleppey beach, Enjoy sunset and beach bath by 6 pm\n\nOvernight stay at Alleppey hotel. End of day 5." },
+      { day: 6, title: "Checkout & Departure via Kochi", detail: "After breakfast, checkout and drop to Kochi airport or rw stn. End of day 6 and tour with happy memories." }
     ],
-    accommodations: "Restored tea-estate bungalows and boutique hill homestays.",
+    accommodations: "Premium heritage and boutique properties in Kochi, Munnar, Thekkady, and Alleppey.",
   },
   {
     id: 2,
-    title: "Royal Forts & Desert Camps of Rajasthan",
+    title: "Rajasthan Tour (3 Cities)",
     location: "Rajasthan",
-    duration: "7 Nights / 8 Days",
+    duration: "4 Nights / 5 Days",
     rating: "4.8",
     reviews: "56",
     tag: "Family Heritage",
-    price: "₹48,900",
-    inclusions: "Palace Stays, Private Jeep Safari, Local Scholar Guides",
+    price: "On Request",
+    inclusions: "Jaipur, Pushkar, Jodhpur Curation, Meals Included, Private Vehicle",
     image: "/images/rajasthan.webp",
-    metadata: { stay: "Palace & Haveli Stays", driver: "Private Chauffeur", guide: "Local Scholar Guides" },
+    metadata: { stay: "Heritage Haveli Stays", driver: "Private Chauffeur", guide: "Sightseeing Guide" },
     itinerary: [
-      { day: 1, title: "Arrival in the Pink City", detail: "Settle into a heritage haveli, evening rooftop welcome." },
-      { day: 2, title: "Amber Fort & Old City", detail: "Scholar-led tour of forts, stepwells and artisan quarters." },
-      { day: 3, title: "Drive to Jodhpur", detail: "Scenic transfer, evening in the blue lanes below Mehrangarh." },
-      { day: 4, title: "Mehrangarh & Markets", detail: "Private fort access and a family spice-market walk." },
-      { day: 5, title: "Into the Desert", detail: "Jeep safari to dunes, luxury desert camp under the stars." },
-      { day: 6, title: "Jaisalmer Living Fort", detail: "Golden-stone ramparts and Jain temple curation." },
-      { day: 7, title: "Free Day", detail: "Camel cart, folk evening or simply rest at the camp." },
-      { day: 8, title: "Departure", detail: "Assisted transfer onward." },
+      { day: 1, title: "Jaipur Airport Arrival & Sightseeing", detail: "Warm welcome at Jaipur airport and half day sightseeing from 1 pm to 6 pm.\n\n•	Hawa Mahal\n•	City palace \n•	Jantan Mantar\n•	Jal Mahal \n•	Shopping at Amer road\n\nOvernight stay at Jaipur. End of day 1" },
+      { day: 2, title: "Jaipur to Pushkar Transfer", detail: "After breakfast check out and proceed to Pushkar (3 hrs drive)\n\n•	Pushkar Lake\n•	Varaha Temple\n•	Brahma Temple\n•	Man mahal\n\nOvernight stay at Pushkar. End of day 2" },
+      { day: 3, title: "Pushkar to Jodhpur Transfer", detail: "After breakfast check out and proceed to Jodhpur (4-5 hrs drive)\n\n•	Ranakpur Jain temple 1200 years old \n•	Mehranghar fort at Jodhpur\n\n\tOvernight stay at Jodhpur. End of day 3" },
+      { day: 4, title: "Jodhpur to Jaipur via Sightseeing", detail: "After breakfast check out and proceed to Jaipur (5 - 6 hrs drive)\n\n* Jai ghad fort\n* Getor\n* Albert hall\n*Choki dhani in evening\n\nOvernight stay. End of day 4" },
+      { day: 5, title: "Jaipur Sightseeing & Departure", detail: "After breakfast check out and proceed to local sightseeing and shopping and drop to Jaipur airport / rw stn. End of day 5 & tour with happy memories 😊" }
     ],
-    accommodations: "Converted palaces, family-run havelis and a private desert camp.",
+    accommodations: "Heritage hotels and havelis in Jaipur, Pushkar, and Jodhpur.",
   },
   {
     id: 3,
@@ -162,6 +159,31 @@ export const CURATED_PACKAGES = [
       { day: 7, title: "Farewell London", detail: "Private transfer from your accommodation to the airport. End of your 7-day tour with happy memories." }
     ],
     accommodations: "Curated premium accommodations in central London, organized in association with our UK partner Rediscover Tourism."
+  },
+  {
+    id: 8,
+    title: "Central & South Kerala (Plan 2)",
+    location: "Kerala",
+    duration: "8 Nights / 9 Days",
+    rating: "4.9",
+    reviews: "35",
+    tag: "Family Heritage",
+    price: "On Request",
+    inclusions: "Private Chauffeur, Backwaters Cruise, Jatayu Earth Center, Varkala Cliff",
+    image: "/images/munnar.webp",
+    metadata: { stay: "Boutique & Beach Resorts", driver: "Private SUV", guide: "Sightseeing Included" },
+    itinerary: [
+      { day: 1, title: "Kochi Arrival & Sightseeing", detail: "Warm welcome at Kochi airport / rw stn and transfer to hotel (std checkin time 1 pm). Visiting Local sightseeing,\n\n•	Vasco Memorial\n•	St Francis Church\n•	Jain Temple\n•	Chinese Fishing Nets\n•	Fort Kochi beach\n•	Dutch Palace (Fri Closed)\n\nEvening at Marine drive sunset and boating. Overnight stay at Kochi. End of day 1." },
+      { day: 2, title: "Checkout & Proceed to Munnar", detail: "After breakfast checkout and proceed to Munnar. Visiting local sightseeing at Munnar\n\n•	Chiyapara waterfalls\n•	Vallara waterfalls\n•	Animal Park\n•	Spice garden\n\n Overnight stay at Munnar. End of day 2." },
+      { day: 3, title: "Munnar Tea Country & National Park", detail: "After breakfast proceed to \n\n•	Tea museum \n•	Floral garden\n•	Eco point \n•	Mattupeatti dam\n•	National park\n\nOvernight stay at Munnar. End of day 3" },
+      { day: 4, title: "Munnar Jeep Safari or Leisure", detail: "After breakfast proceed for Jeep safari / Leisure day. \n\nOvernight stay at Munnar. End of day 4" },
+      { day: 5, title: "Checkout & Proceed to Thekkady", detail: "After breakfast checkout and proceed to Thekkady. Sightseeing / Activities options\n\n•	Periyar wild life sanctuary\n•	Elephant ride and bath \n•	Kalari martial art show\n•	Kathakali show\n\nOvernight stay at Thekkady. End of day 5" },
+      { day: 6, title: "Checkout & Proceed to Alleppey", detail: "After breakfast checkout and proceed to Alleppey.\n\n•	Backwaters in Alleppey\n\nOvernight stay at Alleppey hotel. End of day 6." },
+      { day: 7, title: "Alleppey Sightseeing & Varkala Transfer", detail: "After breakfast checkout and proceed to sightseeing \n\n•	Alleppey light house\n•	Alleppey beach\n•	Enroute visit Jadayu rock.\n\nOvernight stay at Varkala. End of day 7." },
+      { day: 8, title: "Varkala Leisure & Activities", detail: "Free and easy / activities if time permits. Overnight stay at Varkala. End of day 8." },
+      { day: 9, title: "Checkout & Drop to Trivandrum", detail: "Check out and proceed to local sightseeing and shopping and drop to Trivandrum airport." }
+    ],
+    accommodations: "Premium hotels and beachside resorts in Kochi, Munnar, Thekkady, Alleppey, and Varkala.",
   }
 ];
 
@@ -196,19 +218,54 @@ export const TESTIMONIALS = [
 ];
 
 export const DESTINATIONS = [
-  // Matches blue-spice-inspo popular destination images for overlapping names.
-  // Keep rebuild-only destinations as-is (e.g., Rajasthan, Maldives, Georgia, Agra & Taj Mahal).
   {
     id: 'kerala',
     name: 'Kerala',
     categories: ['India'],
     tagline: 'Backwaters, stillness, and unhurried luxury.',
     image: '/images/munnar.webp',
-    sampleItinerary: [
-      { day: 1, title: "Cochin Arrival & Heritage Walk", detail: "Check into a boutique Fort Kochi hotel. Explore historic spice markets and Chinese fishing nets." },
-      { day: 2, title: "Drive to Munnar Tea Country", detail: "Scenic drive past cascading waterfalls into emerald tea plantations. Guided cardamom estate walk." },
-      { day: 3, title: "Kumarakom Backwater Houseboat", detail: "Board a private, luxury wood-carved houseboat. Slow cruise along palm-fringed backwater canals." },
-      { day: 4, title: "Departure", detail: "Unhurried breakfast on the water followed by private transfer to Kochi airport." }
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "Pls provide information",
+      "Meals Included": "Breakfast by default (inform if specific dietary requirements exist)"
+    },
+    plans: [
+      {
+        name: 'Plan 1: Central Kerala (6 Days 5 Nights)',
+        referenceInfo: {
+          "Vehicle": "Kochi Airport - Kochi Airport",
+          "Type of Vehicle": "(Sedan / Ertiga / Innova / Tempo / Others)"
+        },
+        itinerary: [
+          { day: 1, title: "Kochi Arrival & Sightseeing", detail: "Warm welcome at Kochi airport or rw stn and proceed to Kochi city. Eroute visit the following points.\n\n•	Vasco Memorial\n•	St Francis Church\n•	Jain Temple\n•	Chinese Fishing Nets\n•	Fort Kochi beach\n•	Dutch Palace (Fri Closed)\n•	Jew Synagogue (Fri Closed)\n•	Marine Drive sunset visit\n•	Drive through MG Road.\n\nOvernight stay at Kochi. End of day 1" },
+          { day: 2, title: "Checkout & Drive to Munnar", detail: "After breakfast, checkout and proceed to Munnar enroute local sightseeing options \n\n•	Cheeyappara waterfalls\n•	Valara waterfalls\n•	Spice garden\n•	Animal park \n•	Zip line\n\nOvernight stay at Munnar. End of day 2" },
+          { day: 3, title: "Munnar Local Sightseeing", detail: "After breakfast, proceed for Munnar local sightseeing options\n\n•	National park \n•	Flower garden\n•	Echo point\n•	Mattupetty Dam\n\nOvernight stay at Munnar. End of day 3" },
+          { day: 4, title: "Checkout & Drive to Thekkady", detail: "After breakfast, checkout and proceed to Thekkady local sightseeing options \n\n•	Periyar sanctuary \n•	Option of boating\n•	Kalari martial art show\n•	Kathakali show\n•	Jeep ride\n•	Elephant ride & Bath\n\nOvernight stay at Thekkady. End of day 4" },
+          { day: 5, title: "Checkout & Drive to Alleppey", detail: "After breakfast Checkout and proceed to Alleppey.4 to 5 hrs drive.\n\n•	Boating in back waters (2-3 hrs)\n•	Visit Alleppey beach, Enjoy sunset and beach bath by 6 pm\n\nOvernight stay at Alleppey hotel. End of day 5." },
+          { day: 6, title: "Checkout & Departure", detail: "After breakfast, checkout and drop to Kochi airport or rw stn. End of day 6 and tour with happy memories." }
+        ]
+      },
+      {
+        name: 'Plan 2: Central & South Kerala (9 Days 8 Nights)',
+        referenceInfo: {
+          "Vehicle": "Kochi Airport - Trivandrum Airport",
+          "Type of Vehicle": "(Sedan / Ertiga / Innova / Tempo / Others)"
+        },
+        itinerary: [
+          { day: 1, title: "Kochi Arrival & Sightseeing", detail: "Warm welcome at Kochi airport / rw stn and transfer to hotel (std checkin time 1 pm). Visiting Local sightseeing,\n\n•	Vasco Memorial\n•	St Francis Church\n•	Jain Temple\n•	Chinese Fishing Nets\n•	Fort Kochi beach\n•	Dutch Palace (Fri Closed)\n\nEvening at Marine drive sunset and boating. Overnight stay at Kochi. End of day 1." },
+          { day: 2, title: "Checkout & Proceed to Munnar", detail: "After breakfast checkout and proceed to Munnar. Visiting local sightseeing at Munnar\n\n•	Chiyapara waterfalls\n•	Vallara waterfalls\n•	Animal Park\n•	Spice garden\n\n Overnight stay at Munnar. End of day 2." },
+          { day: 3, title: "Munnar Tea Country & National Park", detail: "After breakfast proceed to \n\n•	Tea museum \n•	Floral garden\n•	Eco point \n•	Mattupeatti dam\n•	National park\n\nOvernight stay at Munnar. End of day 3" },
+          { day: 4, title: "Jeep Safari & Leisure", detail: "After breakfast proceed for Jeep safari / Leisure day. \n\nOvernight stay at Munnar. End of day 4" },
+          { day: 5, title: "Checkout & Proceed to Thekkady", detail: "After breakfast checkout and proceed to Thekkady. Sightseeing / Activities options\n\n•	Periyar wild life sanctuary\n•	Elephant ride and bath \n•	Kalari martial art show\n•	Kathakali show\n\nOvernight stay at Thekkady. End of day 5" },
+          { day: 6, title: "Checkout & Proceed to Alleppey", detail: "After breakfast checkout and proceed to Alleppey.\n\n•	Backwaters in Alleppey\n\nOvernight stay at Alleppey hotel. End of day 6." },
+          { day: 7, title: "Alleppey Sightseeing & Varkala Transfer", detail: "After breakfast checkout and proceed to sightseeing \n\n•	Alleppey light house\n•	Alleppey beach\n•	Enroute visit Jadayu rock.\n\nOvernight stay at Varkala. End of day 7." },
+          { day: 8, title: "Varkala Leisure & Activities", detail: "Free and easy / activities if time permits. Overnight stay at Varkala. End of day 8." },
+          { day: 9, title: "Checkout & Departure", detail: "Check out and proceed to local sightseeing and shopping and drop to Trivandrum airport." }
+        ]
+      }
     ]
   },
   {
@@ -217,37 +274,24 @@ export const DESTINATIONS = [
     categories: ['India'],
     tagline: 'Fortresses, royalty, and glowing desert dunes.',
     image: '/images/rajasthan.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls inform information",
+      "Kids below 11 Years": "Pls inform information with age of each kid",
+      "Accommodation": "Pls inform information",
+      "Travel Date": "Pls inform information",
+      "Duration": "5 Days 4 Nights",
+      "Destinations": "Jaipur (2 Nights), Pushkar (1 Night), Jodhpur (1 Night)",
+      "Pick up & Drop": "Jaipur airport / rw stn",
+      "Facilities": "3* / 4* / Luxury Pls inform information",
+      "Meals Included": "Breakfast is included by default (Pls inform if specific dietary requirements exist)",
+      "Vehicle": "As per Group size"
+    },
     sampleItinerary: [
-      { day: 1, title: "Jaipur Pink City Welcomes", detail: "Settle into a restored royal haveli. Explore the local gemstone and textile bazaars at leisure." },
-      { day: 2, title: "Amber Fort & Scholar Tour", detail: "Scholar-led tour of Amber Fort, Stepwells, and Jantar Mantar royal observatory." },
-      { day: 3, title: "Desert Luxury in Jaisalmer", detail: "Drive to the Golden City, private camel safari, and sunset dinner at a luxury desert camp." },
-      { day: 4, title: "Departure", detail: "Assisted transfer to Udaipur/Jodhpur for onward flights." }
-    ]
-  },
-  {
-    id: 'manali',
-    name: 'Manali',
-    categories: ['India'],
-    tagline: 'Mountain air, mapped to your pace.',
-    image: '/images/himachal.webp',
-    sampleItinerary: [
-      { day: 1, title: "Arrive Manali & Riverside Chalet", detail: "Check into a cozy valley chalet. Slow walk through old pine-forested lanes and local cafes." },
-      { day: 2, title: "Solang Valley & Cedar Trails", detail: "Trek through majestic deodar forests and visit the ancient Hadimba Temple shrine." },
-      { day: 3, title: "Rohtang Pass & Atal Tunnel", detail: "Cross the high engineering wonder into the stark, snow-capped valleys of Lahaul." },
-      { day: 4, title: "Departure", detail: "Assisted private transfer back to Chandigarh airport." }
-    ]
-  },
-  {
-    id: 'gangtok',
-    name: 'Gangtok',
-    categories: ['India'],
-    tagline: 'Himalayan calm, elevated.',
-    image: '/images/gangtok.webp',
-    sampleItinerary: [
-      { day: 1, title: "Himalayan Drive & MG Marg", detail: "Scenic drive along the Teesta river. Evening walk on the clean, pedestrian MG Marg." },
-      { day: 2, title: "Tsomgo Glacial Lake Route", detail: "Excursion to the sacred high-altitude lake at 12,400 ft and Baba Mandir border pass." },
-      { day: 3, title: "Pelling Glass Skywalk", detail: "Scenic transfer to Pelling. Walk the glass bridge and explore ancient Rabdentse royal ruins." },
-      { day: 4, title: "Departure", detail: "Assisted private transfer back to Bagdogra airport." }
+      { day: 1, title: "Jaipur Airport Arrival & Sightseeing", detail: "Warm welcome at Jaipur airport and half day sightseeing from 1 pm to 6 pm.\n\n•	Hawa Mahal\n•	City palace \n•	Jantan Mantar\n•	Jal Mahal \n•	Shopping at Amer road\n\nOvernight stay at Jaipur. End of day 1" },
+      { day: 2, title: "Jaipur to Pushkar Transfer", detail: "After breakfast check out and proceed to Pushkar (3 hrs drive)\n\n•	Pushkar Lake\n•	Varaha Temple\n•	Brahma Temple\n•	Man mahal\n\nOvernight stay at Pushkar. End of day 2" },
+      { day: 3, title: "Pushkar to Jodhpur Transfer", detail: "After breakfast check out and proceed to Jodhpur (4-5 hrs drive)\n\n•	Ranakpur Jain temple 1200 years old \n•	Mehranghar fort at Jodhpur\n\n\tOvernight stay at Jodhpur. End of day 3" },
+      { day: 4, title: "Jodhpur to Jaipur via Sightseeing", detail: "After breakfast check out and proceed to Jaipur (5 - 6 hrs drive)\n\n* Jai ghad fort\n* Getor\n* Albert hall\n*Choki dhani in evening\n\nOvernight stay. End of day 4" },
+      { day: 5, title: "Jaipur Sightseeing & Departure", detail: "After breakfast check out and proceed to local sightseeing and shopping and drop to Jaipur airport / rw stn. End of day 5 & tour with happy memories 😊" }
     ]
   },
   {
@@ -256,11 +300,71 @@ export const DESTINATIONS = [
     categories: ['India'],
     tagline: 'Alpine grandeur with five-star comfort.',
     image: '/images/kashmir.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "5 Days / 4 Nights",
+      "Vehicle": "From Srinagar Airport / Jammu Airport",
+      "Type of Vehicle": "(Sedan / Ertiga / Innova / Tempo / Others)",
+      "Meals Included": "Dinner & Breakfast by default",
+      "Destinations Covered": "1. Srinagar, 2. Gulmarg, 3. Pehelgam, 4. Sonemarg"
+    },
     sampleItinerary: [
-      { day: 1, title: "Srinagar Cedar Houseboat", detail: "Board a luxury hand-carved cedar houseboat on Dal Lake. Evening sunset shikara ride." },
-      { day: 2, title: "Pahalgam Valley & Pines", detail: "Drive to the valley of shepherds, horse ride through pine glades, and watch the Lidder river." },
-      { day: 3, title: "Gulmarg Meadow Gondola", detail: "Ride the world's highest cable car to Apharwat peak. Slow walk through wildflower meadows." },
-      { day: 4, title: "Departure", detail: "Transfer to Srinagar airport for your flight home." }
+      { day: 1, title: "Srinagar Arrival & Dal Lake Shikara", detail: "Warm welcome at Srinagar airport at 2.30 pm. Check in to hotel. After some rest proceed for Complimentary one hour skikarra boat ride in Dal Lake. Proceed back to hotel. Dinner & Overnight stay at Srinagar hotel. End of day 1." },
+      { day: 2, title: "Gulmarg Day Trip", detail: "After breakfast proceed to Gulmarg day trip. 2 hours’ drive one way. Cable car phase I ticket is included and subject to advance booking and availability. Additional union car 🚗. Visiting the following points,\n\n•	Durang valley\n•	Maharaja palace \n•	Strawberry valley \n•	Museum\n\nDinner & Overnight stay at Srinagar hotel. End of day 2" },
+      { day: 3, title: "Pahalgam Day Trip", detail: "After breakfast proceed to Pehelgam day trip. 2 hours’ drive one way. Some points have to be covered using local union car. Visit the following points,\n\n•	Saffron field \n•	Avanti swamy temple \n•	Apple 🍎 valley for juice\n•	By extra vehicle to visit Mini Switzerland\n•	Kashmir valley\n \nSome points have to be covered using Pony on extra charges. Dinner & Overnight stay at Srinagar hotel. End of day 3" },
+      { day: 4, title: "Sonamarg Day Trip", detail: "After breakfast proceed to Sonemarg. 2.5 hours’ drive.\n\t\n•	Meadow of gold (day trip)\n•	Enjoy trip to zero point\t\n•	War Memorial\n•	Baltal, fishing point at extra cost through union cab.\n•	Or visit the Thajiwas glacier by ponies at extra cost. \n\n Additional union car 🚗 provided. Dinner & Overnight stay at Srinagar hotel. End of day 4" },
+      { day: 5, title: "Srinagar City Tour & Departure", detail: "Check out and proceed for Srinagar city tour. After shopping drop to Srinagar airport. End of day 5 with happy memories 😊" }
+    ]
+  },
+  {
+    id: 'manali',
+    name: 'Manali',
+    categories: ['India'],
+    tagline: 'Mountain air, mapped to your pace.',
+    image: '/images/himachal.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "5 Days / 4 Nights",
+      "Meals Included": "Breakfast by default",
+      "Vehicle": "Private AC SUV from Chandigarh Airport",
+      "Destinations": "Manali, Solang Valley, Rohtang Pass, Kasol Curation"
+    },
+    sampleItinerary: [
+      { day: 1, title: "Chandigarh to Manali Drive", detail: "Warm welcome at Chandigarh airport. Proceed by private AC SUV on a scenic drive along the Beas River to Manali. Check in to your cosy riverside chalet.\n\n•	Scenic river valley vistas\n•	Mall road evening walk\n•	Chalet welcome tea\n\nOvernight stay in Manali." },
+      { day: 2, title: "Solang Valley & Cedar Trails", detail: "After breakfast, proceed to Solang Valley for adventure activities and sightseeing.\n\n•	Hadimba Temple visit\n•	Club House walks\n•	Solang Valley paragliding & zorbing\n•	Vashisht hot water springs\n\nOvernight stay in Manali." },
+      { day: 3, title: "Atal Tunnel & Lahaul Valley Excursion", detail: "After breakfast, proceed to cross the engineering marvel Atal Tunnel into the snowbound, majestic Lahaul Valley.\n\n•	Atal Tunnel crossing (9.02 km long)\n•	Sissu waterfalls views\n•	Keylong Valley panoramas\n\nOvernight stay in Manali." },
+      { day: 4, title: "Rohtang Pass Snow View", detail: "After breakfast, proceed for a day trip to the spectacular Rohtang Pass at 13,058 ft (subject to permission and local union cabs).\n\n•	Rohtang snow activities\n•	Rahala waterfalls enroute\n•	Nehru Kund photography\n\nOvernight stay in Manali." },
+      { day: 5, title: "Manali to Chandigarh & Departure", detail: "Check out after breakfast, proceed to local shopping for apples and wood crafts, then transfer back to Chandigarh airport." }
+    ]
+  },
+  {
+    id: 'gangtok',
+    name: 'Gangtok',
+    categories: ['India'],
+    tagline: 'Himalayan calm, elevated.',
+    image: '/images/gangtok.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "5 Days / 4 Nights",
+      "Meals Included": "Breakfast by default",
+      "Vehicle": "Private 4x4 SUV from Bagdogra Airport",
+      "Destinations": "Gangtok, Tsomgo Lake, Baba Mandir, Pelling Curation"
+    },
+    sampleItinerary: [
+      { day: 1, title: "Bagdogra to Gangtok Transfer", detail: "Warm welcome at Bagdogra airport by our team. Scenic private drive along the roaring Teesta River. Check in to a premium Himalayan view resort. Evening walk on Gangtok's pedestrian MG Marg.\n\n•	Teesta River view stops\n•	MG Marg local food exploration\n\nOvernight stay in Gangtok." },
+      { day: 2, title: "Tsomgo Lake & Baba Mandir Excursion", detail: "After breakfast, proceed to the high-altitude, sacred Tsomgo Lake at 12,400 ft and Baba Harbhajan Singh Mandir.\n\n•	Tsomgo glacial lake walk\n•	Nathu La pass (border permit, extra charges)\n•	Baba Mandir shrine visit\n\nOvernight stay in Gangtok." },
+      { day: 3, title: "Gangtok City Sightseeing", detail: "After breakfast, proceed to explore the cultural landmarks and viewpoints of Gangtok.\n\n•	Rumtek Monastery (UNESCO-inspired heritage)\n•	Banjhakri waterfalls\n•	Do Drul Chorten stupa\n•	Tashi Viewpoint sunset\n\nOvernight stay in Gangtok." },
+      { day: 4, title: "Pelling Day Excursion & Skywalk", detail: "After breakfast, proceed to Pelling. Walk the famous glass skywalk and explore the ancient royal ruins.\n\n•	Pelling glass bridge skywalk\n•	Rabdentse palace ruins walk\n•	Chenrezig giant statue\n\nOvernight stay in Gangtok." },
+      { day: 5, title: "Gangtok to Bagdogra & Departure", detail: "Check out, proceed for local handicraft shopping, and transfer back to Bagdogra airport for your flight home." }
     ]
   },
   {
@@ -269,11 +373,22 @@ export const DESTINATIONS = [
     categories: ['International'],
     tagline: 'Where ambition meets indulgence.',
     image: '/images/dubai.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "5 Days / 4 Nights",
+      "Meals Included": "Breakfast by default (Desert safari buffet dinner included)",
+      "Vehicle": "Private Luxury Car & SUV Curation",
+      "Destinations": "Burj Khalifa, Desert Safari, Old Dubai, Marina Cruise"
+    },
     sampleItinerary: [
-      { day: 1, title: "Arrive Dubai & Burj Skyline", detail: "Private transfer to a premium hotel. Sunset at the world's highest observatory." },
-      { day: 2, title: "Private Desert Safari Curation", detail: "Jeep dune bashing, sunset photography, and luxury Bedouin camp dining under stars." },
-      { day: 3, title: "Heritage Al Fahidi & Souks", detail: "Slow walk through old wind-tower lanes, Abra boat ride, and spice/gold souks." },
-      { day: 4, title: "Departure", detail: "Assisted transfer to Dubai International airport." }
+      { day: 1, title: "Arrive Dubai & Marina Dhow Cruise", detail: "Warm welcome at Dubai International Airport. Private luxury transfer to your hotel. Evening Marina Dhow Cruise with dinner.\n\n•	Marina yacht skyline views\n•	Tanoura cultural dance on board\n•	International buffet dinner\n\nOvernight stay in Dubai." },
+      { day: 2, title: "Modern Dubai Curation & Burj Khalifa", detail: "After breakfast, proceed for a guided city tour of modern Dubai's record-breaking architecture.\n\n•	Burj Al Arab beach photo-op\n•	Palm Jumeirah monorail ride\n•	Burj Khalifa observatory (124th floor entry)\n•	Dubai Mall fountain show\n\nOvernight stay in Dubai." },
+      { day: 3, title: "Old Dubai Heritage & Desert Safari", detail: "After breakfast, explore old souks, then proceed for a private 4x4 desert safari in the afternoon.\n\n•	Gold and Spice souk walk\n•	Abra boat ride on Dubai Creek\n•	Jeep dune bashing & sunset photography\n•	Desert camp dinner, belly dance & fire show\n\nOvernight stay in Dubai." },
+      { day: 4, title: "Future Curation & Shopping", detail: "After breakfast, proceed to visit the Museum of the Future and spend the evening shopping.\n\n•	Museum of the Future entry\n•	Global Village (seasonal) or Mall of the Emirates\n\nOvernight stay in Dubai." },
+      { day: 5, title: "Departure", detail: "Check out, spend your morning at leisure for last-minute shopping, and transfer to Dubai Airport." }
     ]
   },
   {
@@ -282,11 +397,23 @@ export const DESTINATIONS = [
     categories: ['International'],
     tagline: 'Pristine coastlines curated for you.',
     image: '/images/thailand-phiphi.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "6 Days / 5 Nights",
+      "Meals Included": "Breakfast by default",
+      "Vehicle": "Private Chauffeur Car & Speedboat charters",
+      "Destinations": "Phuket, Phi Phi Islands, Bangkok Temple Curation"
+    },
     sampleItinerary: [
-      { day: 1, title: "Arrive Phuket Beachfront", detail: "Private pickup. Evening sunset drinks overlooking the Andaman Sea." },
-      { day: 2, title: "Speedboat Curation to Maya Bay", detail: "Private speedboat charter to Phi Phi Leh. Snorkel in Maya Bay's pristine reefs." },
-      { day: 3, title: "Bangkok Cruise & Temples", detail: "Fly to Bangkok. Evening dinner cruise on Chao Phraya. Guided Wat Pho temple walk." },
-      { day: 4, title: "Departure", detail: "Private transfer to Suvarnabhumi airport." }
+      { day: 1, title: "Arrive Phuket & Patong Sunset", detail: "Warm welcome at Phuket airport. Private transfer to Patong beach resort. Evening sunset stroll.\n\n•	Patong beach welcome sunset drinks\n•	Phuket nightlife exploration\n\nOvernight stay in Phuket." },
+      { day: 2, title: "Phi Phi Islands Speedboat Charter", detail: "After breakfast, board a speed boat charter to the famous Phi Phi Islands.\n\n•	Maya Bay snorkeling (Loh Samah Bay)\n•	Monkey Beach photography\n•	Buffet lunch on Phi Phi Don\n\nOvernight stay in Phuket." },
+      { day: 3, title: "Phuket City Sightseeing", detail: "After breakfast, proceed to explore Phuket's old heritage and viewpoints.\n\n•	Big Buddha hill statue\n•	Wat Chalong temple\n•	Karon Viewpoint panorama\n•	Phuket Old Town heritage walk\n\nOvernight stay in Phuket." },
+      { day: 4, title: "Phuket to Bangkok Transfer", detail: "Checkout, transfer to Phuket airport for flight to Bangkok. Private airport transfer to hotel. Evening Chao Phraya River dinner cruise.\n\n•	Chao Phraya River cruise with live band\n•	International seafood buffet\n\nOvernight stay in Bangkok." },
+      { day: 5, title: "Bangkok Golden Temples & Safari World", detail: "After breakfast, proceed to visit Safari World and Bangkok's famous temples.\n\n•	Safari World & Marine Park (animal shows)\n•	Wat Pho (Reclining Buddha)\n•	Wat Traimit (Golden Buddha)\n\nOvernight stay in Bangkok." },
+      { day: 6, title: "Departure", detail: "Check out, enjoy free time for shopping at MBK or Siam Paragon, and transfer to Suvarnabhumi Airport." }
     ]
   },
   {
@@ -295,11 +422,22 @@ export const DESTINATIONS = [
     categories: ['International'],
     tagline: 'Island serenity, expertly held.',
     image: '/images/maldives.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "5 Days / 4 Nights",
+      "Meals Included": "All-Inclusive Default (Breakfast, Lunch, Dinner & Drinks)",
+      "Vehicle": "Speedboat / Seaplane depending on Atoll Resort location",
+      "Destinations": "Private Maldives Island Resort Villa Stay"
+    },
     sampleItinerary: [
-      { day: 1, title: "Seaplane over Coral Atolls", detail: "Scenic flight to your private overwater pool villa. Champagne sunset welcome." },
-      { day: 2, title: "Marine Scholar Snorkeling", detail: "Guided excursion with a resident marine biologist to check healthy house reefs." },
-      { day: 3, title: "Private Sandbank Curation", detail: "Escape by speedboat to a deserted sandbank for a private picnic lunch and swim." },
-      { day: 4, title: "Departure", detail: "Assisted seaplane return transfer to Malé airport." }
+      { day: 1, title: "Male Airport Arrival & Seaplane Transfer", detail: "Warm welcome at Malé Airport. Fly over coral atolls by seaplane. Settle into your premium overwater villa. Champagne welcome.\n\n•	Seaplane aerial photography\n•	Villa sunset deck relaxation\n\nOvernight stay at Maldives Resort." },
+      { day: 2, title: "Marine Biologist Coral Reef Snorkel", detail: "After breakfast, proceed for a guided house reef snorkeling excursion with our resident marine biologist.\n\n•	Marine life spotting (sea turtles, reef sharks)\n•	Underwater GoPro photography session\n\nOvernight stay at Maldives Resort." },
+      { day: 3, title: "Private Sandbank Lunch Escape", detail: "After breakfast, board a private boat to a remote sandbank for a private picnic lunch and swim.\n\n•	Deserted sandbank privacy\n•	Snorkeling in crystal clear shallow water\n•	Gourmet picnic basket\n\nOvernight stay at Maldives Resort." },
+      { day: 4, title: "Sunset Dolphin Cruise & Beach Dinner", detail: "Enjoy a relaxing day at your villa pool, followed by a sunset spinner dolphin cruise in the evening.\n\n•	Dolphin corridor cruise\n•	Private candlelit seafood dinner on the beach\n\nOvernight stay at Maldives Resort." },
+      { day: 5, title: "Resort Checkout & Male Airport Departure", detail: "Check out after breakfast. Board your seaplane return transfer to Malé International Airport." }
     ]
   },
   {
@@ -308,11 +446,23 @@ export const DESTINATIONS = [
     categories: ['International'],
     tagline: 'Sanctuary, temple ceremonies, and sea.',
     image: '/images/bali.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "6 Days / 5 Nights",
+      "Meals Included": "Breakfast by default",
+      "Vehicle": "Private AC SUV with English Speaking Chauffeur",
+      "Destinations": "Ubud, Tegalalang, Uluwatu Cliff Temple, Nusa Dua Beach"
+    },
     sampleItinerary: [
-      { day: 1, title: "Arrive Ubud Jungle Villa", detail: "Private transfer to a luxury pool villa overlooking deep tropical valleys." },
-      { day: 2, title: "Sacred Groves & Rice Terraces", detail: "Walk the Tegalalang terraces, experience jungle swings, and monkey forest sanctuary." },
-      { day: 3, title: "Uluwatu Sunset Kecak Curation", detail: "Cliff temple visit followed by the dramatic traditional Kecak fire dance." },
-      { day: 4, title: "Departure", detail: "Private transfer to Denpasar airport." }
+      { day: 1, title: "Arrive Bali & Ubud Valley Villa", detail: "Warm welcome at Denpasar Airport. Transfer by private SUV to your luxury jungle pool villa in Ubud. Welcome Balinese tea.\n\n•	Ubud rainforest resort views\n•	Local market evening walk\n\nOvernight stay in Ubud." },
+      { day: 2, title: "Tegalalang Rice Terraces & Jungle Swing", detail: "After breakfast, proceed to explore Ubud's nature and spiritual sites.\n\n•	Tegalalang scenic rice terraces walk\n•	Jungle swing adventure\n•	Sacred Monkey Forest sanctuary\n•	Tirta Empul temple water blessing\n\nOvernight stay in Ubud." },
+      { day: 3, title: "Mount Batur Sunrise & Coffee Trails", detail: "Optional 4:00 AM Mount Batur active volcano jeep sunrise trek, followed by a coffee plantation visit.\n\n•	Jeep sunrise viewing over Lake Batur\n•	Luwak coffee estate tasting walk\n\nOvernight stay in Ubud." },
+      { day: 4, title: "Uluwatu Temple & Fire Dance", detail: "Checkout after breakfast, proceed to Nusa Dua beach resort. Afternoon visit to Uluwatu Temple.\n\n•	Uluwatu cliff-top temple views\n•	Traditional Sunset Kecak Fire Dance\n•	Jimbaran Bay beach seafood dinner\n\nOvernight stay in Nusa Dua." },
+      { day: 5, title: "Nusa Penida Island Speedboat Day Trip", detail: "After breakfast, board a shared fast boat to Nusa Penida Island for sightseeing.\n\n•	Kelingking Beach T-Rex cliff\n•	Angel's Billabong & Broken Beach\n•	Crystal Bay snorkeling\n\nOvernight stay in Nusa Dua." },
+      { day: 6, title: "Departure", detail: "Check out, enjoy free time for beach sports and shopping, then transfer back to Denpasar Airport." }
     ]
   },
   {
@@ -321,11 +471,22 @@ export const DESTINATIONS = [
     categories: ['International'],
     tagline: 'Precision, polish, and metropolitan pace.',
     image: '/images/singapore.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "5 Days / 4 Nights",
+      "Meals Included": "Breakfast by default",
+      "Vehicle": "Private Sedan Airport Transfers & Tourist MRT Card",
+      "Destinations": "Gardens by the Bay, Night Safari, Sentosa Island, Universal Studios"
+    },
     sampleItinerary: [
-      { day: 1, title: "Arrive Singapore & Night Safari", detail: "Check into a luxury city center hotel. Evening tram safari through the rainforest zoo." },
-      { day: 2, title: "Gardens by the Bay Domes", detail: "Explore the massive domes, Cloud Forest, and walk the high OCBC Skyway." },
-      { day: 3, title: "Sentosa Yacht & Cable Car", detail: "Cable car crossing to Sentosa, SEA Aquarium VIP tour, and sunset beach club relaxation." },
-      { day: 4, title: "Departure", detail: "Transfer to Jewel Changi airport for shopping and flight connection." }
+      { day: 1, title: "Arrive Singapore & Night Safari", detail: "Warm welcome at Changi Airport. Transfer to your downtown luxury hotel. Evening excursion to Night Safari.\n\n•	Night Safari tram ride\n•	Creatures of the Night show\n\nOvernight stay in Singapore." },
+      { day: 2, title: "Gardens by the Bay & Marina Bay Curation", detail: "After breakfast, proceed to explore the futurist greenhouses and skyways.\n\n•	Flower Dome & Cloud Forest greenhouses\n•	Supertree Grove OCBC Skyway walk\n•	Marina Bay Sands Observation Deck\n•	Spectra light & water show\n\nOvernight stay in Singapore." },
+      { day: 3, title: "Sentosa Island Day Out", detail: "After breakfast, take the scenic cable car crossing to Sentosa Island for a day of activities.\n\n•	Singapore Cable Car ride\n•	S.E.A. Aquarium (world's largest reef tanks)\n•	Wings of Time water and fire show\n\nOvernight stay in Singapore." },
+      { day: 4, title: "Universal Studios Singapore", detail: "After breakfast, proceed for a full-day ticket entry to Universal Studios.\n\n•	Sci-Fi City & Battlestar Galactica coasters\n•	Ancient Egypt & Jurassic Park zones\n•	Hollywood walk of fame\n\nOvernight stay in Singapore." },
+      { day: 5, title: "Departure via Changi Jewel", detail: "Check out, transfer to Changi Airport, explore Jewel Changi indoor waterfall, and connect to your flight." }
     ]
   },
   {
@@ -334,11 +495,22 @@ export const DESTINATIONS = [
     categories: ['India', 'Trending'],
     tagline: 'Private shores and turquoise solitude.',
     image: '/images/andaman.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "5 Days / 4 Nights",
+      "Meals Included": "Breakfast by default",
+      "Vehicle": "Private Catamaran Ferry & Private AC SUV",
+      "Destinations": "Port Blair, Havelock Island, Radhanagar Beach, Elephant Reefs"
+    },
     sampleItinerary: [
-      { day: 1, title: "Port Blair Historical Welcomes", detail: "Arrive at Port Blair. Check in and visit Cellular Jail for the evening light show." },
-      { day: 2, title: "Private Ferry to Havelock Island", detail: "Board a high-speed private catamaran. Sunset walk on the famous Radhanagar Beach." },
-      { day: 3, title: "Coral Snorkeling at Elephant Beach", detail: "Guided marine snorkel through shallow reefs. Afternoon forest trail walk." },
-      { day: 4, title: "Departure", detail: "Return ferry to Port Blair and assisted transfer to the airport." }
+      { day: 1, title: "Port Blair Arrival & Cellular Jail History", detail: "Warm welcome at Port Blair airport. Private transfer to hotel. Afternoon visit to Cellular Jail.\n\n•	Cellular Jail historical tour\n•	Sound & Light Show evening\n\nOvernight stay in Port Blair." },
+      { day: 2, title: "Private High-Speed Catamaran to Havelock", detail: "After breakfast, checkout and board a luxury private catamaran to Havelock Island. Settle into a beachfront cottage.\n\n•	Catamaran cruise\n•	Radhanagar Beach sunset walk (Asia's cleanest beach)\n\nOvernight stay in Havelock." },
+      { day: 3, title: "Elephant Beach Coral Reef Snorkel", detail: "After breakfast, proceed to Elephant Beach via speedboat charter for water sports.\n\n•	Reef snorkeling (complimentary session)\n•	Glass bottom boat ride options\n•	Trekking through the coastal forest\n\nOvernight stay in Havelock." },
+      { day: 4, title: "Kalapathar Beach & Return Port Blair", detail: "After breakfast, visit Kalapathar Beach, then board your catamaran back to Port Blair.\n\n•	Kalapathar Beach sunrise views\n•	Shopping for local sea-shell crafts\n\nOvernight stay in Port Blair." },
+      { day: 5, title: "Departure", detail: "Check out after breakfast and transfer to Port Blair airport for your onward flight." }
     ]
   },
   {
@@ -347,11 +519,23 @@ export const DESTINATIONS = [
     categories: ['International', 'Trending'],
     tagline: 'Heritage and green horizon in one journey.',
     image: '/images/vietnam.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "6 Days / 5 Nights",
+      "Meals Included": "Breakfast (Lunch included on Halong Cruise)",
+      "Vehicle": "Private Sedan Transfers & Regional Flights",
+      "Destinations": "Hanoi, Halong Bay Cruise, Da Nang, Hoi An Lanterns"
+    },
     sampleItinerary: [
-      { day: 1, title: "Hanoi French Quarter Cyclo", detail: "Arrive Hanoi, private hotel check-in. Evening cyclo tour and local street food walk." },
-      { day: 2, title: "Halong Bay Luxury Cruise", detail: "Board a heritage boutique cruise. Kayak past limestone islets and sleep under stars." },
-      { day: 3, title: "Hoi An Ancient Lantern Walk", detail: "Fly to Da Nang. Slow walk in Hoi An's lantern-lit streets and tailor shops." },
-      { day: 4, title: "Departure", detail: "Private transfer to Da Nang airport." }
+      { day: 1, title: "Arrive Hanoi & Street Food Cyclo Tour", detail: "Warm welcome at Hanoi Airport. Private transfer to your hotel in the French Quarter. Evening street food cyclo tour.\n\n•	French Quarter cyclo ride\n•	Pho and Banh Mi local tastings\n\nOvernight stay in Hanoi." },
+      { day: 2, title: "Halong Bay Luxury Boutique Cruise", detail: "Checkout after breakfast, drive to Halong Bay. Board a luxury wooden cruise. Kayak among limestone cliffs.\n\n•	Limestone islet cruise views\n•	Sung Sot (Surprise) Cave walk\n•	Sunset deck cocktails & kayak tour\n\nOvernight stay on Halong Cruise." },
+      { day: 3, title: "Halong Bay Sunrise to Da Nang flight", detail: "Morning Tai Chi on deck, cruise return, and transfer to Hanoi Airport. Flight to Da Nang. Private transfer to your hotel.\n\n•	Tai Chi sunrise class\n•	Da Nang Dragon Bridge sunset walk\n\nOvernight stay in Da Nang." },
+      { day: 4, title: "Bana Hills Golden Bridge & Hoi An Walk", detail: "After breakfast, proceed to Ba Na Hills by cable car. Evening transfer to Hoi An ancient town.\n\n•	Bana Hills cable car (longest in region)\n•	Golden Bridge (held by giant stone hands)\n•	Hoi An ancient lantern-lit street walk\n\nOvernight stay in Da Nang." },
+      { day: 5, title: "Hoi An Coconut Forest Basket Boat Tour", detail: "After breakfast, proceed to Cam Thanh coconut forest for a traditional basket boat ride.\n\n•	Basket boat spinning performance\n•	Crab fishing with locals\n\nOvernight stay in Da Nang." },
+      { day: 6, title: "Departure", detail: "Check out, enjoy free time for beach relaxation, and transfer to Da Nang Airport." }
     ]
   },
   {
@@ -360,11 +544,23 @@ export const DESTINATIONS = [
     categories: ['International', 'Trending'],
     tagline: 'Old-world charm, new-world ease.',
     image: '/images/georgia.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "6 Days / 5 Nights",
+      "Meals Included": "Breakfast & Wine Château Tasting Dinner",
+      "Vehicle": "Private 4x4 SUV Chauffeur",
+      "Destinations": "Tbilisi Old Town, Kakheti Wine Region, Kazbegi Peaks"
+    },
     sampleItinerary: [
-      { day: 1, title: "Tbilisi Cable Car & Sulfur Baths", detail: "Check in. Panoramic cable car ride, evening sulfur bath soak in Old Town." },
-      { day: 2, title: "Kakheti Clay Jar Wine Trails", detail: "Excursion to the cradle of winemaking. Qvevri tasting with a local master." },
-      { day: 3, title: "Kazbegi Gergeti Church Crossing", detail: "Drive the military highway, explore high peaks and Gergeti church at 7,000 ft." },
-      { day: 4, title: "Departure", detail: "Assisted transfer to Tbilisi International airport." }
+      { day: 1, title: "Arrive Tbilisi & Old Town Walk", detail: "Warm welcome at Tbilisi airport. Private transfer to hotel. Evening walk through the Old Town.\n\n•	Tbilisi sulfur bath district photos\n•	Shardeni Street cafe walk\n\nOvernight stay in Tbilisi." },
+      { day: 2, title: "Tbilisi Cable Car & Botanical Gardens", detail: "After breakfast, explore the city's sights using the public cable car.\n\n•	Narikala Fortress panorama\n•	Mother of Georgia statue walk\n•	Tbilisi Botanical Garden walks\n•	Traditional sulfur bath soak (optional, extra cost)\n\nOvernight stay in Tbilisi." },
+      { day: 3, title: "Kakheti Wine Valley Château Excursion", detail: "Checkout after breakfast, drive to Kakheti wine region. Settle into a restored vineyard château.\n\n•	Bodbe Monastery walk\n•	Sighnaghi City of Love medieval walls\n•	UNESCO-heritage clay jar (Qvevri) wine tasting\n\nOvernight stay in Kakheti Château." },
+      { day: 4, title: "Kazbegi Peak & Gergeti Church 4x4", detail: "Checkout after breakfast, drive the military highway. Settle into your mountain hotel in Stepantsminda.\n\n•	Ananuri fortress castle views\n•	4x4 mountain route to Gergeti Trinity Church at 7,119 ft\n\nOvernight stay in Kazbegi." },
+      { day: 5, title: "Return Tbilisi via Mtskheta", detail: "Checkout after breakfast, return to Tbilisi. Enroute visit the ancient capital Mtskheta.\n\n•	Svetitskhoveli Cathedral (UNESCO World Heritage)\n•	Jvari Monastery cliff viewpoint\n\nOvernight stay in Tbilisi." },
+      { day: 6, title: "Departure", detail: "Check out, enjoy free time for shopping at Dry Bridge flea market, and transfer to Tbilisi airport." }
     ]
   },
   {
@@ -373,10 +569,20 @@ export const DESTINATIONS = [
     categories: ['India', 'Trending'],
     tagline: 'Sunrise over white marble, timeless love.',
     image: '/images/taj-mahal.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "3 Days / 2 Nights",
+      "Meals Included": "Breakfast by default",
+      "Vehicle": "Private AC Sedan from Delhi Airport",
+      "Destinations": "Agra Taj Mahal, Mehtab Bagh Gardens, Fatehpur Sikri"
+    },
     sampleItinerary: [
-      { day: 1, title: "Agra Mughal Sunset View", detail: "Private transfer from Delhi. Settle in and enjoy sunset Taj views from Mehtab Bagh gardens." },
-      { day: 2, title: "Taj Mahal Sunrise & Agra Fort", detail: "Private sunrise entry to the Taj. Afternoon tour of Agra Fort with a historian." },
-      { day: 3, title: "Fatehpur Sikri & Return Delhi", detail: "Guided walk of the ghost city of Fatehpur Sikri, followed by private drive to Delhi." }
+      { day: 1, title: "Delhi to Agra & Mehtab Bagh Sunset", detail: "Warm welcome at Delhi Airport. Private AC sedan transfer to Agra. Check in to your hotel. Evening sunset view of the Taj Mahal from Mehtab Bagh gardens.\n\n•	Yamuna Expressway drive\n•	Mehtab Bagh Taj Mahal backdrop sunset views\n\nOvernight stay in Agra." },
+      { day: 2, title: "Sunrise Taj Mahal & Agra Fort Curation", detail: "Early morning sunrise entry to the Taj Mahal. Return to hotel for breakfast, followed by a guided tour of Agra Fort.\n\n•	Taj Mahal sunrise walk with private historian guide\n•	Agra Fort marble palaces tour\n•	Local marble inlay art workshops\n\nOvernight stay in Agra." },
+      { day: 3, title: "Fatehpur Sikri & Return Delhi Departure", detail: "Checkout after breakfast, visit the ghost capital Fatehpur Sikri, then transfer back to Delhi Airport.\n\n•	Fatehpur Sikri Buland Darwaza gate\n•	Panch Mahal walks\n\nAssisted departure at Delhi airport." }
     ]
   },
   {
@@ -385,11 +591,21 @@ export const DESTINATIONS = [
     categories: ['International', 'Trending'],
     tagline: 'Royal heritage, historic streets, and partner-curated charm.',
     image: '/images/london.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "4 Days / 3 Nights",
+      "Meals Included": "Breakfast by default",
+      "Vehicle": "Private airport pickup & London public transit oyster cards",
+      "Destinations": "Wembley Stadium, Ealing Road, Westminster Abbey, London Eye"
+    },
     sampleItinerary: [
-      { day: 1, title: "London Welcome & Thames Walk", detail: "Private airport pickup. Settle into central hotel. Evening Thames riverside stroll." },
-      { day: 2, title: "Westminster Abbey & London Eye", detail: "Guided Westminster history walk, Big Ben, and high flight on the London Eye." },
-      { day: 3, title: "Wembley Stadium & Ealing Road Curation", detail: "VIP Wembley Stadium access. Shopping and street snacks at the Delhi of UK." },
-      { day: 4, title: "Departure", detail: "Private transfer to London Heathrow or Gatwick airport." }
+      { day: 1, title: "London Arrival & Thames Sunset Walk", detail: "Warm welcome at London airport. Private transfer to your premium hotel. Evening walk along the River Thames.\n\n•	London skyline walk\n•	Thames River twilight views\n\nOvernight stay in London." },
+      { day: 2, title: "Wembley Stadium & Ealing Road Curation", detail: "After breakfast, proceed to Wembley Stadium and Ealing Road for shopping.\n\n•	Wembley Stadium tour\n•	Hindu temples and boutique shopping at Ealing Road\n•	London traditional pub dinner\n\nOvernight stay in London." },
+      { day: 3, title: "Westminster & London Eye Flight", detail: "After breakfast, proceed for a historic Westminster walk and a ride on the London Eye.\n\n•	Westminster Abbey & Big Ben guided walks\n•	London Eye flight (skip-the-line tickets)\n•	Trafalgar Square & National Gallery\n\nOvernight stay in London." },
+      { day: 4, title: "Departure", detail: "Check out, enjoy free time for shopping at Harrods or Oxford Street, and private transfer to airport." }
     ]
   },
   {
@@ -398,11 +614,21 @@ export const DESTINATIONS = [
     categories: ['India'],
     tagline: 'Ancient Dravidian temples, rich heritage, and green hills of Ooty.',
     image: '/images/tamilnadu.png',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "4 Days / 3 Nights",
+      "Meals Included": "Breakfast (Traditional Chettinad lunch included on Day 2)",
+      "Vehicle": "Private AC Sedan / SUV",
+      "Destinations": "Madurai Meenakshi Temple, Chettinad Mansions, Nilgiri Railway"
+    },
     sampleItinerary: [
-      { day: 1, title: "Madurai Meenakshi Temple", detail: "Guided historical walkthrough of the towering gopurams and pillared halls of the ancient Meenakshi Sundareswarar temple." },
-      { day: 2, title: "Chettinad Mansion Heritage", detail: "Explore the majestic, teakwood-laden merchant mansions of Karaikudi and taste authentic Chettinad cuisine." },
-      { day: 3, title: "Nilgiri Mountain Railway to Ooty", detail: "Board the heritage toy train winding up through dense forests and tea gardens into the cool Nilgiri Hills." },
-      { day: 4, title: "Departure", detail: "Assisted private transfer to Coimbatore airport for onward journey." }
+      { day: 1, title: "Madurai Meenakshi Temple Curation", detail: "Warm welcome at Madurai airport. Private transfer to hotel. Guided walkthrough of the ancient Meenakshi Temple.\n\n•	Madurai Meenakshi Temple giant gopurams tour\n•	Thousand Pillared Hall walks\n•	Nayakar Palace light show\n\nOvernight stay in Madurai." },
+      { day: 2, title: "Chettinad Heritage Mansion Walk", detail: "Checkout after breakfast, drive to Chettinad region. Walk through the teakwood merchant mansions.\n\n•	Athangudi handmade tile workshop\n•	Chettinad palace mansions photography\n•	Traditional banana-leaf Chettinad lunch\n\nOvernight stay in Chettinad." },
+      { day: 3, title: "Nilgiri Mountain Railway to Ooty", detail: "Checkout after breakfast, proceed to Mettupalayam. Board the heritage toy train steam engine up to Ooty.\n\n•	UNESCO-heritage Nilgiri Toy Train ride\n•	Ooty tea garden twilight walks\n\nOvernight stay in Ooty." },
+      { day: 4, title: "Ooty Sightseeing & Coimbatore Departure", detail: "Checkout, proceed to botanical gardens and Ooty Lake, and private transfer to Coimbatore airport for onward flight." }
     ]
   },
   {
@@ -411,11 +637,21 @@ export const DESTINATIONS = [
     categories: ['India'],
     tagline: 'Cascade waterfalls, coffee valleys, and royal palace gardens.',
     image: '/images/karnataka.png',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "4 Days / 3 Nights",
+      "Meals Included": "Breakfast by default",
+      "Vehicle": "Private AC Sedan / SUV",
+      "Destinations": "Mysore Palace, Coorg Coffee Estates, Shivanasamudra Waterfalls"
+    },
     sampleItinerary: [
-      { day: 1, title: "Mysore Palace Royal Splendour", detail: "Arrive in Mysore. Guided private tour of the illuminated Amba Vilas Palace and Devaraja market." },
-      { day: 2, title: "Coorg Coffee Estate Walk", detail: "Drive into the misty hills of Coorg. Walk through lush cardamom and Robusta coffee estates with a local planter." },
-      { day: 3, title: "Shivanasamudra Falls Excursion", detail: "Witness the roaring Gaganachukki and Bharachukki waterfalls amidst beautiful river valleys." },
-      { day: 4, title: "Departure", detail: "Assisted private transfer to Bangalore airport." }
+      { day: 1, title: "Mysore Palace Royal Splendour", detail: "Warm welcome at Bangalore airport. Private transfer to Mysore. Settle into hotel. Guided tour of Mysore Palace.\n\n•	Amba Vilas Palace evening illumination\n•	Devaraja Market perfume and spice walks\n\nOvernight stay in Mysore." },
+      { day: 2, title: "Coorg Coffee Estate Planter Walk", detail: "Checkout after breakfast, proceed to Coorg hills. Walk through coffee estates.\n\n•	Cardamom & Robusta coffee plantations guided walk\n•	Golden Temple Buddhist Monastery (Bylakuppe)\n•	Abbey waterfalls\n\nOvernight stay in Coorg." },
+      { day: 3, title: "Shivanasamudra Falls Excursion", detail: "After breakfast, proceed to Shivanasamudra river valley waterfalls.\n\n•	Gaganachukki & Bharachukki roaring waterfalls\n•	Raja's Seat sunset viewpoints\n\nOvernight stay in Coorg." },
+      { day: 4, title: "Checkout & Bangalore Departure", detail: "Check out after breakfast, transfer back to Bangalore airport for onward journey." }
     ]
   },
   {
@@ -424,11 +660,21 @@ export const DESTINATIONS = [
     categories: ['International'],
     tagline: 'High mountain dzongs, prayer flags, and land of tranquility.',
     image: '/images/bhutan.png',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "4 Days / 3 Nights",
+      "Meals Included": "Breakfast (Traditional Bhutanese dinner included on Day 2)",
+      "Vehicle": "Private Mountain SUV",
+      "Destinations": "Paro Valley, Tiger's Nest Hike, Thimphu Golden Buddha"
+    },
     sampleItinerary: [
-      { day: 1, title: "Paro Valley Arrival & Rinpung Dzong", detail: "Scenic mountain flight landing. Visit the massive Paro Rinpung Dzong fortress and watch traditional archery." },
-      { day: 2, title: "Tiger’s Nest Sacred Hike", detail: "Hike to the legendary Taktsang Monastery clinging to a granite cliff 3,000 feet above the valley floor." },
-      { day: 3, title: "Thimphu City Curation", detail: "Explore Thimphu's folk heritage museums, Tashichho Dzong, and the giant golden Buddha Dordenma statue." },
-      { day: 4, title: "Departure", detail: "Assisted transfer to Paro International airport." }
+      { day: 1, title: "Paro Airport Arrival & Rinpung Dzong", detail: "Warm welcome at Paro Airport. Visit the massive fortress Dzong.\n\n•	Paro Rinpung Dzong architecture walk\n•	Traditional Bhutanese archery watch\n\nOvernight stay in Paro." },
+      { day: 2, title: "Tiger's Nest Cliff Hike Curation", detail: "After breakfast, proceed for a guided hike to the legendary Taktsang Monastery.\n\n•	Hike to Tiger's Nest temple (10,000 ft above sea level)\n•	Scenic valley viewpoints\n•	Traditional stone bath evening (optional, extra charges)\n\nOvernight stay in Paro." },
+      { day: 3, title: "Thimphu Capital City Curation", detail: "Checkout after breakfast, drive to Thimphu. Visit museum and Buddha statue.\n\n•	Buddha Dordenma golden statue (169 ft tall)\n•	Simply Bhutan living museum\n•	Tashichho Dzong government fortress\n\nOvernight stay in Thimphu." },
+      { day: 4, title: "Departure", detail: "Checkout after breakfast, transfer back to Paro International Airport for departure." }
     ]
   }
 ];
@@ -499,4 +745,3 @@ export const GROUND_TEAMS = [
     description: 'Directs central London airport arrivals, chauffeured transfers, and exclusive VIP entry to Wembley Stadium and historic landmarks in partnership with Rediscover Tourism.'
   }
 ];
-

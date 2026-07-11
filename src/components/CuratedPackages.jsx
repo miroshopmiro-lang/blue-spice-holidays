@@ -132,7 +132,7 @@ function ItineraryDrawer({ pkg, onClose }) {
                 <div className="absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full bg-gold ring-4 ring-white" aria-hidden="true" />
                 <p className="font-mono text-[10px] uppercase tracking-wider text-royal">Day {d.day}</p>
                 <p className="text-sm font-semibold text-ink mt-0.5">{d.title}</p>
-                <p className="mt-1.5 text-xs text-body leading-relaxed">{d.detail}</p>
+                <p className="mt-1.5 text-xs text-body leading-relaxed whitespace-pre-line">{d.detail}</p>
               </li>
             ))}
           </ol>

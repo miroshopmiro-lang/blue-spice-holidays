@@ -8,6 +8,10 @@ const CATEGORIES = ['India', 'International', 'Trending'];
 function ItineraryDrawer({ dest, onClose, onEnquire }) {
   const [form, setForm] = useState({ name: '', email: '', notes: '' });
   const [sent, setSent] = useState(false);
+  const [selectedPlanIdx, setSelectedPlanIdx] = useState(0);
+
+  const plans = dest.plans || (dest.sampleItinerary ? [{ name: 'Suggested Itinerary', itinerary: dest.sampleItinerary }] : []);
+  const activePlan = plans[selectedPlanIdx] || plans[0] || { itinerary: [] };
 
   const handleDrawerEnquire = () => {
     onClose();
@@ -84,16 +88,58 @@ function ItineraryDrawer({ dest, onClose, onEnquire }) {
           <h3 className="font-display mt-2 text-2xl font-bold leading-tight text-ink">{dest.name}</h3>
           <p className="mt-2 text-sm text-body">{dest.tagline}</p>
 
-          <h4 className="font-display mt-8 text-lg font-bold text-ink border-t border-hairline pt-6">Suggested Day-by-Day Curation</h4>
-          {dest.sampleItinerary && dest.sampleItinerary.length > 0 ? (
+          {/* Reference Info Curation Grid */}
+          {(dest.referenceInfo || activePlan.referenceInfo) && (
+            <div className="mt-6 p-4 bg-canvas border border-hairline rounded-2xl text-[11px] space-y-2 text-body">
+              <span className="font-mono text-[9px] uppercase tracking-widemono text-gold block border-b border-hairline pb-1.5 mb-1.5">Package Details</span>
+              {dest.referenceInfo && Object.entries(dest.referenceInfo).map(([key, val]) => (
+                <div key={key} className="flex justify-between gap-4">
+                  <span className="font-bold text-ink shrink-0">{key}:</span>
+                  <span className="text-right">{val}</span>
+                </div>
+              ))}
+              {activePlan.referenceInfo && Object.entries(activePlan.referenceInfo).map(([key, val]) => (
+                <div key={key} className="flex justify-between gap-4 border-t border-hairline/40 pt-1.5 mt-1.5">
+                  <span className="font-bold text-ink shrink-0">{key}:</span>
+                  <span className="text-right">{val}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {dest.plans && dest.plans.length > 1 && (
+            <div className="flex gap-2 mt-6 p-1 bg-canvas border border-hairline rounded-xl" role="tablist">
+              {dest.plans.map((p, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedPlanIdx === idx}
+                  onClick={() => setSelectedPlanIdx(idx)}
+                  className={`flex-1 text-center py-2 text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all ${
+                    selectedPlanIdx === idx
+                      ? 'bg-navy text-white shadow-soft'
+                      : 'text-body hover:text-ink'
+                  }`}
+                >
+                  {p.name.split(':')[0]}
+                </button>
+              ))}
+            </div>
+          )}
+
+          <h4 className="font-display mt-8 text-lg font-bold text-ink border-t border-hairline pt-6">
+            {dest.plans && dest.plans.length > 1 ? dest.plans[selectedPlanIdx].name : "Suggested Day-by-Day Curation"}
+          </h4>
+          {activePlan.itinerary && activePlan.itinerary.length > 0 ? (
             <ol className="mt-6 space-y-6">
-              {dest.sampleItinerary.map((d) => (
-                <li key={d.day} className="relative pl-6 border-l border-hairline pb-2 last:pb-0">
+              {activePlan.itinerary.map((d, idx) => (
+                <li key={idx} className="relative pl-6 border-l border-hairline pb-2 last:pb-0">
                   {/* Timeline Dot */}
                   <div className="absolute -left-[5px] top-1.5 h-[9px] w-[9px] rounded-full bg-gold ring-4 ring-white" aria-hidden="true" />
                   <p className="font-mono text-[10px] uppercase tracking-wider text-royal">Day {d.day}</p>
                   <p className="text-sm font-semibold text-ink mt-0.5">{d.title}</p>
-                  <p className="mt-1.5 text-xs text-body leading-relaxed">{d.detail}</p>
+                  <p className="mt-1.5 text-xs text-body leading-relaxed whitespace-pre-line">{d.detail}</p>
                 </li>
               ))}
             </ol>

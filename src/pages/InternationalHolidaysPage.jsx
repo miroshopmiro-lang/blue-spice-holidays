@@ -179,7 +179,7 @@ export default function InternationalHolidaysPage() {
                           <span className="serif-font font-bold text-brand-accent text-sm shrink-0 [font-variant-numeric:tabular-nums]">Day {step.day}</span>
                           <div>
                             <h4 className="font-bold text-xs text-brand-ink uppercase tracking-wide">{step.title}</h4>
-                            <p className="text-xs text-brand-muted mt-1 leading-relaxed">{step.detail}</p>
+                            <p className="text-xs text-brand-muted mt-1 leading-relaxed whitespace-pre-line">{step.detail}</p>
                           </div>
                         </div>
                       ))}

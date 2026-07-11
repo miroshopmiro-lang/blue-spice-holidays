@@ -8,26 +8,24 @@ const DOMESTIC_PACKAGES = [
   // Add another couple of domestic ones for richness
   {
     id: 101,
-    title: "Alpine Grandeur & Houseboats of Kashmir",
+    title: "Suggested Kashmir Itinerary",
     location: "Kashmir",
-    duration: "6 Nights / 7 Days",
+    duration: "4 Nights / 5 Days",
     rating: "4.9",
     reviews: "32",
     tag: "Family Heritage",
-    price: "₹45,000",
-    inclusions: "Luxury Houseboat Stay, Private Chauffeur, Gondola Curation",
+    price: "On Request",
+    inclusions: "Meals (Breakfast & Dinner), Complimentary Shikara Ride, Gulmarg Phase I Ticket, Union Cars",
     image: "/images/kashmir.webp",
-    metadata: { stay: "Boutique Srinagar Houseboats & Pahalgam Resorts" },
+    metadata: { stay: "Boutique Srinagar Houseboats & Resorts" },
     itinerary: [
-      { day: 1, title: "Srinagar Arrival & Shikara", detail: "Check into a luxury carved cedar houseboat, sunset shikara ride on Dal Lake." },
-      { day: 2, title: "Mughal Gardens Walk", detail: "Guided walk through Shalimar & Nishat baghs with a local historian." },
-      { day: 3, title: "Into Pahalgam Pine Valleys", detail: "Scenic drive alongside Lidder river, check into a valley resort." },
-      { day: 4, title: "Aru & Betaab Valleys", detail: "Slow walk through high valleys, evening bonfires." },
-      { day: 5, title: "Gulmarg Gondola Ride", detail: "High-altitude cable ride to Apharwat peak, slow walk through alpine meadows." },
-      { day: 6, title: "Srinagar Local Curation", detail: "Old city walk, local bakery tastings, and handicraft visits." },
-      { day: 7, title: "Departure", detail: "Assisted transfer to Srinagar airport." }
+      { day: 1, title: "Srinagar Arrival & Dal Lake Shikara", detail: "Warm welcome at Srinagar airport at 2.30 pm. Check in to hotel. After some rest proceed for Complimentary one hour skikarra boat ride in Dal Lake. Proceed back to hotel. Dinner & Overnight stay at Srinagar hotel. End of day 1." },
+      { day: 2, title: "Gulmarg Day Trip", detail: "After breakfast proceed to Gulmarg day trip. 2 hours’ drive one way. Cable car phase I ticket is included and subject to advance booking and availability. Additional union car 🚗. Visiting the following points,\n\n•	Durang valley\n•	Maharaja palace \n•	Strawberry valley \n•	Museum\n\nDinner & Overnight stay at Srinagar hotel. End of day 2" },
+      { day: 3, title: "Pahalgam Day Trip", detail: "After breakfast proceed to Pehelgam day trip. 2 hours’ drive one way. Some points have to be covered using local union car. Visit the following points,\n\n•	Saffron field \n•	Avanti swamy temple \n•	Apple 🍎 valley for juice\n•	By extra vehicle to visit Mini Switzerland\n•	Kashmir valley\n \nSome points have to be covered using Pony on extra charges. Dinner & Overnight stay at Srinagar hotel. End of day 3" },
+      { day: 4, title: "Sonamarg Day Trip", detail: "After breakfast proceed to Sonemarg. 2.5 hours’ drive.\n\t\n•	Meadow of gold (day trip)\n•	Enjoy trip to zero point\t\n•	War Memorial\n•	Baltal, fishing point at extra cost through union cab.\n•	Or visit the Thajiwas glacier by ponies at extra cost. \n\n Additional union car 🚗 provided. Dinner & Overnight stay at Srinagar hotel. End of day 4" },
+      { day: 5, title: "Srinagar City Tour & Departure", detail: "Check out and proceed for Srinagar city tour. After shopping drop to Srinagar airport. End of day 5 with happy memories 😊" }
     ],
-    accommodations: "Scenic Pahalgam pinewood resorts and premium Dal Lake houseboats."
+    accommodations: "Premium Srinagar hotels/houseboats and scenic Pahalgam resorts."
   },
   {
     id: 102,
@@ -142,7 +140,7 @@ export default function DomesticHolidaysPage() {
                           <span className="serif-font font-bold text-brand-accent text-sm shrink-0 [font-variant-numeric:tabular-nums]">Day {step.day}</span>
                           <div>
                             <h4 className="font-bold text-xs text-brand-ink uppercase tracking-wide">{step.title}</h4>
-                            <p className="text-xs text-brand-muted mt-1 leading-relaxed">{step.detail}</p>
+                            <p className="text-xs text-brand-muted mt-1 leading-relaxed whitespace-pre-line">{step.detail}</p>
                           </div>
                         </div>
                       ))}

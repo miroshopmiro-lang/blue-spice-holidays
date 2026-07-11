@@ -83,7 +83,9 @@ export default function CustomItineraryForm() {
     foodRequests: [],
     otherFoodRequest: '',
     specialReqs: [],
-    otherRequirement: ''
+    otherRequirement: '',
+    referralSource: '',
+    otherReferralSource: ''
   });
 
   useEffect(() => {
@@ -123,6 +125,9 @@ export default function CustomItineraryForm() {
     if (!EMAIL_RE.test(data.email)) e.email = 'Enter a valid email address.';
     if (!data.destinations.trim()) e.destinations = 'Please specify destinations required.';
     if (!data.travelDates.trim()) e.travelDates = 'Please specify preferred travel date.';
+    if (data.referralSource === 'Others' && !data.otherReferralSource.trim()) {
+      e.referralSource = 'Please specify where you heard about us.';
+    }
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -148,7 +153,10 @@ export default function CustomItineraryForm() {
           foodRequests: data.foodRequests.join(', ') + 
             (data.foodRequests.includes('Other') && data.otherFoodRequest ? ` (${data.otherFoodRequest})` : ''),
           specialRequirements: data.specialReqs.join(', ') + 
-            (data.specialReqs.includes('Other') && data.otherRequirement ? ` (${data.otherRequirement})` : '')
+            (data.specialReqs.includes('Other') && data.otherRequirement ? ` (${data.otherRequirement})` : ''),
+          referralSource: data.referralSource === 'Others' && data.otherReferralSource.trim()
+            ? `Others (${data.otherReferralSource.trim()})`
+            : (data.referralSource || 'N/A')
         };
 
         const response = await fetch("https://api.web3forms.com/submit", {
@@ -183,14 +191,16 @@ export default function CustomItineraryForm() {
         { key: 'phone', id: 'custom-phone' },
         { key: 'email', id: 'custom-email' },
         { key: 'destinations', id: 'custom-destinations' },
-        { key: 'travelDates', id: 'custom-dates' }
+        { key: 'travelDates', id: 'custom-dates' },
+        { key: 'referralSource', id: 'custom-referral-other' }
       ];
       const validation = {
         name: !data.name.trim(),
         phone: !data.phone.trim(),
         email: !EMAIL_RE.test(data.email),
         destinations: !data.destinations.trim(),
-        travelDates: !data.travelDates.trim()
+        travelDates: !data.travelDates.trim(),
+        referralSource: data.referralSource === 'Others' && !data.otherReferralSource.trim()
       };
       const firstErrField = errorKeys.find(f => validation[f.key]);
       if (firstErrField) {
@@ -227,9 +237,12 @@ export default function CustomItineraryForm() {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
               </div>
               <h3 className="serif-font mt-5 text-2xl font-semibold text-brand-surface">Inquiry received, {data.name.split(' ')[0]}.</h3>
+              <p className="mt-3 text-base leading-relaxed text-brand-surface-cool/80 border-l-2 border-brand-accent pl-4 font-semibold text-brand-accent">
+                Our team will revert back within one working day.
+              </p>
               <p className="mt-3 text-base leading-relaxed text-brand-surface-cool/80">
                 Our curation specialists are designing your {data.destinations} journey now.
-                We will reach out to you at <span className="text-brand-surface font-semibold">{data.email}</span> or <span className="text-brand-surface font-semibold">{data.countryCode} {data.phone}</span> within <span className="text-brand-surface font-semibold">24 hours</span>.
+                We will reach out to you at <span className="text-brand-surface font-semibold">{data.email}</span> or <span className="text-brand-surface font-semibold">{data.countryCode} {data.phone}</span>.
               </p>
               <a
                 href={WHATSAPP_SPECIALIST}
@@ -619,6 +632,46 @@ export default function CustomItineraryForm() {
                       onChange={(e) => set('otherRequirement', e.target.value)}
                       className="mt-2 w-full bg-transparent border-t-0 border-x-0 border-b border-brand-surface-cool/30 rounded-none text-brand-surface placeholder:text-brand-surface-cool/30 py-1 focus:border-brand-accent focus:ring-0 focus:outline-none text-xs"
                     />
+                  )}
+                </div>
+
+                {/* 13. Referral Source */}
+                <div className="sm:col-span-2">
+                  <span className="block text-[10px] font-semibold uppercase tracking-wider text-brand-surface-cool/60 mb-2">Where did you hear about us?</span>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {['Google', 'Other guest', 'Ad', 'Others'].map((source) => (
+                      <label
+                        key={source}
+                        className={`flex items-center justify-center border rounded-premium py-2 px-3 text-xs font-semibold cursor-pointer transition-all duration-200 ${
+                          data.referralSource === source
+                            ? 'bg-brand-accent text-brand-ink border-brand-accent shadow-sm'
+                            : 'border-brand-surface-cool/20 hover:border-brand-accent/50 text-brand-surface-cool/80'
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="referralSource"
+                          value={source}
+                          checked={data.referralSource === source}
+                          onChange={(e) => set('referralSource', e.target.value)}
+                          className="sr-only"
+                        />
+                        {source}
+                      </label>
+                    ))}
+                  </div>
+                  {data.referralSource === 'Others' && (
+                    <>
+                      <input
+                        id="custom-referral-other"
+                        type="text"
+                        placeholder="Please specify where you heard about us..."
+                        value={data.otherReferralSource}
+                        onChange={(e) => set('otherReferralSource', e.target.value)}
+                        className="mt-3 w-full bg-transparent border-t-0 border-x-0 border-b border-brand-surface-cool/30 rounded-none text-brand-surface placeholder:text-brand-surface-cool/30 py-2 focus:border-brand-accent focus:ring-0 focus-visible:ring-1 focus-visible:ring-brand-accent focus:outline-none text-sm transition-[border-color,box-shadow]"
+                      />
+                      {errors.referralSource && <p className="mt-1 text-xs text-red-400">{errors.referralSource}</p>}
+                    </>
                   )}
                 </div>
               </div>
