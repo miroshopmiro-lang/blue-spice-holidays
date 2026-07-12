@@ -12,6 +12,7 @@ import CustomItineraryForm from './components/CustomItineraryForm';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
+import AmbientMusic from './components/AmbientMusic';
 
 // Subpages using React lazy loading
 const HolidaysHubPage = lazy(() => import('./pages/HolidaysHubPage'));
@@ -102,6 +103,7 @@ export default function App() {
         </main>
         <Footer />
         <WhatsAppWidget />
+        <AmbientMusic />
       </div>
     </BrowserRouter>
   );

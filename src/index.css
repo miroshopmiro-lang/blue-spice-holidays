@@ -158,3 +158,29 @@ body { top: 0 !important; position: static !important; }
 .goog-te-balloon-frame,
 .VIpgJd-ZVi9od-aZ2wEe-wOHMyf { display: none !important; }
 .goog-text-highlight { background: none !important; box-shadow: none !important; }
+
+/* ── Ambient Music Soundwave Animations ─────────────────────────────────────── */
+@keyframes soundwave-pulse {
+  0%, 100% {
+    height: 4px;
+  }
+  50% {
+    height: 14px;
+  }
+}
+
+.animate-soundwave-1 {
+  animation: soundwave-pulse 1.2s ease-in-out infinite;
+}
+.animate-soundwave-2 {
+  animation: soundwave-pulse 1.2s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+.animate-soundwave-3 {
+  animation: soundwave-pulse 1.2s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+.animate-soundwave-4 {
+  animation: soundwave-pulse 1.2s ease-in-out infinite;
+  animation-delay: 0.15s;
+}
