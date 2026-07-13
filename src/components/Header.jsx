@@ -102,7 +102,7 @@ export default function Header() {
           className={`font-display text-2xl font-semibold tracking-tight transition-colors duration-300 ${showSolidHeader ? 'text-ink' : 'text-white'
             }`}
         >
-          Blue Spice <span className={`transition-colors duration-300 ${showSolidHeader ? 'text-[#B0891A]' : 'text-gold'}`}>Holidays</span>
+          Blue Spice <span className={`transition-colors duration-300 ${showSolidHeader ? 'text-ink' : 'text-white'}`}>Holidays</span>
         </Link>
 
         {/* Desktop Menu */}
