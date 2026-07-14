@@ -154,9 +154,10 @@ export default function Footer() {
             </span>
           </div>
 
-          <div className="flex items-center gap-4 text-white/50">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-xs uppercase tracking-wider font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm">Instagram</a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-xs uppercase tracking-wider font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm">Facebook</a>
+          <div className="flex flex-wrap items-center gap-4 text-white/50">
+            <a href="https://www.instagram.com/bluespiceholidays/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-xs uppercase tracking-wider font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm">Instagram</a>
+            <a href="https://www.facebook.com/bluespiceholidayz/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-xs uppercase tracking-wider font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm">Facebook</a>
+            <a href="https://www.youtube.com/@bluespicetours" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-xs uppercase tracking-wider font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm">YouTube</a>
           </div>
         </div>
       </div>

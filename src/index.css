@@ -19,7 +19,7 @@
   }
 
   body {
-    @apply bg-base text-ink font-sans antialiased;
+    @apply bg-white text-ink font-sans antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
@@ -102,8 +102,19 @@
 
   /* Subtle film grain — uses a static pre-baked PNG tile instead of SVG
      feTurbulence to avoid mobile GPU repaint glitching.
-     Using position: absolute restricted to the element's bounds, avoiding 
+     Using position: absolute restricted to the element's bounds, avoiding
      overlapping viewport-wide layers that trigger GPU blending bugs on mobile. */
+  .grain {
+    /* The element MUST be the containing block for its ::after overlay.
+       Without this, a .grain element with no positioned ancestor lets the
+       inset-0 overlay escape to the initial containing block — a
+       viewport-sized mix-blend-mode layer over the top of the document,
+       which breaks desktop GPU text rasterization (text invisible until
+       selected). isolation keeps the blend inside this section only. */
+    position: relative;
+    isolation: isolate;
+  }
+
   .grain::after {
     content: '';
     position: absolute;

@@ -2,6 +2,7 @@ import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
+import TrustCrown from './components/TrustCrown';
 import TrustRibbon from './components/TrustRibbon';
 import CuratedPackages from './components/CuratedPackages';
 import PopularDestinations from './components/PopularDestinations';
@@ -67,6 +68,7 @@ function Home() {
     <>
       <HeroSection />
       <TrustRibbon />
+      <TrustCrown />
       <PopularDestinations />
       <BespokeServices />
       <CuratedPackages />

@@ -433,8 +433,7 @@ export default memo(function HeroSection({
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-gold font-mono"
           >
-            BORN IN 2008 · MICRO LEVEL CUSTOMISED PLANNING
-
+            BORN IN 2009 · MICRO LEVEL CUSTOMISED PLANNING
           </motion.p>
 
           <motion.h1

@@ -13,7 +13,6 @@ export default {
         navy: '#0B2D6B',
         royal: '#2A7DE1',
         gold: '#D4AF37',
-        base: '#FFFFFF',
         canvas: '#F8FAFC',
         tint: '#EEF5FF',
         ink: '#0F172A',

@@ -16,14 +16,6 @@ function GoogleIcon() {
   );
 }
 
-function TrustpilotIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="#00B67A" d="M12 2l2.9 6.3 6.9.6-5.2 4.5 1.6 6.7L12 17l-6.2 3.6 1.6-6.7L2.2 8.9l6.9-.6L12 2Z" />
-    </svg>
-  );
-}
-
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -63,16 +55,20 @@ export default function Testimonials() {
             <h2 className="serif-font mt-4 text-3xl font-bold text-brand-ink sm:text-4xl">Travelers who trusted us with their stories</h2>
           </div>
 
-          <div className="flex items-center gap-4 rounded-none border border-brand-surface-cool bg-white px-5 py-3">
+          <a 
+            href={"https://www.google.com/search?sca_esv=114ce2f88324942a&sxsrf=APpeQnujINCtYzMYPv8JMNsZfHcOhPBZGg:1784038999878&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_zJWgd_KpwnrTyZ-R6yxZrdpUPjklSqmlxoDzx1cTnswZE6-9UUHVsDU8d3T1i9dQbDNr0GmNLX48wGTipLjV_qwL6urcTrLtMIiGHN76KSrI_lacw%3D%3D&q=Blue+Spice+Holidays+Reviews&sa=X&ved=2ahUKEwjNnumWr9KVAxUVkq8BHcCPCakQ0bkNegQIMxAF"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 rounded-none border border-brand-surface-cool bg-white px-5 py-3 hover:shadow-soft hover:border-gold/50 transition-all duration-300 group"
+          >
             <div className="flex items-center gap-2 border-r border-brand-surface-cool pr-4">
               <GoogleIcon />
-              <TrustpilotIcon />
             </div>
             <div>
-              <p className="text-sm font-medium text-brand-ink"><span className="text-brand-accent">★</span> Rated 4.9/5 stars</p>
-              <p className="text-xs text-brand-muted">by 210+ families</p>
+              <p className="text-sm font-medium text-brand-ink group-hover:text-royal transition-colors"><span className="text-brand-accent">★</span> Rated 5.0/5 stars</p>
+              <p className="text-xs text-brand-muted">on Google (221+ reviews)</p>
             </div>
-          </div>
+          </a>
         </div>
 
         <div className="relative mt-12">
