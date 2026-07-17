@@ -45,16 +45,19 @@ export default function TrustCrown() {
         
         {/* Rating and Description */}
         <div className="flex items-center gap-3.5 text-center md:text-left flex-col md:flex-row">
-          <div className="w-11 h-11 rounded-full bg-gold/10 flex items-center justify-center text-gold shadow-inner border border-gold/20 shrink-0">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-          </div>
           <div>
             <h4 className="font-display text-sm font-bold text-ink flex items-center gap-2 justify-center md:justify-start">
               Verified 5.0/5 Star Rating
               <span className="text-[10px] bg-gold/20 text-gold-hover border border-gold/30 px-2 py-0.5 rounded-full uppercase tracking-wider font-mono">Google</span>
             </h4>
+            {/* 5 star icons */}
+            <div className="flex items-center gap-0.5 mt-1 justify-center md:justify-start">
+              {[...Array(5)].map((_, i) => (
+                <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" aria-hidden="true" className="shrink-0">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              ))}
+            </div>
             <p className="text-xs text-slate-500 mt-0.5">
               Perfect 5.0 rating based on 221 verified Google reviews. Impeccable planning and direct ground support since 2009.
             </p>
