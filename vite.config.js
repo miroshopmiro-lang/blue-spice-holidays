@@ -27,7 +27,7 @@ export default defineConfig({
 
         // Cache name includes a version → when you bump it, all old caches
         // are purged on the next SW activation (manual cache busting lever).
-        cacheId: 'bluespice-v12',
+        cacheId: 'bluespice-v13',
 
         // Precache all Vite-built assets (they have content hashes in their
         // filenames, so they are always fresh and safe to serve from cache).
@@ -89,7 +89,7 @@ export default defineConfig({
       manifest: {
         name: 'Blue Spice Holidays',
         short_name: 'Blue Spice',
-        description: 'Micro Level Customised Planning since 2009',
+        description: '⭐⭐⭐⭐⭐ 5 Star reviewed company | 15+ years bespoke. Micro Level Customised Planning since 2009.',
         theme_color: '#0B2D6B',
         background_color: '#F7F5F0',
         display: 'standalone',
