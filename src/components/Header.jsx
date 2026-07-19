@@ -208,6 +208,7 @@ export default function Header() {
             className={`text-xs font-medium transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm hidden xl:block ${
               showSolidHeader ? 'text-body hover:text-ink' : 'text-white/70 hover:text-white'
             }`}
+            data-umami-event="Phone Header Click"
           >
             +91 93885 99000
           </a>
@@ -222,6 +223,7 @@ export default function Header() {
                 ? 'border-navy text-navy hover:bg-navy hover:text-white'
                 : 'border-white text-white hover:bg-white hover:text-navy'
             }`}
+            data-umami-event="WhatsApp Header Click"
           >
             <WhatsAppIcon />
             <span className="hidden xl:inline">WhatsApp</span>
@@ -383,7 +385,7 @@ export default function Header() {
             </div>
 
             <div className="mt-auto pt-6 border-t border-hairline flex flex-col gap-4">
-              <a href="tel:+919388599000" className="text-xs text-body px-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm">
+              <a href="tel:+919388599000" className="text-xs text-body px-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm" data-umami-event="Phone Mobile Menu Click">
                 Talk to a Specialist: <span className="text-ink font-semibold">+91 93885 99000</span>
               </a>
               <a
@@ -392,6 +394,7 @@ export default function Header() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 rounded-full bg-navy py-3 text-center text-sm font-medium text-white hover:bg-navy/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
                 onClick={() => setOpen(false)}
+                data-umami-event="WhatsApp Mobile Menu Click"
               >
                 <WhatsAppIcon className="" />
                 Chat on WhatsApp

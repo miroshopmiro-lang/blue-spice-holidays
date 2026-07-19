@@ -249,6 +249,7 @@ export default function CustomItineraryForm() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-2 rounded-button border border-brand-surface-cool/30 px-5 py-3 text-sm font-medium text-brand-surface transition-colors hover:bg-brand-surface hover:text-brand-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                data-umami-event="WhatsApp Specialist Link Click"
               >
                 Chat with your specialist on WhatsApp
               </a>
@@ -681,6 +682,7 @@ export default function CustomItineraryForm() {
                   type="submit"
                   disabled={submitting}
                   className="w-full rounded-button bg-brand-surface px-6 py-4 text-xs font-bold uppercase tracking-wider text-brand-ink transition-[background-color,box-shadow] hover:bg-white shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ink disabled:opacity-50"
+                  data-umami-event="Submit Custom Itinerary Form"
                 >
                   {submitting ? 'Sending Request...' : 'Submit Inquiry & Request Quote'}
                 </button>

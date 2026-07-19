@@ -81,6 +81,8 @@ export default function BrochuresPage() {
               <div 
                 className="relative cursor-pointer overflow-hidden bg-brand-ink aspect-[4/5] sm:aspect-[3/4]"
                 onClick={() => setActiveIdx(idx)}
+                data-umami-event="View Brochure Click"
+                data-umami-event-brochure={brochure.alt}
               >
                 <img 
                   src={brochure.src} 
@@ -102,6 +104,8 @@ export default function BrochuresPage() {
                 <button
                   onClick={() => setActiveIdx(idx)}
                   className="flex-1 inline-flex items-center justify-center gap-2 bg-brand-surface text-brand-ink border border-brand-surface-cool font-bold uppercase tracking-wider text-xs py-3.5 rounded-premium hover:bg-brand-surface-cool transition-colors shadow-sm focus-visible:outline-none"
+                  data-umami-event="View Brochure Click"
+                  data-umami-event-brochure={brochure.alt}
                 >
                   View Full Size
                 </button>
@@ -109,6 +113,8 @@ export default function BrochuresPage() {
                   href={brochure.src} 
                   download
                   className="flex-1 inline-flex items-center justify-center gap-2 bg-brand-ink text-white font-bold uppercase tracking-wider text-xs py-3.5 rounded-premium hover:bg-brand-accent hover:text-brand-ink transition-colors shadow-sm focus-visible:outline-none"
+                  data-umami-event="Download Brochure Click"
+                  data-umami-event-brochure={brochure.alt}
                 >
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
@@ -190,6 +196,8 @@ export default function BrochuresPage() {
               href={BROCHURES[activeIdx].src} 
               download
               className="bg-white/10 text-white border border-white/20 px-6 py-2.5 rounded-full font-bold uppercase tracking-wider text-xs hover:bg-white hover:text-brand-ink transition-colors flex items-center gap-2"
+              data-umami-event="Download Brochure Click"
+              data-umami-event-brochure={BROCHURES[activeIdx].alt}
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />

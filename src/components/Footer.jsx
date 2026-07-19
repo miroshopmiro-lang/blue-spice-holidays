@@ -131,6 +131,7 @@ export default function Footer() {
                   type="submit"
                   disabled={submitting}
                   className="rounded-full bg-white px-5 py-2 text-xs font-bold uppercase tracking-wider text-navy transition-[background-color,color] hover:bg-gold hover:text-ink shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold disabled:opacity-50 shrink-0"
+                  data-umami-event="Submit Newsletter Form"
                 >
                   {submitting ? '...' : 'Subscribe'}
                 </button>
@@ -155,9 +156,9 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-wrap items-center gap-4 text-white/50">
-            <a href="https://www.instagram.com/bluespiceholidays/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-xs uppercase tracking-wider font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm">Instagram</a>
-            <a href="https://www.facebook.com/bluespiceholidayz/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-xs uppercase tracking-wider font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm">Facebook</a>
-            <a href="https://www.youtube.com/@bluespicetours" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-xs uppercase tracking-wider font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm">YouTube</a>
+            <a href="https://www.instagram.com/bluespiceholidays/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-xs uppercase tracking-wider font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm" data-umami-event="Social Link Click" data-umami-event-platform="Instagram">Instagram</a>
+            <a href="https://www.facebook.com/bluespiceholidayz/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-xs uppercase tracking-wider font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm" data-umami-event="Social Link Click" data-umami-event-platform="Facebook">Facebook</a>
+            <a href="https://www.youtube.com/@bluespicetours" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors text-xs uppercase tracking-wider font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm" data-umami-event="Social Link Click" data-umami-event-platform="YouTube">YouTube</a>
           </div>
         </div>
       </div>

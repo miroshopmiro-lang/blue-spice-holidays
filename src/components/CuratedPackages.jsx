@@ -169,7 +169,7 @@ function ItineraryDrawer({ pkg, onClose }) {
                 onChange={(e) => setForm({ ...form, notes: e.target.value })}
                 className="w-full bg-canvas border border-hairline rounded-xl text-ink placeholder:text-mute px-4 py-3 focus:border-royal focus-visible:ring-2 focus-visible:ring-royal/20 focus-visible:outline-none transition-[border-color,box-shadow] text-sm resize-none"
               />
-              <button type="submit" className="w-full rounded-full bg-navy px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition-[background-color,box-shadow] hover:bg-navy/90 shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+              <button type="submit" className="w-full rounded-full bg-navy px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition-[background-color,box-shadow] hover:bg-navy/90 shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold" data-umami-event="Package Drawer Submit Form">
                 Send Inquiry
               </button>
             </form>
@@ -261,6 +261,8 @@ export default function CuratedPackages() {
                       rel="noopener noreferrer"
                       aria-label="Inquire about this trip"
                       className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 transition-colors hover:bg-emerald-600 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                      data-umami-event="Package WhatsApp Inquiry Click"
+                      data-umami-event-package={pkg.title}
                     >
                       <WhatsAppIcon />
                     </a>
