@@ -27,7 +27,7 @@ export default defineConfig({
 
         // Cache name includes a version → when you bump it, all old caches
         // are purged on the next SW activation (manual cache busting lever).
-        cacheId: 'bluespice-v8',
+        cacheId: 'bluespice-v9',
 
         // Precache all Vite-built assets (they have content hashes in their
         // filenames, so they are always fresh and safe to serve from cache).
@@ -48,9 +48,9 @@ export default defineConfig({
             },
           },
           {
-            // Large media (WebM videos, WebP images) in /images/.
+            // Large media (WebM videos, WebP images) in /images/ and /brochures/.
             // Serve from cache instantly after first load; expire after 30 days.
-            urlPattern: /\/images\/.+\.(webm|webp|mp4|png|jpg|jpeg|gif)$/i,
+            urlPattern: /\/(images|brochures)\/.+\.(webm|webp|mp4|png|jpg|jpeg|gif)$/i,
             handler: 'CacheFirst',
             options: {
               cacheName: 'bluespice-media',
