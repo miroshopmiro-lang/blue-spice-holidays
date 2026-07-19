@@ -100,14 +100,14 @@ export default function BrochuresPage() {
                 </div>
               </div>
 
-              <div className="p-6 border-t border-brand-surface-cool bg-brand-surface-cool/10 flex gap-4">
+              <div className="p-6 border-t border-brand-surface-cool bg-brand-surface-cool/10 flex gap-3 sm:gap-4">
                 <button
                   onClick={() => setActiveIdx(idx)}
                   className="flex-1 inline-flex items-center justify-center gap-2 bg-brand-surface text-brand-ink border border-brand-surface-cool font-bold uppercase tracking-wider text-xs py-3.5 rounded-premium hover:bg-brand-surface-cool transition-colors shadow-sm focus-visible:outline-none"
                   data-umami-event="View Brochure Click"
                   data-umami-event-brochure={brochure.alt}
                 >
-                  View Full Size
+                  View<span className="hidden sm:inline md:hidden lg:inline"> Full Size</span>
                 </button>
                 <a 
                   href={brochure.src} 
@@ -119,7 +119,7 @@ export default function BrochuresPage() {
                   <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
                   </svg>
-                  Download Image
+                  Download<span className="hidden sm:inline md:hidden lg:inline"> Image</span>
                 </a>
               </div>
             </div>
