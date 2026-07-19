@@ -89,7 +89,7 @@ export default defineConfig({
       manifest: {
         name: 'Blue Spice Holidays',
         short_name: 'Blue Spice',
-        description: 'Curators of Luxury & Slow Travel since 2009',
+        description: 'Micro Level Customised Planning since 2009',
         theme_color: '#0B2D6B',
         background_color: '#F7F5F0',
         display: 'standalone',
