@@ -133,6 +133,24 @@ export default function AmbientMusic() {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [isPlaying]);
+  
+  // Pause ambient music when a video starts playing
+  useEffect(() => {
+    const handlePauseEvent = () => {
+      if (audioRef.current && isPlaying) {
+        setIsPlaying(false);
+        fadeVolume(0, 1000, () => {
+          if (audioRef.current && !audioRef.current.paused) {
+            audioRef.current.pause();
+          }
+        });
+      }
+    };
+    window.addEventListener('pause-ambient-music', handlePauseEvent);
+    return () => {
+      window.removeEventListener('pause-ambient-music', handlePauseEvent);
+    };
+  }, [isPlaying]);
 
   const togglePlayback = () => {
     if (!audioRef.current) return;

@@ -8,6 +8,7 @@ import CuratedPackages from './components/CuratedPackages';
 import PopularDestinations from './components/PopularDestinations';
 import BespokeServices from './components/BespokeServices';
 import WeddingsEvents from './components/WeddingsEvents';
+import LadiesOnlyTours from './components/LadiesOnlyTours';
 import FullscreenPromoCards from './components/FullscreenPromoCards';
 import CustomItineraryForm from './components/CustomItineraryForm';
 import Testimonials from './components/Testimonials';
@@ -72,6 +73,7 @@ function Home() {
       <PopularDestinations />
       <BespokeServices />
       <CuratedPackages />
+      <LadiesOnlyTours />
       <WeddingsEvents />
       <FullscreenPromoCards />
       <CustomItineraryForm />

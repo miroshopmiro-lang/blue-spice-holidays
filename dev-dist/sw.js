@@ -70,7 +70,7 @@ if (!self.define) {
 define(['./workbox-7c269be9'], (function (workbox) { 'use strict';
 
   workbox.setCacheNameDetails({
-    prefix: "bluespice-v8"
+    prefix: "bluespice-v14"
   });
   self.skipWaiting();
   workbox.clientsClaim();
@@ -84,7 +84,7 @@ define(['./workbox-7c269be9'], (function (workbox) { 'use strict';
     "revision": "3ca0b8505b4bec776b69afdba2768812"
   }, {
     "url": "index.html",
-    "revision": "0.9qmb8mpqq8k"
+    "revision": "0.btfp3jfcm7s"
   }], {});
   workbox.cleanupOutdatedCaches();
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
@@ -99,7 +99,7 @@ define(['./workbox-7c269be9'], (function (workbox) { 'use strict';
       statuses: [0, 200]
     })]
   }), 'GET');
-  workbox.registerRoute(/\/images\/.+\.(webm|webp|mp4|png|jpg|jpeg|gif)$/i, new workbox.CacheFirst({
+  workbox.registerRoute(/\/(images|brochures)\/.+\.(webm|webp|mp4|png|jpg|jpeg|gif)$/i, new workbox.CacheFirst({
     "cacheName": "bluespice-media",
     plugins: [new workbox.CacheableResponsePlugin({
       statuses: [0, 200]
