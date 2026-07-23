@@ -24,10 +24,11 @@ export default defineConfig({
         // Take control of all open tabs as soon as the new SW activates.
         skipWaiting: true,
         clientsClaim: true,
+        cleanupOutdatedCaches: true,
 
         // Cache name includes a version → when you bump it, all old caches
         // are purged on the next SW activation (manual cache busting lever).
-        cacheId: 'bluespice-v16',
+        cacheId: 'bluespice-v17',
 
         // Precache all Vite-built assets (they have content hashes in their
         // filenames, so they are always fresh and safe to serve from cache).

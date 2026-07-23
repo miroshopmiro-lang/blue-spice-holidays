@@ -4,25 +4,39 @@ import App from './App.jsx';
 import './index.css';
 import { registerSW } from 'virtual:pwa-register';
 
-// Register the service worker.
-// onNeedRefresh fires when a new SW has installed and is waiting.
-// onOfflineReady fires when the app is fully cached for offline use.
+// Register the service worker with immediate update checking and automatic page reload on controller change
 const updateSW = registerSW({
-  // A new SW installed → skip waiting is already set in workbox config,
-  // so the SW will activate itself. We then force a full page reload so
-  // the user instantly gets the latest assets — zero stale-content risk.
+  immediate: true,
   onNeedRefresh() {
-    updateSW(true); // true = force reload immediately
+    updateSW(true); // force activate new SW
   },
-
   onOfflineReady() {
-    console.info('[BlueSPice SW] App is ready to work offline.');
+    console.info('[BlueSpice SW] App is ready to work offline.');
   },
-
   onRegisterError(error) {
-    console.error('[BlueSPice SW] Registration failed:', error);
+    console.error('[BlueSpice SW] Registration failed:', error);
   },
 });
+
+// Auto-reload open tabs when a new service worker takes over control
+if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!refreshing) {
+      refreshing = true;
+      window.location.reload();
+    }
+  });
+
+  // Check for updates every 30 seconds & when tab regains focus
+  setInterval(() => {
+    updateSW();
+  }, 30000);
+
+  window.addEventListener('focus', () => {
+    updateSW();
+  });
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
