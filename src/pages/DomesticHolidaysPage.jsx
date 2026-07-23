@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CURATED_PACKAGES } from '../data/travelData';
 import GroundTeams from '../components/GroundTeams';
+import useEnquiry from '../hooks/useEnquiry';
 
 // Filter packages that are domestic (location in India)
 const DOMESTIC_PACKAGES = [
@@ -53,18 +54,10 @@ const DOMESTIC_PACKAGES = [
 
 export default function DomesticHolidaysPage() {
   const [activePkg, setActivePkg] = useState(null);
+  const enquire = useEnquiry();
 
   const handleRequest = (pkgTitle) => {
-    window.dispatchEvent(
-      new CustomEvent('prefill-itinerary', { 
-        detail: { 
-          destination: `Domestic Package: ${pkgTitle}`, 
-          month: 'Any month' 
-        } 
-      })
-    );
-    const el = document.getElementById('custom');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    enquire(`Domestic Package: ${pkgTitle}`);
   };
 
   return (

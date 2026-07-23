@@ -1,26 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { MEGA_MENUS, FLAT_LINKS, OVERFLOW_LINKS, FOOTER_ONLY_LINKS } from '../data/siteMenu';
 
-const DESTINATIONS = [
-  { label: 'Kerala Backwaters', to: '/holidays/domestic' },
-  { label: 'Royal Rajasthan', to: '/holidays/domestic' },
-  { label: 'Kashmir Valleys', to: '/holidays/domestic' },
-  { label: 'Himalayan Peaks', to: '/holidays/domestic' },
-  { label: 'Maldives Lagoon', to: '/holidays/international' },
-  { label: 'London Curation', to: '/holidays/international' },
-];
-const TRAVEL_STYLES = [
-  { label: 'Domestic Curation', to: '/holidays/domestic' },
-  { label: 'Global Escapes', to: '/holidays/international' },
-  { label: 'Holistic Wellness', to: '/wellness' },
-  { label: 'Spiritual Darshan', to: '/darshan' },
-];
-const SERVICES = [
-  { label: 'Forex (Exchange)', to: '/forex' },
-  { label: 'Flights Curation', to: '/flights' },
-  { label: 'Luxury Cruises', to: '/cruises' },
-  { label: 'Travel Brochures', to: '/brochures' },
-  { label: 'About Us', to: '/about' },
+const HOLIDAYS = MEGA_MENUS.find((m) => m.id === 'holidays').children.map((c) => ({ label: c.label, to: c.path }));
+const SERVICES = MEGA_MENUS.find((m) => m.id === 'services').children.map((c) => ({ label: c.label, to: c.path }));
+const EXPLORE = [
+  ...MEGA_MENUS.find((m) => m.id === 'special-tours').children.map((c) => ({ label: c.label, to: c.path })),
+  ...FLAT_LINKS.map((c) => ({ label: c.label, to: c.path })),
+  ...OVERFLOW_LINKS.map((c) => ({ label: c.label, to: c.path })),
+  ...FOOTER_ONLY_LINKS.map((c) => ({ label: c.label, to: c.path })),
 ];
 
 function TourismBadge() {
@@ -104,10 +92,10 @@ export default function Footer() {
       
       <div className="container-lux relative z-10">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <Column title="Popular Destinations" items={DESTINATIONS} />
-          <Column title="Curated Travel Styles" items={TRAVEL_STYLES} />
-          <Column title="Travel Services" items={SERVICES} />
- 
+          <Column title="Holidays" items={HOLIDAYS} />
+          <Column title="Services" items={SERVICES} />
+          <Column title="Explore" items={EXPLORE} />
+
           <div aria-live="polite">
             <h3 className="font-mono text-[11px] uppercase tracking-widemono text-gold">Stay Inspired</h3>
             <p className="mt-4 text-sm text-white/70 leading-relaxed">Slow-travel notes and quiet corners of India, a few times a year.</p>

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Section, SectionHeading, RevealGroup, Item } from './Section';
+import useEnquiry from '../hooks/useEnquiry';
 
 const TOURS = [
   {
@@ -206,20 +207,10 @@ function InteractiveGallery({ videoMp4, videoWebm, poster, images, title }) {
 }
 
 function TourCard({ tour, index }) {
+  const enquire = useEnquiry();
   const handleEnquire = (e) => {
     e.preventDefault();
-    window.dispatchEvent(
-      new CustomEvent('prefill-itinerary', {
-        detail: {
-          destination: tour.destinationCode,
-          month: 'Any month'
-        }
-      })
-    );
-    const el = document.getElementById('custom');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    enquire(tour.destinationCode);
   };
 
   return (

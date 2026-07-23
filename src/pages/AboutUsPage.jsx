@@ -172,7 +172,7 @@ export default function AboutUsPage() {
             </div>
           </div>
 
-          {/* Refer us and enjoy spl previlaiges */}
+          {/* Refer us and enjoy SPL privileges */}
           <div className="bg-white border border-hairline rounded-2xl p-8 shadow-soft flex flex-col justify-between">
             <div>
               <span className="font-mono text-[10px] uppercase tracking-widemono text-royal block mb-3">Rewards Program</span>

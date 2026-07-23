@@ -1,6 +1,27 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import HubGrid from '../components/HubGrid';
+
+const ITEMS = [
+  { label: 'International Tours', path: '/holidays/international', image: '/images/maldives.webp' },
+  { label: 'Domestic Tours', path: '/holidays/domestic', image: '/images/munnar.webp' },
+  { label: 'Ladies Tours', path: '/holidays/ladies', image: '/images/ladies-only-tour/thailand-ladies-tour-1.webp' },
+  { label: 'Senior Citizen Tours', path: '/holidays/senior-citizen', image: '/images/kashmir.webp' },
+  { label: 'Group Tours', path: '/holidays/group', image: '/images/luxury-coach.webp' },
+  { label: 'Honeymoon Tours', path: '/holidays/honeymoon', image: '/images/bali.webp' },
+  { label: 'Office Tours', path: '/holidays/office', image: '/images/services/corporate.webp' },
+  { label: 'School, College & Educational Tours', path: '/holidays/educational', image: '/images/taj-mahal.webp' },
+  { label: 'Spiritual Tours', path: '/holidays/spiritual', image: '/images/chardham_heli_yatra.webp' },
+];
 
 export default function HolidaysHubPage() {
+  useEffect(() => {
+    document.title = "Holiday Tours · Blue Spice Holidays";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "International, domestic, ladies, senior citizen, group, honeymoon, office, educational and spiritual tours curated by Blue Spice Holidays.");
+    }
+  }, []);
+
   return (
     <div className="bg-brand-surface pt-24 min-h-screen text-brand-ink">
       {/* Banner / Header */}
@@ -11,72 +32,15 @@ export default function HolidaysHubPage() {
             Slow Travel Curations
           </span>
           <h1 className="serif-font text-4xl sm:text-5xl font-bold mt-4 leading-tight">
-            Journeys Handcrafted for <span className="accent-serif text-brand-accent">Slow Travel</span>
+            Journeys Handcrafted for <span className="accent-serif text-brand-accent">Every Traveller</span>
           </h1>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto text-base sm:text-lg">
-            We move away from dense group itineraries and transactional checklists. Discover unhurried domestic sanctuaries and international paradises.
+            From international escapes to spiritual pilgrimages, find the tour style built around who you're travelling with.
           </p>
         </div>
       </section>
 
-      {/* Gateway Cards */}
-      <section className="py-20 max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          
-          {/* Domestic Curation card */}
-          <div className="relative group overflow-hidden rounded-premium border border-brand-surface-cool shadow-lg h-[450px] flex flex-col justify-end p-8 bg-brand-ink">
-            <img 
-              src="/images/munnar.webp" 
-              alt="Discover India’s Wonders" 
-              width={540}
-              height={450}
-              className="absolute inset-0 h-full w-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent z-10" />
-            <div className="relative z-20 text-white">
-              <span className="text-brand-accent text-xs font-bold uppercase tracking-widest block mb-2">DOMESTIC CURATION</span>
-              <h2 className="serif-font text-3xl font-bold mb-3">Discover India’s Wonders</h2>
-              <p className="text-sm text-white/80 mb-6 leading-relaxed">
-                Float through the serene spice channels of Munnar, walk through golden fortress sands in Rajasthan, or witness morning light over Kashmir’s snowbound valleys.
-              </p>
-              <Link 
-                to="/holidays/domestic"
-                className="inline-flex bg-brand-accent text-brand-ink font-bold uppercase tracking-wider text-xs px-6 py-3.5 rounded-premium hover:bg-brand-accent-hover transition-[background-color,color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
-              >
-                Explore Domestic Curation
-              </Link>
-            </div>
-          </div>
-
-          {/* Global Escapes card */}
-          <div className="relative group overflow-hidden rounded-premium border border-brand-surface-cool shadow-lg h-[450px] flex flex-col justify-end p-8 bg-brand-ink">
-            <img 
-              src="/images/maldives.webp" 
-              alt="Discover International Paradises" 
-              width={540}
-              height={450}
-              className="absolute inset-0 h-full w-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent z-10" />
-            <div className="relative z-20 text-white">
-              <span className="text-brand-accent text-xs font-bold uppercase tracking-widest block mb-2">GLOBAL ESCAPES</span>
-              <h2 className="serif-font text-3xl font-bold mb-3">Discover International Paradises</h2>
-              <p className="text-sm text-white/80 mb-6 leading-relaxed">
-                Rest on azure private shores in the Maldives, traverse high temple paths in Bali, or escape to the old-world valleys and vineyard trails of Georgia.
-              </p>
-              <Link 
-                to="/holidays/international"
-                className="inline-flex bg-brand-accent text-brand-ink font-bold uppercase tracking-wider text-xs px-6 py-3.5 rounded-premium hover:bg-brand-accent-hover transition-[background-color,color] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
-              >
-                Design International Escape
-              </Link>
-            </div>
-          </div>
-
-        </div>
-      </section>
+      <HubGrid items={ITEMS} />
 
       {/* Curation philosophy row */}
       <section className="bg-brand-surface-cool/30 border-t border-b border-brand-surface-cool py-20 px-6">

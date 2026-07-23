@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import GroundTeams from '../components/GroundTeams';
+import useEnquiry from '../hooks/useEnquiry';
 
 const INT_PACKAGES = [
   {
@@ -92,18 +93,10 @@ const INT_PACKAGES = [
 
 export default function InternationalHolidaysPage() {
   const [activePkg, setActivePkg] = useState(null);
+  const enquire = useEnquiry();
 
   const handleRequest = (pkgTitle) => {
-    window.dispatchEvent(
-      new CustomEvent('prefill-itinerary', { 
-        detail: { 
-          destination: `International Package: ${pkgTitle}`, 
-          month: 'Any month' 
-        } 
-      })
-    );
-    const el = document.getElementById('custom');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    enquire(`International Package: ${pkgTitle}`);
   };
 
   return (

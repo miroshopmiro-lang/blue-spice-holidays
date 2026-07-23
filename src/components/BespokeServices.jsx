@@ -1,5 +1,6 @@
 import { Section, SectionHeading, RevealGroup, Item } from './Section';
 import ParallaxImage from './ParallaxImage';
+import useEnquiry from '../hooks/useEnquiry';
 
 const TRAVEL_SERVICES = [
   {
@@ -35,20 +36,10 @@ const TRAVEL_SERVICES = [
 ];
 
 function ServiceTile({ service, index }) {
+  const enquire = useEnquiry();
   const handleEnquire = (e) => {
     e.preventDefault();
-    window.dispatchEvent(
-      new CustomEvent('prefill-itinerary', {
-        detail: {
-          destination: `Service: ${service.title}`,
-          month: 'Any month'
-        }
-      })
-    );
-    const el = document.getElementById('custom');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+    enquire(`Service: ${service.title}`);
   };
 
   return (

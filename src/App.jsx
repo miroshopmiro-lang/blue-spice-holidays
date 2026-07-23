@@ -1,5 +1,5 @@
 import { useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import TrustCrown from './components/TrustCrown';
@@ -18,15 +18,25 @@ import AmbientMusic from './components/AmbientMusic';
 
 // Subpages using React lazy loading
 const HolidaysHubPage = lazy(() => import('./pages/HolidaysHubPage'));
+const ServicesHubPage = lazy(() => import('./pages/ServicesHubPage'));
+const SpecialToursHubPage = lazy(() => import('./pages/SpecialToursHubPage'));
+const CategoryPage = lazy(() => import('./pages/CategoryPage'));
 const DomesticHolidaysPage = lazy(() => import('./pages/DomesticHolidaysPage'));
 const InternationalHolidaysPage = lazy(() => import('./pages/InternationalHolidaysPage'));
+const LadiesToursPage = lazy(() => import('./pages/LadiesToursPage'));
+const SpiritualToursPage = lazy(() => import('./pages/SpiritualToursPage'));
+const DestinationWeddingsPage = lazy(() => import('./pages/DestinationWeddingsPage'));
 const WellnessRetreatsPage = lazy(() => import('./pages/WellnessRetreatsPage'));
 const FlightsPage = lazy(() => import('./pages/FlightsPage'));
 const ForexPage = lazy(() => import('./pages/ForexPage'));
 const CruisesPage = lazy(() => import('./pages/CruisesPage'));
-const DarshanPage = lazy(() => import('./pages/DarshanPage'));
 const AboutUsPage = lazy(() => import('./pages/AboutUsPage'));
 const BrochuresPage = lazy(() => import('./pages/BrochuresPage'));
+const GalleryPage = lazy(() => import('./pages/GalleryPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const CollaboratePage = lazy(() => import('./pages/CollaboratePage'));
+const ReferPage = lazy(() => import('./pages/ReferPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Premium, minimal page loader matching the luxury travel brand aesthetic
 function PageLoader() {
@@ -92,16 +102,44 @@ export default function App() {
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />
+
+              {/* Holidays */}
               <Route path="/holidays" element={<HolidaysHubPage />} />
               <Route path="/holidays/domestic" element={<DomesticHolidaysPage />} />
               <Route path="/holidays/international" element={<InternationalHolidaysPage />} />
-              <Route path="/wellness" element={<WellnessRetreatsPage />} />
-              <Route path="/flights" element={<FlightsPage />} />
-              <Route path="/forex" element={<ForexPage />} />
-              <Route path="/cruises" element={<CruisesPage />} />
-              <Route path="/darshan" element={<DarshanPage />} />
-              <Route path="/about" element={<AboutUsPage />} />
+              <Route path="/holidays/ladies" element={<LadiesToursPage />} />
+              <Route path="/holidays/spiritual" element={<SpiritualToursPage />} />
+              <Route path="/holidays/:slug" element={<CategoryPage group="holidays" />} />
+
+              {/* Services */}
+              <Route path="/services" element={<ServicesHubPage />} />
+              <Route path="/services/flights" element={<FlightsPage />} />
+              <Route path="/services/forex" element={<ForexPage />} />
+              <Route path="/services/destination-weddings" element={<DestinationWeddingsPage />} />
+              <Route path="/services/:slug" element={<CategoryPage group="services" />} />
+
+              {/* SPL Tour */}
+              <Route path="/special-tours" element={<SpecialToursHubPage />} />
+              <Route path="/special-tours/:slug" element={<CategoryPage group="special-tours" />} />
+
+              {/* Flat menu pages */}
+              <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/brochures" element={<BrochuresPage />} />
+              <Route path="/about" element={<AboutUsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/collaborate" element={<CollaboratePage />} />
+              <Route path="/refer" element={<ReferPage />} />
+
+              {/* Kept live, footer-linked only (not in the client's 9-menu spec) */}
+              <Route path="/wellness" element={<WellnessRetreatsPage />} />
+              <Route path="/cruises" element={<CruisesPage />} />
+
+              {/* Redirects for old links */}
+              <Route path="/darshan" element={<Navigate to="/holidays/spiritual" replace />} />
+              <Route path="/flights" element={<Navigate to="/services/flights" replace />} />
+              <Route path="/forex" element={<Navigate to="/services/forex" replace />} />
+
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
         </main>

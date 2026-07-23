@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useEnquiry from '../hooks/useEnquiry';
 
 const RETREATS = [
   { 
@@ -25,21 +26,13 @@ const RETREATS = [
 
 export default function WellnessRetreatsPage() {
   const [submitted, setSubmitted] = useState(false);
+  const enquire = useEnquiry();
 
   const handleRequest = (name) => {
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
-      window.dispatchEvent(
-        new CustomEvent('prefill-itinerary', { 
-          detail: { 
-            destination: `Wellness Curation: ${name}`, 
-            month: 'Any month' 
-          } 
-        })
-      );
-      const el = document.getElementById('custom');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      enquire(`Wellness Curation: ${name}`);
     }, 1500);
   };
 

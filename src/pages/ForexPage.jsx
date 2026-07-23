@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useEnquiry from '../hooks/useEnquiry';
 
 const CURRENCIES = [
   { code: 'USD', name: 'US Dollar', rate: 83.45 },
@@ -14,6 +15,7 @@ export default function ForexPage() {
   const [currency, setCurrency] = useState('USD');
   const [converted, setConverted] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const enquire = useEnquiry();
 
   const handleConvert = (e) => {
     e.preventDefault();
@@ -29,16 +31,7 @@ export default function ForexPage() {
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
-      window.dispatchEvent(
-        new CustomEvent('prefill-itinerary', { 
-          detail: { 
-            destination: `Forex inquiry: Buy ${currency} worth ₹${inrAmount}`, 
-            month: 'Any month' 
-          } 
-        })
-      );
-      const el = document.getElementById('custom');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      enquire(`Forex inquiry: Buy ${currency} worth ₹${inrAmount}`);
     }, 1500);
   };
 

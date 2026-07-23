@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { MEGA_MENUS, FLAT_LINKS, OVERFLOW_LINKS } from '../data/siteMenu';
 
 const WHATSAPP_URL =
   "https://wa.me/919388599000?text=Hi%20Blue%20Spice%2C%20I'm%20looking%20to%20plan%20a%20custom%20family%20trip%20to...";
@@ -28,9 +29,10 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
-  const [mobileHolidaysOpen, setMobileHolidaysOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [openMobileMenus, setOpenMobileMenus] = useState({});
   const location = useLocation();
+
+  const toggleMobileMenu = (id) => setOpenMobileMenus((prev) => ({ ...prev, [id]: !prev[id] }));
 
   const isHome = location.pathname === '/';
   const showSolidHeader = scrolled || !isHome;
@@ -108,57 +110,71 @@ export default function Header() {
         {/* Desktop Menu */}
         <nav className="hidden items-center gap-1.5 lg:flex" aria-label="Main navigation">
 
-          {/* Holidays Dropdown */}
-          <div className="relative group py-2">
-            <Link
-              to="/holidays"
-              className={`nav-link flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm ${showSolidHeader ? 'text-body hover:text-ink' : 'text-white/90 hover:text-white'}`}
-            >
-              Holidays
-              <svg className="w-3 h-3 translate-y-[0.5px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>
-            </Link>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 hidden group-hover:block w-48 bg-white border border-hairline rounded-premium shadow-float py-2 z-50">
-              <Link to="/holidays" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Holidays Hub</Link>
-              <Link to="/holidays/domestic" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Domestic Curation</Link>
-              <Link to="/holidays/international" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Global Escapes</Link>
-              <Link to="/wellness" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Holistic Wellness</Link>
+          {/* Mega Menus: Holidays / Services / SPL Tour */}
+          {MEGA_MENUS.map((menu) => (
+            <div key={menu.id} className="relative group py-2">
+              <Link
+                to={menu.path}
+                className={`nav-link flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm ${showSolidHeader ? 'text-body hover:text-ink' : 'text-white/90 hover:text-white'}`}
+              >
+                {menu.label}
+                <svg className="w-3 h-3 translate-y-[0.5px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </Link>
+              <div
+                className={`absolute top-full left-1/2 -translate-x-1/2 hidden group-hover:block group-focus-within:block bg-white border border-hairline rounded-premium shadow-float py-2 z-50 ${
+                  menu.children.length > 6 ? 'w-[440px] grid grid-cols-2 gap-x-1' : 'w-56'
+                }`}
+              >
+                {menu.children.map((child) => (
+                  <Link
+                    key={child.path}
+                    to={child.path}
+                    className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors rounded-sm"
+                  >
+                    {child.label}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-
-          {/* Services Dropdown */}
-          <div className="relative group py-2">
-            <button
-              className={`nav-link flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm ${showSolidHeader ? 'text-body hover:text-ink' : 'text-white/90 hover:text-white'}`}
-              aria-haspopup="true"
-            >
-              Services
-              <svg className="w-3 h-3 translate-y-[0.5px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>
-            </button>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 hidden group-hover:block w-40 bg-white border border-hairline rounded-premium shadow-float py-2 z-50">
-              <Link to="/forex" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Forex</Link>
-              <Link to="/flights" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Flights</Link>
-              <Link to="/cruises" className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors">Cruises</Link>
-            </div>
-          </div>
+          ))}
 
           {/* Flat Links */}
-          {[
-            { to: '/darshan', label: 'Darshan' },
-            { to: '/brochures', label: 'Brochures' },
-            { to: '/about', label: 'About Us' },
-          ].map((item) => (
+          {FLAT_LINKS.map((item) => (
             <Link
-              key={item.to}
-              to={item.to}
+              key={item.id}
+              to={item.path}
               className={`nav-link px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm ${showSolidHeader ? 'text-body hover:text-ink' : 'text-white/90 hover:text-white'}`}
             >
               {item.label}
             </Link>
           ))}
+
+          {/* More Overflow */}
+          <div className="relative group py-2">
+            <button
+              type="button"
+              className={`nav-link flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm ${showSolidHeader ? 'text-body hover:text-ink' : 'text-white/90 hover:text-white'}`}
+              aria-haspopup="true"
+            >
+              More
+              <svg className="w-3 h-3 translate-y-[0.5px]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            <div className="absolute top-full right-0 hidden group-hover:block group-focus-within:block w-52 bg-white border border-hairline rounded-premium shadow-float py-2 z-50">
+              {OVERFLOW_LINKS.map((item) => (
+                <Link
+                  key={item.id}
+                  to={item.path}
+                  className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-ink hover:bg-canvas hover:text-royal transition-colors rounded-sm"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
@@ -290,74 +306,61 @@ export default function Header() {
                 Home
               </Link>
 
-              {/* Mobile Holidays Accordion */}
-              <div className="border-t border-hairline my-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setMobileHolidaysOpen(!mobileHolidaysOpen)}
-                  className="w-full flex items-center justify-between rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-                >
-                  <span>Holidays</span>
-                  <svg className={`w-4 h-4 text-royal transition-transform duration-300 ${mobileHolidaysOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                  </svg>
-                </button>
-                {mobileHolidaysOpen && (
-                  <div className="flex flex-col gap-1 pl-6 pr-2 py-1 bg-canvas rounded-xl mt-1 animate-fadeIn">
-                    <Link to="/holidays" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
-                      Holidays Hub
-                    </Link>
-                    <Link to="/holidays/domestic" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
-                      Domestic Curation
-                    </Link>
-                    <Link to="/holidays/international" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
-                      Global Escapes
-                    </Link>
-                    <Link to="/wellness" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
-                      Holistic Wellness
-                    </Link>
-                  </div>
-                )}
-              </div>
-
-              {/* Mobile Services Accordion */}
-              <div className="border-t border-hairline my-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                  className="w-full flex items-center justify-between rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-                >
-                  <span>Services</span>
-                  <svg className={`w-4 h-4 text-royal transition-transform duration-300 ${mobileServicesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                  </svg>
-                </button>
-                {mobileServicesOpen && (
-                  <div className="flex flex-col gap-1 pl-6 pr-2 py-1 bg-canvas rounded-xl mt-1 animate-fadeIn">
-                    <Link to="/forex" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
-                      Forex
-                    </Link>
-                    <Link to="/flights" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
-                      Flights
-                    </Link>
-                    <Link to="/cruises" onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
-                      Cruises
-                    </Link>
-                  </div>
-                )}
-              </div>
+              {/* Mobile Mega Menu Accordions */}
+              {MEGA_MENUS.map((menu) => (
+                <div key={menu.id} className="border-t border-hairline my-2 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => toggleMobileMenu(menu.id)}
+                    className="w-full flex items-center justify-between rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                  >
+                    <span>{menu.label}</span>
+                    <svg className={`w-4 h-4 text-royal transition-transform duration-300 ${openMobileMenus[menu.id] ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    </svg>
+                  </button>
+                  {openMobileMenus[menu.id] && (
+                    <div className="flex flex-col gap-1 pl-6 pr-2 py-1 bg-canvas rounded-xl mt-1 animate-fadeIn">
+                      {menu.children.map((child) => (
+                        <Link key={child.path} to={child.path} onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
 
               {/* Mobile Flat Links */}
               <div className="border-t border-hairline my-2 pt-2 flex flex-col gap-1">
-                <Link to="/darshan" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas">
-                  Darshan
-                </Link>
-                <Link to="/brochures" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas">
-                  Brochures
-                </Link>
-                <Link to="/about" onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas">
-                  About Us
-                </Link>
+                {FLAT_LINKS.map((item) => (
+                  <Link key={item.id} to={item.path} onClick={() => setOpen(false)} className="rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas">
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Mobile Overflow Accordion */}
+              <div className="border-t border-hairline my-2 pt-2">
+                <button
+                  type="button"
+                  onClick={() => toggleMobileMenu('more')}
+                  className="w-full flex items-center justify-between rounded-xl px-3.5 py-3 text-lg font-semibold text-ink hover:bg-canvas text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                >
+                  <span>More</span>
+                  <svg className={`w-4 h-4 text-royal transition-transform duration-300 ${openMobileMenus.more ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </button>
+                {openMobileMenus.more && (
+                  <div className="flex flex-col gap-1 pl-6 pr-2 py-1 bg-canvas rounded-xl mt-1 animate-fadeIn">
+                    {OVERFLOW_LINKS.map((item) => (
+                      <Link key={item.id} to={item.path} onClick={() => setOpen(false)} className="rounded-lg px-3.5 py-2 text-sm font-semibold text-body hover:text-royal">
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
             </nav>
 

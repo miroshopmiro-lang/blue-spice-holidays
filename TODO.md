@@ -14,3 +14,12 @@
 - [x] Convert and compress Kerala Wildlife drone video to WebM and insert it in the HeroSection.
 - [x] Build to ensure changes compile.
 
+## Menu restructure (2026-07-23)
+- [x] Rebuilt nav to match client's 9-menu spec (Holidays / Services / SPL Tour / Gallery / Brochures / About / Contact / Collaborate / Refer) with mega-menu + "More" overflow on desktop, matching accordion on mobile.
+- [x] Fixed a pre-existing bug: "Enquire Now" CTAs on every page except the homepage silently did nothing (the itinerary form only existed on `/`). New `useEnquiry` hook navigates home and retries until the form mounts.
+- [x] Folded Darshan into Spiritual Tours (`/holidays/spiritual`); `/darshan` now redirects there.
+- [x] Added 23 sub-pages across Holidays/Services/SPL Tour, a Gallery (Photos/Videos), Contact, Collaborate, and Refer pages.
+- [x] `/wellness` and `/cruises` kept live, footer-linked only (not in the client's menu list).
+- [ ] **Waiting on client**: Gallery photos/videos (client said "I will share"), all brochures beyond the 4 currently loaded, office contact details (address/hours — none exist in the repo), per-category copy for the 16 new generic pages, Collaborate program terms, Refer referral incentive.
+- [ ] Security: a GitHub personal access token is committed in plaintext in `.git/config`'s remote URL — recommend revoking and switching to SSH.
+

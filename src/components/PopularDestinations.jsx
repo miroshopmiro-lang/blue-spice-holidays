@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DESTINATIONS } from '../data/travelData';
+import useEnquiry from '../hooks/useEnquiry';
 
 const CATEGORIES = ['India', 'International', 'Trending'];
 
@@ -197,6 +198,7 @@ export default function PopularDestinations() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeItineraryDest, setActiveItineraryDest] = useState(null);
   const activeCategory = searchParams.get('category') || 'India';
+  const enquire = useEnquiry();
 
   const setActiveCategory = (cat) => {
     searchParams.set('category', cat);
@@ -220,12 +222,7 @@ export default function PopularDestinations() {
   const safeDestinations = visibleDestinations.length ? visibleDestinations : DESTINATIONS;
 
   const handleDestinationClick = (name) => {
-    // Fill search bar & scroll to custom planner form
-    window.dispatchEvent(
-      new CustomEvent('prefill-itinerary', { detail: { destination: name, month: 'Any month' } })
-    );
-    const el = document.getElementById('custom');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    enquire(name);
   };
 
   return (

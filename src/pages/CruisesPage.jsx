@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useEnquiry from '../hooks/useEnquiry';
 
 const FEATURED_CRUISES = [
   { 
@@ -36,21 +37,13 @@ const FEATURED_CRUISES = [
 export default function CruisesPage() {
   const [activeCruise, setActiveCruise] = useState(FEATURED_CRUISES[0].name);
   const [submitted, setSubmitted] = useState(false);
+  const enquire = useEnquiry();
 
   const handleRequest = (name) => {
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
-      window.dispatchEvent(
-        new CustomEvent('prefill-itinerary', { 
-          detail: { 
-            destination: `Cruise request: ${name}`, 
-            month: 'Any month' 
-          } 
-        })
-      );
-      const el = document.getElementById('custom');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      enquire(`Cruise request: ${name}`);
     }, 1500);
   };
 

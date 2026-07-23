@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useEnquiry from '../hooks/useEnquiry';
 
 const FEATURED_ROUTES = [
   { id: 1, from: 'Mumbai (BOM)', to: 'London (LHR)', airline: 'British Airways', price: '₹72,400', type: 'Direct' },
@@ -13,22 +14,14 @@ export default function FlightsPage() {
   const [date, setDate] = useState('');
   const [cabin, setCabin] = useState('Economy');
   const [submitted, setSubmitted] = useState(false);
+  const enquire = useEnquiry();
 
   const handleSearch = (e) => {
     e.preventDefault();
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
-      window.dispatchEvent(
-        new CustomEvent('prefill-itinerary', { 
-          detail: { 
-            destination: `Flight from ${from || 'your city'} to ${to || 'destination'} on ${date || 'any date'} (${cabin} class)`, 
-            month: 'Any month' 
-          } 
-        })
-      );
-      const el = document.getElementById('custom');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      enquire(`Flight from ${from || 'your city'} to ${to || 'destination'} on ${date || 'any date'} (${cabin} class)`);
     }, 1500);
   };
 

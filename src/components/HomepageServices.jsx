@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useEnquiry from '../hooks/useEnquiry';
 
 const TIERS = [
   {
@@ -31,17 +32,9 @@ const TIERS = [
 ];
 
 export default function HomepageServices() {
+  const enquire = useEnquiry();
   const handleInquire = (serviceName) => {
-    window.dispatchEvent(
-      new CustomEvent('prefill-itinerary', { 
-        detail: { 
-          destination: `Service Inquiry: ${serviceName}`, 
-          month: 'Any month' 
-        } 
-      })
-    );
-    const el = document.getElementById('custom');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    enquire(`Service Inquiry: ${serviceName}`);
   };
 
   return (
