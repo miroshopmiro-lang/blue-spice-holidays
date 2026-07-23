@@ -7,17 +7,15 @@
 /brochures/*
   Cache-Control: public, max-age=2592000
 
-# Prevent CDN/browser caching for Service Worker, webmanifest, and entry HTML so updates are instant
+# /sw.js is now a one-time kill switch (vite.config.js: selfDestroying) that
+# unregisters any service worker a past build left installed and clears its
+# caches. It must stay no-cache so returning visitors fetch the real kill
+# switch immediately rather than a stale cached copy of the old SW.
 /sw.js
   Cache-Control: no-cache, no-store, must-revalidate
   Pragma: no-cache
   Expires: 0
 
-/dev-dist/sw.js
-  Cache-Control: no-cache, no-store, must-revalidate
-
-/manifest.webmanifest
-  Cache-Control: no-cache, no-store, must-revalidate
-
+# Entry HTML never cached so deploys are visible immediately.
 /index.html
   Cache-Control: no-cache, no-store, must-revalidate

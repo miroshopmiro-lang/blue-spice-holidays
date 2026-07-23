@@ -4,39 +4,14 @@ import App from './App.jsx';
 import './index.css';
 import { registerSW } from 'virtual:pwa-register';
 
-// Register the service worker with immediate update checking and automatic page reload on controller change
-const updateSW = registerSW({
-  immediate: true,
-  onNeedRefresh() {
-    updateSW(true); // force activate new SW
-  },
-  onOfflineReady() {
-    console.info('[BlueSpice SW] App is ready to work offline.');
-  },
-  onRegisterError(error) {
-    console.error('[BlueSpice SW] Registration failed:', error);
-  },
-});
-
-// Auto-reload open tabs when a new service worker takes over control
-if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-  let refreshing = false;
-  navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (!refreshing) {
-      refreshing = true;
-      window.location.reload();
-    }
-  });
-
-  // Check for updates every 30 seconds & when tab regains focus
-  setInterval(() => {
-    updateSW();
-  }, 30000);
-
-  window.addEventListener('focus', () => {
-    updateSW();
-  });
-}
+// This site no longer ships a service worker (see vite.config.js for why —
+// neither reference site, keralatourism.org or blacktomato.com, uses one).
+// This call still has one job: find any service worker a past build left
+// registered in a visitor's browser and let its kill switch run — it
+// unregisters itself, clears its caches, and reloads the tab on its own.
+// Once that has rolled out to returning visitors, this call (and the
+// virtual:pwa-register import) can be deleted entirely.
+registerSW({ immediate: true });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

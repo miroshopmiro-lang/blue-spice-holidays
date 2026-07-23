@@ -158,8 +158,7 @@ const HeroVideo = memo(function HeroVideo({
   isTabVisible,
   activeVideoRef,
   isMobile,
-  preloadAuto,
-  posterOnly
+  preloadAuto
 }) {
   const videoRef = useRef(null);
   const [isBuffering, setIsBuffering] = useState(false);
@@ -177,13 +176,13 @@ const HeroVideo = memo(function HeroVideo({
   // the mobile breakpoint) — swapping <source> children alone does not reload.
   useEffect(() => {
     const video = videoRef.current;
-    if (video && !posterOnly) video.load();
-  }, [webm, posterOnly]);
+    if (video) video.load();
+  }, [webm]);
 
   // Play/pause dynamically based on active state + visibility.
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || reducedMotion || posterOnly) return;
+    if (!video || reducedMotion) return;
 
     if (isActive && isVisible && isTabVisible) {
       video.muted = true;
@@ -196,7 +195,7 @@ const HeroVideo = memo(function HeroVideo({
     } else {
       video.pause();
     }
-  }, [isActive, isVisible, isTabVisible, reducedMotion, posterOnly, slide.id, webm]);
+  }, [isActive, isVisible, isTabVisible, reducedMotion, slide.id, webm]);
 
   // Clear spinner + disarm the stall watchdog whenever this slide is not active.
   useEffect(() => {
@@ -218,13 +217,13 @@ const HeroVideo = memo(function HeroVideo({
   // fade-in could complete, so it was invisible in exactly the case it exists for.
   useEffect(() => {
     let t;
-    if (isBuffering && isActive && !posterOnly) {
+    if (isBuffering && isActive) {
       t = setTimeout(() => setShowSpinner(true), 300);
     } else {
       setShowSpinner(false);
     }
     return () => clearTimeout(t);
-  }, [isBuffering, isActive, posterOnly]);
+  }, [isBuffering, isActive]);
 
   // Clean up the watchdog on unmount.
   useEffect(() => () => clearTimeout(stallTimer.current), []);
@@ -239,25 +238,6 @@ const HeroVideo = memo(function HeroVideo({
     }, 6000);
   };
   const disarmStall = () => clearTimeout(stallTimer.current);
-
-  // Degraded mode for weak connections / Data Saver: show the (tiny, cached)
-  // poster instead of downloading video, so it's a clean still — never a stutter.
-  if (posterOnly) {
-    return (
-      <div
-        className={`absolute inset-0 w-full h-full overflow-hidden transition-opacity duration-1000 ${
-          isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'
-        }`}
-      >
-        <img
-          src={slide.poster}
-          alt=""
-          aria-hidden="true"
-          className={`w-full h-full object-cover ${objectPos}`}
-        />
-      </div>
-    );
-  }
 
   return (
     <div
@@ -334,7 +314,6 @@ export default memo(function HeroSection({
   const [reducedMotion, setReducedMotion] = useState(propsReducedMotion);
   const [isVisible, setIsVisible] = useState(propsIsVisible);
   const [isTabVisible, setIsTabVisible] = useState(propsIsTabVisible);
-  const [lowData, setLowData] = useState(false);
   const sectionRef = useRef(null);
   const activeVideoRef = useRef(null);
 
@@ -422,21 +401,6 @@ export default memo(function HeroSection({
     return () => mq.removeEventListener('change', update);
   }, []);
 
-  // Detect a weak connection (2g/3g/slow-2g) or Data Saver. On those, the hero
-  // falls back to cross-fading posters instead of starving the video into
-  // frozen frames — the exact failure the client hit on congested wifi.
-  useEffect(() => {
-    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    if (!conn) return;
-    const evaluate = () => {
-      const et = conn.effectiveType || '';
-      setLowData(conn.saveData === true || et === 'slow-2g' || et === '2g' || et === '3g');
-    };
-    evaluate();
-    conn.addEventListener?.('change', evaluate);
-    return () => conn.removeEventListener?.('change', evaluate);
-  }, []);
-
   useEffect(() => {
     if (prevIndex === null) return;
     const timer = setTimeout(() => {
@@ -444,14 +408,6 @@ export default memo(function HeroSection({
     }, 1000); // clear outgoing slide after transition duration
     return () => clearTimeout(timer);
   }, [index, prevIndex]);
-
-  // In poster fallback mode there is no video 'ended' event to advance the hero,
-  // so drive the rotation on a fixed timer to keep the destinations cycling.
-  useEffect(() => {
-    if (!lowData || reducedMotion || !isVisible || !isTabVisible) return;
-    const timer = setTimeout(() => nextSlide(), 5000);
-    return () => clearTimeout(timer);
-  }, [lowData, reducedMotion, isVisible, isTabVisible, index]);
 
   // Reset progress bar widths on index change
   useEffect(() => {
@@ -465,7 +421,7 @@ export default memo(function HeroSection({
 
   // Track and update progress bars directly in DOM to bypass React re-renders at 60fps
   useEffect(() => {
-    if (reducedMotion || !isVisible || !isTabVisible || lowData) {
+    if (reducedMotion || !isVisible || !isTabVisible) {
       return;
     }
     let frameId;
@@ -497,7 +453,7 @@ export default memo(function HeroSection({
         cancelAnimationFrame(frameId);
       }
     };
-  }, [index, reducedMotion, isVisible, isTabVisible, lowData]);
+  }, [index, reducedMotion, isVisible, isTabVisible]);
 
   return (
     <section ref={sectionRef} id="top" className="relative h-screen w-full overflow-hidden bg-ink grain">
@@ -531,7 +487,6 @@ export default memo(function HeroSection({
               activeVideoRef={activeVideoRef}
               isMobile={isMobile}
               preloadAuto={preloadAuto}
-              posterOnly={lowData}
             />
           );
         })}
