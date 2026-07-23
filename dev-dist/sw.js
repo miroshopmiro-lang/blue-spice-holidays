@@ -70,7 +70,7 @@ if (!self.define) {
 define(['./workbox-7c269be9'], (function (workbox) { 'use strict';
 
   workbox.setCacheNameDetails({
-    prefix: "bluespice-v14"
+    prefix: "bluespice-v17"
   });
   self.skipWaiting();
   workbox.clientsClaim();
@@ -84,7 +84,7 @@ define(['./workbox-7c269be9'], (function (workbox) { 'use strict';
     "revision": "3ca0b8505b4bec776b69afdba2768812"
   }, {
     "url": "index.html",
-    "revision": "0.btfp3jfcm7s"
+    "revision": "0.k811rl5u8c4"
   }], {});
   workbox.cleanupOutdatedCaches();
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {

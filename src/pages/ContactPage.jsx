@@ -55,7 +55,12 @@ export default function ContactPage() {
     <div className="bg-brand-surface pt-24 min-h-screen text-brand-ink">
       <section className="relative bg-brand-ink text-white py-24 px-6 text-center overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/30 via-brand-ink to-brand-ink opacity-90 z-0" />
-        <div className="relative z-10 max-w-4xl mx-auto">
+        <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+          <img
+            src="/android-chrome-192x192.png"
+            alt="Blue Spice Holidays Logo"
+            className="w-14 h-14 object-contain rounded-2xl bg-white/10 p-2 border border-white/20 shadow-lg mb-5"
+          />
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-brand-accent/20 text-brand-accent border border-brand-accent/30">
             Get In Touch
           </span>

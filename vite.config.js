@@ -28,11 +28,11 @@ export default defineConfig({
 
         // Cache name includes a version → when you bump it, all old caches
         // are purged on the next SW activation (manual cache busting lever).
-        cacheId: 'bluespice-v17',
+        cacheId: 'bluespice-v18',
 
         // Precache all Vite-built assets (they have content hashes in their
         // filenames, so they are always fresh and safe to serve from cache).
-        globPatterns: ['**/*.{js,css,html,ico,svg,woff2}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
 
         // Runtime caching: strategies for assets NOT in the precache manifest.
         runtimeCaching: [
@@ -96,6 +96,21 @@ export default defineConfig({
         display: 'standalone',
         start_url: '/',
         icons: [
+          {
+            src: '/favicon-32x32.png',
+            sizes: '32x32',
+            type: 'image/png',
+          },
+          {
+            src: '/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
           {
             src: '/favicon.ico',
             sizes: '48x48',

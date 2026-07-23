@@ -78,7 +78,12 @@ export default function AboutUsPage() {
           }}
           aria-hidden="true"
         />
-        <div className="relative z-10 max-w-3xl mx-auto">
+        <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center text-center">
+          <img
+            src="/android-chrome-192x192.png"
+            alt="Blue Spice Holidays Logo"
+            className="w-16 h-16 object-contain rounded-2xl bg-white/10 p-2 border border-white/20 shadow-lg mb-6"
+          />
           <span className="inline-block px-3 py-1 rounded-full text-[10px] font-semibold tracking-[0.2em] uppercase bg-gold/20 text-gold border border-gold/30 font-mono mb-5">
             Established 2009 · Kochi, Kerala
           </span>

@@ -101,10 +101,19 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
         <Link
           to="/"
-          className={`font-display text-2xl font-semibold tracking-tight transition-colors duration-300 ${showSolidHeader ? 'text-ink' : 'text-white'
-            }`}
+          className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-lg"
         >
-          Blue Spice <span className={`transition-colors duration-300 ${showSolidHeader ? 'text-ink' : 'text-white'}`}>Holidays</span>
+          <img
+            src="/android-chrome-192x192.png"
+            alt="Blue Spice Holidays"
+            className="w-8 h-8 sm:w-9 sm:h-9 object-contain rounded-lg shadow-sm transition-transform duration-300 group-hover:scale-105"
+          />
+          <span
+            className={`font-display text-xl sm:text-2xl font-semibold tracking-tight transition-colors duration-300 ${showSolidHeader ? 'text-ink' : 'text-white'
+              }`}
+          >
+            Blue Spice <span className={`transition-colors duration-300 ${showSolidHeader ? 'text-ink' : 'text-white'}`}>Holidays</span>
+          </span>
         </Link>
 
         {/* Desktop Menu */}
@@ -289,7 +298,14 @@ export default function Header() {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="flex items-center justify-between">
-              <span className="font-display text-lg font-semibold text-ink">Menu</span>
+              <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-2.5">
+                <img
+                  src="/android-chrome-192x192.png"
+                  alt="Blue Spice Holidays Logo"
+                  className="w-8 h-8 object-contain rounded-lg shadow-sm"
+                />
+                <span className="font-display text-lg font-semibold text-ink">Blue Spice Holidays</span>
+              </Link>
               <button
                 type="button"
                 onClick={() => setOpen(false)}

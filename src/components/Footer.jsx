@@ -91,6 +91,28 @@ export default function Footer() {
       />
       
       <div className="container-lux relative z-10">
+        {/* Brand Header with Logo */}
+        <div className="mb-12 pb-8 border-b border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <Link to="/" className="flex items-center gap-3.5 group">
+            <img
+              src="/android-chrome-192x192.png"
+              alt="Blue Spice Holidays Logo"
+              className="w-12 h-12 object-contain rounded-xl bg-white/10 p-1 border border-white/20 group-hover:scale-105 transition-transform duration-300 shadow-md"
+            />
+            <div>
+              <span className="font-display text-2xl font-bold tracking-tight text-white block">
+                Blue Spice <span className="text-gold">Holidays</span>
+              </span>
+              <span className="text-[11px] text-white/60 font-mono uppercase tracking-wider block mt-0.5">
+                Bespoke Indian Journeys &amp; Global Escapes · Est. 2009
+              </span>
+            </div>
+          </Link>
+          <p className="text-xs text-white/60 max-w-md leading-relaxed">
+            Headquartered in Kochi, Kerala. Crafting micro-level customized planning and 24/7 on-ground coordination across India and worldwide destinations.
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <Column title="Holidays" items={HOLIDAYS} />
           <Column title="Services" items={SERVICES} />
