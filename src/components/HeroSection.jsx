@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, useRef, memo } from 'react';
 import { motion } from 'framer-motion';
 import Marquee from './Marquee';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 const LANGUAGES = [
   { code: 'en', name: 'English', iso: 'gb' },
@@ -136,14 +137,53 @@ const MARQUEE_ITEMS = [
   'Curated International Escapes'
 ];
 
-const HeroVideo = memo(function HeroVideo({ slide, isActive, isPrev, isNext, nextSlide, reducedMotion, isVisible, isTabVisible, activeVideoRef }) {
+// Derive the versioned source paths for a slide from its base filename.
+// slide.video is '/images/<base>.webm' — we serve re-encoded, version-suffixed
+// files: 720p desktop (`-v2`) and lighter 480p mobile (`-v2-m`), each with a
+// WebM (VP9) primary and an H.264 MP4 fallback for older iOS/Safari.
+function sourcesFor(slide, isMobile) {
+  const file = slide.video.slice(slide.video.lastIndexOf('/') + 1);
+  const base = file.slice(0, file.lastIndexOf('.'));
+  return isMobile
+    ? { webm: `/images/${base}-v2-m.webm`, mp4: `/images/${base}-v2-m.mp4` }
+    : { webm: `/images/${base}-v2.webm`, mp4: `/images/${base}-v2.mp4` };
+}
+
+const HeroVideo = memo(function HeroVideo({
+  slide,
+  isActive,
+  nextSlide,
+  reducedMotion,
+  isVisible,
+  isTabVisible,
+  activeVideoRef,
+  isMobile,
+  preloadAuto,
+  posterOnly
+}) {
   const videoRef = useRef(null);
   const [isBuffering, setIsBuffering] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(false);
+  const stallTimer = useRef(null);
 
-  // Handle play/pause state dynamically
+  const { webm, mp4 } = useMemo(() => sourcesFor(slide, isMobile), [slide, isMobile]);
+
+  const objectPos =
+    slide.id === 'himalayas' || slide.id === 'himalayas-2'
+      ? 'object-[65%_center] sm:object-center'
+      : 'object-center';
+
+  // Reload the media element when the chosen source set changes (e.g. crossing
+  // the mobile breakpoint) — swapping <source> children alone does not reload.
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || reducedMotion) return;
+    if (video && !posterOnly) video.load();
+  }, [webm, posterOnly]);
+
+  // Play/pause dynamically based on active state + visibility.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || reducedMotion || posterOnly) return;
 
     if (isActive && isVisible && isTabVisible) {
       video.muted = true;
@@ -151,27 +191,73 @@ const HeroVideo = memo(function HeroVideo({ slide, isActive, isPrev, isNext, nex
         if (err.name !== 'AbortError') {
           console.warn(`Autoplay blocked or interrupted for video ${slide.id}:`, err);
         }
-        // If autoplay is blocked by Low Power Mode or device capability, clear spinner
         setIsBuffering(false);
       });
     } else {
       video.pause();
     }
-  }, [isActive, isVisible, isTabVisible, reducedMotion, slide.id]);
+  }, [isActive, isVisible, isTabVisible, reducedMotion, posterOnly, slide.id, webm]);
 
-  // Ensure spinner is cleared if slide is inactive
+  // Clear spinner + disarm the stall watchdog whenever this slide is not active.
   useEffect(() => {
     if (!isActive) {
       setIsBuffering(false);
+      clearTimeout(stallTimer.current);
     }
   }, [isActive]);
 
-  // Sync reference when this video becomes active
+  // Keep the shared active-video reference pointed at the live element.
   useEffect(() => {
     if (isActive && activeVideoRef) {
       activeVideoRef.current = videoRef.current;
     }
   }, [isActive, activeVideoRef]);
+
+  // Only surface the spinner after a genuine, sustained stall (~300ms). This
+  // fixes the old bug where onPlaying/onCanPlay cleared it faster than its
+  // fade-in could complete, so it was invisible in exactly the case it exists for.
+  useEffect(() => {
+    let t;
+    if (isBuffering && isActive && !posterOnly) {
+      t = setTimeout(() => setShowSpinner(true), 300);
+    } else {
+      setShowSpinner(false);
+    }
+    return () => clearTimeout(t);
+  }, [isBuffering, isActive, posterOnly]);
+
+  // Clean up the watchdog on unmount.
+  useEffect(() => () => clearTimeout(stallTimer.current), []);
+
+  // Stall watchdog: if an active clip stays starved beyond the runway, advance
+  // rather than hang on a frozen frame. The re-encode makes this rare, but it
+  // guarantees the hero never gets stuck the way the client experienced.
+  const armStall = () => {
+    clearTimeout(stallTimer.current);
+    stallTimer.current = setTimeout(() => {
+      if (isActive && !reducedMotion) nextSlide();
+    }, 6000);
+  };
+  const disarmStall = () => clearTimeout(stallTimer.current);
+
+  // Degraded mode for weak connections / Data Saver: show the (tiny, cached)
+  // poster instead of downloading video, so it's a clean still — never a stutter.
+  if (posterOnly) {
+    return (
+      <div
+        className={`absolute inset-0 w-full h-full overflow-hidden transition-opacity duration-1000 ${
+          isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'
+        }`}
+      >
+        <img
+          src={slide.poster}
+          alt=""
+          aria-hidden="true"
+          className={`w-full h-full object-cover ${objectPos}`}
+        />
+      </div>
+    );
+  }
 
   return (
     <div
@@ -187,9 +273,8 @@ const HeroVideo = memo(function HeroVideo({ slide, isActive, isPrev, isNext, nex
           }
         }}
         id={`hero-video-${slide.id}`}
-        src={slide.video}
         poster={slide.poster}
-        preload={isActive || isNext ? "auto" : "metadata"}
+        preload={preloadAuto ? 'auto' : 'metadata'}
         loop={false}
         muted={true}
         playsInline
@@ -197,22 +282,38 @@ const HeroVideo = memo(function HeroVideo({ slide, isActive, isPrev, isNext, nex
         disableRemotePlayback={true}
         controlsList="nodownload nofullscreen noremoteplayback"
         onEnded={isActive && !reducedMotion ? nextSlide : undefined}
-        onWaiting={() => setIsBuffering(true)}
-        onPlaying={() => setIsBuffering(false)}
-        onCanPlay={() => setIsBuffering(false)}
+        onWaiting={() => {
+          setIsBuffering(true);
+          if (isActive) armStall();
+        }}
+        onPlaying={() => {
+          setIsBuffering(false);
+          disarmStall();
+        }}
+        onCanPlay={() => {
+          setIsBuffering(false);
+          disarmStall();
+        }}
         onSeeked={() => setIsBuffering(false)}
         onLoadStart={() => setIsBuffering(true)}
         onLoadedData={() => setIsBuffering(false)}
-        onError={() => setIsBuffering(false)}
-        className={`w-full h-full object-cover ${
-          (slide.id === 'himalayas' || slide.id === 'himalayas-2') ? 'object-[65%_center] sm:object-center' : 'object-center'
-        }`}
-      />
+        onError={() => {
+          setIsBuffering(false);
+          if (isActive) armStall();
+        }}
+        className={`w-full h-full object-cover ${objectPos}`}
+      >
+        {/* WebM (VP9) first — smaller at equal quality; MP4 (H.264) fallback for
+            browsers without VP9/WebM support (older iOS/Safari). Type-based
+            selection is reliable across engines, unlike <source media>. */}
+        <source src={webm} type="video/webm" />
+        <source src={mp4} type="video/mp4" />
+      </video>
 
-      {/* Premium buffering spinner overlay */}
-      {isBuffering && isActive && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/25 backdrop-blur-[1px] z-30 transition-opacity duration-300">
-          <div className="flex flex-col items-center gap-3 animate-fadeIn">
+      {/* Premium buffering spinner overlay — only after a sustained stall. */}
+      {showSpinner && isActive && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/25 backdrop-blur-[1px] z-30">
+          <div className="flex flex-col items-center gap-3">
             {/* Spinning Gold Circle */}
             <div className="h-10 w-10 animate-spin rounded-full border-2 border-gold border-t-transparent" />
             <span className="text-[10px] uppercase font-mono tracking-[0.2em] text-white/80">Buffering...</span>
@@ -233,8 +334,12 @@ export default memo(function HeroSection({
   const [reducedMotion, setReducedMotion] = useState(propsReducedMotion);
   const [isVisible, setIsVisible] = useState(propsIsVisible);
   const [isTabVisible, setIsTabVisible] = useState(propsIsTabVisible);
+  const [lowData, setLowData] = useState(false);
   const sectionRef = useRef(null);
   const activeVideoRef = useRef(null);
+
+  // Phones get the lighter 480p renditions; desktops the 720p set.
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   const handleLanguageChange = (code) => {
     const select = document.querySelector('.goog-te-combo');
@@ -246,7 +351,7 @@ export default memo(function HeroSection({
 
     const hostname = window.location.hostname;
     const isLocal = hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.');
-    
+
     if (isLocal) {
       alert(
         "Google Translate widget is still loading or blocked by an AdBlocker/Shield on localhost.\n\n" +
@@ -296,11 +401,15 @@ export default memo(function HeroSection({
     return () => observer.disconnect();
   }, []);
 
-  // Listen for tab focus/blur and browser minimizing (Page Visibility API)
+  // Listen for tab focus/blur and browser minimizing (Page Visibility API).
+  // Sync once on mount too: if the page loads while already hidden (opened in a
+  // background tab), no visibilitychange event fires, so without this the hero
+  // would autoplay and burn bandwidth off-screen.
   useEffect(() => {
     const handleVisibilityChange = () => {
       setIsTabVisible(document.visibilityState === 'visible');
     };
+    handleVisibilityChange();
     document.addEventListener('visibilitychange', handleVisibilityChange);
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, []);
@@ -313,6 +422,21 @@ export default memo(function HeroSection({
     return () => mq.removeEventListener('change', update);
   }, []);
 
+  // Detect a weak connection (2g/3g/slow-2g) or Data Saver. On those, the hero
+  // falls back to cross-fading posters instead of starving the video into
+  // frozen frames — the exact failure the client hit on congested wifi.
+  useEffect(() => {
+    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (!conn) return;
+    const evaluate = () => {
+      const et = conn.effectiveType || '';
+      setLowData(conn.saveData === true || et === 'slow-2g' || et === '2g' || et === '3g');
+    };
+    evaluate();
+    conn.addEventListener?.('change', evaluate);
+    return () => conn.removeEventListener?.('change', evaluate);
+  }, []);
+
   useEffect(() => {
     if (prevIndex === null) return;
     const timer = setTimeout(() => {
@@ -320,6 +444,14 @@ export default memo(function HeroSection({
     }, 1000); // clear outgoing slide after transition duration
     return () => clearTimeout(timer);
   }, [index, prevIndex]);
+
+  // In poster fallback mode there is no video 'ended' event to advance the hero,
+  // so drive the rotation on a fixed timer to keep the destinations cycling.
+  useEffect(() => {
+    if (!lowData || reducedMotion || !isVisible || !isTabVisible) return;
+    const timer = setTimeout(() => nextSlide(), 5000);
+    return () => clearTimeout(timer);
+  }, [lowData, reducedMotion, isVisible, isTabVisible, index]);
 
   // Reset progress bar widths on index change
   useEffect(() => {
@@ -333,7 +465,7 @@ export default memo(function HeroSection({
 
   // Track and update progress bars directly in DOM to bypass React re-renders at 60fps
   useEffect(() => {
-    if (reducedMotion || !isVisible || !isTabVisible) {
+    if (reducedMotion || !isVisible || !isTabVisible || lowData) {
       return;
     }
     let frameId;
@@ -341,16 +473,19 @@ export default memo(function HeroSection({
       const video = activeVideoRef.current;
       if (video && video.duration) {
         const pct = (video.currentTime / video.duration) * 100;
+        // Floor at a small sliver so the active track always reads as "in progress"
+        // rather than an ambiguous empty bar during the first moments of playback.
+        const width = `${Math.max(pct, 1.5)}%`;
 
         // Update mobile progress bar
         if (mobileProgressRef.current) {
-          mobileProgressRef.current.style.width = `${pct}%`;
+          mobileProgressRef.current.style.width = width;
         }
 
         // Update active desktop progress bar
         const activeDesktopBar = desktopProgressRefs.current[index];
         if (activeDesktopBar) {
-          activeDesktopBar.style.width = `${pct}%`;
+          activeDesktopBar.style.width = width;
         }
       }
       frameId = requestAnimationFrame(updateProgress);
@@ -362,7 +497,7 @@ export default memo(function HeroSection({
         cancelAnimationFrame(frameId);
       }
     };
-  }, [index, reducedMotion, isVisible, isTabVisible]);
+  }, [index, reducedMotion, isVisible, isTabVisible, lowData]);
 
   return (
     <section ref={sectionRef} id="top" className="relative h-screen w-full overflow-hidden bg-ink grain">
@@ -371,23 +506,32 @@ export default memo(function HeroSection({
         {HERO_SLIDES.map((slide, i) => {
           const isActive = i === index;
           const isPrev = i === prevIndex;
-          const isNext = i === (index + 1) % HERO_SLIDES.length;
+          // Distance ahead of the active slide (0 = active, 1 = next, ...).
+          const ahead = (i - index + HERO_SLIDES.length) % HERO_SLIDES.length;
 
-          // Dynamic Rendering: Only mount active, fading out, or next (preloading) slide in DOM
-          if (!isActive && !isPrev && !isNext) return null;
+          // Mount a runway of the next 3 clips (plus the outgoing one) so the
+          // browser can fetch ahead during the current clip's playback instead
+          // of being confined to each clip's own ~4s window — this is what gives
+          // us a long buffering runway like keralatourism.org's 20s clips.
+          const inRunway = ahead <= 3;
+          if (!isActive && !isPrev && !inRunway) return null;
+
+          // Fully preload the active clip plus the next two; metadata only beyond.
+          const preloadAuto = isActive || ahead === 1 || ahead === 2;
 
           return (
             <HeroVideo
               key={slide.id}
               slide={slide}
               isActive={isActive}
-              isPrev={isPrev}
-              isNext={isNext}
               nextSlide={nextSlide}
               reducedMotion={reducedMotion}
               isVisible={isVisible}
               isTabVisible={isTabVisible}
               activeVideoRef={activeVideoRef}
+              isMobile={isMobile}
+              preloadAuto={preloadAuto}
+              posterOnly={lowData}
             />
           );
         })}

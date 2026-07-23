@@ -1,3 +1,12 @@
+# Long-cache all media assets (30 days) so hero videos/posters download once and loop for free.
+# Matches Black Tomato's 31-day policy and replaces the prior 4-hour default that let warm caches
+# age out during peak hours and re-download the whole hero on a cold buffer. Re-encoded hero clips
+# are version-suffixed (-v2 / -v2-m), so a future re-encode gets a new filename and busts cleanly.
+/images/*
+  Cache-Control: public, max-age=2592000
+/brochures/*
+  Cache-Control: public, max-age=2592000
+
 # Prevent CDN/browser caching for Service Worker, webmanifest, and entry HTML so updates are instant
 /sw.js
   Cache-Control: no-cache, no-store, must-revalidate

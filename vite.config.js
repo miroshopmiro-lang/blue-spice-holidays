@@ -28,7 +28,7 @@ export default defineConfig({
 
         // Cache name includes a version → when you bump it, all old caches
         // are purged on the next SW activation (manual cache busting lever).
-        cacheId: 'bluespice-v18',
+        cacheId: 'bluespice-v19',
 
         // Precache all Vite-built assets (they have content hashes in their
         // filenames, so they are always fresh and safe to serve from cache).
@@ -49,9 +49,18 @@ export default defineConfig({
             },
           },
           {
-            // Large media (WebM videos, WebP images) in /images/ and /brochures/.
+            // Poster/still images (WebP/PNG/JPG/GIF) in /images/ and /brochures/.
             // Serve from cache instantly after first load; expire after 30 days.
-            urlPattern: /\/(images|brochures)\/.+\.(webm|webp|mp4|png|jpg|jpeg|gif)$/i,
+            //
+            // NOTE: video (.webm/.mp4) is deliberately NOT handled here. Media
+            // elements always issue Range requests, which the CDN answers with
+            // 206 Partial Content — rejected by cacheableResponse [0, 200], so
+            // the SW never cached a single video yet still sat in the fetch path
+            // and re-proxied the whole hero every loop. Leaving video to the
+            // browser's native media stack lets it stream 206s directly and the
+            // HTTP cache (30-day headers in public/_headers) stores each file
+            // once — exactly how keralatourism.org / blacktomato.com deliver.
+            urlPattern: /\/(images|brochures)\/.+\.(webp|png|jpg|jpeg|gif)$/i,
             handler: 'CacheFirst',
             options: {
               cacheName: 'bluespice-media',
