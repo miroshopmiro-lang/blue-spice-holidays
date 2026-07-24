@@ -174,7 +174,15 @@ const HeroVideo = memo(function HeroVideo({
 
   // Reload the media element when the chosen source set changes (e.g. crossing
   // the mobile breakpoint) — swapping <source> children alone does not reload.
+  // Skipped on mount: the element already performs its own initial resource
+  // selection, so calling load() there just aborted that in-flight request and
+  // started a second identical one (measured: 2 requests per clip per page load).
+  const didMountRef = useRef(false);
   useEffect(() => {
+    if (!didMountRef.current) {
+      didMountRef.current = true;
+      return;
+    }
     const video = videoRef.current;
     if (video) video.load();
   }, [webm]);

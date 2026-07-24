@@ -37,8 +37,13 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Space+Mono&display=swap"
       rel="stylesheet"
     />
-    <!-- Preload first hero image (Largest Contentful Paint) -->
-    <link rel="preload" href="/images/hero-kerala-houseboat.webp" as="image" type="image/webp" />
+    <!-- Preload the first hero slide's poster (Largest Contentful Paint).
+         This is the still the hero paints before video data arrives, so it must
+         land early — the same reliance on a native poster that keralatourism.org
+         and blacktomato.com use. Must stay in sync with HERO_SLIDES[0].poster;
+         previously this pointed at hero-kerala-houseboat.webp, which no component
+         renders, so it cost a request and preloaded nothing that appears. -->
+    <link rel="preload" href="/images/taj-mahal-poster.webp" as="image" type="image/webp" />
     <script defer src="https://cloud.umami.is/script.js" data-website-id="ad14ee85-5a93-421d-9b47-2615cac5991c"></script>
   </head>
   <body>

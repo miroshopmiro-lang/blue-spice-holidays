@@ -2,7 +2,16 @@ import { useEffect, useState } from 'react'
 
 // Lightweight media-query hook. Used to gate desktop-only / motion-sensitive effects.
 export function useMediaQuery(query) {
-  const [matches, setMatches] = useState(false)
+  // Resolve synchronously on the very first render rather than defaulting to
+  // false and correcting in an effect. That default made every phone render
+  // once as "desktop", so the hero mounted the 720p sources and fired a request
+  // for each before the effect swapped it to the 480p set — and if the match
+  // changed between first paint and the listener attaching, the wrong rendition
+  // could stick (observed: desktop viewports serving the mobile 480p videos).
+  const [matches, setMatches] = useState(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return false
+    return window.matchMedia(query).matches
+  })
 
   useEffect(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return
