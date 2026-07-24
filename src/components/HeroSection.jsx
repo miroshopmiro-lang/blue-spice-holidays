@@ -186,8 +186,7 @@ const HeroVideo = memo(function HeroVideo({
   isTabVisible,
   activeVideoRef,
   isMobile,
-  preloadAuto,
-  posterOnly
+  preloadAuto
 }) {
   const videoRef = useRef(null);
   const [isBuffering, setIsBuffering] = useState(false);
@@ -218,9 +217,17 @@ const HeroVideo = memo(function HeroVideo({
   }, [primarySrc]);
 
   // Play/pause dynamically based on active state + visibility.
+  //
+  // Deliberately NOT gated on reducedMotion. That preference asks for less
+  // animation — crossfades, parallax, entrance transitions — not for the page's
+  // main content to stop. Muted background footage is the hero's entire point,
+  // and mainstream sites do not drop it for this flag either. Gating playback
+  // here is what left a client's hero dead on slide one: it also unwired
+  // onEnded, so nothing ever advanced. Reduced motion now removes the
+  // transitions instead, and the video keeps running.
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || reducedMotion) return;
+    if (!video) return;
 
     if (isActive && isVisible && isTabVisible) {
       video.muted = true;
@@ -233,7 +240,7 @@ const HeroVideo = memo(function HeroVideo({
     } else {
       video.pause();
     }
-  }, [isActive, isVisible, isTabVisible, reducedMotion, slide.id, primarySrc]);
+  }, [isActive, isVisible, isTabVisible, slide.id, primarySrc]);
 
   // Clear spinner + disarm the stall watchdog whenever this slide is not active.
   useEffect(() => {
@@ -272,42 +279,16 @@ const HeroVideo = memo(function HeroVideo({
   const armStall = () => {
     clearTimeout(stallTimer.current);
     stallTimer.current = setTimeout(() => {
-      if (isActive && !reducedMotion) nextSlide();
+      if (isActive) nextSlide();
     }, 6000);
   };
   const disarmStall = () => clearTimeout(stallTimer.current);
 
-  // Reduced motion renders the slide's poster instead of a video. This is the
-  // accessible reading of the preference — no autoplaying footage — and it also
-  // means no video is downloaded at all on those devices.
-  //
-  // Placed after every hook above, never before: this branch is entered when
-  // reducedMotion flips true *after* mount (the media query resolves in an effect
-  // one tick later), so an early return above the hooks would change the hook
-  // count between renders and crash the component in exactly the case it exists
-  // to handle.
-  if (posterOnly) {
-    return (
-      <div
-        className={`absolute inset-0 w-full h-full overflow-hidden ${
-          isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'
-        }`}
-      >
-        <img
-          src={slide.poster}
-          alt=""
-          aria-hidden="true"
-          className={`w-full h-full object-cover ${objectPos}`}
-        />
-      </div>
-    );
-  }
-
   return (
     <div
-      className={`absolute inset-0 w-full h-full overflow-hidden transition-opacity duration-1000 ${
-        isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'
-      }`}
+      className={`absolute inset-0 w-full h-full overflow-hidden transition-opacity ${
+        reducedMotion ? 'duration-0' : 'duration-1000'
+      } ${isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'}`}
     >
       <video
         ref={(el) => {
@@ -325,7 +306,7 @@ const HeroVideo = memo(function HeroVideo({
         disablePictureInPicture={true}
         disableRemotePlayback={true}
         controlsList="nodownload nofullscreen noremoteplayback"
-        onEnded={isActive && !reducedMotion ? nextSlide : undefined}
+        onEnded={isActive ? nextSlide : undefined}
         onWaiting={() => {
           setIsBuffering(true);
           if (isActive) armStall();
@@ -377,14 +358,11 @@ export default memo(function HeroSection({
 }) {
   const [index, setIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(null);
-  // Resolved synchronously on the first render, not defaulted to false and
-  // corrected in an effect. That default was the mechanism of the client's bug:
-  // the video elements mounted and play() was called while reducedMotion was
-  // still false, then the effect flipped it true one tick later — which unwires
-  // onEnded, the stall watchdog and the progress loop. The result was a first
-  // clip that played, ended, and left the hero dead with an empty track. Reading
-  // the query up front also stops ~1MB of video being fetched for elements that
-  // are about to be replaced by posters.
+  // Resolved synchronously on the first render rather than defaulting to false
+  // and correcting in an effect, so the hero renders one consistent way from the
+  // first paint instead of switching a tick later. Nothing about playback now
+  // depends on it, but transition durations do, and a flip mid-mount produced a
+  // visible re-render.
   const [reducedMotion, setReducedMotion] = useState(() => {
     if (propsReducedMotion) return true;
     if (typeof window === 'undefined' || !window.matchMedia) return false;
@@ -398,6 +376,20 @@ export default memo(function HeroSection({
 
   // Phones get the lighter 480p renditions; desktops the 720p set.
   const isMobile = useMediaQuery('(max-width: 768px)');
+
+  // The text sliding up on every slide change is the part of this hero that
+  // prefers-reduced-motion is genuinely about — repeated transform-based motion,
+  // the kind that triggers vestibular symptoms. Under the preference the content
+  // simply appears in place. This is what the flag now reduces, instead of the
+  // video playback it used to disable.
+  const enter = (y, duration, delay = 0, ease) =>
+    reducedMotion
+      ? { initial: false, animate: { opacity: 1, y: 0 }, transition: { duration: 0 } }
+      : {
+          initial: { opacity: 0, y },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration, delay, ...(ease ? { ease } : {}) }
+        };
 
   const handleLanguageChange = (code) => {
     const select = document.querySelector('.goog-te-combo');
@@ -500,23 +492,6 @@ export default memo(function HeroSection({
     return () => clearTimeout(timer);
   }, [index, prevIndex]);
 
-  // With reduced motion there is no video, so no 'ended' event ever fires and
-  // nothing would advance the hero — it would sit on slide one forever with an
-  // empty progress track, which is precisely the fault a client reported: his
-  // handset had Battery Saver on, and Android's Battery Saver force-enables
-  // "Remove animations", which sets prefers-reduced-motion.
-  //
-  // Reduced motion is a request for less animation, not for a dead component, so
-  // the destinations keep rotating on a plain timer, just without autoplaying
-  // footage or a crossfade. Every other advance path (onEnded, the stall watchdog,
-  // the decode watchdog below) is gated on !reducedMotion, so this is the only one
-  // that can drive it.
-  useEffect(() => {
-    if (!reducedMotion || !isVisible || !isTabVisible) return;
-    const timer = setTimeout(() => nextSlide(), 6000);
-    return () => clearTimeout(timer);
-  }, [reducedMotion, isVisible, isTabVisible, index]);
-
   // Decode watchdog — the counterpart to HeroVideo's stall watchdog.
   //
   // That one arms on 'waiting' and 'error', which only cover starvation: the
@@ -533,7 +508,7 @@ export default memo(function HeroSection({
   // decoders entirely this degrades to a poster slideshow — each slide paints its
   // native poster and advances — which is a fine floor, and never a frozen hero.
   useEffect(() => {
-    if (reducedMotion || !isVisible || !isTabVisible) return;
+    if (!isVisible || !isTabVisible) return;
     let lastTime = -1;
     let frozenMs = 0;
     const id = setInterval(() => {
@@ -571,20 +546,6 @@ export default memo(function HeroSection({
   // Track and update progress bars directly in DOM to bypass React re-renders at 60fps
   useEffect(() => {
     if (!isVisible || !isTabVisible) {
-      return;
-    }
-    // Under reduced motion there is no video to read a position from, and the
-    // track was previously left at 0% — an empty bar that reads as "stuck
-    // loading" and was exactly what the client described seeing. Fill it instead,
-    // in one step with no animation, so it simply marks the current slide.
-    if (reducedMotion) {
-      if (mobileProgressRef.current) {
-        mobileProgressRef.current.style.width = '100%';
-      }
-      const activeDesktopBar = desktopProgressRefs.current[index];
-      if (activeDesktopBar) {
-        activeDesktopBar.style.width = '100%';
-      }
       return;
     }
     let frameId;
@@ -665,7 +626,6 @@ export default memo(function HeroSection({
               activeVideoRef={activeVideoRef}
               isMobile={isMobile}
               preloadAuto={preloadAuto}
-              posterOnly={reducedMotion}
             />
           );
         })}
@@ -679,9 +639,7 @@ export default memo(function HeroSection({
       {/* Quick Translate Flags - Listed out horizontally under the nav bar */}
       <div className="absolute top-24 sm:top-28 left-0 right-0 z-50 flex justify-center px-6">
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          {...enter(-10, 0.6, 0.1)}
           className="flex items-center gap-2.5 bg-black/20 backdrop-blur-[1.5px] p-2 rounded-full border border-white/10"
         >
           {LANGUAGES.map((lang) => (
@@ -706,9 +664,7 @@ export default memo(function HeroSection({
       <div className="relative z-30 mx-auto flex h-full max-w-7xl flex-col justify-between px-6 pb-28 pt-32 lg:px-8">
         <div className="flex flex-1 flex-col justify-center max-w-3xl">
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            {...enter(12, 0.6, 0.2)}
             className="mb-4 text-[10px] font-semibold uppercase tracking-[0.25em] text-gold font-mono"
           >
             BORN IN 2009 · MICRO LEVEL CUSTOMISED PLANNING
@@ -716,9 +672,7 @@ export default memo(function HeroSection({
 
           <motion.h1
             key={`title-${index}`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            {...enter(20, 0.8, 0, [0.22, 1, 0.36, 1])}
             className="font-display text-4xl font-bold leading-[1.08] text-white sm:text-6xl lg:text-7xl tracking-tight"
           >
             {activeSlide.name}
@@ -729,9 +683,7 @@ export default memo(function HeroSection({
 
           <motion.p
             key={`desc-${index}`}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            {...enter(15, 0.8, 0.15, [0.22, 1, 0.36, 1])}
             className="mt-6 max-w-xl text-sm text-white/80 sm:text-base leading-relaxed font-sans"
           >
             {activeSlide.description}
