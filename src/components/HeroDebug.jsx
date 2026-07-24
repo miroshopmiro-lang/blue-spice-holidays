@@ -15,15 +15,29 @@ import { useEffect, useRef, useState } from 'react';
 export default function HeroDebug() {
   const [rows, setRows] = useState([]);
   const [log, setLog] = useState([]);
+  const [copied, setCopied] = useState(false);
   const wired = useRef(new WeakSet());
   const logRef = useRef([]);
+  const total = useRef(0);
   const t0 = useRef(Date.now());
+
+  // The reported fault begins at the very first transition, so the opening events
+  // are the ones that matter most — a plain rolling buffer would scroll exactly
+  // those away while the client watched it stall. Keep the first HEAD events
+  // permanently and roll only a TAIL window after that.
+  const HEAD = 80;
+  const TAIL = 40;
 
   useEffect(() => {
     const stamp = () => ((Date.now() - t0.current) / 1000).toFixed(1) + 's';
 
     const push = (line) => {
-      logRef.current = [...logRef.current.slice(-59), line];
+      total.current += 1;
+      const l = logRef.current;
+      logRef.current =
+        l.length < HEAD + TAIL
+          ? [...l, line]
+          : [...l.slice(0, HEAD), ...[...l.slice(HEAD), line].slice(-TAIL)];
       setLog(logRef.current);
     };
 
@@ -83,6 +97,18 @@ export default function HeroDebug() {
     return () => clearInterval(id);
   }, []);
 
+  // Marks where the rolling window dropped events, so a gap in timestamps is never
+  // mistaken for a gap in playback.
+  const displayLog = () => {
+    const skipped = total.current - log.length;
+    if (skipped <= 0) return log;
+    return [
+      ...log.slice(0, HEAD),
+      '--- ' + skipped + ' events omitted ---',
+      ...log.slice(HEAD)
+    ];
+  };
+
   const copy = () => {
     const text =
       'HERO DEBUG  ' + new Date().toString() + '\n' +
@@ -93,12 +119,27 @@ export default function HeroDebug() {
          String(r.rs).padEnd(2), String(r.ns).padEnd(2), r.t.padEnd(5), r.dur.padEnd(4),
          r.buf.padEnd(4), r.paused.padEnd(6), String(r.err).padEnd(3), r.vis].join(' ')
       ).join('\n') +
-      '\n\nEVENT LOG\n' + log.join('\n');
-    if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text);
-    else {
+      '\n\nEVENT LOG\n' + displayLog().join('\n');
+
+    // Confirm to the person running this that it worked. Without feedback they
+    // cannot tell a successful copy from a dead button, and will either paste
+    // nothing or tap repeatedly — on a client's phone that is the difference
+    // between getting the report back and not.
+    const done = () => { setCopied(true); setTimeout(() => setCopied(false), 2500); };
+    const fallback = () => {
       const ta = document.createElement('textarea');
-      ta.value = text; document.body.appendChild(ta); ta.select();
-      document.execCommand('copy'); ta.remove();
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;left:-9999px;';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) { /* leave button unchanged */ }
+      ta.remove();
+    };
+    // navigator.clipboard needs a secure context and can still reject on Android,
+    // so the textarea path is a real fallback, not decoration.
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else {
+      fallback();
     }
   };
 
@@ -114,9 +155,10 @@ export default function HeroDebug() {
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
         <strong style={{ color: '#C9A24A', fontSize: 11 }}>HERO DEBUG</strong>
         <button onClick={copy} style={{
-          background: '#C9A24A', color: '#20160a', border: 0, borderRadius: 4,
-          padding: '4px 10px', fontSize: 11, fontWeight: 700
-        }}>Copy</button>
+          background: copied ? '#5fe0a0' : '#C9A24A', color: '#20160a', border: 0,
+          borderRadius: 4, padding: '4px 10px', fontSize: 11, fontWeight: 700,
+          minWidth: 82, transition: 'background .15s'
+        }}>{copied ? 'Copied ✓' : 'Copy'}</button>
         <span style={{ color: '#8b97a8' }}>rs=readyState (4 is ready) · buf=seconds buffered</span>
       </div>
 
@@ -150,7 +192,9 @@ export default function HeroDebug() {
       <div style={{ marginTop: 6, borderTop: '1px solid #1b2230', paddingTop: 4 }}>
         {log.length === 0
           ? <span style={{ color: '#8b97a8' }}>waiting for events…</span>
-          : log.map((l, i) => <div key={i}>{l}</div>)}
+          : displayLog().map((l, i) => (
+              <div key={i} style={l.startsWith('---') ? { color: '#8b97a8' } : undefined}>{l}</div>
+            ))}
       </div>
     </div>
   );
