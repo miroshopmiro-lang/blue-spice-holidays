@@ -79,9 +79,18 @@ function CardVideoPlayer({ videoMp4, videoWebm, poster, title }) {
       className="relative w-full aspect-[4/3] bg-black overflow-hidden cursor-pointer group"
       onClick={togglePlay}
     >
+      {/* preload="none" is load-bearing, not a micro-optimisation. These are the
+          two longest clips on the site (~20s and ~24s) and they sit far below the
+          fold, but with the default preload the browser fetched and decoded a
+          first frame for both on page load — holding two video decoder slots the
+          whole time the hero was cycling. On handsets with a small decoder pool
+          that was enough to starve the hero's incoming clip and freeze it. They
+          are click-to-play, so there is nothing to gain from preloading: the
+          poster paints the card, and load starts on the user's tap. */}
       <video
         ref={videoRef}
         poster={poster}
+        preload="none"
         playsInline
         muted={isMuted}
         loop

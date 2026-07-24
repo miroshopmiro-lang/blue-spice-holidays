@@ -139,14 +139,26 @@ const MARQUEE_ITEMS = [
 
 // Derive the versioned source paths for a slide from its base filename.
 // slide.video is '/images/<base>.webm' — we serve re-encoded, version-suffixed
-// files: 720p desktop (`-v2`) and lighter 480p mobile (`-v2-m`), each with a
-// WebM (VP9) primary and an H.264 MP4 fallback for older iOS/Safari.
+// files: 720p desktop (`-v2`) and lighter 480p mobile (`-v2-m`), each as
+// WebM (VP9) and H.264 MP4.
+//
+// Source ORDER is deliberately different per platform, and it is a correctness
+// fix, not an optimisation. The browser picks the first source whose type it
+// claims to support, and Chrome on Android claims VP9 whether or not the SoC
+// has a VP9 decoder block. Plenty of mid-range Android handsets (the client's
+// Oppo among them) have no hardware VP9 at all, so a WebM-first list silently
+// routes every hero clip through libvpx software decode — far more expensive,
+// and drawn from a much smaller pool of concurrent decoder slots. H.264 has had
+// hardware decode on essentially every Android device for a decade, so phones
+// get MP4 first. Cost is ~0.25MB per clip (0.4 -> 0.65MB); worth it to stay on
+// the hardware path. Desktop keeps WebM first — no decoder scarcity there.
 function sourcesFor(slide, isMobile) {
   const file = slide.video.slice(slide.video.lastIndexOf('/') + 1);
   const base = file.slice(0, file.lastIndexOf('.'));
-  return isMobile
-    ? { webm: `/images/${base}-v2-m.webm`, mp4: `/images/${base}-v2-m.mp4` }
-    : { webm: `/images/${base}-v2.webm`, mp4: `/images/${base}-v2.mp4` };
+  const suffix = isMobile ? '-v2-m' : '-v2';
+  const webm = { src: `/images/${base}${suffix}.webm`, type: 'video/webm' };
+  const mp4 = { src: `/images/${base}${suffix}.mp4`, type: 'video/mp4' };
+  return isMobile ? [mp4, webm] : [webm, mp4];
 }
 
 const HeroVideo = memo(function HeroVideo({
@@ -165,7 +177,8 @@ const HeroVideo = memo(function HeroVideo({
   const [showSpinner, setShowSpinner] = useState(false);
   const stallTimer = useRef(null);
 
-  const { webm, mp4 } = useMemo(() => sourcesFor(slide, isMobile), [slide, isMobile]);
+  const sources = useMemo(() => sourcesFor(slide, isMobile), [slide, isMobile]);
+  const primarySrc = sources[0].src;
 
   const objectPos =
     slide.id === 'himalayas' || slide.id === 'himalayas-2'
@@ -185,7 +198,7 @@ const HeroVideo = memo(function HeroVideo({
     }
     const video = videoRef.current;
     if (video) video.load();
-  }, [webm]);
+  }, [primarySrc]);
 
   // Play/pause dynamically based on active state + visibility.
   useEffect(() => {
@@ -203,7 +216,7 @@ const HeroVideo = memo(function HeroVideo({
     } else {
       video.pause();
     }
-  }, [isActive, isVisible, isTabVisible, reducedMotion, slide.id, webm]);
+  }, [isActive, isVisible, isTabVisible, reducedMotion, slide.id, primarySrc]);
 
   // Clear spinner + disarm the stall watchdog whenever this slide is not active.
   useEffect(() => {
@@ -291,11 +304,13 @@ const HeroVideo = memo(function HeroVideo({
         }}
         className={`w-full h-full object-cover ${objectPos}`}
       >
-        {/* WebM (VP9) first — smaller at equal quality; MP4 (H.264) fallback for
-            browsers without VP9/WebM support (older iOS/Safari). Type-based
-            selection is reliable across engines, unlike <source media>. */}
-        <source src={webm} type="video/webm" />
-        <source src={mp4} type="video/mp4" />
+        {/* Order is platform-dependent — see sourcesFor(). Phones get H.264 MP4
+            first to stay on the hardware decoder; desktop gets the smaller VP9
+            WebM first. Type-based selection is reliable across engines, unlike
+            <source media>. */}
+        {sources.map((s) => (
+          <source key={s.src} src={s.src} type={s.type} />
+        ))}
       </video>
 
       {/* Premium buffering spinner overlay — only after a sustained stall. */}
@@ -417,6 +432,47 @@ export default memo(function HeroSection({
     return () => clearTimeout(timer);
   }, [index, prevIndex]);
 
+  // Decode watchdog — the counterpart to HeroVideo's stall watchdog.
+  //
+  // That one arms on 'waiting' and 'error', which only cover starvation: the
+  // data hasn't arrived. It cannot see the other way a clip dies, which is the
+  // one the client actually hit — the file is fully buffered (readyState 4) but
+  // the device has no decoder slot left to give the element, so frames never
+  // render and currentTime never moves. Nothing is wrong with the network or
+  // the file, so no 'waiting', no 'error', and no 'ended' either: 'canplay' and
+  // 'playing' both fire and DISARM the stall watchdog, and the hero then sits on
+  // a frozen frame forever. Polling currentTime is the only signal for it.
+  //
+  // Gated on readyState >= 3 so genuine network starvation stays the property of
+  // the 'waiting' watchdog and isn't cut short here. If a device is out of
+  // decoders entirely this degrades to a poster slideshow — each slide paints its
+  // native poster and advances — which is a fine floor, and never a frozen hero.
+  useEffect(() => {
+    if (reducedMotion || !isVisible || !isTabVisible) return;
+    let lastTime = -1;
+    let frozenMs = 0;
+    const id = setInterval(() => {
+      const video = activeVideoRef.current;
+      if (!video || video.paused || video.ended || video.readyState < 3) {
+        lastTime = -1;
+        frozenMs = 0;
+        return;
+      }
+      if (video.currentTime === lastTime) {
+        frozenMs += 500;
+        if (frozenMs >= 3000) {
+          lastTime = -1;
+          frozenMs = 0;
+          nextSlide();
+        }
+      } else {
+        lastTime = video.currentTime;
+        frozenMs = 0;
+      }
+    }, 500);
+    return () => clearInterval(id);
+  }, [index, reducedMotion, isVisible, isTabVisible]);
+
   // Reset progress bar widths on index change
   useEffect(() => {
     if (mobileProgressRef.current) {
@@ -473,15 +529,24 @@ export default memo(function HeroSection({
           // Distance ahead of the active slide (0 = active, 1 = next, ...).
           const ahead = (i - index + HERO_SLIDES.length) % HERO_SLIDES.length;
 
-          // Mount a runway of the next 3 clips (plus the outgoing one) so the
-          // browser can fetch ahead during the current clip's playback instead
-          // of being confined to each clip's own ~4s window — this is what gives
-          // us a long buffering runway like keralatourism.org's 20s clips.
-          const inRunway = ahead <= 3;
+          // Buffering runway, sized against the device's DECODER budget rather
+          // than its bandwidth. Every mounted <video> holds a decoder slot from
+          // the moment it decodes a first frame, and Android's pool is small and
+          // shared process-wide. A 3-clip runway peaked this page at 7 live
+          // elements during the first transition (4 hero + outgoing + 2 in
+          // LadiesOnlyTours) — past the budget of mid-range handsets, where the
+          // incoming clip then never gets a decoder and freezes silently.
+          //
+          // Phones therefore mount active + next only (3 at peak, including the
+          // outgoing clip); desktop, which has no such scarcity, keeps a 2-clip
+          // runway. Bandwidth-wise this costs nothing now that the re-encode put
+          // a whole mobile clip at ~0.4MB — one clip of lead time is already
+          // several seconds of download headroom on 3G.
+          const inRunway = ahead <= (isMobile ? 1 : 2);
           if (!isActive && !isPrev && !inRunway) return null;
 
-          // Fully preload the active clip plus the next two; metadata only beyond.
-          const preloadAuto = isActive || ahead === 1 || ahead === 2;
+          // Fully preload the active clip plus the next one; metadata only beyond.
+          const preloadAuto = isActive || ahead === 1;
 
           return (
             <HeroVideo
