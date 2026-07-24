@@ -112,7 +112,10 @@ export default function HeroDebug() {
   const copy = () => {
     const text =
       'HERO DEBUG  ' + new Date().toString() + '\n' +
-      'UA: ' + navigator.userAgent + '\n\n' +
+      'UA: ' + navigator.userAgent + '\n' +
+      'reduced-motion: ' + (window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'ON' : 'off') +
+      '  |  data-saver: ' + (navigator.connection && navigator.connection.saveData ? 'ON' : 'off') +
+      '  |  page-hidden: ' + (document.visibilityState !== 'visible' ? 'yes' : 'no') + '\n\n' +
       'element        source                     pick  preload  rs ns  time  dur  buf  paused err opacity\n' +
       rows.map((r) =>
         [r.name.padEnd(14), r.src.padEnd(26), r.picked.padEnd(5), r.preload.padEnd(8),
@@ -152,6 +155,21 @@ export default function HeroDebug() {
       color: '#e7ecf3', font: '10px/1.35 ui-monospace,Menlo,Consolas,monospace',
       borderTop: '2px solid #C9A24A', padding: '8px'
     }}>
+      {/* Device preferences that change hero behaviour. reduced-motion is first
+          because it gates playback, slide advance, the progress bar and both
+          watchdogs simultaneously — and Android's Battery Saver turns it on. */}
+      <div style={{ marginBottom: 6, color: '#8b97a8' }}>
+        {[
+          ['reduced-motion', window.matchMedia('(prefers-reduced-motion: reduce)').matches],
+          ['data-saver', !!(navigator.connection && navigator.connection.saveData)],
+          ['page-hidden', document.visibilityState !== 'visible']
+        ].map(([k, on]) => (
+          <span key={k} style={{ marginRight: 10, color: on ? '#ff8b8b' : '#5fe0a0', fontWeight: on ? 700 : 400 }}>
+            {k}: {on ? 'ON' : 'off'}
+          </span>
+        ))}
+      </div>
+
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
         <strong style={{ color: '#C9A24A', fontSize: 11 }}>HERO DEBUG</strong>
         <button onClick={copy} style={{

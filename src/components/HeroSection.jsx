@@ -186,7 +186,8 @@ const HeroVideo = memo(function HeroVideo({
   isTabVisible,
   activeVideoRef,
   isMobile,
-  preloadAuto
+  preloadAuto,
+  posterOnly
 }) {
   const videoRef = useRef(null);
   const [isBuffering, setIsBuffering] = useState(false);
@@ -276,6 +277,32 @@ const HeroVideo = memo(function HeroVideo({
   };
   const disarmStall = () => clearTimeout(stallTimer.current);
 
+  // Reduced motion renders the slide's poster instead of a video. This is the
+  // accessible reading of the preference — no autoplaying footage — and it also
+  // means no video is downloaded at all on those devices.
+  //
+  // Placed after every hook above, never before: this branch is entered when
+  // reducedMotion flips true *after* mount (the media query resolves in an effect
+  // one tick later), so an early return above the hooks would change the hook
+  // count between renders and crash the component in exactly the case it exists
+  // to handle.
+  if (posterOnly) {
+    return (
+      <div
+        className={`absolute inset-0 w-full h-full overflow-hidden ${
+          isActive ? 'opacity-90 z-20' : 'opacity-0 z-10 pointer-events-none'
+        }`}
+      >
+        <img
+          src={slide.poster}
+          alt=""
+          aria-hidden="true"
+          className={`w-full h-full object-cover ${objectPos}`}
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       className={`absolute inset-0 w-full h-full overflow-hidden transition-opacity duration-1000 ${
@@ -350,7 +377,20 @@ export default memo(function HeroSection({
 }) {
   const [index, setIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(null);
-  const [reducedMotion, setReducedMotion] = useState(propsReducedMotion);
+  // Resolved synchronously on the first render, not defaulted to false and
+  // corrected in an effect. That default was the mechanism of the client's bug:
+  // the video elements mounted and play() was called while reducedMotion was
+  // still false, then the effect flipped it true one tick later — which unwires
+  // onEnded, the stall watchdog and the progress loop. The result was a first
+  // clip that played, ended, and left the hero dead with an empty track. Reading
+  // the query up front also stops ~1MB of video being fetched for elements that
+  // are about to be replaced by posters.
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    if (propsReducedMotion) return true;
+    if (typeof window === 'undefined' || !window.matchMedia) return false;
+    if (new URLSearchParams(window.location.search).has('reducedmotion')) return true;
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
   const [isVisible, setIsVisible] = useState(propsIsVisible);
   const [isTabVisible, setIsTabVisible] = useState(propsIsTabVisible);
   const sectionRef = useRef(null);
@@ -433,6 +473,18 @@ export default memo(function HeroSection({
   }, []);
 
   useEffect(() => {
+    // ?reducedmotion=1 forces the reduced-motion path on a device that does not
+    // have the setting enabled. The client's fault only appears under it, and it
+    // is otherwise reachable only by turning on Battery Saver or Remove
+    // Animations — so without this there is no way to verify the fix, reproduce
+    // the report, or show the client it is resolved.
+    const forced =
+      typeof window !== 'undefined' &&
+      new URLSearchParams(window.location.search).has('reducedmotion');
+    if (forced) {
+      setReducedMotion(true);
+      return;
+    }
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     const update = () => setReducedMotion(mq.matches);
     update();
@@ -447,6 +499,23 @@ export default memo(function HeroSection({
     }, 1000); // clear outgoing slide after transition duration
     return () => clearTimeout(timer);
   }, [index, prevIndex]);
+
+  // With reduced motion there is no video, so no 'ended' event ever fires and
+  // nothing would advance the hero — it would sit on slide one forever with an
+  // empty progress track, which is precisely the fault a client reported: his
+  // handset had Battery Saver on, and Android's Battery Saver force-enables
+  // "Remove animations", which sets prefers-reduced-motion.
+  //
+  // Reduced motion is a request for less animation, not for a dead component, so
+  // the destinations keep rotating on a plain timer, just without autoplaying
+  // footage or a crossfade. Every other advance path (onEnded, the stall watchdog,
+  // the decode watchdog below) is gated on !reducedMotion, so this is the only one
+  // that can drive it.
+  useEffect(() => {
+    if (!reducedMotion || !isVisible || !isTabVisible) return;
+    const timer = setTimeout(() => nextSlide(), 6000);
+    return () => clearTimeout(timer);
+  }, [reducedMotion, isVisible, isTabVisible, index]);
 
   // Decode watchdog — the counterpart to HeroVideo's stall watchdog.
   //
@@ -501,7 +570,21 @@ export default memo(function HeroSection({
 
   // Track and update progress bars directly in DOM to bypass React re-renders at 60fps
   useEffect(() => {
-    if (reducedMotion || !isVisible || !isTabVisible) {
+    if (!isVisible || !isTabVisible) {
+      return;
+    }
+    // Under reduced motion there is no video to read a position from, and the
+    // track was previously left at 0% — an empty bar that reads as "stuck
+    // loading" and was exactly what the client described seeing. Fill it instead,
+    // in one step with no animation, so it simply marks the current slide.
+    if (reducedMotion) {
+      if (mobileProgressRef.current) {
+        mobileProgressRef.current.style.width = '100%';
+      }
+      const activeDesktopBar = desktopProgressRefs.current[index];
+      if (activeDesktopBar) {
+        activeDesktopBar.style.width = '100%';
+      }
       return;
     }
     let frameId;
@@ -582,6 +665,7 @@ export default memo(function HeroSection({
               activeVideoRef={activeVideoRef}
               isMobile={isMobile}
               preloadAuto={preloadAuto}
+              posterOnly={reducedMotion}
             />
           );
         })}
