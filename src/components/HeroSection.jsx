@@ -152,13 +152,29 @@ const MARQUEE_ITEMS = [
 // hardware decode on essentially every Android device for a decade, so phones
 // get MP4 first. Cost is ~0.25MB per clip (0.4 -> 0.65MB); worth it to stay on
 // the hardware path. Desktop keeps WebM first — no decoder scarcity there.
+// The mobile MP4s are `-v3-m`: re-encoded at 880kbps to match the WebM's bitrate
+// once they became the primary phone source. The original `-v2-m.mp4` set was
+// built as a rarely-hit fallback and left at 1.4Mbps, so promoting it in front of
+// the 0.88Mbps WebM quietly added ~60% to every clip a phone downloads — enough to
+// cost roughly half a second before the second slide is ready on a weak
+// connection. Re-encoding brings the set to 5.11MB against the WebM's 5.00MB, so
+// the switch to hardware-decodable H.264 now costs no extra bytes at all.
+// The filename had to change rather than being overwritten in place: /images/* is
+// cached for 30 days, so a same-name re-encode would never reach anyone who has
+// already visited.
 function sourcesFor(slide, isMobile) {
   const file = slide.video.slice(slide.video.lastIndexOf('/') + 1);
   const base = file.slice(0, file.lastIndexOf('.'));
-  const suffix = isMobile ? '-v2-m' : '-v2';
-  const webm = { src: `/images/${base}${suffix}.webm`, type: 'video/webm' };
-  const mp4 = { src: `/images/${base}${suffix}.mp4`, type: 'video/mp4' };
-  return isMobile ? [mp4, webm] : [webm, mp4];
+  if (isMobile) {
+    return [
+      { src: `/images/${base}-v3-m.mp4`, type: 'video/mp4' },
+      { src: `/images/${base}-v2-m.webm`, type: 'video/webm' },
+    ];
+  }
+  return [
+    { src: `/images/${base}-v2.webm`, type: 'video/webm' },
+    { src: `/images/${base}-v2.mp4`, type: 'video/mp4' },
+  ];
 }
 
 const HeroVideo = memo(function HeroVideo({
