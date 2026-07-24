@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Blue Spice · Video Diagnostic</title>
+<style>
+  :root { --navy:#0B2D6B; --gold:#C9A24A; --ink:#0d1117; --line:#252c38; }
+  * { box-sizing: border-box; -webkit-text-size-adjust: 100%; }
+  body {
+    margin:0; background:var(--ink); color:#e7ecf3;
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    padding:20px 16px 60px; max-width:760px; margin-inline:auto;
+  }
+  h1 { font-size:19px; margin:0 0 4px; color:#fff; }
+  .sub { color:#8b97a8; font-size:13px; margin:0 0 20px; }
+  button {
+    width:100%; padding:16px; font-size:16px; font-weight:700; border:0; border-radius:10px;
+    background:var(--gold); color:#20160a; cursor:pointer; margin-bottom:10px;
+  }
+  button.ghost { background:transparent; color:var(--gold); border:1px solid var(--gold); }
+  button[disabled] { opacity:.5; }
+  .card { border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin:10px 0; background:#111722; }
+  .card h2 { font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:#8b97a8; margin:0 0 10px; font-weight:700; }
+  .row { display:flex; gap:10px; padding:5px 0; border-bottom:1px solid #1b2230; font-size:13.5px; }
+  .row:last-child { border-bottom:0; }
+  .k { color:#8b97a8; flex:0 0 44%; word-break:break-word; }
+  .v { flex:1; word-break:break-word; font-variant-numeric:tabular-nums; }
+  .pill { display:inline-block; padding:1px 8px; border-radius:99px; font-size:11px; font-weight:700; letter-spacing:.04em; }
+  .ok   { background:#0f3d24; color:#5fe0a0; }
+  .bad  { background:#4a1414; color:#ff8b8b; }
+  .warn { background:#4a3a10; color:#ffcf6b; }
+  .info { background:#12304d; color:#7cc4ff; }
+  #verdict { font-size:15px; line-height:1.6; }
+  #verdict b { color:var(--gold); }
+  .prog { color:#8b97a8; font-size:13px; text-align:center; padding:6px 0; }
+  textarea { position:absolute; left:-9999px; }
+  .note { color:#6b7686; font-size:11.5px; margin-top:14px; line-height:1.5; }
+</style>
+</head>
+<body>
+
+<h1>Blue Spice · Hero Video Diagnostic</h1>
+<p class="sub">Tap the button, wait about 30 seconds, then screenshot this page (or tap Copy and paste it into WhatsApp).</p>
+
+<button id="run">Run the test</button>
+<button id="copy" class="ghost" hidden>Copy results as text</button>
+<div class="prog" id="prog"></div>
+<div id="out"></div>
+<textarea id="clip" readonly></textarea>
+
+<p class="note">
+  This page only reads settings and loads a few short video clips to see whether they play on this
+  device. It downloads roughly 4 MB. Nothing is uploaded and nothing is saved.
+</p>
+
+<script>
+(function () {
+  'use strict';
+
+  // Hero clips, mobile renditions — the exact files the homepage plays on a phone.
+  var MP4  = '/images/taj-mahal-v2-m.mp4';
+  var WEBM = '/images/taj-mahal-v2-m.webm';
+  var CLIPS = [
+    '/images/taj-mahal-v2-m.mp4', '/images/rajasthan-v2-m.mp4', '/images/goa-beach-v2-m.mp4',
+    '/images/munnar-v2-m.mp4', '/images/kerala-waterfalls-v2-m.mp4', '/images/wildlife-v2-m.mp4'
+  ];
+
+  var out = document.getElementById('out');
+  var prog = document.getElementById('prog');
+  var lines = [];               // plain-text mirror of everything, for the copy button
+  var flags = {};               // findings the verdict is built from
+
+  function card(title) {
+    var d = document.createElement('div');
+    d.className = 'card';
+    d.innerHTML = '<h2>' + title + '</h2>';
+    out.appendChild(d);
+    lines.push('', '== ' + title + ' ==');
+    return d;
+  }
+  function row(c, k, v, cls) {
+    var r = document.createElement('div');
+    r.className = 'row';
+    var val = cls ? '<span class="pill ' + cls + '">' + v + '</span>' : v;
+    r.innerHTML = '<div class="k">' + k + '</div><div class="v">' + val + '</div>';
+    c.appendChild(r);
+    lines.push(k + ': ' + String(v));
+  }
+  function say(msg) { prog.textContent = msg; }
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+  // ---- 1. Device -----------------------------------------------------------
+  function testDevice() {
+    var c = card('Device & browser');
+    var ua = navigator.userAgent;
+    row(c, 'User agent', ua);
+    // In-app browsers (WhatsApp / Instagram / Facebook) have much tighter media
+    // limits than Chrome proper, and a link tapped in chat opens in one by default.
+    var webview = /(FBAN|FBAV|Instagram|Line|WhatsApp|;\s?wv\)|Version\/[\d.]+\s+Chrome)/i.test(ua);
+    flags.webview = webview;
+    row(c, 'Opened inside an app?', webview ? 'LOOKS LIKE AN IN-APP BROWSER' : 'No — a real browser',
+        webview ? 'warn' : 'ok');
+    row(c, 'Screen', window.innerWidth + ' x ' + window.innerHeight + ' @' + (window.devicePixelRatio || 1) + 'x');
+    row(c, 'CPU cores', navigator.hardwareConcurrency || 'unknown');
+    row(c, 'Device memory', navigator.deviceMemory ? navigator.deviceMemory + ' GB' : 'not reported');
+  }
+
+  // ---- 2. Data saver -------------------------------------------------------
+  function testDataSaver() {
+    var c = card('Data saver / connection');
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (!conn) { row(c, 'Connection API', 'not available', 'info'); return; }
+    flags.saveData = conn.saveData === true;
+    row(c, 'Data Saver switched on?', conn.saveData ? 'YES — this blocks video' : 'No',
+        conn.saveData ? 'bad' : 'ok');
+    row(c, 'Connection type', conn.effectiveType || 'unknown');
+    row(c, 'Estimated speed', conn.downlink ? conn.downlink + ' Mbps' : 'unknown');
+  }
+
+  // ---- 3. Service worker ---------------------------------------------------
+  // The old service worker broke video by mishandling the CDN's partial (206)
+  // responses. If one is still registered on this phone, that alone explains it.
+  function testServiceWorker() {
+    var c = card('Service worker');
+    if (!('serviceWorker' in navigator)) { row(c, 'Supported', 'no', 'info'); return Promise.resolve(); }
+    var controlled = !!navigator.serviceWorker.controller;
+    flags.sw = controlled;
+    row(c, 'Controlling this page?', controlled ? 'YES — a service worker is active' : 'No',
+        controlled ? 'bad' : 'ok');
+    return navigator.serviceWorker.getRegistrations().then(function (regs) {
+      row(c, 'Registrations found', regs.length, regs.length ? 'bad' : 'ok');
+      regs.forEach(function (r, i) {
+        var w = r.active || r.waiting || r.installing;
+        row(c, 'Worker ' + (i + 1), w ? w.scriptURL + ' (' + w.state + ')' : 'unknown');
+      });
+      if (regs.length) flags.sw = true;
+      return caches && caches.keys ? caches.keys() : [];
+    }).then(function (keys) {
+      row(c, 'Stored caches', keys.length ? keys.join(', ') : 'none', keys.length ? 'warn' : 'ok');
+      if (keys.length) flags.caches = keys.length;
+    }).catch(function (e) { row(c, 'Check failed', e.message, 'warn'); });
+  }
+
+  // ---- 4. Codec support ----------------------------------------------------
+  function testCodecs() {
+    var c = card('Video formats this phone accepts');
+    var v = document.createElement('video');
+    var h264 = v.canPlayType('video/mp4; codecs="avc1.64001E"');
+    var vp9  = v.canPlayType('video/webm; codecs="vp9"');
+    flags.h264 = h264; flags.vp9 = vp9;
+    row(c, 'H.264 / MP4', h264 || 'NOT SUPPORTED', h264 === 'probably' ? 'ok' : (h264 ? 'warn' : 'bad'));
+    row(c, 'VP9 / WebM', vp9 || 'NOT SUPPORTED', vp9 === 'probably' ? 'ok' : (vp9 ? 'warn' : 'bad'));
+  }
+
+  // ---- 5. Download + range -------------------------------------------------
+  // Separates "the file never arrives" from "the file arrives but won't play".
+  function testNetwork() {
+    var c = card('Can this phone download the video?');
+    var t0 = Date.now();
+    return fetch(MP4 + '?d=' + t0, { cache: 'no-store' }).then(function (res) {
+      var ms = Date.now() - t0;
+      row(c, 'Download status', res.status + ' ' + res.statusText, res.ok ? 'ok' : 'bad');
+      row(c, 'Served from', res.headers.get('cf-cache-status') || res.headers.get('x-cache') || 'unknown');
+      if (!res.ok) flags.fetchFail = true;
+      return res.blob().then(function (b) {
+        row(c, 'Downloaded', (b.size / 1048576).toFixed(2) + ' MB in ' + ms + ' ms');
+        var mbps = (b.size * 8 / 1e6) / (ms / 1000);
+        row(c, 'Effective speed', mbps.toFixed(1) + ' Mbps', mbps < 1 ? 'warn' : 'ok');
+        flags.mbps = mbps;
+      });
+    }).then(function () {
+      // Partial-content request — this is what video streaming relies on.
+      return fetch(MP4, { headers: { Range: 'bytes=0-1023' } });
+    }).then(function (res) {
+      var ok = res.status === 206;
+      flags.range = ok;
+      row(c, 'Partial (Range) requests', ok ? '206 — working correctly' : res.status + ' — NOT working',
+          ok ? 'ok' : 'bad');
+    }).catch(function (e) {
+      flags.fetchFail = true;
+      row(c, 'Download failed', e.message, 'bad');
+    });
+  }
+
+  // ---- 6. Actual playback --------------------------------------------------
+  // The real question: does currentTime move? A frozen poster means it doesn't.
+  //
+  // A video that won't start because the browser blocked autoplay looks identical
+  // to one that won't start because it can't decode — both sit at currentTime 0.
+  // They are completely different findings, so the play() rejection is captured
+  // and reported separately. Getting this wrong would tell the client their phone
+  // is broken when the page was simply backgrounded.
+  function playTest(src, label, c) {
+    return new Promise(function (resolve) {
+      var v = document.createElement('video');
+      v.src = src; v.muted = true; v.playsInline = true;
+      v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+      v.style.cssText = 'position:fixed;left:-9999px;width:80px;height:45px;';
+      document.body.appendChild(v);
+      var events = [], playErr = null;
+      ['waiting', 'stalled', 'error', 'playing', 'canplay'].forEach(function (n) {
+        v.addEventListener(n, function () { if (events.indexOf(n) < 0) events.push(n); });
+      });
+      function attempt() {
+        var p = v.play();
+        if (p && p.catch) p.catch(function (e) { playErr = e.name; });
+      }
+      attempt();
+      setTimeout(function () { if (v.currentTime === 0) attempt(); }, 1200); // one retry
+
+      setTimeout(function () {
+        var moved = v.currentTime > 0.25;
+        var blocked = !moved && (playErr === 'NotAllowedError' || playErr === 'AbortError');
+        var err = v.error ? ('code ' + v.error.code) : 'none';
+
+        if (moved) {
+          row(c, label, 'PLAYS — reached ' + v.currentTime.toFixed(1) + 's', 'ok');
+        } else if (blocked) {
+          row(c, label, 'could not start — browser blocked autoplay (' + playErr + ')', 'warn');
+        } else {
+          row(c, label, 'DOES NOT PLAY — frozen at ' + v.currentTime.toFixed(2) + 's', 'bad');
+        }
+        row(c, label + ' — downloaded', v.buffered.length ? v.buffered.end(0).toFixed(1) + 's of video' : 'nothing',
+            v.buffered.length ? 'ok' : 'bad');
+        if (err !== 'none') row(c, label + ' — error', err, 'bad');
+        row(c, label + ' — events', (events.join(', ') || 'none') + (playErr ? ' | play(): ' + playErr : ''));
+
+        v.pause(); v.removeAttribute('src'); v.load(); v.remove();
+        resolve({ moved: moved, blocked: blocked, buffered: v.buffered.length > 0 });
+      }, 4500);
+    });
+  }
+
+  function testPlayback() {
+    var c = card('Does the video actually play?');
+    if (document.visibilityState !== 'visible') {
+      row(c, 'Page not in view', 'keep this page on screen while it runs', 'warn');
+    }
+    return playTest(MP4, 'MP4 (H.264)', c).then(function (m) {
+      flags.mp4Plays = m.moved; flags.mp4Blocked = m.blocked; flags.mp4Buffered = m.buffered;
+      return playTest(WEBM, 'WebM (VP9)', c);
+    }).then(function (w) {
+      flags.webmPlays = w.moved; flags.webmBlocked = w.blocked; flags.webmBuffered = w.buffered;
+      flags.blocked = flags.mp4Blocked && flags.webmBlocked;
+    });
+  }
+
+  // ---- 7. Concurrent decoders ---------------------------------------------
+  // The homepage had up to 7 videos loaded at once. This finds how many this
+  // phone can actually run together before they stop playing.
+  function testConcurrent() {
+    var c = card('How many videos can play at once?');
+    var els = [];
+    CLIPS.forEach(function (src) {
+      var v = document.createElement('video');
+      v.src = src; v.muted = true; v.playsInline = true;
+      v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+      v.style.cssText = 'position:fixed;left:-9999px;width:80px;height:45px;';
+      document.body.appendChild(v); els.push(v);
+      v._err = null;
+      v._go = function () { var p = v.play(); if (p && p.catch) p.catch(function (e) { v._err = e.name; }); };
+      v._go();
+    });
+    // Same retries as the single-clip test — six simultaneous play() calls are
+    // more likely to be refused, and a refusal must not be read as a decode limit.
+    setTimeout(function () { els.forEach(function (v) { if (v.currentTime === 0) v._go(); }); }, 1200);
+    setTimeout(function () { els.forEach(function (v) { if (v.currentTime === 0) v._go(); }); }, 2600);
+
+    return wait(6000).then(function () {
+      var playing = els.filter(function (v) { return v.currentTime > 0.25; }).length;
+      var refused = els.filter(function (v) {
+        return v.currentTime === 0 && (v._err === 'NotAllowedError' || v._err === 'AbortError');
+      }).length;
+      // A zero here while a single clip played fine is self-contradictory — it means
+      // autoplay was refused, not that the device has no decoders. Report it as
+      // inconclusive rather than telling the client their phone can play 0 videos.
+      var contradictory = playing === 0 && flags.mp4Plays === true;
+      flags.concurrent = (flags.blocked || contradictory) ? null : playing;
+
+      row(c, 'Started together', els.length);
+      if (flags.concurrent === null) {
+        row(c, 'Result', 'inconclusive — the browser refused to start them (' + refused + ' refused)', 'warn');
+      } else {
+        row(c, 'Actually playing', playing + ' of ' + els.length,
+            playing >= 5 ? 'ok' : (playing >= 3 ? 'warn' : 'bad'));
+      }
+      els.forEach(function (v, i) {
+        var ok = v.currentTime > 0.25;
+        var state = ok ? 'playing (' + v.currentTime.toFixed(1) + 's)'
+                       : (flags.concurrent === null ? 'not started' : 'FROZEN');
+        row(c, CLIPS[i].split('/').pop(), state, ok ? 'ok' : (flags.concurrent === null ? 'warn' : 'bad'));
+        v.pause(); v.removeAttribute('src'); v.load(); v.remove();
+      });
+    });
+  }
+
+  // ---- Verdict -------------------------------------------------------------
+  function verdict() {
+    var c = card('Most likely cause');
+    var d = document.createElement('div');
+    d.id = 'verdict';
+    var msg;
+    if (flags.blocked) {
+      msg = '<b>The test could not start any video, because the browser blocked automatic playback.</b> ' +
+            'This is not a fault — it usually means the page was not on screen. Please make sure this ' +
+            'page is visible and the screen stays on, then tap “Run again”.';
+    } else if (flags.sw || flags.caches) {
+      msg = '<b>An old service worker is still installed on this phone.</b> That is the leftover ' +
+            'offline-cache layer we removed from the site, and it breaks video downloads while leaving ' +
+            'the rest of the page working. It is local to this device, which is why other phones are ' +
+            'fine and why clearing the cache did not help. Fix: Chrome menu > Settings > Site settings > ' +
+            'Data stored > bluespiceholidays.com > Delete data. Then fully close and reopen Chrome.';
+    } else if (flags.saveData) {
+      msg = '<b>Data Saver is switched on for this phone.</b> It stops videos downloading while still ' +
+            'loading images and text, which matches exactly what you are seeing. Fix: Chrome menu > ' +
+            'Settings > Data Saver (or Lite mode) > turn off. Also check Settings > Network > Data saver ' +
+            'in the phone settings.';
+    } else if (flags.range === false) {
+      msg = '<b>This phone or its network is not handling partial downloads correctly.</b> Video streaming ' +
+            'depends on them. Something between the phone and the site — a proxy, a VPN, or an ad blocker — ' +
+            'is rewriting the response.';
+    } else if (flags.mp4Plays === false && flags.webmPlays === false) {
+      msg = '<b>No video format plays on this device at all</b>, even one at a time. That points at the ' +
+            'browser or a system-level video restriction rather than the website.';
+    } else if (flags.webmPlays === false && flags.mp4Plays === true) {
+      msg = '<b>This phone cannot play the WebM format, only MP4.</b> That is exactly the case the fix ' +
+            'addresses — the site now serves MP4 to phones. This should be resolved once the update is live.';
+    } else if (typeof flags.concurrent === 'number' && flags.concurrent < 4) {
+      msg = '<b>This phone can only play ' + flags.concurrent + ' videos at the same time.</b> The homepage ' +
+            'was loading up to 7 at once, so the hero clips were starving each other. The fix reduces that ' +
+            'to 3, which is within what this device handles.';
+    } else if (flags.mbps && flags.mbps < 1) {
+      msg = '<b>The connection is slow right now</b> (' + flags.mbps.toFixed(1) + ' Mbps). The clips need ' +
+            'roughly 1 Mbps to stay ahead. Worth retesting on a stronger connection.';
+    } else {
+      msg = '<b>Everything passed on this run.</b> The video downloads, plays, and several run at once. ' +
+            'If the hero still stalls, it is intermittent — please run this again at the exact moment it ' +
+            'is failing, so we catch it in the act.';
+    }
+    d.innerHTML = msg;
+    c.appendChild(d);
+    lines.push(d.textContent);
+  }
+
+  // ---- Runner --------------------------------------------------------------
+  document.getElementById('run').addEventListener('click', function () {
+    var btn = this;
+    btn.disabled = true; btn.textContent = 'Testing…';
+    out.innerHTML = ''; lines = ['Blue Spice video diagnostic', new Date().toString()]; flags = {};
+
+    say('Checking device…');
+    testDevice(); testDataSaver(); testCodecs();
+
+    say('Checking for leftover app data…');
+    Promise.resolve(testServiceWorker())
+      .then(function () { say('Downloading a test clip…'); return testNetwork(); })
+      .then(function () { say('Trying to play a clip (about 10 seconds)…'); return testPlayback(); })
+      .then(function () { say('Now trying 6 clips at once (about 6 seconds)…'); return testConcurrent(); })
+      .then(function () {
+        verdict();
+        say('Done — please screenshot this page.');
+        btn.textContent = 'Run again'; btn.disabled = false;
+        var cp = document.getElementById('copy');
+        cp.hidden = false;
+        cp.onclick = function () {
+          var text = lines.join('\n');
+          var ta = document.getElementById('clip');
+          ta.value = text;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () { cp.textContent = 'Copied ✓'; },
+              function () { ta.select(); document.execCommand('copy'); cp.textContent = 'Copied ✓'; });
+          } else { ta.select(); document.execCommand('copy'); cp.textContent = 'Copied ✓'; }
+        };
+      })
+      .catch(function (e) {
+        say('Test failed: ' + e.message);
+        btn.textContent = 'Try again'; btn.disabled = false;
+      });
+  });
+})();
+</script>
+</body>
+</html>

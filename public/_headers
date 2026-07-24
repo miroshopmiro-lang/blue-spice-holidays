@@ -20,6 +20,12 @@
 /index.html
   Cache-Control: no-cache, no-store, must-revalidate
 
+# One-off support page for diagnosing a specific device. Must never be cached —
+# it exists to report the live state of whatever phone is opening it, and a
+# stale copy would report a stale answer. noindex is set in the page itself.
+/diag.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
 # Manifests are tiny and change rarely, but a stale one is disproportionately
 # annoying (wrong icons/theme colour pinned to a home-screen install), so keep
 # them revalidating. /manifest.webmanifest is the orphaned vite-plugin-pwa
