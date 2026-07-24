@@ -296,6 +296,55 @@
     });
   }
 
+  // ---- 8. Faded-out video --------------------------------------------------
+  // The hero keeps its inactive slides mounted at opacity:0 and preloads them
+  // there, then fades one in and plays it. Every test above uses fully opaque
+  // elements, so none of them exercise that. If a browser defers buffering or
+  // decoding for a transparent video, slide one plays (it is visible from the
+  // start) and every later slide arrives empty — which is the reported symptom
+  // exactly. This reproduces the hero's arrangement: same clip, in the viewport,
+  // one opaque and one at opacity 0.
+  function fadedTest(opacity, label, c) {
+    return new Promise(function (resolve) {
+      var wrap = document.createElement('div');
+      wrap.style.cssText = 'position:fixed;top:0;left:0;width:120px;height:68px;' +
+                           'z-index:-1;opacity:' + opacity + ';pointer-events:none;';
+      var v = document.createElement('video');
+      v.src = MP4; v.muted = true; v.playsInline = true;
+      v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+      v.style.cssText = 'width:100%;height:100%;object-fit:cover;';
+      wrap.appendChild(v); document.body.appendChild(wrap);
+
+      var err = null;
+      function go() { var p = v.play(); if (p && p.catch) p.catch(function (e) { err = e.name; }); }
+      go();
+      setTimeout(function () { if (v.currentTime === 0) go(); }, 1200);
+      setTimeout(function () { if (v.currentTime === 0) go(); }, 2600);
+
+      setTimeout(function () {
+        var moved = v.currentTime > 0.25;
+        row(c, label, moved ? 'PLAYS — reached ' + v.currentTime.toFixed(1) + 's'
+                            : 'DOES NOT PLAY — stuck at ' + v.currentTime.toFixed(2) + 's'
+                              + (err ? ' (' + err + ')' : ''),
+            moved ? 'ok' : 'bad');
+        row(c, label + ' — downloaded', v.buffered.length ? v.buffered.end(0).toFixed(1) + 's' : 'nothing',
+            v.buffered.length ? 'ok' : 'bad');
+        v.pause(); v.removeAttribute('src'); v.load(); wrap.remove();
+        resolve(moved);
+      }, 4500);
+    });
+  }
+
+  function testFaded() {
+    var c = card('Videos that are faded out (how the hero works)');
+    return fadedTest(1, 'Visible video (control)', c).then(function (vis) {
+      flags.visiblePlays = vis;
+      return fadedTest(0, 'Transparent video', c);
+    }).then(function (hidden) {
+      flags.hiddenPlays = hidden;
+    });
+  }
+
   // ---- Verdict -------------------------------------------------------------
   function verdict() {
     var c = card('Most likely cause');
@@ -317,6 +366,12 @@
             'loading images and text, which matches exactly what you are seeing. Fix: Chrome menu > ' +
             'Settings > Data Saver (or Lite mode) > turn off. Also check Settings > Network > Data saver ' +
             'in the phone settings.';
+    } else if (flags.visiblePlays === true && flags.hiddenPlays === false) {
+      msg = '<b>Found it. This browser refuses to play a video while it is faded out.</b> ' +
+            'The homepage keeps the upcoming clips loaded but invisible, then fades each one in — ' +
+            'so on this device the first clip plays and every later one arrives empty, which is ' +
+            'exactly the reported behaviour. This is a website fix, not a phone problem, and it is ' +
+            'now pinned down precisely.';
     } else if (flags.range === false) {
       msg = '<b>This phone or its network is not handling partial downloads correctly.</b> Video streaming ' +
             'depends on them. Something between the phone and the site — a proxy, a VPN, or an ad blocker — ' +
@@ -358,6 +413,7 @@
       .then(function () { say('Downloading a test clip…'); return testNetwork(); })
       .then(function () { say('Trying to play a clip (about 10 seconds)…'); return testPlayback(); })
       .then(function () { say('Now trying 6 clips at once (about 6 seconds)…'); return testConcurrent(); })
+      .then(function () { say('Checking faded-out video (about 10 seconds)…'); return testFaded(); })
       .then(function () {
         verdict();
         say('Done — please screenshot this page.');
