@@ -15,6 +15,7 @@ import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
 import AmbientMusic from './components/AmbientMusic';
+import HeroDebug from './components/HeroDebug';
 
 // Subpages using React lazy loading
 const HolidaysHubPage = lazy(() => import('./pages/HolidaysHubPage'));
@@ -75,8 +76,15 @@ function ScrollToTop() {
 
 // Homepage layout
 function Home() {
+  // Opt-in hero telemetry for diagnosing a device we cannot reach: append
+  // ?herodebug=1 to the homepage URL. A normal visit never constructs it.
+  const heroDebug =
+    typeof window !== 'undefined' &&
+    new URLSearchParams(window.location.search).has('herodebug');
+
   return (
     <>
+      {heroDebug && <HeroDebug />}
       <HeroSection />
       <TrustRibbon />
       <TrustCrown />
