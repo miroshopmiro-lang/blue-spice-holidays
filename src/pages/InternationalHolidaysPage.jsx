@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import GroundTeams from '../components/GroundTeams';
+import BrochureStrip from '../components/BrochureStrip';
 import useEnquiry from '../hooks/useEnquiry';
 
 const INT_PACKAGES = [
@@ -198,6 +199,8 @@ export default function InternationalHolidaysPage() {
           ))}
         </div>
       </section>
+
+      <BrochureStrip />
 
       <GroundTeams filterScope="International Curation" />
     </div>

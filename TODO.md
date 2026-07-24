@@ -20,6 +20,14 @@
 - [x] Folded Darshan into Spiritual Tours (`/holidays/spiritual`); `/darshan` now redirects there.
 - [x] Added 23 sub-pages across Holidays/Services/SPL Tour, a Gallery (Photos/Videos), Contact, Collaborate, and Refer pages.
 - [x] `/wellness` and `/cruises` kept live, footer-linked only (not in the client's menu list).
-- [ ] **Waiting on client**: Gallery photos/videos (client said "I will share"), all brochures beyond the 4 currently loaded, office contact details (address/hours — none exist in the repo), per-category copy for the 16 new generic pages, Collaborate program terms, Refer referral incentive.
-- [ ] Security: a GitHub personal access token is committed in plaintext in `.git/config`'s remote URL — recommend revoking and switching to SSH.
+- [ ] **Waiting on client**: Gallery photos/videos (client said "I will share"), office contact details (address/hours — none exist in the repo), per-category copy for the 16 new generic pages, Collaborate program terms, Refer referral incentive.
+- [ ] Security: a GitHub personal access token is in plaintext in `.git/config`'s remote URL — revoke it, and move credentials to `~/.claude/credentials/git-credentials` via a `store` credential helper.
+
+## Client feedback round (2026-07-24)
+- [x] Language flags removed from the nav (desktop dropdown + mobile drawer). Switching now lives only on the hero flag row, per the client.
+- [x] Fixed "Worldwide" overflowing the stats ribbon on mobile — stat values now size by string length (`valueSizeClass`) instead of a fixed `text-4xl`, so word values step down rather than spilling past the section edge.
+- [x] Wired the 8 new brochures to their matching pages. `src/data/brochures.js` is the single source of truth (each brochure lists the routes it belongs on); `BrochureStrip` renders the matches per page and `BrochureGallery` holds the shared grid + lightbox. `/brochures` shows all 12.
+- [x] Renamed brochure files from WhatsApp export names (several had stray typo characters, e.g. `2026-0a7-23`, `18.14.s03`) to descriptive slugs.
+- [x] Forex page now pulls live rates — `useForexRates` hits open.er-api.com with a jsdelivr currency-api fallback (both free, keyless, CORS-enabled) and falls back to a hardcoded snapshot only if both fail, labelled as such. The old hardcoded table had USD at ₹83.45 against a real ~₹96.72. Currency list widened from 6 to 12; converter is now live-updating rather than button-driven; copy states these are mid-market reference rates, not the retail card/cash rate.
+- [x] Orphaned `/manifest.webmanifest` (left by the retired vite-plugin-pwa layer) now 301s to `/site.webmanifest` via `public/_redirects`, and both manifest paths are `no-cache` in `public/_headers` so the edge can't hold a stale copy long-term again.
 

@@ -3,6 +3,7 @@ import { useParams, Navigate } from 'react-router-dom';
 import { PAGE_CONTENT } from '../data/pageContent';
 import useEnquiry from '../hooks/useEnquiry';
 import CustomItineraryForm from '../components/CustomItineraryForm';
+import BrochureStrip from '../components/BrochureStrip';
 
 export default function CategoryPage({ group }) {
   const { slug } = useParams();
@@ -77,6 +78,8 @@ export default function CategoryPage({ group }) {
           </div>
         </div>
       </section>
+
+      <BrochureStrip />
 
       <CustomItineraryForm />
     </div>

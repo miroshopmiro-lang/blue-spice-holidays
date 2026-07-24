@@ -15,20 +15,11 @@ function WhatsAppIcon({ className }) {
 }
 
 
-const LANGUAGES = [
-  { code: 'en', name: 'English', iso: 'gb' },
-  { code: 'de', name: 'German', iso: 'de' },
-  { code: 'fr', name: 'French', iso: 'fr' },
-  { code: 'ja', name: 'Japanese', iso: 'jp' },
-  { code: 'th', name: 'Thai', iso: 'th' },
-  { code: 'ms', name: 'Malay', iso: 'my' },
-  { code: 'es', name: 'Spanish', iso: 'es' },
-];
-
+// Language switching lives on the hero only (see HeroSection's flag row) — the
+// client asked for it out of the nav so the menu reads as pure navigation.
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [openMobileMenus, setOpenMobileMenus] = useState({});
   const location = useLocation();
 
@@ -36,45 +27,6 @@ export default function Header() {
 
   const isHome = location.pathname === '/';
   const showSolidHeader = scrolled || !isHome;
-
-  // Drives the real Google Translate widget select element.
-  // Retries up to ~3 s while the async script is still loading.
-  const applyTranslation = (code, attempts = 0) => {
-    const select = document.querySelector('.goog-te-combo');
-    if (select) {
-      select.value = code;
-      select.dispatchEvent(new Event('change'));
-    } else if (attempts < 15) {
-      // Widget not ready yet — retry every 200 ms
-      setTimeout(() => applyTranslation(code, attempts + 1), 200);
-    }
-  };
-
-  const handleLanguageChange = (code) => {
-    setLangDropdownOpen(false);
-    
-    const select = document.querySelector('.goog-te-combo');
-    if (select) {
-      select.value = code;
-      select.dispatchEvent(new Event('change'));
-      return;
-    }
-
-    // Fallback if widget script is blocked (e.g. by AdBlocker/Shields) or still loading
-    const hostname = window.location.hostname;
-    const isLocal = hostname === 'localhost' || hostname === '127.0.0.1' || hostname.startsWith('192.168.');
-    
-    if (isLocal) {
-      alert(
-        "Google Translate widget is still loading or blocked by an AdBlocker/Shield on localhost.\n\n" +
-        "1. Please disable AdBlocker or Brave Shields on this page to let the script load.\n" +
-        "2. Note: Google Translate's proxy cannot translate 'localhost' pages because local files are not accessible on the public internet. It will work 100% on the live public domain."
-      );
-    } else {
-      const pageUrl = encodeURIComponent(window.location.href);
-      window.open(`https://translate.google.com/translate?sl=auto&tl=${code}&u=${pageUrl}`, '_blank');
-    }
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -187,45 +139,6 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-
-          {/* Translate Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-              className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-xs font-semibold transition-all duration-300 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
-                showSolidHeader
-                  ? 'border-navy/20 text-navy hover:bg-navy/5'
-                  : 'border-white/20 text-white hover:bg-white/10'
-              }`}
-              aria-expanded={langDropdownOpen}
-              aria-haspopup="true"
-              aria-label="Select Language"
-            >
-              <span className="text-base leading-none">🌐</span>
-              <span className="hidden xl:inline">Translate</span>
-              <svg className={`w-3 h-3 transition-transform duration-200 ${langDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-              </svg>
-            </button>
-            {langDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-44 bg-white border border-hairline rounded-premium shadow-float py-1.5 z-[100]">
-                {LANGUAGES.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => handleLanguageChange(lang.code)}
-                    className="w-full text-left px-4 py-2 text-xs font-semibold transition-colors flex items-center gap-2.5 hover:bg-canvas hover:text-royal text-ink"
-                  >
-                    <img
-                      src={`https://flagcdn.com/w20/${lang.iso}.png`}
-                      alt={lang.name}
-                      className="w-5 h-3.5 object-cover rounded-sm shrink-0 border border-hairline"
-                    />
-                    <span>{lang.name}</span>
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
 
           {/* Phone */}
           <a
@@ -379,29 +292,6 @@ export default function Header() {
                 )}
               </div>
             </nav>
-
-            <div className="border-t border-hairline my-2 pt-3">
-              <span className="text-[10px] uppercase font-mono tracking-widemono text-royal block mb-2 px-3.5">Language</span>
-              <div className="grid grid-cols-2 gap-2 px-3.5">
-                {LANGUAGES.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => {
-                      handleLanguageChange(lang.code);
-                      setOpen(false);
-                    }}
-                    className="text-xs font-semibold py-2 px-3 rounded-lg border text-left flex items-center gap-2.5 transition-colors bg-canvas text-body border-hairline hover:border-navy hover:text-navy hover:bg-navy/5 animate-fadeIn"
-                  >
-                    <img
-                      src={`https://flagcdn.com/w20/${lang.iso}.png`}
-                      alt={lang.name}
-                      className="w-5 h-3.5 object-cover rounded-sm shrink-0 border border-hairline"
-                    />
-                    <span>{lang.name}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
 
             <div className="mt-auto pt-6 border-t border-hairline flex flex-col gap-4">
               <a href="tel:+919388599000" className="text-xs text-body px-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-sm" data-umami-event="Phone Mobile Menu Click">

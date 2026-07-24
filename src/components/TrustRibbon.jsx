@@ -58,6 +58,16 @@ const TRUST_ITEMS = [
   { value: '24/7', title: 'Specialist Support', sub: 'On-trip direct support line' },
 ];
 
+// Stat values are mostly short numerics ("15 +", "24/7"), but word values like
+// "Worldwide" are twice as wide and used to run past the section edge inside a
+// half-width mobile column. Step the type size down by length rather than
+// shrinking every stat to whatever the longest one can survive.
+function valueSizeClass(value) {
+  if (value.length <= 5) return 'text-4xl md:text-5xl';
+  if (value.length <= 8) return 'text-3xl md:text-4xl';
+  return 'text-2xl sm:text-3xl md:text-4xl';
+}
+
 
 export default function TrustRibbon() {
   const ref = useRef(null);
@@ -86,14 +96,16 @@ export default function TrustRibbon() {
           {TRUST_ITEMS.map((item) => (
             <div
               key={item.title}
-              className="text-center flex flex-col items-center justify-between h-full"
+              className="min-w-0 text-center flex flex-col items-center justify-between h-full"
             >
-              <div className="w-full">
+              <div className="w-full min-w-0">
                 <dt className="sr-only">{item.title}</dt>
-                <dd className="font-display text-4xl font-semibold tracking-tight text-gold md:text-5xl [font-variant-numeric:tabular-nums]">
+                <dd
+                  className={`font-display font-semibold tracking-tight text-gold break-words [font-variant-numeric:tabular-nums] ${valueSizeClass(item.value)}`}
+                >
                   <CountUp value={item.value} />
                 </dd>
-                <p className="mt-2.5 font-mono text-[11px] uppercase tracking-widemono text-white/80">
+                <p className="mt-2.5 font-mono text-[11px] uppercase tracking-widemono text-white/80 break-words">
                   {item.title}
                 </p>
               </div>

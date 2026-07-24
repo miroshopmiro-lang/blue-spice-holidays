@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import useEnquiry from '../hooks/useEnquiry';
+import BrochureStrip from '../components/BrochureStrip';
 
 const DARSHAN_PACKAGES = [
   {
@@ -154,6 +155,8 @@ export default function SpiritualToursPage() {
           ))}
         </div>
       </section>
+
+      <BrochureStrip />
     </div>
   );
 }

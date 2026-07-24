@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import LadiesOnlyTours from '../components/LadiesOnlyTours';
 import CustomItineraryForm from '../components/CustomItineraryForm';
+import BrochureStrip from '../components/BrochureStrip';
 
 export default function LadiesToursPage() {
   useEffect(() => {
@@ -29,6 +30,7 @@ export default function LadiesToursPage() {
       </section>
 
       <LadiesOnlyTours />
+      <BrochureStrip />
       <CustomItineraryForm />
     </div>
   );

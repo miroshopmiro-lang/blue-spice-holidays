@@ -19,3 +19,13 @@
 # Entry HTML never cached so deploys are visible immediately.
 /index.html
   Cache-Control: no-cache, no-store, must-revalidate
+
+# Manifests are tiny and change rarely, but a stale one is disproportionately
+# annoying (wrong icons/theme colour pinned to a home-screen install), so keep
+# them revalidating. /manifest.webmanifest is the orphaned vite-plugin-pwa
+# artefact — _redirects points it at /site.webmanifest, and this stops the edge
+# from holding any copy of that path long-term again.
+/site.webmanifest
+  Cache-Control: no-cache, must-revalidate
+/manifest.webmanifest
+  Cache-Control: no-cache, no-store, must-revalidate
