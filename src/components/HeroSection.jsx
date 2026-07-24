@@ -538,15 +538,21 @@ export default memo(function HeroSection({
           // incoming clip then never gets a decoder and freezes silently.
           //
           // Phones therefore mount active + next only (3 at peak, including the
-          // outgoing clip); desktop, which has no such scarcity, keeps a 2-clip
-          // runway. Bandwidth-wise this costs nothing now that the re-encode put
-          // a whole mobile clip at ~0.4MB — one clip of lead time is already
-          // several seconds of download headroom on 3G.
-          const inRunway = ahead <= (isMobile ? 1 : 2);
+          // outgoing clip). Desktop has no such scarcity and no reported problem,
+          // so it keeps the existing 3-clip runway untouched — narrowing it there
+          // would only shorten the buffering lead that fixed the congested-wifi
+          // stall, for no decoder benefit.
+          //
+          // The mobile cut costs little bandwidth-wise now that the re-encode put
+          // a whole mobile clip at ~0.4MB: one clip of lead is ~4s to fetch 0.4MB,
+          // comfortable above ~0.8Mbps, and the decode watchdog below covers the
+          // case where it isn't.
+          const inRunway = ahead <= (isMobile ? 1 : 3);
           if (!isActive && !isPrev && !inRunway) return null;
 
-          // Fully preload the active clip plus the next one; metadata only beyond.
-          const preloadAuto = isActive || ahead === 1;
+          // Phones fully preload the active clip and the next one; desktop keeps
+          // its original active + next two.
+          const preloadAuto = isActive || ahead === 1 || (!isMobile && ahead === 2);
 
           return (
             <HeroVideo
