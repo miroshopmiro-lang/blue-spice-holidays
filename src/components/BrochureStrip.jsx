@@ -21,7 +21,7 @@ export default function BrochureStrip() {
             Take It With You
           </span>
           <h2 className="serif-font text-2xl sm:text-3xl font-bold text-brand-ink mt-2">
-            {isSingle ? 'Download the Brochure' : 'Download the Brochures'}
+            Download
           </h2>
         </div>
 

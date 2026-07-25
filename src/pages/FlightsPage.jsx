@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useEnquiry from '../hooks/useEnquiry';
+import BrochureStrip from '../components/BrochureStrip';
 
 const FEATURED_ROUTES = [
   { id: 1, from: 'Mumbai (BOM)', to: 'London (LHR)', airline: 'British Airways', price: '₹72,400', type: 'Direct' },
@@ -191,6 +192,9 @@ export default function FlightsPage() {
           </div>
         </div>
       </section>
+
+      {/* Brochure Downloads */}
+      <BrochureStrip />
     </div>
   );
 }

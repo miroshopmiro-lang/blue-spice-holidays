@@ -65,7 +65,27 @@ export default function ReferPage() {
         </div>
       </section>
 
-      <section className="py-20 max-w-2xl mx-auto px-6 lg:px-8">
+      <section className="py-16 max-w-3xl mx-auto px-6 lg:px-8">
+        {/* Rewards Program Callout */}
+        <div className="mb-10 rounded-premium border border-amber-200 bg-gradient-to-br from-amber-50 via-white to-amber-50/50 p-6 sm:p-8 shadow-soft text-center relative overflow-hidden">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-100 text-amber-700 mb-3.5 shadow-inner">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
+              <path d="M12 6v12" />
+            </svg>
+          </div>
+          <h2 className="serif-font text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+            Refer, earn points and redeem it with your tour price<span className="text-amber-600 font-bold">*</span>.
+          </h2>
+          <p className="mt-2.5 text-sm text-slate-600 max-w-xl mx-auto leading-relaxed">
+            Share the joy of travel with your friends & family. Every successful tour booking earns reward points that you can redeem directly against your next domestic or international trip with us!
+          </p>
+          <p className="mt-4 text-[11px] italic text-slate-500 border-t border-amber-200/60 pt-3">
+            *The company reserves the right to withdraw or cancel offers without prior information or notice.
+          </p>
+        </div>
+
         <div className="rounded-premium border border-brand-surface-cool bg-white p-6 sm:p-8 shadow-soft" aria-live="polite">
           {submitted ? (
             <div className="flex flex-col items-start justify-center py-8">

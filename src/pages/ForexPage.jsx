@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import useEnquiry from '../hooks/useEnquiry';
 import useForexRates, { CURRENCIES } from '../hooks/useForexRates';
+import BrochureStrip from '../components/BrochureStrip';
 
 // Rates come back as INR per 1 unit of foreign currency. Small-denomination
 // currencies (JPY, NPR, THB) need more decimals to stay meaningful in a table.
@@ -228,6 +229,9 @@ export default function ForexPage() {
           order is placed.
         </p>
       </section>
+
+      {/* Brochure Downloads */}
+      <BrochureStrip />
     </div>
   );
 }

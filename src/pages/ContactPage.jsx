@@ -111,16 +111,94 @@ export default function ContactPage() {
                 </div>
               </a>
 
-              <div className="flex items-center gap-4 p-5 rounded-premium border border-brand-surface-cool bg-white">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-accent/10 text-brand-accent">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
-                </span>
-                <div>
-                  <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted">Follow Us</p>
-                  <div className="flex gap-3 mt-1">
-                    <a href="https://www.instagram.com/bluespiceholidays/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-brand-ink hover:text-brand-accent">Instagram</a>
-                    <a href="https://www.facebook.com/bluespiceholidayz/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-brand-ink hover:text-brand-accent">Facebook</a>
-                  </div>
+              {/* Separate, Noticeable Social Media Buttons */}
+              <div className="pt-2">
+                <p className="text-xs font-bold uppercase tracking-wider text-brand-muted mb-3">Connect On Social Media</p>
+                <div className="space-y-3">
+                  
+                  {/* Instagram Button */}
+                  <a
+                    href="https://www.instagram.com/bluespiceholidays/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-4 rounded-premium border border-pink-200/80 bg-gradient-to-r from-purple-50 via-pink-50 to-orange-50 hover:border-pink-400 hover:shadow-md transition-all duration-300"
+                    data-umami-event="Instagram Contact Page Click"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] text-white shadow-sm group-hover:scale-105 transition-transform">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                      </span>
+                      <div>
+                        <p className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                          Instagram
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 font-semibold">@bluespiceholidays</span>
+                        </p>
+                        <p className="text-xs text-slate-600">Follow tour highlights, photos & reels</p>
+                      </div>
+                    </div>
+                    <span className="text-xs font-bold text-pink-600 group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0">
+                      Follow <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                    </span>
+                  </a>
+
+                  {/* YouTube Button */}
+                  <a
+                    href="https://www.youtube.com/@bluespicetours"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-4 rounded-premium border border-red-200/80 bg-gradient-to-r from-red-50 to-rose-50 hover:border-red-400 hover:shadow-md transition-all duration-300"
+                    data-umami-event="YouTube Contact Page Click"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#FF0000] text-white shadow-sm group-hover:scale-105 transition-transform">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                      </span>
+                      <div>
+                        <p className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                          YouTube
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-semibold">@bluespicetours</span>
+                        </p>
+                        <p className="text-xs text-slate-600">Watch video vlogs & travel reviews</p>
+                      </div>
+                    </div>
+                    <span className="text-xs font-bold text-red-600 group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0">
+                      Subscribe <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                    </span>
+                  </a>
+
+                  {/* Facebook Button */}
+                  <a
+                    href="https://www.facebook.com/bluespiceholidayz/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between p-4 rounded-premium border border-blue-200/80 bg-gradient-to-r from-blue-50 to-sky-50 hover:border-blue-400 hover:shadow-md transition-all duration-300"
+                    data-umami-event="Facebook Contact Page Click"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#1877F2] text-white shadow-sm group-hover:scale-105 transition-transform">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                      </span>
+                      <div>
+                        <p className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                          Facebook
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 font-semibold">@bluespiceholidayz</span>
+                        </p>
+                        <p className="text-xs text-slate-600">Join our traveler community</p>
+                      </div>
+                    </div>
+                    <span className="text-xs font-bold text-blue-600 group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0">
+                      Visit <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                    </span>
+                  </a>
+
                 </div>
               </div>
             </div>

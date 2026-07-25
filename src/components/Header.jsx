@@ -58,7 +58,7 @@ export default function Header() {
           <img
             src="/android-chrome-192x192.png"
             alt="Blue Spice Holidays"
-            className="w-8 h-8 sm:w-9 sm:h-9 object-contain rounded-lg shadow-sm transition-transform duration-300 group-hover:scale-105"
+            className="w-11 h-11 sm:w-12 sm:h-12 object-contain rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105"
           />
           <span
             className={`font-display text-xl sm:text-2xl font-semibold tracking-tight transition-colors duration-300 ${showSolidHeader ? 'text-ink' : 'text-white'
@@ -215,7 +215,7 @@ export default function Header() {
                 <img
                   src="/android-chrome-192x192.png"
                   alt="Blue Spice Holidays Logo"
-                  className="w-8 h-8 object-contain rounded-lg shadow-sm"
+                  className="w-11 h-11 object-contain rounded-xl shadow-md"
                 />
                 <span className="font-display text-lg font-semibold text-ink">Blue Spice Holidays</span>
               </Link>

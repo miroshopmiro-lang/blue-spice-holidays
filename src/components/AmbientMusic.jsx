@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
+const TARGET_VOLUME = 0.175; // Reduced by half (previously 0.35)
+const FADE_DURATION = 3000;  // Slow 3-second fade in / fade out
+
 export default function AmbientMusic() {
   const audioRef = useRef(null);
   const buttonRef = useRef(null);
@@ -29,8 +32,8 @@ export default function AmbientMusic() {
     };
   }, []);
 
-  // Smoothly fade volume to target value
-  const fadeVolume = (targetVolume, duration = 1200, onComplete = null) => {
+  // Smoothly fade volume to target value over specified duration (default 3 seconds)
+  const fadeVolume = (targetVolume, duration = FADE_DURATION, onComplete = null) => {
     if (fadeIntervalRef.current) {
       clearInterval(fadeIntervalRef.current);
     }
@@ -38,7 +41,7 @@ export default function AmbientMusic() {
     if (!audioRef.current) return;
 
     const startVolume = audioRef.current.volume;
-    const steps = 30;
+    const steps = 60; // 60 steps over 3 seconds for silky smooth transition
     const stepTime = duration / steps;
     const volumeStep = (targetVolume - startVolume) / steps;
     let currentStep = 0;
@@ -50,7 +53,7 @@ export default function AmbientMusic() {
       }
 
       const nextVolume = startVolume + (volumeStep * (currentStep + 1));
-      audioRef.current.volume = Math.max(0, Math.min(0.35, nextVolume));
+      audioRef.current.volume = Math.max(0, Math.min(TARGET_VOLUME, nextVolume));
       currentStep++;
 
       if (currentStep >= steps) {
@@ -78,7 +81,7 @@ export default function AmbientMusic() {
           .then(() => {
             setIsPlaying(true);
             setHasInteracted(true);
-            fadeVolume(0.35, 1500);
+            fadeVolume(TARGET_VOLUME, FADE_DURATION);
           })
           .catch((err) => {
             console.log('Autoplay prevented. Waiting for explicit user interaction:', err);
@@ -105,8 +108,8 @@ export default function AmbientMusic() {
       if (document.hidden) {
         if (isPlaying) {
           wasPlayingRef.current = true;
-          // Fade volume down and pause
-          fadeVolume(0, 800, () => {
+          // Fade volume down over 3 seconds and pause
+          fadeVolume(0, FADE_DURATION, () => {
             if (audioRef.current && document.hidden) {
               audioRef.current.pause();
             }
@@ -118,7 +121,7 @@ export default function AmbientMusic() {
           if (audioRef.current) {
             audioRef.current.play()
               .then(() => {
-                fadeVolume(0.35, 1200);
+                fadeVolume(TARGET_VOLUME, FADE_DURATION);
               })
               .catch((err) => {
                 console.error("Failed to resume playback on visibility change:", err);
@@ -139,7 +142,7 @@ export default function AmbientMusic() {
     const handlePauseEvent = () => {
       if (audioRef.current && isPlaying) {
         setIsPlaying(false);
-        fadeVolume(0, 1000, () => {
+        fadeVolume(0, FADE_DURATION, () => {
           if (audioRef.current && !audioRef.current.paused) {
             audioRef.current.pause();
           }
@@ -160,7 +163,7 @@ export default function AmbientMusic() {
 
     if (isPlaying) {
       setIsPlaying(false);
-      fadeVolume(0, 1000, () => {
+      fadeVolume(0, FADE_DURATION, () => {
         if (audioRef.current && !audioRef.current.paused) {
           audioRef.current.pause();
         }
@@ -170,7 +173,7 @@ export default function AmbientMusic() {
       audioRef.current.volume = 0;
       audioRef.current.play()
         .then(() => {
-          fadeVolume(0.35, 1000);
+          fadeVolume(TARGET_VOLUME, FADE_DURATION);
         })
         .catch((err) => {
           console.error('Audio playback failed:', err);

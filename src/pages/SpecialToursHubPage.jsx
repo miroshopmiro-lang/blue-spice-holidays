@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import HubGrid from '../components/HubGrid';
+import BrochureStrip from '../components/BrochureStrip';
 
 const ITEMS = [
   { label: 'Celebrity Tours', path: '/special-tours/celebrity', image: '/images/luxury -car.webp' },
@@ -35,6 +36,7 @@ export default function SpecialToursHubPage() {
       </section>
 
       <HubGrid items={ITEMS} />
+      <BrochureStrip />
     </div>
   );
 }
