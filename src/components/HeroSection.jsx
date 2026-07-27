@@ -19,7 +19,7 @@ const HERO_SLIDES = [
     name: 'Agra & Taj Mahal',
     shortName: 'Taj Mahal',
     tagline: 'A Timeless Monument of Love',
-    description: 'Marvel at the ethereal white marble glowing under the golden sunrise, capturing India’s rich architectural heritage.',
+    description: 'Marvel at glowing white marble at sunrise, capturing India’s iconic heritage.',
     video: '/images/taj-mahal.webm',
     poster: '/images/taj-mahal-poster.webp',
     extraDuration: 1
@@ -28,8 +28,8 @@ const HERO_SLIDES = [
     id: 'rajasthan',
     name: 'Royal Rajasthan',
     shortName: 'Rajasthan',
-    tagline: 'Heritage, Fortresses & The Blue City',
-    description: 'Wander through the maze of blue-painted streets in Jodhpur, gaze at majestic hill fortresses, and immerse yourself in the vibrant colors of desert heritage.',
+    tagline: 'Royal Forts & Desert Heritage',
+    description: 'Explore majestic blue streets, royal fortresses, and vibrant desert colors.',
     video: '/images/rajasthan.webm',
     poster: '/images/rajasthan-poster.webp'
   },
@@ -37,8 +37,8 @@ const HERO_SLIDES = [
     id: 'goa-beach',
     name: 'Goa & Andaman Beaches',
     shortName: 'Goa & Andaman',
-    tagline: 'Sun-Kissed Golden Shores & Coral Coves',
-    description: 'Bask in the serene coastal charm of Goa’s pristine beaches or escape to the turquoise waters and private coral coves of the Andaman Islands.',
+    tagline: 'Sun-Kissed Shores & Coral Coves',
+    description: 'Unwind on golden beaches and crystal turquoise island waters.',
     video: '/images/goa-beach.webm',
     poster: '/images/goa-beach-poster.webp'
   },
@@ -46,8 +46,8 @@ const HERO_SLIDES = [
     id: 'munnar',
     name: 'Munnar Tea Estates',
     shortName: 'Munnar',
-    tagline: 'Emerald Whispers of the Hills',
-    description: 'Wander through rolling tea plantations, mist-laden valleys, and the gentle mountain breeze of the Western Ghats.',
+    tagline: 'Emerald Tea Gardens & Cool Hills',
+    description: 'Stroll through rolling tea plantations and refreshing mountain breezes.',
     video: '/images/munnar.webm',
     poster: '/images/munnar-poster.webp'
   },
@@ -55,8 +55,8 @@ const HERO_SLIDES = [
     id: 'kerala-waterfalls',
     name: 'Cascading Waterfalls',
     shortName: 'Waterfalls',
-    tagline: 'India’s Most Breathtaking Cascades',
-    description: 'Witness the roaring grandeur of forest waterfalls crashing down into deep green glades, cocooned by tropical wilderness.',
+    tagline: 'Breathtaking Forest Cascades',
+    description: 'Feel the freshness of roaring waterfalls nestled in lush tropical greenery.',
     video: '/images/kerala-waterfalls.webm',
     poster: '/images/kerala-waterfalls-poster.webp'
   },
@@ -64,8 +64,8 @@ const HERO_SLIDES = [
     id: 'kerala-wildlife',
     name: 'India’s Wild Sanctuaries',
     shortName: 'Wildlife',
-    tagline: 'Untamed Valley Flyovers & Mountain Horizons',
-    description: 'Soar above rugged valleys, deep green canyons, and pristine wild terrains, capturing the untamed beauty of India’s diverse ecosystems from above.',
+    tagline: 'Untamed Valleys & Wildlife',
+    description: 'Discover scenic mountain valleys and untouched natural wilderness.',
     video: '/images/wildlife.webm',
     poster: '/images/wildlife-poster.webp'
   },
@@ -74,7 +74,7 @@ const HERO_SLIDES = [
     name: 'Kerala Backwaters',
     shortName: 'Backwaters',
     tagline: 'Serenity on Floating Palaces',
-    description: 'Drift along tranquil emerald waterways on a luxury private houseboat, cocooned by swaying palms and slow-paced coastal rhythms.',
+    description: 'Relax on a luxury private houseboat along peaceful palm-lined canals.',
     video: '/images/kerala.webm',
     poster: '/images/kerala-poster.webp'
   },
@@ -82,8 +82,8 @@ const HERO_SLIDES = [
     id: 'dubai',
     name: 'Dubai & Burj Khalifa',
     shortName: 'Dubai',
-    tagline: 'Skylines of Wonder & Luxury',
-    description: 'Soar above the iconic Burj Khalifa, witness architectural wonders, and immerse yourself in the luxurious charm of this global oasis.',
+    tagline: 'Iconic Skylines & Luxury Wonders',
+    description: 'Experience world-class architecture and the magic of Burj Khalifa.',
     video: '/images/dubai.webm',
     poster: '/images/dubai-poster.webp'
   },
@@ -91,8 +91,8 @@ const HERO_SLIDES = [
     id: 'london',
     name: 'London Landmarks',
     shortName: 'London',
-    tagline: 'Classic Elegance & Historic Bridges',
-    description: 'Savor the timeless beauty of London. Glide past the historic Big Ben and iconic bridges spanning the majestic River Thames.',
+    tagline: 'Historic Bridges & City Elegance',
+    description: 'Glide past Big Ben and classic landmarks along the River Thames.',
     video: '/images/london.webm',
     poster: '/images/london-poster.webp'
   },
@@ -100,8 +100,8 @@ const HERO_SLIDES = [
     id: 'maya-beach',
     name: 'Phi Phi & Maya Bay',
     shortName: 'Maya Bay',
-    tagline: 'The Ultimate Tropical Escape',
-    description: 'Relax on sun-kissed white sands framed by dramatic limestone cliffs and pristine turquoise waters of Thailand.',
+    tagline: 'Thailand’s Tropical Escape',
+    description: 'Rest on soft white sands surrounded by warm turquoise waters.',
     video: '/images/maya-beach.webm',
     poster: '/images/maya-beach-poster.webp'
   },
@@ -109,8 +109,8 @@ const HERO_SLIDES = [
     id: 'himalayas',
     name: 'Yoga & Wellness Retreats',
     shortName: 'Wellness',
-    tagline: 'Yoga, Meditation & Rejuvenation',
-    description: 'Find absolute peace and spiritual harmony in the serene high-altitude valleys, perfect for yoga, rejuvenation, and quiet reflection.',
+    tagline: 'Rejuvenation & Peace of Mind',
+    description: 'Restore your spirit with peaceful yoga retreats in pristine mountain air.',
     video: '/images/himalaya-v2.webm',
     poster: '/images/himalaya-v2-poster.webp'
   },
@@ -118,8 +118,8 @@ const HERO_SLIDES = [
     id: 'himalayas-2',
     name: 'The Great Himalayas',
     shortName: 'Himalayas',
-    tagline: 'Ancient Peaks, Timeless Peace',
-    description: 'Let the majestic snow-capped Himalayas inspire stillness, a sanctuary above the clouds where every breath is a step toward renewal.',
+    tagline: 'Majestic Peaks & Quiet Stillness',
+    description: 'Breathe in pure mountain stillness beneath majestic snow-capped peaks.',
     video: '/images/himalaya-v1.webm',
     poster: '/images/himalaya-v1-poster.webp'
   }
