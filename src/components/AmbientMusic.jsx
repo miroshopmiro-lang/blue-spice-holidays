@@ -1,15 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
-const TARGET_VOLUME = 0.175; // Reduced by half (previously 0.35)
-const FADE_DURATION = 3000;  // Slow 3-second fade in / fade out
+const TARGET_VOLUME = 0.175; // Reduced volume (0.175) for ambient background sound
+const FADE_DURATION = 3000;  // 3-second smooth fade in / fade out
 
 export default function AmbientMusic() {
   const audioRef = useRef(null);
-  const buttonRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
-  
   const fadeIntervalRef = useRef(null);
   const wasPlayingRef = useRef(false);
 
@@ -32,7 +29,7 @@ export default function AmbientMusic() {
     };
   }, []);
 
-  // Smoothly fade volume to target value over specified duration (default 3 seconds)
+  // Smoothly fade volume to target value over specified duration (3 seconds)
   const fadeVolume = (targetVolume, duration = FADE_DURATION, onComplete = null) => {
     if (fadeIntervalRef.current) {
       clearInterval(fadeIntervalRef.current);
@@ -41,7 +38,7 @@ export default function AmbientMusic() {
     if (!audioRef.current) return;
 
     const startVolume = audioRef.current.volume;
-    const steps = 60; // 60 steps over 3 seconds for silky smooth transition
+    const steps = 60; // 60 steps over 3 seconds for smooth transition
     const stepTime = duration / steps;
     const volumeStep = (targetVolume - startVolume) / steps;
     let currentStep = 0;
@@ -65,41 +62,6 @@ export default function AmbientMusic() {
     }, stepTime);
   };
 
-  // Manage user interaction listeners to bypass autoplay restrictions
-  useEffect(() => {
-    if (hasInteracted) return;
-
-    const handleInteraction = (e) => {
-      // Don't auto-start if the user clicked the toggle button directly
-      if (buttonRef.current && buttonRef.current.contains(e.target)) {
-        return;
-      }
-
-      if (audioRef.current) {
-        audioRef.current.volume = 0;
-        audioRef.current.play()
-          .then(() => {
-            setIsPlaying(true);
-            setHasInteracted(true);
-            fadeVolume(TARGET_VOLUME, FADE_DURATION);
-          })
-          .catch((err) => {
-            console.log('Autoplay prevented. Waiting for explicit user interaction:', err);
-          });
-      }
-    };
-
-    document.addEventListener('click', handleInteraction);
-    document.addEventListener('touchstart', handleInteraction);
-    document.addEventListener('keydown', handleInteraction);
-
-    return () => {
-      document.removeEventListener('click', handleInteraction);
-      document.removeEventListener('touchstart', handleInteraction);
-      document.removeEventListener('keydown', handleInteraction);
-    };
-  }, [hasInteracted]);
-
   // Page Visibility API - Auto-pause when tab is hidden, auto-resume when visible
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -108,7 +70,6 @@ export default function AmbientMusic() {
       if (document.hidden) {
         if (isPlaying) {
           wasPlayingRef.current = true;
-          // Fade volume down over 3 seconds and pause
           fadeVolume(0, FADE_DURATION, () => {
             if (audioRef.current && document.hidden) {
               audioRef.current.pause();
@@ -119,12 +80,13 @@ export default function AmbientMusic() {
         if (wasPlayingRef.current) {
           wasPlayingRef.current = false;
           if (audioRef.current) {
-            audioRef.current.play()
+            audioRef.current
+              .play()
               .then(() => {
                 fadeVolume(TARGET_VOLUME, FADE_DURATION);
               })
               .catch((err) => {
-                console.error("Failed to resume playback on visibility change:", err);
+                console.error('Failed to resume playback on visibility change:', err);
               });
           }
         }
@@ -136,7 +98,7 @@ export default function AmbientMusic() {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [isPlaying]);
-  
+
   // Pause ambient music when a video starts playing
   useEffect(() => {
     const handlePauseEvent = () => {
@@ -158,9 +120,6 @@ export default function AmbientMusic() {
   const togglePlayback = () => {
     if (!audioRef.current) return;
 
-    // Stop listening for automatic interactions since the user has interacted manually
-    setHasInteracted(true);
-
     if (isPlaying) {
       setIsPlaying(false);
       fadeVolume(0, FADE_DURATION, () => {
@@ -171,7 +130,8 @@ export default function AmbientMusic() {
     } else {
       setIsPlaying(true);
       audioRef.current.volume = 0;
-      audioRef.current.play()
+      audioRef.current
+        .play()
         .then(() => {
           fadeVolume(TARGET_VOLUME, FADE_DURATION);
         })
@@ -184,14 +144,13 @@ export default function AmbientMusic() {
 
   return (
     <motion.button
-      ref={buttonRef}
       onClick={togglePlayback}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 1.5 }}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed bottom-6 left-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-navy/10 bg-white shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+      className="fixed bottom-6 left-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-navy/10 bg-white shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold cursor-pointer"
       aria-label={isPlaying ? 'Mute background music' : 'Unmute background music'}
       title={isPlaying ? 'Mute Music' : 'Play Music'}
     >

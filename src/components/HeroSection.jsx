@@ -21,7 +21,8 @@ const HERO_SLIDES = [
     tagline: 'A Timeless Monument of Love',
     description: 'Marvel at the ethereal white marble glowing under the golden sunrise, capturing India’s rich architectural heritage.',
     video: '/images/taj-mahal.webm',
-    poster: '/images/taj-mahal-poster.webp'
+    poster: '/images/taj-mahal-poster.webp',
+    extraDuration: 1
   },
   {
     id: 'rajasthan',
@@ -225,12 +226,24 @@ const HeroVideo = memo(function HeroVideo({
   // here is what left a client's hero dead on slide one: it also unwired
   // onEnded, so nothing ever advanced. Reduced motion now removes the
   // transitions instead, and the video keeps running.
+  const applyPlaybackRate = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    const extra = slide.extraDuration ?? 1;
+    if (extra > 0 && video.duration && !isNaN(video.duration) && video.duration > 0) {
+      video.playbackRate = video.duration / (video.duration + extra);
+    } else {
+      video.playbackRate = 1.0;
+    }
+  };
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     if (isActive && isVisible && isTabVisible) {
       video.muted = true;
+      applyPlaybackRate();
       video.play().catch((err) => {
         if (err.name !== 'AbortError') {
           console.warn(`Autoplay blocked or interrupted for video ${slide.id}:`, err);
@@ -312,16 +325,22 @@ const HeroVideo = memo(function HeroVideo({
           if (isActive) armStall();
         }}
         onPlaying={() => {
+          applyPlaybackRate();
           setIsBuffering(false);
           disarmStall();
         }}
         onCanPlay={() => {
+          applyPlaybackRate();
           setIsBuffering(false);
           disarmStall();
         }}
         onSeeked={() => setIsBuffering(false)}
         onLoadStart={() => setIsBuffering(true)}
-        onLoadedData={() => setIsBuffering(false)}
+        onLoadedMetadata={applyPlaybackRate}
+        onLoadedData={() => {
+          applyPlaybackRate();
+          setIsBuffering(false);
+        }}
         onError={() => {
           setIsBuffering(false);
           if (isActive) armStall();
