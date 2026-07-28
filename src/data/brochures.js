@@ -130,7 +130,7 @@ export const BROCHURES = [
     categoryLabel: 'Specialty & Signature Tours',
     src: '/brochures/special-kitchen-tour.jpeg',
     alt: 'Blue Spice Holidays Kitchen Tour brochure — Taste of home, live home cooking, Jain & vegetarian options for group tours',
-    routes: ['/special-tours', '/special-tours/kitchen-tours', '/special-tours/ladies-only', '/ladies-tours', '/holidays/ladies'],
+    routes: ['/special-tours', '/special-tours/kitchen-tours'],
   },
   {
     id: 'ladies-only-tour',

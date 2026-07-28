@@ -82,15 +82,15 @@ export const PAGE_CONTENT = {
       ],
     },
     visa: {
-      eyebrow: 'Documentation Support',
-      title: 'Tourist Visa Assistance',
-      lead: 'Application checklists, document review, and appointment coordination handled so deadlines are never at risk.',
+      eyebrow: 'Documentation & Process Facilitation',
+      title: 'Tourist Visa Guidance & Partner Facilitation',
+      lead: 'We guide you through document preparation, review application checklists, and connect you with authorized visa processing agencies for smooth submission.',
       image: '/images/services/visa.webp',
       highlights: [
-        'Country-specific document checklists',
-        'Application and appointment scheduling support',
-        'Status tracking until the visa is in hand',
-        'Guidance for individual, family and group applications',
+        'Country-specific document checklists & application review',
+        'Direct connection & routing to authorized visa partners',
+        'Appointment scheduling and embassy submission guidance',
+        'Step-by-step process assistance for individuals and groups',
       ],
     },
     events: {

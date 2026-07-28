@@ -23,7 +23,7 @@ export default function ForexPage() {
     if (metaDesc) {
       metaDesc.setAttribute(
         'content',
-        'Live indicative exchange rates, multi-currency forex cards and home delivery of currency notes, arranged by Blue Spice Holidays.'
+        'Forex requirement guidance, indicative live exchange rates, and partner agency coordination for multi-currency cards and currency delivery.'
       );
     }
   }, []);
@@ -69,7 +69,7 @@ export default function ForexPage() {
             Seamless Travel, <span className="accent-serif text-brand-accent">Secure Currency</span>
           </h1>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto text-base sm:text-lg">
-            Lock in competitive exchange rates with home delivery of currency notes and multi-currency forex cards.
+            We assist you with travel currency planning, document verification, and connect you directly with RBI-authorized forex partners for multi-currency cards and doorstep delivery.
           </p>
         </div>
       </section>
@@ -126,14 +126,14 @@ export default function ForexPage() {
               {converted ? `${converted} ${currency}` : '—'}
             </span>
             <span className="text-[10px] text-brand-muted block mt-1">
-              {rate ? `1 ${currency} = ₹${formatRate(rate)} · ` : ''}Indicative only. Your final card/cash rate is confirmed by our specialist at the time of order.
+              {rate ? `1 ${currency} = ₹${formatRate(rate)} · ` : ''}Indicative reference rate. Final rates and document verification are coordinated directly with our authorized FX partners.
             </span>
           </div>
         </div>
 
         {/* Forex Delivery & card Inquiry Form */}
         <div className="bg-white rounded-premium border border-brand-surface-cool shadow-2xl p-6 md:p-8">
-          <h2 className="text-sm font-semibold uppercase tracking-wider text-brand-muted mb-4">Request Forex Cards / Cash Delivery</h2>
+          <h2 className="text-sm font-semibold uppercase tracking-wider text-brand-muted mb-4">Request Forex Guidance &amp; Partner Delivery</h2>
           <form onSubmit={handleRequest} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
@@ -177,7 +177,7 @@ export default function ForexPage() {
                 id="forex-address"
                 name="address"
                 rows="2"
-                placeholder="Where should our currency specialist dispatch your card/cash?"
+                placeholder="Delivery location for our authorized partner agency..."
                 className="w-full bg-brand-surface border border-brand-surface-cool rounded-sm px-4 py-3 text-sm focus:border-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
                 required
               />
@@ -186,7 +186,7 @@ export default function ForexPage() {
               type="submit"
               className="w-full bg-brand-accent text-brand-ink font-bold uppercase tracking-wider text-xs py-4 rounded-premium hover:bg-brand-accent-hover transition-colors duration-300 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2"
             >
-              {submitted ? 'Routing to Specialist Planner…' : 'Submit Forex Order'}
+              {submitted ? 'Connecting with Partner Specialist…' : 'Submit Forex Assistance Request'}
             </button>
           </form>
         </div>
@@ -224,9 +224,7 @@ export default function ForexPage() {
         </div>
 
         <p className="text-center text-[11px] text-brand-muted mt-5 max-w-2xl mx-auto leading-relaxed">
-          These are mid-market reference rates shown for guidance. Retail buying and selling rates for
-          currency notes and forex cards differ, and are quoted and locked by our specialist when your
-          order is placed.
+          These mid-market reference rates are shown for guidance. Blue Spice Holidays assists with document preparation and connects you directly with RBI-authorized forex partners who quote, verify, and lock final rates when orders are fulfilled.
         </p>
       </section>
 

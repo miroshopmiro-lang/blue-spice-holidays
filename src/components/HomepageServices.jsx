@@ -9,7 +9,7 @@ const TIERS = [
     sub: 'Vacations',
     featured: false,
     blurb: 'Flights, slow-travel packages, visa coordination, and luxury cruise voyages under a single point of contact.',
-    items: ['Bespoke Holiday Packages', 'Domestic & International Flights', 'Visa & Forex Assistance', 'Luxury Cruises & Yacht Charters']
+    items: ['Bespoke Holiday Packages', 'Domestic & International Flights', 'Visa & Forex Facilitation', 'Luxury Cruises & Yacht Charters']
   },
   {
     id: 'vip',

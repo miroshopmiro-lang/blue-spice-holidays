@@ -19,13 +19,13 @@ const TRAVEL_SERVICES = [
     image: '/images/services/corporate.webp'
   },
   {
-    title: 'Visa Assistance',
-    outcome: 'Fast, documented, expert-handled approvals so deadlines are never at risk.',
+    title: 'Visa Facilitation',
+    outcome: 'Document review, application checklist guidance, and direct routing to authorized visa partners.',
     image: '/images/services/visa.webp'
   },
   {
-    title: 'Forex Assistance',
-    outcome: 'Competitive exchange rates, travel cards, and currency needs sorted before you depart.',
+    title: 'Forex Guidance',
+    outcome: 'Travel currency advisory, document prep, and seamless coordination with RBI-authorized FX partners.',
     image: '/images/forex assistance.webp'
   },
   {

@@ -48,24 +48,28 @@ const TOURS = [
 
 const MOMENTS = [
   {
-    src: '/images/ladies-only-tour/thailand-sanctuary-of-truth.webp',
-    caption: 'Ladies group tour to Sanctuary of Truth temple Thailand jain guest',
-    tag: 'Thailand Escapes',
+    type: 'video',
+    videoMp4: '/images/ladies-only-tour/ladies-tour-video-1.mp4',
+    caption: 'Celebration & group bonding moments on tour',
+    tag: 'Ladies Group Video',
   },
   {
-    src: '/images/ladies-only-tour/amritsar-himachal-ladies-tour.webp',
-    caption: 'Amritsar & Himachal Ladies Tour',
-    tag: 'Domestic Escapes',
+    type: 'photo',
+    src: '/images/ladies-only-tour/whatsapp-image-2026-07-19-at-11.13.41.jpeg',
+    caption: 'Unscripted smiles & sightseeing memories',
+    tag: 'Group Escapes',
   },
   {
-    src: '/images/ladies-only-tour/thailand-ladies-tour-1.webp',
-    caption: 'Pattaya Coral Island speedboat excursion for women groups',
-    tag: 'Thailand Escapes',
+    type: 'video',
+    videoMp4: '/images/ladies-only-tour/ladies-tour-video-2.mp4',
+    caption: 'Curated experiences & sightseeing on the road',
+    tag: 'Ladies Group Video',
   },
   {
-    src: '/images/ladies-only-tour/thailand-ladies-tour-2.webp',
-    caption: 'Bangkok shopping & high-tea curation for ladies',
-    tag: 'Thailand Escapes',
+    type: 'photo',
+    src: '/images/ladies-only-tour/whatsapp-image-2026-07-19-at-11.17.22.jpeg',
+    caption: 'Dedicated hospitality & custom group dining',
+    tag: 'Group Escapes',
   },
 ];
 
@@ -106,7 +110,7 @@ function CardVideoPlayer({ videoMp4, videoWebm, poster, title }) {
       <video
         ref={videoRef}
         poster={poster}
-        preload="none"
+        preload="metadata"
         playsInline
         muted={isMuted}
         loop
@@ -114,8 +118,8 @@ function CardVideoPlayer({ videoMp4, videoWebm, poster, title }) {
         width={480}
         height={360}
       >
-        <source src={videoWebm} type="video/webm" />
-        <source src={videoMp4} type="video/mp4" />
+        {videoWebm && <source src={videoWebm} type="video/webm" />}
+        {videoMp4 && <source src={videoMp4} type="video/mp4" />}
         Your browser does not support the video tag.
       </video>
 
@@ -319,12 +323,21 @@ export default function LadiesOnlyTours() {
           {MOMENTS.map((moment, idx) => (
             <div key={idx} className="group relative rounded-2xl overflow-hidden border border-hairline bg-white shadow-soft card-interactive flex flex-col justify-between">
               <div className="aspect-[4/3] w-full overflow-hidden bg-ink">
-                <img
-                  src={moment.src}
-                  alt={moment.caption}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
+                {moment.type === 'video' ? (
+                  <CardVideoPlayer
+                    videoMp4={moment.videoMp4}
+                    videoWebm={moment.videoWebm}
+                    poster={moment.poster}
+                    title={moment.caption}
+                  />
+                ) : (
+                  <img
+                    src={moment.src}
+                    alt={moment.caption}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                )}
               </div>
               <div className="p-5 bg-white flex-grow flex flex-col justify-between">
                 <div>
