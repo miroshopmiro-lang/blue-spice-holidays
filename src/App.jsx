@@ -89,7 +89,6 @@ function Home() {
       <TrustRibbon />
       <TrustCrown />
       <PopularDestinations />
-      <CuratedPackages />
       <FullscreenPromoCards />
       <CustomItineraryForm />
       <Testimonials />

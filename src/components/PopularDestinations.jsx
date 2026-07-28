@@ -314,7 +314,14 @@ export default function PopularDestinations() {
                       {dest.tagline}
                     </p>
 
-                    <div className="mt-4 flex items-center w-full">
+                    <div className="mt-4 flex items-center justify-between w-full">
+                      <button
+                        type="button"
+                        onClick={() => setActiveItineraryDest(dest)}
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-white tracking-wide hover:text-gold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold"
+                      >
+                        View Itinerary
+                      </button>
                       <button
                         type="button"
                         onClick={() => handleDestinationClick(dest.name)}

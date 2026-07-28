@@ -2,35 +2,35 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const GALLERY_ITEMS = [
-  { id: 'gallery_1', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.56.26 (1).jpeg', alt: 'Blue Spice Tour Moment 1' },
-  { id: 'gallery_2', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.56.26.jpeg', alt: 'Blue Spice Tour Moment 2' },
-  { id: 'gallery_3', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.56.27.jpeg', alt: 'Blue Spice Tour Moment 3' },
-  { id: 'gallery_4', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.56.28.jpeg', alt: 'Blue Spice Tour Moment 4' },
-  { id: 'gallery_5', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.56.29.jpeg', alt: 'Blue Spice Tour Moment 5' },
-  { id: 'gallery_6', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.57.10 (1).jpeg', alt: 'Blue Spice Tour Moment 6' },
-  { id: 'gallery_7', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.57.10.jpeg', alt: 'Blue Spice Tour Moment 7' },
-  { id: 'gallery_8', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.57.11.jpeg', alt: 'Blue Spice Tour Moment 8' },
-  { id: 'gallery_9', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.59.32.jpeg', alt: 'Blue Spice Tour Moment 9' },
-  { id: 'gallery_10', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.59.33.jpeg', alt: 'Blue Spice Tour Moment 10' },
-  { id: 'gallery_11', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.59.34.jpeg', alt: 'Blue Spice Tour Moment 11' },
-  { id: 'gallery_12', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.59.3b4.jpeg', alt: 'Blue Spice Tour Moment 12' },
-  { id: 'gallery_13', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 12.591.32.jpeg', alt: 'Blue Spice Tour Moment 13' },
-  { id: 'gallery_14', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 13.00.00.jpeg', alt: 'Blue Spice Tour Moment 14' },
-  { id: 'gallery_15', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 13.01.01.jpeg', alt: 'Blue Spice Tour Moment 15' },
-  { id: 'gallery_16', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 13.04.01.jpeg', alt: 'Blue Spice Tour Moment 16' },
-  { id: 'gallery_17', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 13.05.05.jpeg', alt: 'Blue Spice Tour Moment 17' },
-  { id: 'gallery_18', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 13.05.06.jpeg', alt: 'Blue Spice Tour Moment 18' },
-  { id: 'gallery_19', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 13.055.05.jpeg', alt: 'Blue Spice Tour Moment 19' },
-  { id: 'gallery_20', type: 'photo', src: '/gallery/WhatsApp Image 2026-07-28 at 13das.07.29.jpeg', alt: 'Blue Spice Tour Moment 20' },
-  { id: 'gallery_21', type: 'photo', src: '/gallery/WhatsApp Image 2026-0dw7-28 at 13.05.06.jpeg', alt: 'Blue Spice Tour Moment 21' },
-  { id: 'gallery_22', type: 'video', src: '/gallery/WhatsApp Video 2026-07-28 at 13.03.33.mp4', alt: 'Blue Spice Tour Highlights Video' },
-  { id: 'gallery_23', type: 'video', src: '/gallery/WhatsApp Video 2026-07-28 at 15.20.41.mp4', alt: 'Blue Spice Tour Video' },
-  { id: 'gallery_24', type: 'video', src: '/gallery/WhatsApp Video 2026-07-28 at 15.21.48.mp4', alt: 'Blue Spice Tour Video' },
-  { id: 'gallery_25', type: 'video', src: '/gallery/WhatsApp Video 2026-07-28 at 15.23.13.mp4', alt: 'Blue Spice Tour Video' },
+  { id: 'gallery_1', type: 'photo', src: '/gallery/gallery-photo-01.jpeg', alt: 'Blue Spice Tour Moment 1' },
+  { id: 'gallery_2', type: 'photo', src: '/gallery/gallery-photo-02.jpeg', alt: 'Blue Spice Tour Moment 2' },
+  { id: 'gallery_3', type: 'photo', src: '/gallery/gallery-photo-03.jpeg', alt: 'Blue Spice Tour Moment 3' },
+  { id: 'gallery_4', type: 'photo', src: '/gallery/gallery-photo-04.jpeg', alt: 'Blue Spice Tour Moment 4' },
+  { id: 'gallery_5', type: 'photo', src: '/gallery/gallery-photo-05.jpeg', alt: 'Blue Spice Tour Moment 5' },
+  { id: 'gallery_6', type: 'photo', src: '/gallery/gallery-photo-06.jpeg', alt: 'Blue Spice Tour Moment 6' },
+  { id: 'gallery_7', type: 'photo', src: '/gallery/gallery-photo-07.jpeg', alt: 'Blue Spice Tour Moment 7' },
+  { id: 'gallery_8', type: 'photo', src: '/gallery/gallery-photo-08.jpeg', alt: 'Blue Spice Tour Moment 8' },
+  { id: 'gallery_9', type: 'photo', src: '/gallery/gallery-photo-09.jpeg', alt: 'Blue Spice Tour Moment 9' },
+  { id: 'gallery_10', type: 'photo', src: '/gallery/gallery-photo-10.jpeg', alt: 'Blue Spice Tour Moment 10' },
+  { id: 'gallery_11', type: 'photo', src: '/gallery/gallery-photo-11.jpeg', alt: 'Blue Spice Tour Moment 11' },
+  { id: 'gallery_12', type: 'photo', src: '/gallery/gallery-photo-12.jpeg', alt: 'Blue Spice Tour Moment 12' },
+  { id: 'gallery_13', type: 'photo', src: '/gallery/gallery-photo-13.jpeg', alt: 'Blue Spice Tour Moment 13' },
+  { id: 'gallery_14', type: 'photo', src: '/gallery/gallery-photo-14.jpeg', alt: 'Blue Spice Tour Moment 14' },
+  { id: 'gallery_15', type: 'photo', src: '/gallery/gallery-photo-15.jpeg', alt: 'Blue Spice Tour Moment 15' },
+  { id: 'gallery_16', type: 'photo', src: '/gallery/gallery-photo-16.jpeg', alt: 'Blue Spice Tour Moment 16' },
+  { id: 'gallery_17', type: 'photo', src: '/gallery/gallery-photo-17.jpeg', alt: 'Blue Spice Tour Moment 17' },
+  { id: 'gallery_18', type: 'photo', src: '/gallery/gallery-photo-18.jpeg', alt: 'Blue Spice Tour Moment 18' },
+  { id: 'gallery_19', type: 'photo', src: '/gallery/gallery-photo-19.jpeg', alt: 'Blue Spice Tour Moment 19' },
+  { id: 'gallery_20', type: 'photo', src: '/gallery/gallery-photo-20.jpeg', alt: 'Blue Spice Tour Moment 20' },
+  { id: 'gallery_21', type: 'photo', src: '/gallery/gallery-photo-21.jpeg', alt: 'Blue Spice Tour Moment 21' },
+  { id: 'gallery_22', type: 'video', src: '/gallery/gallery-video-01.mp4', alt: 'Blue Spice Tour Video 1' },
+  { id: 'gallery_23', type: 'video', src: '/gallery/gallery-video-02.mp4', alt: 'Blue Spice Tour Video 2' },
+  { id: 'gallery_24', type: 'video', src: '/gallery/gallery-video-03.mp4', alt: 'Blue Spice Tour Video 3' },
+  { id: 'gallery_25', type: 'video', src: '/gallery/gallery-video-04.mp4', alt: 'Blue Spice Tour Video 4' },
   { id: 'ladies_vid_1', type: 'video', src: '/images/ladies-only-tour/kerala-ladies-tour.mp4', alt: 'Kerala Ladies Only Tour Video' },
   { id: 'ladies_vid_2', type: 'video', src: '/images/ladies-only-tour/thailand-ladies-tour.mp4', alt: 'Thailand Ladies Only Tour Video' },
-  { id: 'ladies_vid_3', type: 'video', src: '/Ladies only tour/WhatsApp Video 2026-07-19 at 11.12.15.mp4', alt: 'Ladies Only Tour Video 1' },
-  { id: 'ladies_vid_4', type: 'video', src: '/Ladies only tour/WhatsApp Video 2026-07-19 at 11.21.13.mp4', alt: 'Ladies Only Tour Video 2' },
+  { id: 'ladies_vid_3', type: 'video', src: '/images/ladies-only-tour/ladies-tour-video-1.mp4', alt: 'Ladies Only Tour Video 1' },
+  { id: 'ladies_vid_4', type: 'video', src: '/images/ladies-only-tour/ladies-tour-video-2.mp4', alt: 'Ladies Only Tour Video 2' },
   { id: 'ladies_sanctuary', type: 'photo', src: '/images/ladies-only-tour/thailand-sanctuary-of-truth.webp', alt: 'Ladies group tour to Sanctuary of Truth temple Thailand jain guest' },
   { id: 'ladies_amritsar', type: 'photo', src: '/images/ladies-only-tour/amritsar-himachal-ladies-tour.webp', alt: 'Amritsar & Himachal Ladies Tour' },
 ];
@@ -88,14 +88,14 @@ export default function GalleryPage() {
 
         {/* Modern Masonry Layout */}
         <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-          {GALLERY_ITEMS.map((item, index) => (
+          {GALLERY_ITEMS.map((item) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.03 }}
+              transition={{ duration: 0.3 }}
               className="break-inside-avoid relative overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-900 shadow-soft group cursor-pointer"
-              onClick={() => setSelectedIndex(index)}
+              onClick={() => setSelectedIndex(GALLERY_ITEMS.findIndex(g => g.id === item.id))}
             >
               {item.type === 'video' ? (
                 <div className="relative w-full aspect-video bg-black flex items-center justify-center">
