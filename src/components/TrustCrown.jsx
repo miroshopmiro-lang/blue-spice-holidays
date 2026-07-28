@@ -59,7 +59,7 @@ export default function TrustCrown() {
               ))}
             </div>
             <p className="text-xs text-slate-500 mt-0.5">
-              Perfect 5.0 rating based on 221 verified Google reviews. Impeccable planning and direct ground support since 2009.
+              Perfect 5.0 rating based on 225+ verified Google reviews. Impeccable planning and direct ground support since 2009.
             </p>
           </div>
         </div>

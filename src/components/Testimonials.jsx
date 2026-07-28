@@ -66,7 +66,7 @@ export default function Testimonials() {
             </div>
             <div>
               <p className="text-sm font-medium text-brand-ink group-hover:text-royal transition-colors"><span className="text-brand-accent">★</span> Rated 5.0/5 stars</p>
-              <p className="text-xs text-brand-muted">on Google (221+ reviews)</p>
+              <p className="text-xs text-brand-muted">on Google (225+ reviews)</p>
             </div>
           </a>
         </div>

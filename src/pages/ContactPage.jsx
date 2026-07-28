@@ -59,7 +59,7 @@ export default function ContactPage() {
           <img
             src="/android-chrome-192x192.png"
             alt="Blue Spice Holidays Logo"
-            className="w-14 h-14 object-contain rounded-2xl bg-white/10 p-2 border border-white/20 shadow-lg mb-5"
+            className="w-14 h-14 object-contain rounded-lg bg-white/10 p-2 border border-white/20 shadow-lg mb-5"
           />
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-brand-accent/20 text-brand-accent border border-brand-accent/30">
             Get In Touch

@@ -97,7 +97,7 @@ export default function Footer() {
             <img
               src="/android-chrome-192x192.png"
               alt="Blue Spice Holidays Logo"
-              className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-2xl bg-white/10 p-1.5 border border-white/20 group-hover:scale-105 transition-transform duration-300 shadow-xl"
+              className="w-16 h-16 sm:w-20 sm:h-20 object-contain rounded-lg bg-white/10 p-1.5 border border-white/20 group-hover:scale-105 transition-transform duration-300 shadow-xl"
             />
             <div>
               <span className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-white block">
