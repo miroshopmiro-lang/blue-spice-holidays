@@ -49,29 +49,7 @@ export const CURATED_PACKAGES = [
     ],
     accommodations: "Heritage hotels and havelis in Jaipur, Pushkar, and Jodhpur.",
   },
-  {
-    id: 3,
-    title: "Ladakh High Passes & Monasteries Route",
-    location: "Ladakh",
-    duration: "6 Nights / 7 Days",
-    rating: "4.9",
-    reviews: "38",
-    tag: "Adventure Curation",
-    price: "₹42,000",
-    inclusions: "Acclimatized Camp Stays, 4x4 Transfers, Local Spotters",
-    image: "/images/ladakh.webp",
-    metadata: { stay: "Acclimatized Camps", driver: "4x4 Transfers", guide: "Local Spotters" },
-    itinerary: [
-      { day: 1, title: "Arrive Leh & Acclimatize", detail: "Gentle first day, slow walk through the old town." },
-      { day: 2, title: "Monasteries of the Indus", detail: "Thiksey and Hemis with a local Buddhist scholar." },
-      { day: 3, title: "Nubra Valley Crossing", detail: "Khardung La pass, camp beside the dunes of Hunder." },
-      { day: 4, title: "Pangong Lake", detail: "4x4 route to the high-altitude lake, lakeside camp." },
-      { day: 5, title: "Hidden Villages", detail: "Quiet hamlets and high passes with local spotters." },
-      { day: 6, title: "Return to Leh", detail: "Rest, markets and a farewell dinner." },
-      { day: 7, title: "Departure", detail: "Assisted transfer to Leh airport." },
-    ],
-    accommodations: "Boutique Leh guesthouses and acclimatized luxury camps.",
-  },
+
   {
     id: 4,
     title: "Himachal Spectacular (Shimla & Manali)",
@@ -137,29 +115,7 @@ export const CURATED_PACKAGES = [
     ],
     accommodations: "4-star luxury hotels centrally located in Orchard Road or Marina Bay."
   },
-  {
-    id: 7,
-    title: "Classic London Discovery & City Curation",
-    location: "London, UK",
-    duration: "6 Nights / 7 Days",
-    rating: "4.9",
-    reviews: "32",
-    tag: "Couples Escapes",
-    price: "On Request",
-    inclusions: "Bespoke Accommodations, Wembley Stadium Pass, River Cruise, In association with Rediscover Tourism",
-    image: "/images/london.webp",
-    metadata: { stay: "Premium Hotel Stays", driver: "Airport Transfers & City Tour", guide: "Rediscover Tourism Curation" },
-    itinerary: [
-      { day: 1, title: "Welcome to London", detail: "Warm welcome and private transfer from London airport to your premium accommodation." },
-      { day: 2, title: "Wembley & Ealing Road Curation", detail: "Day trip to the world-famous Wembley Stadium, beautiful Hindu temples, and boutique shopping on Ealing Road (the 'Delhi of UK'). Experience London's iconic nightlife in the evening." },
-      { day: 3, title: "Historic Westminster & London Eye", detail: "Guided day trip to Westminster Abbey, Houses of Parliament, Parliament Square, Big Ben, and a flight on the iconic London Eye." },
-      { day: 4, title: "Royal Palaces & Squares", detail: "Excursion to Buckingham Palace, Trafalgar Square, National Gallery, and the lively Leicester Square." },
-      { day: 5, title: "Hyde Park & Science Museum", detail: "Unwind at Hyde Park, stroll through Covent Garden's markets, and explore the interactive exhibits at the Science Museum." },
-      { day: 6, title: "Royal Park Leisure & River Cruise", detail: "A relaxing day in the Royal Parks followed by an enchanting River Thames cruise to view the city skyline." },
-      { day: 7, title: "Farewell London", detail: "Private transfer from your accommodation to the airport. End of your 7-day tour with happy memories." }
-    ],
-    accommodations: "Curated premium accommodations in central London, organized in association with our UK partner Rediscover Tourism."
-  },
+
   {
     id: 8,
     title: "Central & South Kerala (Plan 2)",
@@ -539,28 +495,51 @@ export const DESTINATIONS = [
     ]
   },
   {
-    id: 'georgia',
-    name: 'Georgia',
+    id: 'sri-lanka',
+    name: 'Sri Lanka',
     categories: ['International', 'Trending'],
-    tagline: 'Old-world charm, new-world ease.',
-    image: '/images/georgia.webp',
+    tagline: 'Emerald tea hills, golden shores & ancient ruins.',
+    image: '/images/placeholder.svg',
     referenceInfo: {
       "Adults (Above 11 Years)": "Pls provide information",
       "Children with Age": "Pls provide information",
       "Rooms Required": "Pls provide information",
       "Travel Dates": "Pls provide information",
-      "Duration of Tour": "6 Days / 5 Nights",
-      "Meals Included": "Breakfast & Wine Château Tasting Dinner",
-      "Vehicle": "Private 4x4 SUV Chauffeur",
-      "Destinations": "Tbilisi Old Town, Kakheti Wine Region, Kazbegi Peaks"
+      "Duration of Tour": "5 Days / 4 Nights",
+      "Meals Included": "Breakfast by default",
+      "Vehicle": "Private Chauffeur Car & SUV Curation",
+      "Destinations": "Colombo, Kandy, Nuwara Eliya, Bentota Beach"
     },
     sampleItinerary: [
-      { day: 1, title: "Arrive Tbilisi & Old Town Walk", detail: "Warm welcome at Tbilisi airport. Private transfer to hotel. Evening walk through the Old Town.\n\n•	Tbilisi sulfur bath district photos\n•	Shardeni Street cafe walk\n\nOvernight stay in Tbilisi." },
-      { day: 2, title: "Tbilisi Cable Car & Botanical Gardens", detail: "After breakfast, explore the city's sights using the public cable car.\n\n•	Narikala Fortress panorama\n•	Mother of Georgia statue walk\n•	Tbilisi Botanical Garden walks\n•	Traditional sulfur bath soak (optional, extra cost)\n\nOvernight stay in Tbilisi." },
-      { day: 3, title: "Kakheti Wine Valley Château Excursion", detail: "Checkout after breakfast, drive to Kakheti wine region. Settle into a restored vineyard château.\n\n•	Bodbe Monastery walk\n•	Sighnaghi City of Love medieval walls\n•	UNESCO-heritage clay jar (Qvevri) wine tasting\n\nOvernight stay in Kakheti Château." },
-      { day: 4, title: "Kazbegi Peak & Gergeti Church 4x4", detail: "Checkout after breakfast, drive the military highway. Settle into your mountain hotel in Stepantsminda.\n\n•	Ananuri fortress castle views\n•	4x4 mountain route to Gergeti Trinity Church at 7,119 ft\n\nOvernight stay in Kazbegi." },
-      { day: 5, title: "Return Tbilisi via Mtskheta", detail: "Checkout after breakfast, return to Tbilisi. Enroute visit the ancient capital Mtskheta.\n\n•	Svetitskhoveli Cathedral (UNESCO World Heritage)\n•	Jvari Monastery cliff viewpoint\n\nOvernight stay in Tbilisi." },
-      { day: 6, title: "Departure", detail: "Check out, enjoy free time for shopping at Dry Bridge flea market, and transfer to Tbilisi airport." }
+      { day: 1, title: "Colombo Arrival & Galle Face Promenade", detail: "Warm welcome at Colombo Bandaranaike airport. Private transfer to your hotel. Evening sunset walk along Galle Face Green." },
+      { day: 2, title: "Elephant Sanctuary & Kandy Temple", detail: "Proceed to Kandy enroute visiting Pinnewala Elephant Orphanage. Visit the sacred Temple of the Tooth Relic in the evening." },
+      { day: 3, title: "Nuwara Eliya Tea Gardens & Ramboda Falls", detail: "Scenic drive into hill country. Visit Ramboda Waterfalls and lush tea estate plantations." },
+      { day: 4, title: "Bentota Golden Beaches & River Safari", detail: "Transfer to Bentota beach resort. Boat safari on Madu River and turtle hatchery visit." },
+      { day: 5, title: "Colombo Shopping & Departure", detail: "Check out, explore local markets in Colombo, and transfer to airport for onward flight." }
+    ]
+  },
+  {
+    id: 'nepal',
+    name: 'Nepal',
+    categories: ['International', 'Trending'],
+    tagline: 'Himalayan peaks, sacred stupas, and mountain calm.',
+    image: '/images/placeholder.svg',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "5 Days / 4 Nights",
+      "Meals Included": "Breakfast by default",
+      "Vehicle": "Private AC Vehicle / SUV",
+      "Destinations": "Kathmandu, Pokhara, Phewa Lake, Sarangkot"
+    },
+    sampleItinerary: [
+      { day: 1, title: "Kathmandu Arrival & Thamel Heritage Walk", detail: "Warm welcome at Kathmandu airport. Private transfer to hotel. Evening stroll through Thamel bazaar." },
+      { day: 2, title: "Pashupatinath & Boudhanath Stupa", detail: "Guided visits to sacred Pashupatinath temple, Boudhanath stupa, and Patan Durbar Square." },
+      { day: 3, title: "Drive to Pokhara & Phewa Lake Cruise", detail: "Scenic mountain transfer to Pokhara. Sunset boat ride on serene Phewa Lake." },
+      { day: 4, title: "Sarangkot Sunrise & Pokhara Waterfalls", detail: "Early morning Sarangkot view of Annapurna range, visit Davis Falls and Peace Pagoda." },
+      { day: 5, title: "Kathmandu Return & Departure", detail: "Return transfer to Kathmandu, local craft shopping, and airport connection." }
     ]
   },
   {
@@ -586,26 +565,51 @@ export const DESTINATIONS = [
     ]
   },
   {
-    id: 'london',
-    name: 'London',
-    categories: ['International', 'Trending'],
-    tagline: 'Royal heritage, historic streets, and partner-curated charm.',
-    image: '/images/london.webp',
+    id: 'odisha',
+    name: 'Odisha',
+    categories: ['India', 'Trending'],
+    tagline: 'Puri Jagannath heritage, Konark Sun Temple, and Chilika lagoon.',
+    image: '/images/odisha.webp',
     referenceInfo: {
       "Adults (Above 11 Years)": "Pls provide information",
       "Children with Age": "Pls provide information",
       "Rooms Required": "Pls provide information",
       "Travel Dates": "Pls provide information",
-      "Duration of Tour": "4 Days / 3 Nights",
+      "Duration of Tour": "5 Days / 4 Nights",
       "Meals Included": "Breakfast by default",
-      "Vehicle": "Private airport pickup & London public transit oyster cards",
-      "Destinations": "Wembley Stadium, Ealing Road, Westminster Abbey, London Eye"
+      "Vehicle": "Private AC Sedan / SUV",
+      "Destinations": "Bhubaneswar, Puri Jagannath, Konark Sun Temple, Chilika Lake"
     },
     sampleItinerary: [
-      { day: 1, title: "London Arrival & Thames Sunset Walk", detail: "Warm welcome at London airport. Private transfer to your premium hotel. Evening walk along the River Thames.\n\n•	London skyline walk\n•	Thames River twilight views\n\nOvernight stay in London." },
-      { day: 2, title: "Wembley Stadium & Ealing Road Curation", detail: "After breakfast, proceed to Wembley Stadium and Ealing Road for shopping.\n\n•	Wembley Stadium tour\n•	Hindu temples and boutique shopping at Ealing Road\n•	London traditional pub dinner\n\nOvernight stay in London." },
-      { day: 3, title: "Westminster & London Eye Flight", detail: "After breakfast, proceed for a historic Westminster walk and a ride on the London Eye.\n\n•	Westminster Abbey & Big Ben guided walks\n•	London Eye flight (skip-the-line tickets)\n•	Trafalgar Square & National Gallery\n\nOvernight stay in London." },
-      { day: 4, title: "Departure", detail: "Check out, enjoy free time for shopping at Harrods or Oxford Street, and private transfer to airport." }
+      { day: 1, title: "Bhubaneswar Arrival & Temple City Tour", detail: "Warm welcome at Bhubaneswar airport. Visit ancient Lingaraj and Mukteshwar temples." },
+      { day: 2, title: "Konark Sun Temple & Puri Beach Transfer", detail: "Visit UNESCO-heritage Konark Sun Temple. Evening stroll on Puri's Golden Beach." },
+      { day: 3, title: "Puri Jagannath Temple & Artisan Village", detail: "Lord Jagannath Temple darshan. Visit Raghurajpur heritage pattachitra painter village." },
+      { day: 4, title: "Chilika Lagoon Dolphin Excursion", detail: "Day trip to Chilika Lake Satapada for boat ride to spot Irrawaddy dolphins." },
+      { day: 5, title: "Bhubaneswar Handicrafts & Departure", detail: "Local shopping for Sambalpuri textiles and silver filigree crafts, drop to airport/station." }
+    ]
+  },
+  {
+    id: 'meghalaya',
+    name: 'Meghalaya',
+    categories: ['India', 'Trending'],
+    tagline: 'Abode of clouds, living root bridges, and crystal rivers.',
+    image: '/images/meghalaya.webp',
+    referenceInfo: {
+      "Adults (Above 11 Years)": "Pls provide information",
+      "Children with Age": "Pls provide information",
+      "Rooms Required": "Pls provide information",
+      "Travel Dates": "Pls provide information",
+      "Duration of Tour": "5 Days / 4 Nights",
+      "Meals Included": "Breakfast by default",
+      "Vehicle": "Private Mountain SUV",
+      "Destinations": "Shillong, Cherrapunji, Dawki River, Mawlynnong"
+    },
+    sampleItinerary: [
+      { day: 1, title: "Guwahati to Shillong Scenic Drive", detail: "Warm welcome at Guwahati airport. Scenic drive past Umiam Lake to Shillong hill station." },
+      { day: 2, title: "Cherrapunji Waterfalls & Mawsmai Caves", detail: "Excursion to Cherrapunji. Visit Nohkalikai Falls, Seven Sisters Falls, and limestone caves." },
+      { day: 3, title: "Dawki Crystal River & Mawlynnong Village", detail: "Transparent boat ride on Dawki Umngot river. Explore Asia's cleanest village." },
+      { day: 4, title: "Living Root Bridge Trek & Laitlum Canyons", detail: "Trek to iconic Living Root Bridge and visit panoramic Laitlum Canyons." },
+      { day: 5, title: "Shillong to Guwahati & Departure", detail: "Visit Don Bosco cultural museum, transfer back to Guwahati airport." }
     ]
   },
   {
@@ -736,12 +740,5 @@ export const GROUND_TEAMS = [
     scope: 'Domestic Curation',
     description: 'Andaman ground operation is headed by Ms Tohfa ji and her lovely team.'
   },
-  {
-    id: 'london',
-    name: 'Mr Vineesh',
-    location: 'London, UK',
-    role: 'UK Operations Director',
-    scope: 'International Curation',
-    description: 'Directs central London airport arrivals, chauffeured transfers, and exclusive VIP entry to Wembley Stadium and historic landmarks in partnership with Rediscover Tourism.'
-  }
+
 ];

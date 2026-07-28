@@ -46,8 +46,8 @@ export default function Header() {
     <>
     <header
       className={`fixed left-0 right-0 top-0 z-50 w-full transition-[background-color,box-shadow,backdrop-filter] duration-500 ease-lux ${showSolidHeader
-        ? 'glass shadow-soft py-4'
-        : 'bg-transparent py-6 border-b border-white/10'
+        ? 'glass shadow-soft py-2.5 sm:py-3'
+        : 'bg-transparent py-3 sm:py-4 border-b border-white/10'
         }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8">
@@ -58,10 +58,10 @@ export default function Header() {
           <img
             src="/android-chrome-192x192.png"
             alt="Blue Spice Holidays"
-            className="w-11 h-11 sm:w-12 sm:h-12 object-contain rounded-xl shadow-md transition-transform duration-300 group-hover:scale-105"
+            className="w-14 h-14 sm:w-16 sm:h-16 object-contain rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-105"
           />
           <span
-            className={`font-display text-xl sm:text-2xl font-semibold tracking-tight transition-colors duration-300 ${showSolidHeader ? 'text-ink' : 'text-white'
+            className={`font-display text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight transition-colors duration-300 ${showSolidHeader ? 'text-ink' : 'text-white'
               }`}
           >
             Blue Spice <span className={`transition-colors duration-300 ${showSolidHeader ? 'text-ink' : 'text-white'}`}>Holidays</span>
@@ -211,13 +211,13 @@ export default function Header() {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="flex items-center justify-between">
-              <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-2.5">
+              <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-3">
                 <img
                   src="/android-chrome-192x192.png"
                   alt="Blue Spice Holidays Logo"
-                  className="w-11 h-11 object-contain rounded-xl shadow-md"
+                  className="w-16 h-16 object-contain rounded-2xl shadow-lg"
                 />
-                <span className="font-display text-lg font-semibold text-ink">Blue Spice Holidays</span>
+                <span className="font-display text-xl font-bold text-ink">Blue Spice Holidays</span>
               </Link>
               <button
                 type="button"

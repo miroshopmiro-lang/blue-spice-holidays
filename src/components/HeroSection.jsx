@@ -87,15 +87,7 @@ const HERO_SLIDES = [
     video: '/images/dubai.webm',
     poster: '/images/dubai-poster.webp'
   },
-  {
-    id: 'london',
-    name: 'London Landmarks',
-    shortName: 'London',
-    tagline: 'Historic Bridges & City Elegance',
-    description: 'Glide past Big Ben and classic landmarks along the River Thames.',
-    video: '/images/london.webm',
-    poster: '/images/london-poster.webp'
-  },
+
   {
     id: 'maya-beach',
     name: 'Phi Phi & Maya Bay',
@@ -656,10 +648,10 @@ export default memo(function HeroSection({
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20" />
 
       {/* Quick Translate Flags - Listed out horizontally under the nav bar */}
-      <div className="absolute top-24 sm:top-28 left-0 right-0 z-50 flex justify-center px-6">
+      <div className="absolute top-[96px] sm:top-[104px] lg:top-[112px] left-0 right-0 z-40 flex justify-center px-6 pointer-events-auto">
         <motion.div
           {...enter(-10, 0.6, 0.1)}
-          className="flex items-center gap-2.5 bg-black/20 backdrop-blur-[1.5px] p-2 rounded-full border border-white/10"
+          className="flex items-center gap-2.5 bg-black/40 backdrop-blur-md p-2 rounded-full border border-white/15 shadow-md"
         >
           {LANGUAGES.map((lang) => (
             <button
@@ -680,7 +672,7 @@ export default memo(function HeroSection({
       </div>
 
       {/* Content overlay */}
-      <div className="relative z-30 mx-auto flex h-full max-w-7xl flex-col justify-between px-6 pb-28 pt-32 lg:px-8">
+      <div className="relative z-30 mx-auto flex h-full max-w-7xl flex-col justify-between px-6 pb-28 pt-40 sm:pt-44 lg:pt-48 lg:px-8">
         <div className="flex flex-1 flex-col justify-center max-w-3xl">
           <motion.p
             {...enter(12, 0.6, 0.2)}

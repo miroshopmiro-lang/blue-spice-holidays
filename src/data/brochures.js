@@ -53,15 +53,7 @@ export const BROCHURES = [
     alt: 'Blue Spice Holidays Explore Nepal brochure — Lumbini, Pokhra, Phewa Lake, Kathmandu, Boudhanath Stupa',
     routes: ['/holidays', '/holidays/international', '/holidays/spiritual'],
   },
-  {
-    id: 'london',
-    title: 'Explore London & UK Escapes',
-    category: 'holidays',
-    categoryLabel: 'Holidays & Group Journeys',
-    src: '/brochures/london.jpeg',
-    alt: 'Blue Spice Holidays Explore London brochure — Buckingham Palace, Wembley Stadium, London Bridge, London Eye',
-    routes: ['/holidays', '/holidays/international'],
-  },
+
   {
     id: 'office-tour',
     title: 'Office Tours & Corporate Offsites',

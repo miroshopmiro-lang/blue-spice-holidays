@@ -6,7 +6,7 @@ import useEnquiry from '../hooks/useEnquiry';
 
 // Filter packages that are domestic (location in India)
 const DOMESTIC_PACKAGES = [
-  ...CURATED_PACKAGES.filter(p => ['Kerala', 'Rajasthan', 'Ladakh'].includes(p.location)),
+  ...CURATED_PACKAGES.filter(p => ['Kerala', 'Rajasthan'].includes(p.location)),
   // Add another couple of domestic ones for richness
   {
     id: 101,
@@ -50,6 +50,48 @@ const DOMESTIC_PACKAGES = [
       { day: 6, title: "Departure Port Blair", detail: "Return ferry and airport connection." }
     ],
     accommodations: "Premium beach resorts and eco-luxe cottages directly on the shore."
+  },
+  {
+    id: 103,
+    title: "Golden Triangle & Sacred Shores of Odisha",
+    location: "Odisha",
+    duration: "4 Nights / 5 Days",
+    rating: "4.8",
+    reviews: "24",
+    tag: "Family Heritage",
+    price: "On Request",
+    inclusions: "Puri VIP Darshan Curation, Konark Sun Temple Guide, Chilika Lagoon Safari",
+    image: "/images/odisha.webp",
+    metadata: { stay: "Heritage Stays & Beachfront Resorts" },
+    itinerary: [
+      { day: 1, title: "Bhubaneswar Arrival & Temple City Tour", detail: "Warm welcome at Bhubaneswar airport. Visit ancient Lingaraj and Mukteshwar temples." },
+      { day: 2, title: "Konark Sun Temple & Puri Beach Transfer", detail: "Visit UNESCO-heritage Konark Sun Temple. Evening stroll on Puri's Golden Beach." },
+      { day: 3, title: "Puri Jagannath Temple & Artisan Village", detail: "Lord Jagannath Temple darshan. Visit Raghurajpur heritage pattachitra painter village." },
+      { day: 4, title: "Chilika Lagoon Dolphin Excursion", detail: "Day trip to Chilika Lake Satapada for boat ride to spot Irrawaddy dolphins." },
+      { day: 5, title: "Bhubaneswar Handicrafts & Departure", detail: "Local shopping for Sambalpuri textiles and silver filigree crafts, drop to airport/station." }
+    ],
+    accommodations: "Heritage properties in Bhubaneswar and seaside resorts in Puri."
+  },
+  {
+    id: 104,
+    title: "Abode of Clouds & Living Root Bridges of Meghalaya",
+    location: "Meghalaya",
+    duration: "4 Nights / 5 Days",
+    rating: "4.9",
+    reviews: "31",
+    tag: "Adventure Curation",
+    price: "On Request",
+    inclusions: "Shillong Peak Curation, Cherrapunji Cascades, Dawki Crystal River Boat",
+    image: "/images/meghalaya.webp",
+    metadata: { stay: "Hill Station Resorts & Eco-Luxe Chalets" },
+    itinerary: [
+      { day: 1, title: "Guwahati to Shillong Scenic Drive", detail: "Warm welcome at Guwahati airport. Scenic drive past Umiam Lake to Shillong hill station." },
+      { day: 2, title: "Cherrapunji Waterfalls & Mawsmai Caves", detail: "Excursion to Cherrapunji. Visit Nohkalikai Falls, Seven Sisters Falls, and limestone caves." },
+      { day: 3, title: "Dawki Crystal River & Mawlynnong Village", detail: "Transparent boat ride on Dawki Umngot river. Explore Asia's cleanest village." },
+      { day: 4, title: "Living Root Bridge Trek & Laitlum Canyons", detail: "Trek to iconic Living Root Bridge and visit panoramic Laitlum Canyons." },
+      { day: 5, title: "Shillong to Guwahati & Departure", detail: "Visit Don Bosco cultural museum, transfer back to Guwahati airport." }
+    ],
+    accommodations: "Pine-forest resort chalets in Shillong and boutique valley cottages."
   }
 ];
 

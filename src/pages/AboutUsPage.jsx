@@ -9,7 +9,7 @@ const PILLARS = [
       </svg>
     ),
     title: 'Worldwide Custom Routes',
-    body: 'From the backwaters of Kerala to the beaches of Maldives and the streets of London, we plan custom trips across both popular and offbeat routes in India and internationally.',
+    body: 'From the backwaters of Kerala to the beaches of Maldives and the mountains of Nepal, we plan custom trips across both popular and offbeat routes in India and internationally.',
   },
   {
     icon: (
