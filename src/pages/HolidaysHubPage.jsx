@@ -10,7 +10,7 @@ const ITEMS = [
   { label: 'Group Tours', path: '/holidays/group', image: '/images/luxury-coach.webp' },
   { label: 'Honeymoon Tours', path: '/holidays/honeymoon', image: '/images/bali.webp' },
   { label: 'Office Tours', path: '/holidays/office', image: '/images/services/corporate.webp' },
-  { label: 'School, College & Educational Tours', path: '/holidays/educational', image: '/images/taj-mahal.webp' },
+  { label: 'School, College & Educational Tours', path: '/holidays/educational', image: '/images/holidays/educational.webp' },
   { label: 'Spiritual Tours', path: '/holidays/spiritual', image: '/images/chardham_heli_yatra.webp' },
 ];
 

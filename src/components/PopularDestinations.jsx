@@ -234,12 +234,12 @@ export default function PopularDestinations() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="font-mono text-[10px] uppercase tracking-widemono text-royal">JOURNEY PLACES</span>
+            <span className="font-mono text-[10px] uppercase tracking-widemono text-royal">EXPLORE &amp; SELECT ITINERARIES</span>
             <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl mt-2">
-              Popular Destinations
+              Choose Your Destination &amp; Itinerary
             </h2>
             <p className="mt-3 text-sm md:text-base text-body">
-              Explore handpicked domestic sanctuaries and international paradises selected for their deep heritage and unhurried paces.
+              Select a destination below to explore day-by-day itineraries, customize travel plans, or request a bespoke quotation.
             </p>
           </div>
 

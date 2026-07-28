@@ -9,9 +9,9 @@ const ITEMS = [
   { label: 'Forex Assistance', path: '/services/forex', image: '/images/forex assistance.webp' },
   { label: 'Destination Wedding', path: '/services/destination-weddings', image: '/images/destination-weddings.webp' },
   { label: 'Events', path: '/services/events', image: '/images/Conferences,meeting.training.webp' },
-  { label: 'Conference', path: '/services/conferences', image: '/images/services/corporate.webp' },
-  { label: 'Anniversary Function', path: '/services/anniversary', image: '/images/bali.webp' },
-  { label: 'Birthday Party', path: '/services/birthday', image: '/images/dubai.webp' },
+  { label: 'Conference', path: '/services/conferences', image: '/images/services/conference.webp' },
+  { label: 'Anniversary Function', path: '/services/anniversary', image: '/images/services/anniversary.webp' },
+  { label: 'Birthday Party', path: '/services/birthday', image: '/images/services/birthday.webp' },
   { label: 'Yacht Parties', path: '/services/yacht-parties', image: '/images/goa_cruise.webp' },
 ];
 

@@ -41,6 +41,20 @@ export const PAGE_CONTENT = {
         'Loosely paced days with no mandatory group schedules',
         'Optional add-ons: spa, sunset cruises, private excursions',
       ],
+      momentsTitle: 'Real Honeymoon Moments',
+      momentsSubtitle: 'Unscripted memories from couples who travelled with Blue Spice Holidays.',
+      moments: [
+        {
+          src: '/images/honeymoon/honeymoon-mirissa-whale-watching.webp',
+          caption: 'Whale watching excursion in Mirissa with dedicated guide support',
+          tag: 'Sri Lanka Getaway',
+        },
+        {
+          src: '/images/honeymoon/honeymoon-private-tour-car.webp',
+          caption: 'Private island transfers & personalized sightseeing',
+          tag: 'Couples Escapes',
+        },
+      ],
     },
     office: {
       eyebrow: 'Corporate Curation',
@@ -58,7 +72,7 @@ export const PAGE_CONTENT = {
       eyebrow: 'Educational Curation',
       title: 'School, College & Institutional Tours',
       lead: 'Heritage, history and nature-focused itineraries for student groups, with the safety and supervision institutions require.',
-      image: '/images/taj-mahal.webp',
+      image: '/images/holidays/educational.webp',
       highlights: [
         'Age-appropriate, education-focused itinerary design',
         'Dedicated chaperone coordination with faculty',
@@ -109,7 +123,7 @@ export const PAGE_CONTENT = {
       eyebrow: 'MICE Curation',
       title: 'Conference & MICE Logistics',
       lead: 'Meeting-ready venues, delegate travel, and production support for conferences and corporate gatherings.',
-      image: '/images/services/corporate.webp',
+      image: '/images/services/conference.webp',
       highlights: [
         'Venue sourcing with AV and breakout space requirements',
         'Delegate travel and accommodation coordinated centrally',
@@ -121,7 +135,7 @@ export const PAGE_CONTENT = {
       eyebrow: 'Celebration Curation',
       title: 'Anniversary Function Planning',
       lead: 'Milestone celebrations planned around the venue, guest list, and details that make the day feel personal.',
-      image: '/images/bali.webp',
+      image: '/images/services/anniversary.webp',
       highlights: [
         'Venue and catering coordination',
         'Décor and theming arranged through vetted vendors',
@@ -133,7 +147,7 @@ export const PAGE_CONTENT = {
       eyebrow: 'Celebration Curation',
       title: 'Birthday Party Planning',
       lead: 'From themed venues to full guest logistics, birthday celebrations planned so you get to actually attend your own party.',
-      image: '/images/dubai.webp',
+      image: '/images/services/birthday.webp',
       highlights: [
         'Venue sourcing matched to theme and guest count',
         'Catering and entertainment vendor coordination',
@@ -160,7 +174,7 @@ export const PAGE_CONTENT = {
       eyebrow: 'VIP Curation',
       title: 'Celebrity Tours',
       lead: 'Discreet, high-touch travel arrangements for celebrities and high-profile guests, coordinated end to end.',
-      image: '/images/luxury -car.webp',
+      image: '/images/special-tours/celebrity.webp',
       highlights: [
         'Discreet airport meet & assist',
         'Private transport and secured accommodation',
@@ -172,7 +186,7 @@ export const PAGE_CONTENT = {
       eyebrow: 'VIP Curation',
       title: "Diplomat's Tour",
       lead: 'Protocol-aware travel arrangements for diplomatic delegations, coordinated with the discretion the role requires.',
-      image: '/images/services/corporate.webp',
+      image: '/images/special-tours/diplomats.webp',
       highlights: [
         'Protocol-aware itinerary and transport planning',
         'Secure, private accommodation arrangements',
@@ -196,7 +210,7 @@ export const PAGE_CONTENT = {
       eyebrow: 'Culinary Curation',
       title: 'SPL Kitchen Tours for Groups',
       lead: 'Guided culinary experiences for groups wanting to go beyond sightseeing into the region\'s food culture.',
-      image: '/images/kerala.webp',
+      brochureId: 'special-kitchen-tour',
       highlights: [
         'Local kitchen and market visits guided by regional hosts',
         'Group-sized culinary sessions and tastings',

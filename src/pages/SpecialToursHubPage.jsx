@@ -3,8 +3,8 @@ import HubGrid from '../components/HubGrid';
 import BrochureStrip from '../components/BrochureStrip';
 
 const ITEMS = [
-  { label: 'Celebrity Tours', path: '/special-tours/celebrity', image: '/images/luxury -car.webp' },
-  { label: "Diplomat's Tour", path: '/special-tours/diplomats', image: '/images/services/corporate.webp' },
+  { label: 'Celebrity Tours', path: '/special-tours/celebrity', image: '/images/special-tours/celebrity.webp' },
+  { label: "Diplomat's Tour", path: '/special-tours/diplomats', image: '/images/special-tours/diplomats.webp' },
   { label: 'Bouncers for VIPs & Celebrities', path: '/special-tours/bouncers', image: '/images/bouncer.webp' },
   { label: 'SPL Kitchen Tours for Groups', path: '/special-tours/kitchen-tours', image: '/images/kerala.webp' },
 ];
