@@ -2,6 +2,17 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const GALLERY_ITEMS = [
+  // Videos first
+  { id: 'gallery_22', type: 'video', src: '/gallery/gallery-video-01.mp4', alt: 'Blue Spice Tour Video 1' },
+  { id: 'gallery_23', type: 'video', src: '/gallery/gallery-video-02.mp4', alt: 'Blue Spice Tour Video 2' },
+  { id: 'gallery_24', type: 'video', src: '/gallery/gallery-video-03.mp4', alt: 'Blue Spice Tour Video 3' },
+  { id: 'gallery_25', type: 'video', src: '/gallery/gallery-video-04.mp4', alt: 'Blue Spice Tour Video 4' },
+  { id: 'ladies_vid_1', type: 'video', src: '/images/ladies-only-tour/kerala-ladies-tour.mp4', alt: 'Kerala Ladies Only Tour Video' },
+  { id: 'ladies_vid_2', type: 'video', src: '/images/ladies-only-tour/thailand-ladies-tour.mp4', alt: 'Thailand Ladies Only Tour Video' },
+  { id: 'ladies_vid_3', type: 'video', src: '/images/ladies-only-tour/ladies-tour-video-1.mp4', alt: 'Ladies Only Tour Video 1' },
+  { id: 'ladies_vid_4', type: 'video', src: '/images/ladies-only-tour/ladies-tour-video-2.mp4', alt: 'Ladies Only Tour Video 2' },
+
+  // Photos
   { id: 'gallery_1', type: 'photo', src: '/gallery/gallery-photo-01.jpeg', alt: 'Blue Spice Tour Moment 1' },
   { id: 'gallery_2', type: 'photo', src: '/gallery/gallery-photo-02.jpeg', alt: 'Blue Spice Tour Moment 2' },
   { id: 'gallery_3', type: 'photo', src: '/gallery/gallery-photo-03.jpeg', alt: 'Blue Spice Tour Moment 3' },
@@ -23,14 +34,6 @@ const GALLERY_ITEMS = [
   { id: 'gallery_19', type: 'photo', src: '/gallery/gallery-photo-19.jpeg', alt: 'Blue Spice Tour Moment 19' },
   { id: 'gallery_20', type: 'photo', src: '/gallery/gallery-photo-20.jpeg', alt: 'Blue Spice Tour Moment 20' },
   { id: 'gallery_21', type: 'photo', src: '/gallery/gallery-photo-21.jpeg', alt: 'Blue Spice Tour Moment 21' },
-  { id: 'gallery_22', type: 'video', src: '/gallery/gallery-video-01.mp4', alt: 'Blue Spice Tour Video 1' },
-  { id: 'gallery_23', type: 'video', src: '/gallery/gallery-video-02.mp4', alt: 'Blue Spice Tour Video 2' },
-  { id: 'gallery_24', type: 'video', src: '/gallery/gallery-video-03.mp4', alt: 'Blue Spice Tour Video 3' },
-  { id: 'gallery_25', type: 'video', src: '/gallery/gallery-video-04.mp4', alt: 'Blue Spice Tour Video 4' },
-  { id: 'ladies_vid_1', type: 'video', src: '/images/ladies-only-tour/kerala-ladies-tour.mp4', alt: 'Kerala Ladies Only Tour Video' },
-  { id: 'ladies_vid_2', type: 'video', src: '/images/ladies-only-tour/thailand-ladies-tour.mp4', alt: 'Thailand Ladies Only Tour Video' },
-  { id: 'ladies_vid_3', type: 'video', src: '/images/ladies-only-tour/ladies-tour-video-1.mp4', alt: 'Ladies Only Tour Video 1' },
-  { id: 'ladies_vid_4', type: 'video', src: '/images/ladies-only-tour/ladies-tour-video-2.mp4', alt: 'Ladies Only Tour Video 2' },
   { id: 'ladies_sanctuary', type: 'photo', src: '/images/ladies-only-tour/thailand-sanctuary-of-truth.webp', alt: 'Ladies group tour to Sanctuary of Truth temple Thailand jain guest' },
   { id: 'ladies_amritsar', type: 'photo', src: '/images/ladies-only-tour/amritsar-himachal-ladies-tour.webp', alt: 'Amritsar & Himachal Ladies Tour' },
 ];
