@@ -15,7 +15,7 @@ export const BROCHURES = [
     categoryLabel: 'Holidays & Group Journeys',
     src: '/brochures/group-tour.jpeg',
     alt: 'Blue Spice Holidays Group Tour brochure — Friends getaways, family vacations, corporate outings, school and college trips',
-    routes: ['/holidays', '/holidays/domestic', '/holidays/international', '/holidays/group'],
+    routes: ['/holidays', '/holidays/domestic', '/holidays/international', '/holidays/group', '/holidays/educational', '/holidays/senior-citizen', '/holidays/office'],
   },
   {
     id: 'central-kerala',
@@ -61,7 +61,7 @@ export const BROCHURES = [
     categoryLabel: 'Holidays & Group Journeys',
     src: '/brochures/office-tour.jpeg',
     alt: 'Blue Spice Holidays Office Tour brochure — team bonding, fun activities, campfire and music',
-    routes: ['/holidays', '/holidays/office'],
+    routes: ['/holidays', '/holidays/office', '/services/events', '/services/conferences'],
   },
 
   // -------------------------------------------------------------
@@ -74,7 +74,7 @@ export const BROCHURES = [
     categoryLabel: 'Travel Services & Assistance',
     src: '/brochures/all-services.jpeg',
     alt: 'Blue Spice Holidays Travel Services brochure — Resort Booking, Flight Booking, Tourist Visa Assistance, Forex Assistance',
-    routes: ['/services', '/services/flights', '/services/forex', '/services/visas', '/contact', '/flights', '/forex'],
+    routes: ['/services', '/services/flights', '/services/forex', '/services/visa', '/services/hotels', '/contact', '/flights', '/forex'],
   },
   {
     id: 'celebrations',
@@ -89,6 +89,7 @@ export const BROCHURES = [
       '/services/birthday',
       '/services/yacht-parties',
       '/services/events',
+      '/services/conferences',
     ],
   },
   {
@@ -98,7 +99,7 @@ export const BROCHURES = [
     categoryLabel: 'Travel Services & Assistance',
     src: '/brochures/destination-weddings.jpeg',
     alt: 'Blue Spice Holidays Destination Weddings brochure — resorts, venues, planning, catering, decor and guest management',
-    routes: ['/services', '/services/destination-weddings'],
+    routes: ['/services', '/services/destination-weddings', '/holidays/honeymoon'],
   },
 
   // -------------------------------------------------------------
@@ -111,7 +112,7 @@ export const BROCHURES = [
     categoryLabel: 'Specialty & Signature Tours',
     src: '/brochures/spiritual-tour.jpeg',
     alt: 'Blue Spice Holidays Spiritual Tour brochure — Guruvayur Temple, Sree Padmanabha Swamy Temple, Banaras, Chardham Yatra',
-    routes: ['/special-tours', '/special-tours/spiritual', '/spiritual-tours'],
+    routes: ['/special-tours', '/special-tours/spiritual', '/spiritual-tours', '/holidays/spiritual'],
   },
   {
     id: 'honeymoon-tour',
@@ -120,7 +121,7 @@ export const BROCHURES = [
     categoryLabel: 'Specialty & Signature Tours',
     src: '/brochures/honeymoon-tour.jpeg',
     alt: 'Blue Spice Holidays Honeymoon Tour brochure — Candle light dinners, room decoration, romantic stays, tailor-made couples experiences',
-    routes: ['/special-tours', '/special-tours/destination-weddings', '/destination-weddings'],
+    routes: ['/special-tours', '/holidays/honeymoon', '/services/destination-weddings', '/services/anniversary'],
   },
   {
     id: 'special-kitchen-tour',
@@ -129,7 +130,7 @@ export const BROCHURES = [
     categoryLabel: 'Specialty & Signature Tours',
     src: '/brochures/special-kitchen-tour.jpeg',
     alt: 'Blue Spice Holidays Kitchen Tour brochure — Taste of home, live home cooking, Jain & vegetarian options for group tours',
-    routes: ['/special-tours', '/special-tours/ladies-only', '/ladies-tours'],
+    routes: ['/special-tours', '/special-tours/kitchen-tours', '/special-tours/ladies-only', '/ladies-tours', '/holidays/ladies'],
   },
   {
     id: 'ladies-only-tour',
