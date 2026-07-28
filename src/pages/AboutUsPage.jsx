@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import GroundTeams from '../components/GroundTeams';
 
 const PILLARS = [
@@ -168,12 +169,12 @@ export default function AboutUsPage() {
               </p>
             </div>
             <div className="mt-8">
-              <a
-                href="#/contact"
+              <Link
+                to="/collaborate"
                 className="inline-flex items-center justify-center px-5 py-2.5 bg-navy text-white text-xs font-semibold uppercase tracking-wider rounded transition-all duration-300 hover:bg-royal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
               >
                 Inquire for Collaboration
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -190,12 +191,12 @@ export default function AboutUsPage() {
               </p>
             </div>
             <div className="mt-8">
-              <a
-                href="#/contact"
+              <Link
+                to="/refer"
                 className="inline-flex items-center justify-center px-5 py-2.5 border border-navy text-navy text-xs font-semibold uppercase tracking-wider rounded transition-all duration-300 hover:bg-navy hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
               >
                 Refer a Friend
-              </a>
+              </Link>
             </div>
           </div>
         </div>

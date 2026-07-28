@@ -1,38 +1,39 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-// Every "Enquire Now" CTA on the site needs to (a) prefill the custom itinerary
-// form and (b) bring it into view. On the homepage the form is already mounted,
-// so this is a same-page scroll. On every other route it isn't mounted at all
-// (previously these CTAs silently did nothing) — so we navigate home first and
-// poll briefly for the form to mount before firing the prefill event and scrolling.
+// Every "Enquire Now" CTA on the site pre-fills the custom itinerary
+// form and brings it into view. We navigate to the dedicated `/custom-itinerary`
+// page and pass destination & month details via query parameters.
 export default function useEnquiry() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (destination, month = 'Any month') => {
-    const fire = () => {
-      window.dispatchEvent(new CustomEvent('prefill-itinerary', { detail: { destination, month } }));
+    const firePrefill = () => {
+      window.dispatchEvent(
+        new CustomEvent('prefill-itinerary', { detail: { destination, month } })
+      );
     };
 
-    const existing = document.getElementById('custom');
-    if (existing) {
-      fire();
-      existing.scrollIntoView({ behavior: 'smooth' });
+    // If already on /custom-itinerary, just prefill and scroll into view
+    if (location.pathname === '/custom-itinerary') {
+      firePrefill();
+      const formEl = document.getElementById('custom-name') || document.getElementById('custom');
+      if (formEl) {
+        formEl.scrollIntoView({ behavior: 'smooth' });
+      }
       return;
     }
 
-    navigate('/#custom');
+    // Navigate to dedicated Custom Itinerary page with destination in query params & state
+    const searchParams = new URLSearchParams();
+    if (destination) searchParams.set('destination', destination);
+    if (month) searchParams.set('month', month);
 
-    let attempts = 0;
-    const tryFire = () => {
-      const el = document.getElementById('custom');
-      if (el) {
-        fire();
-        el.scrollIntoView({ behavior: 'smooth' });
-      } else if (attempts < 20) {
-        attempts += 1;
-        setTimeout(tryFire, 100);
-      }
-    };
-    setTimeout(tryFire, 50);
+    navigate({
+      pathname: '/custom-itinerary',
+      search: searchParams.toString()
+    }, {
+      state: { destination, month }
+    });
   };
 }

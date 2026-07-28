@@ -6,7 +6,7 @@ import TrustCrown from './components/TrustCrown';
 import TrustRibbon from './components/TrustRibbon';
 import PopularDestinations from './components/PopularDestinations';
 import FullscreenPromoCards from './components/FullscreenPromoCards';
-import CustomItineraryForm from './components/CustomItineraryForm';
+import QuickContactForm from './components/QuickContactForm';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
@@ -31,6 +31,7 @@ const AboutUsPage = lazy(() => import('./pages/AboutUsPage'));
 const BrochuresPage = lazy(() => import('./pages/BrochuresPage'));
 const GalleryPage = lazy(() => import('./pages/GalleryPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+const CustomItineraryPage = lazy(() => import('./pages/CustomItineraryPage'));
 const CollaboratePage = lazy(() => import('./pages/CollaboratePage'));
 const ReferPage = lazy(() => import('./pages/ReferPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
@@ -86,7 +87,7 @@ function Home() {
       <TrustCrown />
       <PopularDestinations />
       <FullscreenPromoCards />
-      <CustomItineraryForm />
+      <QuickContactForm />
       <Testimonials />
     </>
   );
@@ -127,6 +128,7 @@ export default function App() {
               <Route path="/brochures" element={<BrochuresPage />} />
               <Route path="/about" element={<AboutUsPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/custom-itinerary" element={<CustomItineraryPage />} />
               <Route path="/collaborate" element={<CollaboratePage />} />
               <Route path="/refer" element={<ReferPage />} />
 
@@ -138,6 +140,7 @@ export default function App() {
               <Route path="/darshan" element={<Navigate to="/holidays/spiritual" replace />} />
               <Route path="/flights" element={<Navigate to="/services/flights" replace />} />
               <Route path="/forex" element={<Navigate to="/services/forex" replace />} />
+              <Route path="/plan" element={<Navigate to="/custom-itinerary" replace />} />
 
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
