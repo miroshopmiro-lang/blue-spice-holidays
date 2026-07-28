@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { Section, SectionHeading, RevealGroup, Item } from './Section';
 import useEnquiry from '../hooks/useEnquiry';
 
@@ -39,10 +39,34 @@ const TOURS = [
     videoWebm: '/images/ladies-only-tour/thailand-ladies-tour.webm',
     poster: '/images/ladies-only-tour/thailand-ladies-tour-poster.webp',
     images: [
+      '/images/ladies-only-tour/thailand-sanctuary-of-truth.webp',
       '/images/ladies-only-tour/thailand-ladies-tour-1.webp',
       '/images/ladies-only-tour/thailand-ladies-tour-2.webp',
     ],
   }
+];
+
+const MOMENTS = [
+  {
+    src: '/images/ladies-only-tour/thailand-sanctuary-of-truth.webp',
+    caption: 'Ladies group tour to Sanctuary of Truth temple Thailand jain guest',
+    tag: 'Thailand Escapes',
+  },
+  {
+    src: '/images/ladies-only-tour/amritsar-himachal-ladies-tour.webp',
+    caption: 'Amritsar & Himachal Ladies Tour',
+    tag: 'Domestic Escapes',
+  },
+  {
+    src: '/images/ladies-only-tour/thailand-ladies-tour-1.webp',
+    caption: 'Pattaya Coral Island speedboat excursion for women groups',
+    tag: 'Thailand Escapes',
+  },
+  {
+    src: '/images/ladies-only-tour/thailand-ladies-tour-2.webp',
+    caption: 'Bangkok shopping & high-tea curation for ladies',
+    tag: 'Thailand Escapes',
+  },
 ];
 
 function CardVideoPlayer({ videoMp4, videoWebm, poster, title }) {
@@ -79,14 +103,6 @@ function CardVideoPlayer({ videoMp4, videoWebm, poster, title }) {
       className="relative w-full aspect-[4/3] bg-black overflow-hidden cursor-pointer group"
       onClick={togglePlay}
     >
-      {/* preload="none" is load-bearing, not a micro-optimisation. These are the
-          two longest clips on the site (~20s and ~24s) and they sit far below the
-          fold, but with the default preload the browser fetched and decoded a
-          first frame for both on page load — holding two video decoder slots the
-          whole time the hero was cycling. On handsets with a small decoder pool
-          that was enough to starve the hero's incoming clip and freeze it. They
-          are click-to-play, so there is nothing to gain from preloading: the
-          poster paints the card, and load starts on the user's tap. */}
       <video
         ref={videoRef}
         poster={poster}
@@ -145,18 +161,16 @@ function CardVideoPlayer({ videoMp4, videoWebm, poster, title }) {
         </button>
       )}
 
-      {/* Screen Reader Video Status */}
       <span className="sr-only">Video player for {title}. Click to play or pause.</span>
     </div>
   );
 }
 
 function InteractiveGallery({ videoMp4, videoWebm, poster, images, title }) {
-  const [activeMedia, setActiveMedia] = useState(0); // 0 = video, 1 = image1, 2 = image2
+  const [activeMedia, setActiveMedia] = useState(0);
 
   return (
     <div className="relative w-full aspect-[4/3] bg-black overflow-hidden group">
-      {/* Media Displays */}
       <div className="w-full h-full">
         {activeMedia === 0 ? (
           <CardVideoPlayer
@@ -177,7 +191,6 @@ function InteractiveGallery({ videoMp4, videoWebm, poster, images, title }) {
         )}
       </div>
 
-      {/* Gallery Selector Controls */}
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/60 px-3 py-1.5 rounded-full z-20 backdrop-blur-sm border border-white/10">
         <button
           type="button"
@@ -224,7 +237,6 @@ function TourCard({ tour, index }) {
 
   return (
     <Item className="flex flex-col overflow-hidden rounded-2xl border border-hairline bg-white shadow-soft card-interactive transform-gpu translate-z-0 backface-hidden will-change-transform">
-      {/* Media container */}
       <div className="relative">
         {tour.mediaType === 'video' ? (
           <CardVideoPlayer
@@ -247,13 +259,11 @@ function TourCard({ tour, index }) {
         </span>
       </div>
 
-      {/* Info container */}
       <div className="flex flex-1 flex-col p-6 bg-white transform-gpu translate-z-0 backface-hidden will-change-transform">
         <span className="font-mono text-[10px] uppercase tracking-widemono text-royal block">{tour.eyebrow}</span>
         <h3 className="font-display text-xl font-bold leading-snug text-ink mt-2">{tour.title}</h3>
         <p className="mt-3 text-xs leading-relaxed text-body">{tour.description}</p>
 
-        {/* Highlights bullets */}
         <ul className="mt-4 space-y-2 border-t border-hairline pt-4 flex-grow">
           {tour.highlights.map((highlight, hIdx) => (
             <li key={hIdx} className="flex items-start gap-2 text-[11px] text-body">
@@ -265,7 +275,6 @@ function TourCard({ tour, index }) {
           ))}
         </ul>
 
-        {/* Action Button */}
         <div className="mt-6 pt-4 border-t border-hairline flex items-center justify-between">
           <button
             type="button"
@@ -297,6 +306,36 @@ export default function LadiesOnlyTours() {
           <TourCard key={tour.id} tour={tour} index={index} />
         ))}
       </RevealGroup>
+
+      {/* Moments from Past Ladies Tours Showcase */}
+      <div className="mt-20 border-t border-hairline pt-16">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <span className="font-mono text-[10px] uppercase tracking-widemono text-royal block">REAL JOURNEY MOMENTS</span>
+          <h3 className="font-display text-2xl font-bold text-ink sm:text-3xl mt-2">Moments from Our Ladies Tours</h3>
+          <p className="text-xs sm:text-sm text-body mt-2">Unscripted memories from our recent all-women group escapes across India and international destinations.</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {MOMENTS.map((moment, idx) => (
+            <div key={idx} className="group relative rounded-2xl overflow-hidden border border-hairline bg-white shadow-soft card-interactive flex flex-col justify-between">
+              <div className="aspect-[4/3] w-full overflow-hidden bg-ink">
+                <img
+                  src={moment.src}
+                  alt={moment.caption}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-5 bg-white flex-grow flex flex-col justify-between">
+                <div>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-royal font-bold block mb-1">{moment.tag}</span>
+                  <p className="text-xs font-semibold text-ink leading-snug">{moment.caption}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </Section>
   );
 }

@@ -31,6 +31,8 @@ const GALLERY_ITEMS = [
   { id: 'ladies_vid_2', type: 'video', src: '/images/ladies-only-tour/thailand-ladies-tour.mp4', alt: 'Thailand Ladies Only Tour Video' },
   { id: 'ladies_vid_3', type: 'video', src: '/Ladies only tour/WhatsApp Video 2026-07-19 at 11.12.15.mp4', alt: 'Ladies Only Tour Video 1' },
   { id: 'ladies_vid_4', type: 'video', src: '/Ladies only tour/WhatsApp Video 2026-07-19 at 11.21.13.mp4', alt: 'Ladies Only Tour Video 2' },
+  { id: 'ladies_sanctuary', type: 'photo', src: '/images/ladies-only-tour/thailand-sanctuary-of-truth.webp', alt: 'Ladies group tour to Sanctuary of Truth temple Thailand jain guest' },
+  { id: 'ladies_amritsar', type: 'photo', src: '/images/ladies-only-tour/amritsar-himachal-ladies-tour.webp', alt: 'Amritsar & Himachal Ladies Tour' },
 ];
 
 export default function GalleryPage() {
