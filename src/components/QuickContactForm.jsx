@@ -92,18 +92,23 @@ export default function QuickContactForm() {
               </div>
             </div>
 
-            {/* Link to Full Custom Itinerary Page */}
+            {/* Standout CTA Button to Full Custom Itinerary Page */}
             <div className="mt-8 pt-6 border-t border-white/10">
-              <p className="text-xs text-brand-surface-cool/60 mb-3">Looking for granular, multi-destination custom planning?</p>
+              <p className="text-xs text-brand-surface-cool/70 mb-3 font-medium">Looking for granular multi-destination or bespoke group trip planning?</p>
               <Link
                 to="/custom-itinerary"
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-accent hover:underline group"
+                className="group relative inline-flex items-center justify-between w-full sm:w-auto gap-4 px-6 py-4 rounded-xl bg-gradient-to-r from-brand-accent via-amber-400 to-amber-300 text-brand-ink font-bold text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(212,175,55,0.4)] hover:shadow-[0_0_35px_rgba(212,175,55,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 border border-amber-200/50"
                 data-umami-event="Homepage Launch Full Planner Click"
               >
-                Launch Detailed Custom Itinerary Planner 
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:translate-x-1 transition-transform">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
+                <span className="flex items-center gap-2">
+                  <span className="flex h-2 w-2 rounded-full bg-brand-ink animate-ping" />
+                  Launch Detailed Custom Itinerary Planner
+                </span>
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-ink/10 group-hover:bg-brand-ink group-hover:text-white transition-all shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:translate-x-0.5 transition-transform">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </span>
               </Link>
             </div>
           </div>

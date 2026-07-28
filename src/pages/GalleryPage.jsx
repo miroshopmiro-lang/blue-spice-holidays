@@ -40,6 +40,7 @@ const GALLERY_ITEMS = [
 
 export default function GalleryPage() {
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const [filter, setFilter] = useState('all'); // 'all' | 'video' | 'photo'
 
   useEffect(() => {
     document.title = "Tour Gallery · Blue Spice Holidays";
@@ -49,18 +50,24 @@ export default function GalleryPage() {
     }
   }, []);
 
+  const filteredItems = GALLERY_ITEMS.filter(item => {
+    if (filter === 'video') return item.type === 'video';
+    if (filter === 'photo') return item.type === 'photo';
+    return true;
+  });
+
   useEffect(() => {
     if (selectedIndex === null) return;
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') setSelectedIndex(null);
-      if (e.key === 'ArrowRight') setSelectedIndex((prev) => (prev + 1) % GALLERY_ITEMS.length);
-      if (e.key === 'ArrowLeft') setSelectedIndex((prev) => (prev - 1 + GALLERY_ITEMS.length) % GALLERY_ITEMS.length);
+      if (e.key === 'ArrowRight') setSelectedIndex((prev) => (prev + 1) % filteredItems.length);
+      if (e.key === 'ArrowLeft') setSelectedIndex((prev) => (prev - 1 + filteredItems.length) % filteredItems.length);
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedIndex]);
+  }, [selectedIndex, filteredItems.length]);
 
-  const activeItem = selectedIndex !== null ? GALLERY_ITEMS[selectedIndex] : null;
+  const activeItem = selectedIndex !== null ? filteredItems[selectedIndex] : null;
 
   return (
     <div className="bg-brand-surface pt-24 min-h-screen text-brand-ink">
@@ -75,33 +82,71 @@ export default function GalleryPage() {
             Our Tour <span className="accent-serif text-brand-accent">Gallery</span>
           </h1>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto text-base sm:text-lg">
-            Real snapshots and unscripted moments captured on tour with our travelers.
+            Real snapshots and unscripted video highlights captured on tour with our travelers.
           </p>
         </div>
       </section>
 
       {/* Gallery Section */}
       <section className="py-16 max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between border-b border-brand-surface-cool pb-4 mb-8">
-          <h2 className="serif-font text-2xl font-bold text-slate-900">All Moments</h2>
-          <span className="text-xs font-mono font-semibold text-slate-500 bg-white border border-slate-200 px-3 py-1 rounded-full">
-            {GALLERY_ITEMS.length} Items
-          </span>
+        {/* Header & Filter Controls */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-brand-surface-cool pb-4 mb-8 gap-4">
+          <div>
+            <h2 className="serif-font text-2xl font-bold text-slate-900">All Moments</h2>
+            <p className="text-xs text-brand-muted mt-0.5">Tour videos featured at the top, followed by photo memories.</p>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => { setFilter('all'); setSelectedIndex(null); }}
+              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+                filter === 'all'
+                  ? 'bg-brand-ink text-white shadow-sm'
+                  : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
+              }`}
+            >
+              All ({GALLERY_ITEMS.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => { setFilter('video'); setSelectedIndex(null); }}
+              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                filter === 'video'
+                  ? 'bg-brand-accent text-brand-ink shadow-sm'
+                  : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
+              }`}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+              Videos ({GALLERY_ITEMS.filter(x => x.type === 'video').length})
+            </button>
+            <button
+              type="button"
+              onClick={() => { setFilter('photo'); setSelectedIndex(null); }}
+              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+                filter === 'photo'
+                  ? 'bg-brand-ink text-white shadow-sm'
+                  : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
+              }`}
+            >
+              Photos ({GALLERY_ITEMS.filter(x => x.type === 'photo').length})
+            </button>
+          </div>
         </div>
 
-        {/* Modern Masonry Layout */}
-        <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-          {GALLERY_ITEMS.map((item) => (
+        {/* Row-based Responsive Grid Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          {filteredItems.map((item, idx) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="break-inside-avoid relative overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-900 shadow-soft group cursor-pointer"
-              onClick={() => setSelectedIndex(GALLERY_ITEMS.findIndex(g => g.id === item.id))}
+              transition={{ duration: 0.3, delay: Math.min(idx * 0.03, 0.3) }}
+              className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-900 shadow-soft group cursor-pointer aspect-[16/10]"
+              onClick={() => setSelectedIndex(idx)}
             >
               {item.type === 'video' ? (
-                <div className="relative w-full aspect-video bg-black flex items-center justify-center">
+                <div className="relative w-full h-full bg-black flex items-center justify-center">
                   <video
                     src={item.src}
                     muted
@@ -116,13 +161,17 @@ export default function GalleryPage() {
                       </svg>
                     </span>
                   </div>
+                  <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px] font-mono font-semibold uppercase px-2.5 py-1 rounded-full flex items-center gap-1">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                    Video
+                  </span>
                 </div>
               ) : (
-                <div className="relative w-full overflow-hidden">
+                <div className="relative w-full h-full overflow-hidden">
                   <img
                     src={item.src}
                     alt={item.alt}
-                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500 block"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 block"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
@@ -153,7 +202,7 @@ export default function GalleryPage() {
             {/* Top Bar */}
             <div className="w-full max-w-6xl flex items-center justify-between z-50 text-white/80">
               <span className="text-xs font-mono tracking-widest uppercase">
-                {selectedIndex + 1} / {GALLERY_ITEMS.length}
+                {selectedIndex + 1} / {filteredItems.length}
               </span>
               <button
                 type="button"
@@ -196,7 +245,7 @@ export default function GalleryPage() {
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  setSelectedIndex((prev) => (prev - 1 + GALLERY_ITEMS.length) % GALLERY_ITEMS.length);
+                  setSelectedIndex((prev) => (prev - 1 + filteredItems.length) % filteredItems.length);
                 }}
                 className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-3.5 bg-white/10 hover:bg-white/25 text-white rounded-full shadow-lg transition-all hover:scale-110 backdrop-blur-sm"
                 aria-label="Previous image"
@@ -210,7 +259,7 @@ export default function GalleryPage() {
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  setSelectedIndex((prev) => (prev + 1) % GALLERY_ITEMS.length);
+                  setSelectedIndex((prev) => (prev + 1) % filteredItems.length);
                 }}
                 className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-3.5 bg-white/10 hover:bg-white/25 text-white rounded-full shadow-lg transition-all hover:scale-110 backdrop-blur-sm"
                 aria-label="Next image"
