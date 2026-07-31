@@ -88,16 +88,6 @@ const HERO_SLIDES = [
     poster: '/images/dubai-poster.webp'
   },
   {
-    id: 'kalari',
-    name: 'Kalaripayattu Martial Arts',
-    shortName: 'Kalaripayattu',
-    tagline: 'Ancient Warriors & Heritage of Kerala',
-    description: 'Witness the ancient grace, discipline, and fierce agility of Kalaripayattu, Kerala’s legendary martial art.',
-    video: '/images/kalari.webm',
-    poster: '/images/kalari-poster.webp'
-  },
-
-  {
     id: 'maya-beach',
     name: 'Phi Phi & Maya Bay',
     shortName: 'Maya Bay',
