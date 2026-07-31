@@ -6,7 +6,7 @@
 
 export const PAGE_CONTENT = {
   holidays: {
-        'senior-citizen': {
+            'senior-citizen': {
       eyebrow: 'Comfort-First Travel',
       title: 'Senior Citizen Tours, Paced for Comfort',
       lead: 'Slow-paced itineraries with shorter travel legs, accessible stays, and a team that never rushes a departure.',
@@ -26,14 +26,49 @@ export const PAGE_CONTENT = {
           tag: 'International Senior Tour',
         },
         {
+          src: '/gallery/gallery-photo-56.jpeg',
+          caption: 'Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support',
+          tag: 'Senior Citizens Escapes',
+        },
+        {
+          src: '/gallery/gallery-photo-57.jpeg',
+          caption: 'Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support',
+          tag: 'Senior Citizens Escapes',
+        },
+        {
+          src: '/gallery/gallery-photo-58.jpeg',
+          caption: 'Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support',
+          tag: 'Senior Citizens Escapes',
+        },
+        {
+          src: '/gallery/gallery-photo-59.jpeg',
+          caption: 'Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support',
+          tag: 'Senior Citizens Escapes',
+        },
+        {
           src: '/gallery/gallery-photo-60.jpeg',
-          caption: 'Senior Citizens Group Escape 🌸 Paced for Comfort & Accessible Stays',
-          tag: 'Senior Citizens Group',
+          caption: 'Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support',
+          tag: 'Senior Citizens Escapes',
+        },
+        {
+          src: '/gallery/gallery-photo-65.jpeg',
+          caption: 'Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support',
+          tag: 'Senior Citizens Escapes',
+        },
+        {
+          src: '/gallery/gallery-photo-66.jpeg',
+          caption: 'Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support',
+          tag: 'Senior Citizens Escapes',
         },
         {
           src: '/gallery/gallery-photo-74.jpeg',
-          caption: 'Senior Citizens Group Escape 🌸 Scenic Mountain Sightseeing & Rest Windows',
-          tag: 'Senior Citizens Group',
+          caption: 'Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support',
+          tag: 'Senior Citizens Escapes',
+        },
+        {
+          src: '/gallery/gallery-photo-77.jpeg',
+          caption: 'Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support',
+          tag: 'Senior Citizens Escapes',
         },
       ],
     },

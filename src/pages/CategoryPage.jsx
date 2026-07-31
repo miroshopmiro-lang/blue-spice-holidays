@@ -104,7 +104,7 @@ export default function CategoryPage({ group }) {
               )}
             </div>
 
-            <div className={`grid grid-cols-1 gap-6 max-w-4xl mx-auto ${entry.moments.length > 1 ? 'sm:grid-cols-2' : ''}`}>
+            <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto`}>
               {entry.moments.map((moment, idx) => (
                 <div key={idx} className="group relative rounded-2xl overflow-hidden border border-brand-surface-cool bg-white shadow-soft hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
                   <div className="aspect-[4/3] w-full overflow-hidden bg-brand-ink">

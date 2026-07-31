@@ -51,31 +51,43 @@ const MOMENTS = [
     type: 'photo',
     src: '/gallery/gallery-photo-78.jpeg',
     caption: 'Traditional Ethnic Dress Photo Session at Srinagar Gardens, Kashmir 👗🌸✨',
-    tag: 'Srinagar Garden Session',
+    tag: 'Srinagar Photo Session (Item 86)',
+  },
+  {
+    type: 'photo',
+    src: '/gallery/gallery-photo-79.jpeg',
+    caption: 'All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy',
+    tag: 'Ladies Escapes (Item 87)',
   },
   {
     type: 'photo',
     src: '/gallery/gallery-photo-76.jpeg',
     caption: 'Meeting with Our Lovely Guests at Kochi 🤝 Sharing Feedback on Custom One-Day Tour',
-    tag: 'Kochi Guest Meeting',
+    tag: 'Kochi Feedback Meeting (Item 84)',
+  },
+  {
+    type: 'photo',
+    src: '/gallery/gallery-photo-27.jpeg',
+    caption: 'All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy',
+    tag: 'Ladies Escapes (Item 35)',
   },
   {
     type: 'photo',
     src: '/gallery/gallery-photo-26.jpeg',
     caption: 'All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy',
-    tag: 'Ladies Group Escapes',
-  },
-  {
-    type: 'photo',
-    src: '/gallery/gallery-photo-47.jpeg',
-    caption: 'All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy',
-    tag: 'Ladies Group Escapes',
+    tag: 'Ladies Escapes (Item 34)',
   },
   {
     type: 'photo',
     src: '/gallery/gallery-photo-51.jpeg',
     caption: 'All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy',
-    tag: 'Ladies Group Escapes',
+    tag: 'Ladies Escapes (Item 59)',
+  },
+  {
+    type: 'photo',
+    src: '/gallery/gallery-photo-47.jpeg',
+    caption: 'All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy',
+    tag: 'Ladies Escapes (Item 55)',
   },
 ];
 
