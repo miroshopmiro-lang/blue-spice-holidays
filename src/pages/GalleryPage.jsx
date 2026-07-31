@@ -9,8 +9,6 @@ const GALLERY_ITEMS = [
   { id: 'gallery_25', type: 'video', src: '/gallery/gallery-video-04.mp4', alt: 'Blue Spice Tour Video 4' },
   { id: 'ladies_vid_1', type: 'video', src: '/images/ladies-only-tour/kerala-ladies-tour.mp4', alt: 'Kerala Ladies Only Tour Video' },
   { id: 'ladies_vid_2', type: 'video', src: '/images/ladies-only-tour/thailand-ladies-tour.mp4', alt: 'Thailand Ladies Only Tour Video' },
-  { id: 'ladies_vid_3', type: 'video', src: '/images/ladies-only-tour/ladies-tour-video-1.mp4', alt: 'Ladies Only Tour Video 1' },
-  { id: 'ladies_vid_4', type: 'video', src: '/images/ladies-only-tour/ladies-tour-video-2.mp4', alt: 'Ladies Only Tour Video 2' },
 
   // Photos
   { id: 'gallery_1', type: 'photo', src: '/gallery/gallery-photo-01.jpeg', alt: 'Blue Spice Tour Moment 1' },
@@ -24,7 +22,6 @@ const GALLERY_ITEMS = [
   { id: 'gallery_9', type: 'photo', src: '/gallery/gallery-photo-09.jpeg', alt: 'Blue Spice Tour Moment 9' },
   { id: 'gallery_10', type: 'photo', src: '/gallery/gallery-photo-10.jpeg', alt: 'Blue Spice Tour Moment 10' },
   { id: 'gallery_11', type: 'photo', src: '/gallery/gallery-photo-11.jpeg', alt: 'Blue Spice Tour Moment 11' },
-  { id: 'gallery_12', type: 'photo', src: '/gallery/gallery-photo-12.jpeg', alt: 'Blue Spice Tour Moment 12' },
   { id: 'gallery_13', type: 'photo', src: '/gallery/gallery-photo-13.jpeg', alt: 'Blue Spice Tour Moment 13' },
   { id: 'gallery_14', type: 'photo', src: '/gallery/gallery-photo-14.jpeg', alt: 'Blue Spice Tour Moment 14' },
   { id: 'gallery_15', type: 'photo', src: '/gallery/gallery-photo-15.jpeg', alt: 'Blue Spice Tour Moment 15' },
@@ -35,7 +32,6 @@ const GALLERY_ITEMS = [
   { id: 'gallery_20', type: 'photo', src: '/gallery/gallery-photo-20.jpeg', alt: 'Blue Spice Tour Moment 20' },
   { id: 'gallery_21', type: 'photo', src: '/gallery/gallery-photo-21.jpeg', alt: 'Blue Spice Tour Moment 21' },
   { id: 'ladies_sanctuary', type: 'photo', src: '/images/ladies-only-tour/thailand-sanctuary-of-truth.webp', alt: 'Ladies group tour to Sanctuary of Truth temple Thailand jain guest' },
-  { id: 'ladies_amritsar', type: 'photo', src: '/images/ladies-only-tour/amritsar-himachal-ladies-tour.webp', alt: 'Amritsar & Himachal Ladies Tour' },
 ];
 
 export default function GalleryPage() {
