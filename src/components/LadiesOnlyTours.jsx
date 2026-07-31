@@ -49,6 +49,12 @@ const TOURS = [
 const MOMENTS = [
   {
     type: 'video',
+    videoMp4: '/gallery/gallery-video-03.mp4',
+    caption: 'International Group Tours with Luxury Facilities ✈️ VIP Ground Handling & 5-Star Stays',
+    tag: 'Luxury Group Tour',
+  },
+  {
+    type: 'video',
     videoMp4: '/images/ladies-only-tour/ladies-tour-video-1.mp4',
     caption: 'Celebration & group bonding moments on tour',
     tag: 'Ladies Group Video',
