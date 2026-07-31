@@ -600,19 +600,19 @@ export default function GalleryPage() {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-16 max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="py-10 sm:py-16 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         {/* Header & Filter Controls */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-brand-surface-cool pb-4 mb-8 gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-brand-surface-cool pb-4 mb-6 sm:mb-8 gap-3 sm:gap-4">
           <div>
-            <h2 className="serif-font text-2xl font-bold text-slate-900">All Moments</h2>
+            <h2 className="serif-font text-xl sm:text-2xl font-bold text-slate-900">All Moments</h2>
             <p className="text-xs text-brand-muted mt-0.5">Tour videos featured at the top, followed by photo memories.</p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
             <button
               type="button"
               onClick={() => { setFilter('all'); setSelectedIndex(null); }}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+              className={`px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
                 filter === 'all'
                   ? 'bg-brand-ink text-white shadow-sm'
                   : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
@@ -623,7 +623,7 @@ export default function GalleryPage() {
             <button
               type="button"
               onClick={() => { setFilter('video'); setSelectedIndex(null); }}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+              className={`px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-bold transition-all flex items-center gap-1.5 ${
                 filter === 'video'
                   ? 'bg-brand-accent text-brand-ink shadow-sm'
                   : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
@@ -635,7 +635,7 @@ export default function GalleryPage() {
             <button
               type="button"
               onClick={() => { setFilter('photo'); setSelectedIndex(null); }}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+              className={`px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-bold transition-all ${
                 filter === 'photo'
                   ? 'bg-brand-ink text-white shadow-sm'
                   : 'bg-white text-slate-600 border border-slate-200 hover:border-slate-300'
@@ -646,15 +646,15 @@ export default function GalleryPage() {
           </div>
         </div>
 
-        {/* Row-based Responsive Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        {/* 2-Column Mobile & Multi-Column Desktop Grid Layout */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-5">
           {filteredItems.map((item, idx) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: Math.min(idx * 0.03, 0.3) }}
-              className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-900 shadow-soft group cursor-pointer aspect-[16/10]"
+              className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-slate-200/80 bg-slate-900 shadow-soft group cursor-pointer aspect-[4/3] sm:aspect-[16/10]"
               onClick={() => setSelectedIndex(idx)}
             >
               {item.type === 'video' ? (
@@ -667,19 +667,19 @@ export default function GalleryPage() {
                     className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                    <span className="w-12 h-12 rounded-full bg-white/90 text-navy flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="translate-x-0.5">
+                    <span className="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/90 text-navy flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="translate-x-0.5 sm:w-5 sm:h-5">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </span>
                   </div>
-                  <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px] font-mono font-semibold uppercase px-2.5 py-1 rounded-full flex items-center gap-1 z-10">
+                  <span className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-black/70 backdrop-blur-md border border-white/20 text-white text-[9px] sm:text-[10px] font-mono font-semibold uppercase px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full flex items-center gap-1 z-10">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
                     Video
                   </span>
                   {item.caption && (
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-3.5 pt-8 z-10">
-                      <p className="text-white text-xs font-semibold leading-snug drop-shadow-md">
+                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/75 to-transparent p-2 sm:p-3.5 pt-6 sm:pt-8 z-10">
+                      <p className="text-white text-[10px] sm:text-xs font-semibold leading-tight sm:leading-snug drop-shadow-md line-clamp-2 sm:line-clamp-none">
                         {item.caption}
                       </p>
                     </div>
@@ -694,15 +694,15 @@ export default function GalleryPage() {
                     loading="lazy"
                   />
                   {item.caption ? (
-                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-3.5 pt-8 z-10">
-                      <p className="text-white text-xs font-semibold leading-snug drop-shadow-md">
+                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/75 to-transparent p-2 sm:p-3.5 pt-6 sm:pt-8 z-10">
+                      <p className="text-white text-[10px] sm:text-xs font-semibold leading-tight sm:leading-snug drop-shadow-md line-clamp-2 sm:line-clamp-none">
                         {item.caption}
                       </p>
                     </div>
                   ) : (
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                      <span className="text-white text-xs font-semibold flex items-center gap-1.5">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-2.5 sm:p-4">
+                      <span className="text-white text-[10px] sm:text-xs font-semibold flex items-center gap-1 sm:gap-1.5">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="sm:w-3.5 sm:h-3.5">
                           <path d="M15 3h6v6M14 10l6-6M9 21H3v-6M10 14l-6 6" />
                         </svg>
                         View Photo
