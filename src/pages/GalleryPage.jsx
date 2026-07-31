@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Adding, removing, or reordering items in this array will NEVER shift these captions.
 // Captions are permanently locked to specific item objects by ID & file src.
 // Adding, removing, or reordering items in this array will NEVER shift these captions.
+// Captions are permanently locked to specific item objects by ID & file src.
+// Adding, removing, or reordering items in this array will NEVER shift these captions.
 const GALLERY_ITEMS = [
   {
     "id": "gallery_22",
@@ -55,7 +57,8 @@ const GALLERY_ITEMS = [
     "id": "gallery_vid_6",
     "type": "video",
     "src": "/gallery/gallery-video-06.mp4",
-    "alt": "Blue Spice Tour Video 6"
+    "alt": "Chennai MICE Trip",
+    "caption": "3 Days 2 Nights Chennai MICE Trip 🏖️ Luxury Beach Resort Stays, Banquets & Pan-India Guests (24-26 July 2025)"
   },
   {
     "id": "gallery_1",
@@ -216,25 +219,29 @@ const GALLERY_ITEMS = [
     "id": "gallery_26",
     "type": "photo",
     "src": "/gallery/gallery-photo-26.jpeg",
-    "alt": "Blue Spice Tour Moment 26"
+    "alt": "All-Ladies Group Tour",
+    "caption": "All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy"
   },
   {
     "id": "gallery_27",
     "type": "photo",
     "src": "/gallery/gallery-photo-27.jpeg",
-    "alt": "Blue Spice Tour Moment 27"
+    "alt": "All-Ladies Group Tour",
+    "caption": "All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy"
   },
   {
     "id": "gallery_28",
     "type": "photo",
     "src": "/gallery/gallery-photo-28.jpeg",
-    "alt": "Blue Spice Tour Moment 28"
+    "alt": "Honeymoon Tour",
+    "caption": "Honeymoon & Couples Romantic Escape 👩‍❤️‍👨 Romantic Stays & Private Transfers"
   },
   {
     "id": "gallery_29",
     "type": "photo",
     "src": "/gallery/gallery-photo-29.jpeg",
-    "alt": "Blue Spice Tour Moment 29"
+    "alt": "Honeymoon Tour",
+    "caption": "Honeymoon & Couples Romantic Escape 👩‍❤️‍👨 Romantic Stays & Private Transfers"
   },
   {
     "id": "gallery_30",
@@ -342,13 +349,8 @@ const GALLERY_ITEMS = [
     "id": "gallery_47",
     "type": "photo",
     "src": "/gallery/gallery-photo-47.jpeg",
-    "alt": "Blue Spice Tour Moment 47"
-  },
-  {
-    "id": "gallery_48",
-    "type": "photo",
-    "src": "/gallery/gallery-photo-48.jpeg",
-    "alt": "Blue Spice Tour Moment 48"
+    "alt": "All-Ladies Group Tour",
+    "caption": "All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy"
   },
   {
     "id": "gallery_49",
@@ -366,7 +368,8 @@ const GALLERY_ITEMS = [
     "id": "gallery_51",
     "type": "photo",
     "src": "/gallery/gallery-photo-51.jpeg",
-    "alt": "Blue Spice Tour Moment 51"
+    "alt": "All-Ladies Group Tour",
+    "caption": "All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy"
   },
   {
     "id": "gallery_52",
@@ -384,7 +387,8 @@ const GALLERY_ITEMS = [
     "id": "gallery_54",
     "type": "photo",
     "src": "/gallery/gallery-photo-54.jpeg",
-    "alt": "Blue Spice Tour Moment 54"
+    "alt": "Corporate Office Group Tour",
+    "caption": "Corporate Office Group Tour & Team Retreat 👔 Seamless Logistics & VIP Hospitality"
   },
   {
     "id": "gallery_55",
@@ -396,31 +400,36 @@ const GALLERY_ITEMS = [
     "id": "gallery_56",
     "type": "photo",
     "src": "/gallery/gallery-photo-56.jpeg",
-    "alt": "Blue Spice Tour Moment 56"
+    "alt": "Senior Citizens Group Tour",
+    "caption": "Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support"
   },
   {
     "id": "gallery_57",
     "type": "photo",
     "src": "/gallery/gallery-photo-57.jpeg",
-    "alt": "Blue Spice Tour Moment 57"
+    "alt": "Senior Citizens Group Tour",
+    "caption": "Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support"
   },
   {
     "id": "gallery_58",
     "type": "photo",
     "src": "/gallery/gallery-photo-58.jpeg",
-    "alt": "Blue Spice Tour Moment 58"
+    "alt": "Senior Citizens Group Tour",
+    "caption": "Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support"
   },
   {
     "id": "gallery_59",
     "type": "photo",
     "src": "/gallery/gallery-photo-59.jpeg",
-    "alt": "Blue Spice Tour Moment 59"
+    "alt": "Senior Citizens Group Tour",
+    "caption": "Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support"
   },
   {
     "id": "gallery_60",
     "type": "photo",
     "src": "/gallery/gallery-photo-60.jpeg",
-    "alt": "Blue Spice Tour Moment 60"
+    "alt": "Senior Citizens Group Tour",
+    "caption": "Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support"
   },
   {
     "id": "gallery_61",
@@ -450,19 +459,22 @@ const GALLERY_ITEMS = [
     "id": "gallery_65",
     "type": "photo",
     "src": "/gallery/gallery-photo-65.jpeg",
-    "alt": "Blue Spice Tour Moment 65"
+    "alt": "Senior Citizens Group Tour",
+    "caption": "Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support"
   },
   {
     "id": "gallery_66",
     "type": "photo",
     "src": "/gallery/gallery-photo-66.jpeg",
-    "alt": "Blue Spice Tour Moment 66"
+    "alt": "Senior Citizens Group Tour",
+    "caption": "Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support"
   },
   {
     "id": "gallery_67",
     "type": "photo",
     "src": "/gallery/gallery-photo-67.jpeg",
-    "alt": "Blue Spice Tour Moment 67"
+    "alt": "Senior Citizens Vietnam Tour",
+    "caption": "Senior Citizens Vietnam Tour 🇻🇳 Gentle Pacing, Premium Stays & 24/7 Care"
   },
   {
     "id": "gallery_68",
@@ -483,12 +495,6 @@ const GALLERY_ITEMS = [
     "alt": "Blue Spice Tour Moment 70"
   },
   {
-    "id": "gallery_71",
-    "type": "photo",
-    "src": "/gallery/gallery-photo-71.jpeg",
-    "alt": "Blue Spice Tour Moment 71"
-  },
-  {
     "id": "gallery_72",
     "type": "photo",
     "src": "/gallery/gallery-photo-72.jpeg",
@@ -498,13 +504,15 @@ const GALLERY_ITEMS = [
     "id": "gallery_73",
     "type": "photo",
     "src": "/gallery/gallery-photo-73.jpeg",
-    "alt": "Blue Spice Tour Moment 73"
+    "alt": "Phuket & Krabi Tour",
+    "caption": "Phuket & Krabi Thailand Tour Successfully Completed 🇹🇭🌹🙏🏼✅✈️🏝️🏄‍♂️"
   },
   {
     "id": "gallery_74",
     "type": "photo",
     "src": "/gallery/gallery-photo-74.jpeg",
-    "alt": "Blue Spice Tour Moment 74"
+    "alt": "Senior Citizens Group Tour",
+    "caption": "Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support"
   },
   {
     "id": "gallery_75",
@@ -516,25 +524,29 @@ const GALLERY_ITEMS = [
     "id": "gallery_76",
     "type": "photo",
     "src": "/gallery/gallery-photo-76.jpeg",
-    "alt": "Blue Spice Tour Moment 76"
+    "alt": "Kochi Guest Feedback Meeting",
+    "caption": "Meeting with Our Lovely Guests at Kochi 🤝 Sharing Feedback on Custom One-Day Tour"
   },
   {
     "id": "gallery_77",
     "type": "photo",
     "src": "/gallery/gallery-photo-77.jpeg",
-    "alt": "Blue Spice Tour Moment 77"
+    "alt": "Senior Citizens Group Tour",
+    "caption": "Senior Citizens Group Escape 🌸 Paced for Comfort, Accessible Stays & Dedicated Support"
   },
   {
     "id": "gallery_78",
     "type": "photo",
     "src": "/gallery/gallery-photo-78.jpeg",
-    "alt": "Blue Spice Tour Moment 78"
+    "alt": "Srinagar Garden Photo Session",
+    "caption": "Traditional Ethnic Dress Photo Session at Srinagar Gardens, Kashmir 👗🌸✨"
   },
   {
     "id": "gallery_79",
     "type": "photo",
     "src": "/gallery/gallery-photo-79.jpeg",
-    "alt": "Blue Spice Tour Moment 79"
+    "alt": "All-Ladies Group Tour",
+    "caption": "All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy"
   }
 ];
 

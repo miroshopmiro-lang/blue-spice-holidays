@@ -49,33 +49,33 @@ const TOURS = [
 const MOMENTS = [
   {
     type: 'photo',
-    src: '/gallery/gallery-photo-19.jpeg',
-    caption: 'International Group Tours with Luxury Facilities ✈️ VIP Ground Handling & 5-Star Stays',
-    tag: 'Luxury Group Tour',
-  },
-  {
-    type: 'video',
-    videoMp4: '/images/ladies-only-tour/ladies-tour-video-1.mp4',
-    caption: 'Celebration & group bonding moments on tour',
-    tag: 'Ladies Group Video',
+    src: '/gallery/gallery-photo-78.jpeg',
+    caption: 'Traditional Ethnic Dress Photo Session at Srinagar Gardens, Kashmir 👗🌸✨',
+    tag: 'Srinagar Garden Session',
   },
   {
     type: 'photo',
-    src: '/images/ladies-only-tour/whatsapp-image-2026-07-19-at-11.13.41.jpeg',
-    caption: 'Unscripted smiles & sightseeing memories',
-    tag: 'Group Escapes',
-  },
-  {
-    type: 'video',
-    videoMp4: '/images/ladies-only-tour/ladies-tour-video-2.mp4',
-    caption: 'Curated experiences & sightseeing on the road',
-    tag: 'Ladies Group Video',
+    src: '/gallery/gallery-photo-76.jpeg',
+    caption: 'Meeting with Our Lovely Guests at Kochi 🤝 Sharing Feedback on Custom One-Day Tour',
+    tag: 'Kochi Guest Meeting',
   },
   {
     type: 'photo',
-    src: '/images/ladies-only-tour/whatsapp-image-2026-07-19-at-11.17.22.jpeg',
-    caption: 'Dedicated hospitality & custom group dining',
-    tag: 'Group Escapes',
+    src: '/gallery/gallery-photo-26.jpeg',
+    caption: 'All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy',
+    tag: 'Ladies Group Escapes',
+  },
+  {
+    type: 'photo',
+    src: '/gallery/gallery-photo-47.jpeg',
+    caption: 'All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy',
+    tag: 'Ladies Group Escapes',
+  },
+  {
+    type: 'photo',
+    src: '/gallery/gallery-photo-51.jpeg',
+    caption: 'All-Ladies Group Tour Escape 💃 Dedicated Ground Support & Unscripted Joy',
+    tag: 'Ladies Group Escapes',
   },
 ];
 

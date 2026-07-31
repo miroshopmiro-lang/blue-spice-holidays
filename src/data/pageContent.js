@@ -6,7 +6,7 @@
 
 export const PAGE_CONTENT = {
   holidays: {
-    'senior-citizen': {
+        'senior-citizen': {
       eyebrow: 'Comfort-First Travel',
       title: 'Senior Citizen Tours, Paced for Comfort',
       lead: 'Slow-paced itineraries with shorter travel legs, accessible stays, and a team that never rushes a departure.',
@@ -16,6 +16,25 @@ export const PAGE_CONTENT = {
         'Wheelchair and low-mobility support arranged on request',
         'Low-height vehicles and ground-floor or lift-access rooms',
         'A single point of contact reachable throughout the trip',
+      ],
+      momentsTitle: 'Real Senior Citizens Tour Moments',
+      momentsSubtitle: 'Gentle pacing, comfortable stays, and unscripted memories from our senior travelers.',
+      moments: [
+        {
+          src: '/gallery/gallery-photo-67.jpeg',
+          caption: 'Senior Citizens Vietnam Tour 🇻🇳 Gentle Pacing, Premium Stays & 24/7 Care',
+          tag: 'International Senior Tour',
+        },
+        {
+          src: '/gallery/gallery-photo-60.jpeg',
+          caption: 'Senior Citizens Group Escape 🌸 Paced for Comfort & Accessible Stays',
+          tag: 'Senior Citizens Group',
+        },
+        {
+          src: '/gallery/gallery-photo-74.jpeg',
+          caption: 'Senior Citizens Group Escape 🌸 Scenic Mountain Sightseeing & Rest Windows',
+          tag: 'Senior Citizens Group',
+        },
       ],
     },
     group: {
@@ -41,22 +60,22 @@ export const PAGE_CONTENT = {
         'Loosely paced days with no mandatory group schedules',
         'Optional add-ons: spa, sunset cruises, private excursions',
       ],
-      momentsTitle: 'Real Honeymoon Moments',
+            momentsTitle: 'Real Honeymoon Moments',
       momentsSubtitle: 'Unscripted memories from couples who travelled with Blue Spice Holidays.',
       moments: [
         {
-          src: '/images/honeymoon/honeymoon-mirissa-whale-watching.webp',
-          caption: 'Whale watching excursion in Mirissa with dedicated guide support',
-          tag: 'Sri Lanka Getaway',
+          src: '/gallery/gallery-photo-28.jpeg',
+          caption: 'Honeymoon & Couples Romantic Escape 👩‍❤️‍👨 Romantic Stays & Private Transfers',
+          tag: 'Romantic Getaways',
         },
         {
-          src: '/images/honeymoon/honeymoon-private-tour-car.webp',
-          caption: 'Private island transfers & personalized sightseeing',
+          src: '/gallery/gallery-photo-29.jpeg',
+          caption: 'Honeymoon & Couples Romantic Escape 👩‍❤️‍👨 Romantic Stays & Private Transfers',
           tag: 'Couples Escapes',
         },
       ],
     },
-    office: {
+        office: {
       eyebrow: 'Corporate Curation',
       title: 'Office Tours & Corporate Offsites',
       lead: 'Team offsites and incentive trips run on predictable logistics, so the focus stays on the team, not the travel admin.',
@@ -66,6 +85,20 @@ export const PAGE_CONTENT = {
         'Meeting-ready venues and breakout spaces on request',
         'Group activity and team-building add-ons',
         'One coordinator for the full delegation, start to finish',
+      ],
+      momentsTitle: 'Real Corporate & Office Tour Moments',
+      momentsSubtitle: 'Team offsites and corporate retreats managed with seamless logistics.',
+      moments: [
+        {
+          src: '/gallery/gallery-photo-54.jpeg',
+          caption: 'Corporate Office Group Tour & Team Retreat 👔 Seamless Logistics & VIP Hospitality',
+          tag: 'Corporate Retreat',
+        },
+        {
+          src: '/gallery/gallery-video-06.mp4',
+          caption: '3 Days 2 Nights Chennai MICE Trip 🏖️ Luxury Beach Resort Stays & Banquets',
+          tag: 'MICE Trip',
+        },
       ],
     },
     educational: {
