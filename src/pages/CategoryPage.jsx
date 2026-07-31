@@ -108,12 +108,23 @@ export default function CategoryPage({ group }) {
               {entry.moments.map((moment, idx) => (
                 <div key={idx} className="group relative rounded-2xl overflow-hidden border border-brand-surface-cool bg-white shadow-soft hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
                   <div className="aspect-[4/3] w-full overflow-hidden bg-brand-ink">
-                    <img
-                      src={moment.src}
-                      alt={moment.caption}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
+                    {moment.type === 'video' ? (
+                      <video
+                        src={moment.src}
+                        muted
+                        loop
+                        autoPlay
+                        playsInline
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <img
+                        src={moment.src}
+                        alt={moment.caption}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    )}
                   </div>
                   <div className="p-5 bg-white flex-grow flex flex-col justify-between">
                     <div>

@@ -29,6 +29,21 @@ export const PAGE_CONTENT = {
         'One itinerary, one point of contact for the whole group',
         'Flexible group sizes, from 10 to 100+',
       ],
+      momentsTitle: 'Real Group Tour Moments',
+      momentsSubtitle: 'Unscripted journey highlights from group departures curated by Blue Spice Holidays.',
+      moments: [
+        {
+          src: '/gallery/gallery-video-03.mp4',
+          type: 'video',
+          caption: 'International Group Tours with 5-Star Luxury Facilities & Guided Escort ✈️🌟',
+          tag: 'International Group Tours',
+        },
+        {
+          src: '/images/luxury-coach.webp',
+          caption: 'VIP Luxury Coach Transfers & Multi-City Group Logistics 🚌✨',
+          tag: 'Luxury Coach Escort',
+        },
+      ],
     },
     honeymoon: {
       eyebrow: 'Honeymoon Curation',

@@ -3,35 +3,197 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const GALLERY_ITEMS = [
   // Videos first
-  { id: 'gallery_22', type: 'video', src: '/gallery/gallery-video-01.mp4', alt: 'Blue Spice Tour Video 1' },
-  { id: 'gallery_23', type: 'video', src: '/gallery/gallery-video-02.mp4', alt: 'Blue Spice Tour Video 2' },
-  { id: 'gallery_24', type: 'video', src: '/gallery/gallery-video-03.mp4', alt: 'Blue Spice Tour Video 3' },
-  { id: 'gallery_25', type: 'video', src: '/gallery/gallery-video-04.mp4', alt: 'Blue Spice Tour Video 4' },
-  { id: 'ladies_vid_1', type: 'video', src: '/images/ladies-only-tour/kerala-ladies-tour.mp4', alt: 'Kerala Ladies Only Tour Video' },
-  { id: 'ladies_vid_2', type: 'video', src: '/images/ladies-only-tour/thailand-ladies-tour.mp4', alt: 'Thailand Ladies Only Tour Video' },
+  {
+    id: 'gallery_22',
+    type: 'video',
+    src: '/gallery/gallery-video-01.mp4',
+    alt: 'Luxury Coach Escort Vietnam',
+    caption: 'VIP Luxury Coach Escort Vietnam 🚌💫 — Premium Transfers & Group Comfort'
+  },
+  {
+    id: 'gallery_23',
+    type: 'video',
+    src: '/gallery/gallery-video-02.mp4',
+    alt: 'Blue Spice Tour Highlights Video 2',
+    caption: 'Unscripted Tour Highlights & Scenic Landscapes 🎥✨'
+  },
+  {
+    id: 'gallery_24',
+    type: 'video',
+    src: '/gallery/gallery-video-03.mp4',
+    alt: 'International Group Tours with Luxury Facilities',
+    caption: 'International Group Tours with 5-Star Luxury Facilities ✈️🌟 — Guided Escorts & VIP Stays'
+  },
+  {
+    id: 'gallery_25',
+    type: 'video',
+    src: '/gallery/gallery-video-04.mp4',
+    alt: 'Blue Spice Tour Highlights Video 4',
+    caption: 'Curated Heritage & Island Expeditions 🏝️ VIP Group Escort'
+  },
+  {
+    id: 'ladies_vid_1',
+    type: 'video',
+    src: '/images/ladies-only-tour/kerala-ladies-tour.mp4',
+    alt: 'Kerala Ladies Only Tour Video',
+    caption: 'Kerala Ladies Only Tour 🌿🌸 — Houseboat Cruise & Backwater Serenity'
+  },
+  {
+    id: 'ladies_vid_2',
+    type: 'video',
+    src: '/images/ladies-only-tour/thailand-ladies-tour.mp4',
+    alt: 'Thailand Ladies Only Tour Video',
+    caption: 'Thailand Ladies Only Getaway 🏝️✨ — Tropical Island Escapes & Cultural Fun'
+  },
 
   // Photos
-  { id: 'gallery_1', type: 'photo', src: '/gallery/gallery-photo-01.jpeg', alt: 'Blue Spice Tour Moment 1' },
-  { id: 'gallery_2', type: 'photo', src: '/gallery/gallery-photo-02.jpeg', alt: 'Blue Spice Tour Moment 2' },
-  { id: 'gallery_3', type: 'photo', src: '/gallery/gallery-photo-03.jpeg', alt: 'Blue Spice Tour Moment 3' },
-  { id: 'gallery_4', type: 'photo', src: '/gallery/gallery-photo-04.jpeg', alt: 'Blue Spice Tour Moment 4' },
-  { id: 'gallery_5', type: 'photo', src: '/gallery/gallery-photo-05.jpeg', alt: 'Blue Spice Tour Moment 5' },
-  { id: 'gallery_6', type: 'photo', src: '/gallery/gallery-photo-06.jpeg', alt: 'Blue Spice Tour Moment 6' },
-  { id: 'gallery_7', type: 'photo', src: '/gallery/gallery-photo-07.jpeg', alt: 'Blue Spice Tour Moment 7' },
-  { id: 'gallery_8', type: 'photo', src: '/gallery/gallery-photo-08.jpeg', alt: 'Blue Spice Tour Moment 8' },
-  { id: 'gallery_9', type: 'photo', src: '/gallery/gallery-photo-09.jpeg', alt: 'Blue Spice Tour Moment 9' },
-  { id: 'gallery_10', type: 'photo', src: '/gallery/gallery-photo-10.jpeg', alt: 'Blue Spice Tour Moment 10' },
-  { id: 'gallery_11', type: 'photo', src: '/gallery/gallery-photo-11.jpeg', alt: 'Blue Spice Tour Moment 11' },
-  { id: 'gallery_13', type: 'photo', src: '/gallery/gallery-photo-13.jpeg', alt: 'Blue Spice Tour Moment 13' },
-  { id: 'gallery_14', type: 'photo', src: '/gallery/gallery-photo-14.jpeg', alt: 'Blue Spice Tour Moment 14' },
-  { id: 'gallery_15', type: 'photo', src: '/gallery/gallery-photo-15.jpeg', alt: 'Blue Spice Tour Moment 15' },
-  { id: 'gallery_16', type: 'photo', src: '/gallery/gallery-photo-16.jpeg', alt: 'Blue Spice Tour Moment 16' },
-  { id: 'gallery_17', type: 'photo', src: '/gallery/gallery-photo-17.jpeg', alt: 'Blue Spice Tour Moment 17' },
-  { id: 'gallery_18', type: 'photo', src: '/gallery/gallery-photo-18.jpeg', alt: 'Blue Spice Tour Moment 18' },
-  { id: 'gallery_19', type: 'photo', src: '/gallery/gallery-photo-19.jpeg', alt: 'Blue Spice Tour Moment 19' },
-  { id: 'gallery_20', type: 'photo', src: '/gallery/gallery-photo-20.jpeg', alt: 'Blue Spice Tour Moment 20' },
-  { id: 'gallery_21', type: 'photo', src: '/gallery/gallery-photo-21.jpeg', alt: 'Blue Spice Tour Moment 21' },
-  { id: 'ladies_sanctuary', type: 'photo', src: '/images/ladies-only-tour/thailand-sanctuary-of-truth.webp', alt: 'Ladies group tour to Sanctuary of Truth temple Thailand jain guest' },
+  {
+    id: 'gallery_1',
+    type: 'photo',
+    src: '/gallery/gallery-photo-01.jpeg',
+    alt: 'Blue Spice Tour Moment 1',
+    caption: 'Unforgettable Journey Highlights 📸✨ — Happy Travelers with Blue Spice Holidays'
+  },
+  {
+    id: 'gallery_2',
+    type: 'photo',
+    src: '/gallery/gallery-photo-02.jpeg',
+    alt: 'Kashmir Tour Guest Feedback 😍✈️',
+    caption: 'Kashmir Tour Guest Feedback 😍✈️ — Unforgettable Snow & Paradise Journey'
+  },
+  {
+    id: 'gallery_3',
+    type: 'photo',
+    src: '/gallery/gallery-photo-03.jpeg',
+    alt: 'Yesha Jain Kerala Tour Feedback',
+    caption: "Yesha Jain's Kerala Tour Review 🌿✨ — Bespoke Backwater & Munnar Experience"
+  },
+  {
+    id: 'gallery_4',
+    type: 'photo',
+    src: '/gallery/gallery-photo-04.jpeg',
+    alt: 'Blue Spice Tour Moment 4',
+    caption: 'Scenic Destination Exploration 🌄 — Premium Private Sightseeing'
+  },
+  {
+    id: 'gallery_5',
+    type: 'photo',
+    src: '/gallery/gallery-photo-05.jpeg',
+    alt: 'Blue Spice Tour Moment 5',
+    caption: 'Luxury Heritage Stays 🏰 — Handpicked Comfort & Hospitality'
+  },
+  {
+    id: 'gallery_6',
+    type: 'photo',
+    src: '/gallery/gallery-photo-06.jpeg',
+    alt: 'Amritsar & Himachal Ladies Tour',
+    caption: 'Amritsar & Himachal Ladies Tour 🏔️🌸 — Exclusive Women-Only Group Departure'
+  },
+  {
+    id: 'gallery_7',
+    type: 'photo',
+    src: '/gallery/gallery-photo-07.jpeg',
+    alt: 'Blue Spice Tour Moment 7',
+    caption: 'Coastal Island Getaway 🏖️ — Sun, Sand & Crystal Waters'
+  },
+  {
+    id: 'gallery_8',
+    type: 'photo',
+    src: '/gallery/gallery-photo-08.jpeg',
+    alt: 'Blue Spice Tour Moment 8',
+    caption: 'Memorable Group Outings 🚌 — Seamless Multi-City Coordination'
+  },
+  {
+    id: 'gallery_9',
+    type: 'photo',
+    src: '/gallery/gallery-photo-09.jpeg',
+    alt: 'Blue Spice Tour Moment 9',
+    caption: 'Authentic Local Culture & Cuisine 🍲 — Curated Culinary Stops'
+  },
+  {
+    id: 'gallery_10',
+    type: 'photo',
+    src: '/gallery/gallery-photo-10.jpeg',
+    alt: 'Blue Spice Tour Moment 10',
+    caption: 'VIP Temple & Heritage Visits 🛕 — Peaceful Spiritual Experiences'
+  },
+  {
+    id: 'gallery_11',
+    type: 'photo',
+    src: '/gallery/gallery-photo-11.jpeg',
+    alt: 'Blue Spice Tour Moment 11',
+    caption: 'Pristine Nature Trails 🌲 — Mountain Air & Cedar Forests'
+  },
+  {
+    id: 'gallery_13',
+    type: 'photo',
+    src: '/gallery/gallery-photo-13.jpeg',
+    alt: 'Blue Spice Tour Moment 13',
+    caption: 'Group Family Vacation Memories 👨‍👩‍👧‍👦 — Tailored Comfort for All Ages'
+  },
+  {
+    id: 'gallery_14',
+    type: 'photo',
+    src: '/gallery/gallery-photo-14.jpeg',
+    alt: 'Guests Enjoy Kashmir Dal Lake Complimentary Boating',
+    caption: 'Complimentary Dal Lake Boating in Kashmir 🚣‍♂️❄️ — Guests Enjoying Serene Waters'
+  },
+  {
+    id: 'gallery_15',
+    type: 'photo',
+    src: '/gallery/gallery-photo-15.jpeg',
+    alt: 'Golden Bridge Ba Na Hills Vietnam',
+    caption: 'Golden Bridge at Ba Na Hills, Vietnam 🌁✨ — Iconic Hands of the Gods Walkway'
+  },
+  {
+    id: 'gallery_16',
+    type: 'photo',
+    src: '/gallery/gallery-photo-16.jpeg',
+    alt: 'Blue Spice Tour Moment 16',
+    caption: 'Private Yacht & Boating Excursions 🛥️ — Unhurried Luxury Escapes'
+  },
+  {
+    id: 'gallery_17',
+    type: 'photo',
+    src: '/gallery/gallery-photo-17.jpeg',
+    alt: 'Blue Spice Tour Moment 17',
+    caption: 'Desert Dune Safari Adventure 🐪 — Sunset Photography & Cultural Nights'
+  },
+  {
+    id: 'gallery_18',
+    type: 'photo',
+    src: '/gallery/gallery-photo-18.jpeg',
+    alt: 'Blue Spice Tour Moment 18',
+    caption: 'Emerald Tea Plantations Walk 🍃 — Fresh Hill Station Retreats'
+  },
+  {
+    id: 'gallery_19',
+    type: 'photo',
+    src: '/gallery/gallery-photo-19.jpeg',
+    alt: 'Blue Spice Tour Moment 19',
+    caption: 'Bespoke Honeymoon Escapes 💖 — Candlelit Dinners & Private Villa Stays'
+  },
+  {
+    id: 'gallery_20',
+    type: 'photo',
+    src: '/gallery/gallery-photo-20.jpeg',
+    alt: 'Luxury Coach Vietnam',
+    caption: 'VIP Luxury Coach Vietnam 🚌💫 — Smooth Group Travel & Premium Chauffeurs'
+  },
+  {
+    id: 'gallery_21',
+    type: 'photo',
+    src: '/gallery/gallery-photo-21.jpeg',
+    alt: 'Blue Spice Tour Moment 21',
+    caption: 'Celebrity & Diplomat Escort 🛡️ — Discreet Protocol & VIP Logistics'
+  },
+  {
+    id: 'ladies_sanctuary',
+    type: 'photo',
+    src: '/images/ladies-only-tour/thailand-sanctuary-of-truth.webp',
+    alt: 'Ladies Group Tour to Sanctuary of Truth Temple Thailand Jain Guest',
+    caption: 'Ladies Group Tour to Sanctuary of Truth Temple, Thailand 🛕🌸 — Gourmet Jain Meal Facilities'
+  },
 ];
 
 export default function GalleryPage() {
@@ -150,17 +312,20 @@ export default function GalleryPage() {
                     playsInline
                     className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
                     <span className="w-12 h-12 rounded-full bg-white/90 text-navy flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="translate-x-0.5">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </span>
                   </div>
-                  <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px] font-mono font-semibold uppercase px-2.5 py-1 rounded-full flex items-center gap-1">
+                  <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md border border-white/20 text-white text-[10px] font-mono font-semibold uppercase px-2.5 py-1 rounded-full flex items-center gap-1 z-10">
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
                     Video
                   </span>
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3.5 pt-8 opacity-90 group-hover:opacity-100 transition-opacity">
+                    <p className="text-white text-xs font-semibold leading-snug truncate">{item.caption}</p>
+                  </div>
                 </div>
               ) : (
                 <div className="relative w-full h-full overflow-hidden">
@@ -170,13 +335,8 @@ export default function GalleryPage() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 block"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <span className="text-white text-xs font-semibold flex items-center gap-1.5">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M15 3h6v6M14 10l6-6M9 21H3v-6M10 14l-6 6" />
-                      </svg>
-                      View Photo
-                    </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3.5">
+                    <p className="text-white text-xs font-semibold leading-snug line-clamp-2">{item.caption}</p>
                   </div>
                 </div>
               )}
@@ -232,7 +392,7 @@ export default function GalleryPage() {
                   transition={{ duration: 0.25 }}
                   src={activeItem.src}
                   alt={activeItem.alt}
-                  className="max-h-[80vh] max-w-[90vw] object-contain rounded-2xl shadow-2xl border border-white/10"
+                  className="max-h-[75vh] max-w-[90vw] object-contain rounded-2xl shadow-2xl border border-white/10"
                 />
               )}
 
@@ -266,9 +426,14 @@ export default function GalleryPage() {
               </button>
             </div>
 
-            {/* Bottom Caption / Controls Note */}
-            <div className="text-center z-50 text-white/50 text-xs font-mono">
-              Use <span className="text-white font-bold">←</span> / <span className="text-white font-bold">→</span> arrow keys to navigate · <span className="text-white font-bold">ESC</span> to exit
+            {/* Lightbox Caption & Controls Note */}
+            <div className="flex flex-col items-center gap-2 text-center z-50 max-w-2xl px-4">
+              <p className="text-white text-sm font-semibold tracking-wide bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/15 shadow-md">
+                {activeItem.caption}
+              </p>
+              <div className="text-white/50 text-[11px] font-mono">
+                Use <span className="text-white font-bold">←</span> / <span className="text-white font-bold">→</span> arrow keys to navigate · <span className="text-white font-bold">ESC</span> to exit
+              </div>
             </div>
           </motion.div>
         )}
