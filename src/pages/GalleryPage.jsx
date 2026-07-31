@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Captions are permanently locked to specific item objects by ID & file src.
+// Adding, removing, or reordering items in this array will NEVER shift these captions.
 const GALLERY_ITEMS = [
   // Videos first (Items 1 to 6)
   { id: 'gallery_22', type: 'video', src: '/gallery/gallery-video-01.mp4', alt: 'Blue Spice Tour Video 1' },
