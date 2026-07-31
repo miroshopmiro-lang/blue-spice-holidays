@@ -2,33 +2,33 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const GALLERY_ITEMS = [
-  // Videos first
-  { id: 'gallery_22', type: 'video', src: '/gallery/gallery-video-01.mp4', alt: 'Luxury Coach Expeditions in Vietnam', caption: 'Luxury Coach Expeditions in Vietnam 🚌 Premium Comfort & Seamless Group Transfers' },
-  { id: 'gallery_23', type: 'video', src: '/gallery/gallery-video-02.mp4', alt: 'Blue Spice Tour Video 2' },
-  { id: 'gallery_24', type: 'video', src: '/gallery/gallery-video-03.mp4', alt: 'International Group Tours with Luxury Facilities', caption: 'International Group Tours with Luxury Facilities ✈️ VIP Ground Handling & 5-Star Stays' },
+  // Videos first (Items 1 to 6)
+  { id: 'gallery_22', type: 'video', src: '/gallery/gallery-video-01.mp4', alt: 'Blue Spice Tour Video 1' },
+  { id: 'gallery_23', type: 'video', src: '/gallery/gallery-video-02.mp4', alt: 'Kashmir Tour Guest Review', caption: 'Kashmir Tour Feedback 😍✈️ · Heartfelt Guest Appreciation & Unforgettable Memories' },
+  { id: 'gallery_24', type: 'video', src: '/gallery/gallery-video-03.mp4', alt: 'Yesha Jain Kerala Tour Feedback', caption: "Yesha Jain's Kerala Tour Review 🌴✨ · Personalised Houseboat & Heritage Experience" },
   { id: 'gallery_25', type: 'video', src: '/gallery/gallery-video-04.mp4', alt: 'Blue Spice Tour Video 4' },
   { id: 'ladies_vid_1', type: 'video', src: '/images/ladies-only-tour/kerala-ladies-tour.mp4', alt: 'Kerala Ladies Only Tour Video' },
-  { id: 'ladies_vid_2', type: 'video', src: '/images/ladies-only-tour/thailand-ladies-tour.mp4', alt: 'Thailand Ladies Only Tour Video' },
+  { id: 'ladies_vid_2', type: 'video', src: '/images/ladies-only-tour/thailand-ladies-tour.mp4', alt: 'Amritsar & Himachal Ladies Tour', caption: 'Amritsar & Himachal Ladies Only Tour 🏔️ Sacred Golden Temple & Cedar Valleys' },
 
-  // Photos
+  // Photos (Items 7 to 27)
   { id: 'gallery_1', type: 'photo', src: '/gallery/gallery-photo-01.jpeg', alt: 'Blue Spice Tour Moment 1' },
-  { id: 'gallery_2', type: 'photo', src: '/gallery/gallery-photo-02.jpeg', alt: 'Kashmir Tour Guest Review', caption: 'Kashmir Tour Feedback 😍✈️ · Heartfelt Guest Appreciation & Unforgettable Memories' },
-  { id: 'gallery_3', type: 'photo', src: '/gallery/gallery-photo-03.jpeg', alt: 'Yesha Jain Kerala Tour Feedback', caption: "Yesha Jain's Kerala Tour Review 🌴✨ · Personalised Houseboat & Heritage Experience" },
+  { id: 'gallery_2', type: 'photo', src: '/gallery/gallery-photo-02.jpeg', alt: 'Blue Spice Tour Moment 2' },
+  { id: 'gallery_3', type: 'photo', src: '/gallery/gallery-photo-03.jpeg', alt: 'Blue Spice Tour Moment 3' },
   { id: 'gallery_4', type: 'photo', src: '/gallery/gallery-photo-04.jpeg', alt: 'Blue Spice Tour Moment 4' },
   { id: 'gallery_5', type: 'photo', src: '/gallery/gallery-photo-05.jpeg', alt: 'Blue Spice Tour Moment 5' },
-  { id: 'gallery_6', type: 'photo', src: '/gallery/gallery-photo-06.jpeg', alt: 'Amritsar & Himachal Ladies Tour', caption: 'Amritsar & Himachal Ladies Only Tour 🏔️ Sacred Golden Temple & Cedar Valleys' },
+  { id: 'gallery_6', type: 'photo', src: '/gallery/gallery-photo-06.jpeg', alt: 'Blue Spice Tour Moment 6' },
   { id: 'gallery_7', type: 'photo', src: '/gallery/gallery-photo-07.jpeg', alt: 'Blue Spice Tour Moment 7' },
-  { id: 'gallery_8', type: 'photo', src: '/gallery/gallery-photo-08.jpeg', alt: 'Blue Spice Tour Moment 8' },
-  { id: 'gallery_9', type: 'photo', src: '/gallery/gallery-photo-09.jpeg', alt: 'Blue Spice Tour Moment 9' },
+  { id: 'gallery_8', type: 'photo', src: '/gallery/gallery-photo-08.jpeg', alt: 'Guests enjoy Kashmir Dal Lake boating', caption: 'Guests Enjoying Complimentary Shikara Boating on Dal Lake, Kashmir 🚣‍♂️✨' },
+  { id: 'gallery_9', type: 'photo', src: '/gallery/gallery-photo-09.jpeg', alt: 'Golden Bridge Ba Na Hills Vietnam', caption: 'The Iconic Golden Bridge at Ba Na Hills, Vietnam 🌁 Giant Stone Hands & Cloudland Vistas' },
   { id: 'gallery_10', type: 'photo', src: '/gallery/gallery-photo-10.jpeg', alt: 'Blue Spice Tour Moment 10' },
   { id: 'gallery_11', type: 'photo', src: '/gallery/gallery-photo-11.jpeg', alt: 'Blue Spice Tour Moment 11' },
   { id: 'gallery_13', type: 'photo', src: '/gallery/gallery-photo-13.jpeg', alt: 'Blue Spice Tour Moment 13' },
-  { id: 'gallery_14', type: 'photo', src: '/gallery/gallery-photo-14.jpeg', alt: 'Guests enjoy Kashmir Dal Lake boating', caption: 'Guests Enjoying Complimentary Shikara Boating on Dal Lake, Kashmir 🚣‍♂️✨' },
-  { id: 'gallery_15', type: 'photo', src: '/gallery/gallery-photo-15.jpeg', alt: 'Golden Bridge Ba Na Hills Vietnam', caption: 'The Iconic Golden Bridge at Ba Na Hills, Vietnam 🌁 Giant Stone Hands & Cloudland Vistas' },
+  { id: 'gallery_14', type: 'photo', src: '/gallery/gallery-photo-14.jpeg', alt: 'Blue Spice Tour Moment 14' },
+  { id: 'gallery_15', type: 'photo', src: '/gallery/gallery-photo-15.jpeg', alt: 'Blue Spice Tour Moment 15' },
   { id: 'gallery_16', type: 'photo', src: '/gallery/gallery-photo-16.jpeg', alt: 'Blue Spice Tour Moment 16' },
-  { id: 'gallery_17', type: 'photo', src: '/gallery/gallery-photo-17.jpeg', alt: 'Blue Spice Tour Moment 17' },
+  { id: 'gallery_17', type: 'photo', src: '/gallery/gallery-photo-17.jpeg', alt: 'Luxury Coach Expeditions in Vietnam', caption: 'Luxury Coach Expeditions in Vietnam 🚌 Premium Comfort & Seamless Group Transfers' },
   { id: 'gallery_18', type: 'photo', src: '/gallery/gallery-photo-18.jpeg', alt: 'Blue Spice Tour Moment 18' },
-  { id: 'gallery_19', type: 'photo', src: '/gallery/gallery-photo-19.jpeg', alt: 'Blue Spice Tour Moment 19' },
+  { id: 'gallery_19', type: 'photo', src: '/gallery/gallery-photo-19.jpeg', alt: 'International Group Tours with Luxury Facilities', caption: 'International Group Tours with Luxury Facilities ✈️ VIP Ground Handling & 5-Star Stays' },
   { id: 'gallery_20', type: 'photo', src: '/gallery/gallery-photo-20.jpeg', alt: 'Blue Spice Tour Moment 20' },
   { id: 'gallery_21', type: 'photo', src: '/gallery/gallery-photo-21.jpeg', alt: 'Blue Spice Tour Moment 21' },
   { id: 'ladies_sanctuary', type: 'photo', src: '/images/ladies-only-tour/thailand-sanctuary-of-truth.webp', alt: 'Ladies group tour to Sanctuary of Truth temple Thailand jain guest', caption: 'All-Ladies Sanctuary of Truth Temple Tour, Thailand 🛕 Dedicated Jain Catering & Custom Curations' },
