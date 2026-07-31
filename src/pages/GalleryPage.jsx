@@ -3,37 +3,539 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Captions are permanently locked to specific item objects by ID & file src.
 // Adding, removing, or reordering items in this array will NEVER shift these captions.
+// Captions are permanently locked to specific item objects by ID & file src.
+// Adding, removing, or reordering items in this array will NEVER shift these captions.
 const GALLERY_ITEMS = [
-  // Videos first (Items 1 to 6)
-  { id: 'gallery_22', type: 'video', src: '/gallery/gallery-video-01.mp4', alt: 'Blue Spice Tour Video 1' },
-  { id: 'gallery_23', type: 'video', src: '/gallery/gallery-video-02.mp4', alt: 'Kashmir Tour Guest Review', caption: 'Kashmir Tour Feedback 😍✈️ · Heartfelt Guest Appreciation & Unforgettable Memories' },
-  { id: 'gallery_24', type: 'video', src: '/gallery/gallery-video-03.mp4', alt: 'Yesha Jain Kerala Tour Feedback', caption: "Yesha Jain's Kerala Tour Review 🌴✨ · Personalised Houseboat & Heritage Experience" },
-  { id: 'gallery_25', type: 'video', src: '/gallery/gallery-video-04.mp4', alt: 'Blue Spice Tour Video 4' },
-  { id: 'ladies_vid_1', type: 'video', src: '/images/ladies-only-tour/kerala-ladies-tour.mp4', alt: 'Kerala Ladies Only Tour Video' },
-  { id: 'ladies_vid_2', type: 'video', src: '/images/ladies-only-tour/thailand-ladies-tour.mp4', alt: 'Amritsar & Himachal Ladies Tour', caption: 'Amritsar & Himachal Ladies Only Tour 🏔️ Sacred Golden Temple & Cedar Valleys' },
-
-  // Photos (Items 7 to 27)
-  { id: 'gallery_1', type: 'photo', src: '/gallery/gallery-photo-01.jpeg', alt: 'Blue Spice Tour Moment 1' },
-  { id: 'gallery_2', type: 'photo', src: '/gallery/gallery-photo-02.jpeg', alt: 'Blue Spice Tour Moment 2' },
-  { id: 'gallery_3', type: 'photo', src: '/gallery/gallery-photo-03.jpeg', alt: 'Blue Spice Tour Moment 3' },
-  { id: 'gallery_4', type: 'photo', src: '/gallery/gallery-photo-04.jpeg', alt: 'Blue Spice Tour Moment 4' },
-  { id: 'gallery_5', type: 'photo', src: '/gallery/gallery-photo-05.jpeg', alt: 'Blue Spice Tour Moment 5' },
-  { id: 'gallery_6', type: 'photo', src: '/gallery/gallery-photo-06.jpeg', alt: 'Blue Spice Tour Moment 6' },
-  { id: 'gallery_7', type: 'photo', src: '/gallery/gallery-photo-07.jpeg', alt: 'Blue Spice Tour Moment 7' },
-  { id: 'gallery_8', type: 'photo', src: '/gallery/gallery-photo-08.jpeg', alt: 'Guests enjoy Kashmir Dal Lake boating', caption: 'Guests Enjoying Complimentary Shikara Boating on Dal Lake, Kashmir 🚣‍♂️✨' },
-  { id: 'gallery_9', type: 'photo', src: '/gallery/gallery-photo-09.jpeg', alt: 'Golden Bridge Ba Na Hills Vietnam', caption: 'The Iconic Golden Bridge at Ba Na Hills, Vietnam 🌁 Giant Stone Hands & Cloudland Vistas' },
-  { id: 'gallery_10', type: 'photo', src: '/gallery/gallery-photo-10.jpeg', alt: 'Blue Spice Tour Moment 10' },
-  { id: 'gallery_11', type: 'photo', src: '/gallery/gallery-photo-11.jpeg', alt: 'Blue Spice Tour Moment 11' },
-  { id: 'gallery_13', type: 'photo', src: '/gallery/gallery-photo-13.jpeg', alt: 'Blue Spice Tour Moment 13' },
-  { id: 'gallery_14', type: 'photo', src: '/gallery/gallery-photo-14.jpeg', alt: 'Blue Spice Tour Moment 14' },
-  { id: 'gallery_15', type: 'photo', src: '/gallery/gallery-photo-15.jpeg', alt: 'Blue Spice Tour Moment 15' },
-  { id: 'gallery_16', type: 'photo', src: '/gallery/gallery-photo-16.jpeg', alt: 'Blue Spice Tour Moment 16' },
-  { id: 'gallery_17', type: 'photo', src: '/gallery/gallery-photo-17.jpeg', alt: 'Luxury Coach Expeditions in Vietnam', caption: 'Luxury Coach Expeditions in Vietnam 🚌 Premium Comfort & Seamless Group Transfers' },
-  { id: 'gallery_18', type: 'photo', src: '/gallery/gallery-photo-18.jpeg', alt: 'Blue Spice Tour Moment 18' },
-  { id: 'gallery_19', type: 'photo', src: '/gallery/gallery-photo-19.jpeg', alt: 'International Group Tours with Luxury Facilities', caption: 'International Group Tours with Luxury Facilities ✈️ VIP Ground Handling & 5-Star Stays' },
-  { id: 'gallery_20', type: 'photo', src: '/gallery/gallery-photo-20.jpeg', alt: 'Blue Spice Tour Moment 20' },
-  { id: 'gallery_21', type: 'photo', src: '/gallery/gallery-photo-21.jpeg', alt: 'Blue Spice Tour Moment 21' },
-  { id: 'ladies_sanctuary', type: 'photo', src: '/images/ladies-only-tour/thailand-sanctuary-of-truth.webp', alt: 'Ladies group tour to Sanctuary of Truth temple Thailand jain guest', caption: 'All-Ladies Sanctuary of Truth Temple Tour, Thailand 🛕 Dedicated Jain Catering & Custom Curations' },
+  {
+    "id": "gallery_22",
+    "type": "video",
+    "src": "/gallery/gallery-video-01.mp4",
+    "alt": "Blue Spice Tour Video 1"
+  },
+  {
+    "id": "gallery_23",
+    "type": "video",
+    "src": "/gallery/gallery-video-02.mp4",
+    "alt": "Kashmir Tour Guest Review",
+    "caption": "Kashmir Tour Feedback 😍✈️ · Heartfelt Guest Appreciation & Unforgettable Memories"
+  },
+  {
+    "id": "gallery_24",
+    "type": "video",
+    "src": "/gallery/gallery-video-03.mp4",
+    "alt": "Yesha Jain Kerala Tour Feedback",
+    "caption": "Yesha Jain's Kerala Tour Review 🌴✨ · Personalised Houseboat & Heritage Experience"
+  },
+  {
+    "id": "gallery_25",
+    "type": "video",
+    "src": "/gallery/gallery-video-04.mp4",
+    "alt": "Blue Spice Tour Video 4"
+  },
+  {
+    "id": "ladies_vid_1",
+    "type": "video",
+    "src": "/images/ladies-only-tour/kerala-ladies-tour.mp4",
+    "alt": "Kerala Ladies Only Tour Video"
+  },
+  {
+    "id": "ladies_vid_2",
+    "type": "video",
+    "src": "/images/ladies-only-tour/thailand-ladies-tour.mp4",
+    "alt": "Amritsar & Himachal Ladies Tour",
+    "caption": "Amritsar & Himachal Ladies Only Tour 🏔️ Sacred Golden Temple & Cedar Valleys"
+  },
+  {
+    "id": "gallery_vid_5",
+    "type": "video",
+    "src": "/gallery/gallery-video-05.mp4",
+    "alt": "Blue Spice Tour Video 5"
+  },
+  {
+    "id": "gallery_vid_6",
+    "type": "video",
+    "src": "/gallery/gallery-video-06.mp4",
+    "alt": "Blue Spice Tour Video 6"
+  },
+  {
+    "id": "gallery_1",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-01.jpeg",
+    "alt": "Blue Spice Tour Moment 1"
+  },
+  {
+    "id": "gallery_2",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-02.jpeg",
+    "alt": "Blue Spice Tour Moment 2"
+  },
+  {
+    "id": "gallery_3",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-03.jpeg",
+    "alt": "Blue Spice Tour Moment 3"
+  },
+  {
+    "id": "gallery_4",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-04.jpeg",
+    "alt": "Blue Spice Tour Moment 4"
+  },
+  {
+    "id": "gallery_5",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-05.jpeg",
+    "alt": "Blue Spice Tour Moment 5"
+  },
+  {
+    "id": "gallery_6",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-06.jpeg",
+    "alt": "Blue Spice Tour Moment 6"
+  },
+  {
+    "id": "gallery_7",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-07.jpeg",
+    "alt": "Blue Spice Tour Moment 7"
+  },
+  {
+    "id": "gallery_8",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-08.jpeg",
+    "alt": "Guests enjoy Kashmir Dal Lake boating",
+    "caption": "Guests Enjoying Complimentary Shikara Boating on Dal Lake, Kashmir 🚣‍♂️✨"
+  },
+  {
+    "id": "gallery_9",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-09.jpeg",
+    "alt": "Golden Bridge Ba Na Hills Vietnam",
+    "caption": "The Iconic Golden Bridge at Ba Na Hills, Vietnam 🌁 Giant Stone Hands & Cloudland Vistas"
+  },
+  {
+    "id": "gallery_10",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-10.jpeg",
+    "alt": "Blue Spice Tour Moment 10"
+  },
+  {
+    "id": "gallery_11",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-11.jpeg",
+    "alt": "Blue Spice Tour Moment 11"
+  },
+  {
+    "id": "gallery_13",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-13.jpeg",
+    "alt": "Blue Spice Tour Moment 13"
+  },
+  {
+    "id": "gallery_14",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-14.jpeg",
+    "alt": "Blue Spice Tour Moment 14"
+  },
+  {
+    "id": "gallery_15",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-15.jpeg",
+    "alt": "Blue Spice Tour Moment 15"
+  },
+  {
+    "id": "gallery_16",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-16.jpeg",
+    "alt": "Blue Spice Tour Moment 16"
+  },
+  {
+    "id": "gallery_17",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-17.jpeg",
+    "alt": "Luxury Coach Expeditions in Vietnam",
+    "caption": "Luxury Coach Expeditions in Vietnam 🚌 Premium Comfort & Seamless Group Transfers"
+  },
+  {
+    "id": "gallery_18",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-18.jpeg",
+    "alt": "Blue Spice Tour Moment 18"
+  },
+  {
+    "id": "gallery_19",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-19.jpeg",
+    "alt": "International Group Tours with Luxury Facilities",
+    "caption": "International Group Tours with Luxury Facilities ✈️ VIP Ground Handling & 5-Star Stays"
+  },
+  {
+    "id": "gallery_20",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-20.jpeg",
+    "alt": "Blue Spice Tour Moment 20"
+  },
+  {
+    "id": "gallery_21",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-21.jpeg",
+    "alt": "Blue Spice Tour Moment 21"
+  },
+  {
+    "id": "ladies_sanctuary",
+    "type": "photo",
+    "src": "/images/ladies-only-tour/thailand-sanctuary-of-truth.webp",
+    "alt": "Ladies group tour to Sanctuary of Truth temple Thailand jain guest",
+    "caption": "All-Ladies Sanctuary of Truth Temple Tour, Thailand 🛕 Dedicated Jain Catering & Custom Curations"
+  },
+  {
+    "id": "gallery_22",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-22.jpeg",
+    "alt": "Blue Spice Tour Moment 22"
+  },
+  {
+    "id": "gallery_23",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-23.jpeg",
+    "alt": "Blue Spice Tour Moment 23"
+  },
+  {
+    "id": "gallery_24",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-24.jpeg",
+    "alt": "Blue Spice Tour Moment 24"
+  },
+  {
+    "id": "gallery_25",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-25.jpeg",
+    "alt": "Blue Spice Tour Moment 25"
+  },
+  {
+    "id": "gallery_26",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-26.jpeg",
+    "alt": "Blue Spice Tour Moment 26"
+  },
+  {
+    "id": "gallery_27",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-27.jpeg",
+    "alt": "Blue Spice Tour Moment 27"
+  },
+  {
+    "id": "gallery_28",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-28.jpeg",
+    "alt": "Blue Spice Tour Moment 28"
+  },
+  {
+    "id": "gallery_29",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-29.jpeg",
+    "alt": "Blue Spice Tour Moment 29"
+  },
+  {
+    "id": "gallery_30",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-30.jpeg",
+    "alt": "Blue Spice Tour Moment 30"
+  },
+  {
+    "id": "gallery_31",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-31.jpeg",
+    "alt": "Blue Spice Tour Moment 31"
+  },
+  {
+    "id": "gallery_32",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-32.jpeg",
+    "alt": "Blue Spice Tour Moment 32"
+  },
+  {
+    "id": "gallery_33",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-33.jpeg",
+    "alt": "Blue Spice Tour Moment 33"
+  },
+  {
+    "id": "gallery_34",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-34.jpeg",
+    "alt": "Blue Spice Tour Moment 34"
+  },
+  {
+    "id": "gallery_35",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-35.jpeg",
+    "alt": "Blue Spice Tour Moment 35"
+  },
+  {
+    "id": "gallery_36",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-36.jpeg",
+    "alt": "Blue Spice Tour Moment 36"
+  },
+  {
+    "id": "gallery_37",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-37.jpeg",
+    "alt": "Blue Spice Tour Moment 37"
+  },
+  {
+    "id": "gallery_38",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-38.jpeg",
+    "alt": "Blue Spice Tour Moment 38"
+  },
+  {
+    "id": "gallery_39",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-39.jpeg",
+    "alt": "Blue Spice Tour Moment 39"
+  },
+  {
+    "id": "gallery_40",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-40.jpeg",
+    "alt": "Blue Spice Tour Moment 40"
+  },
+  {
+    "id": "gallery_41",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-41.jpeg",
+    "alt": "Blue Spice Tour Moment 41"
+  },
+  {
+    "id": "gallery_42",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-42.jpeg",
+    "alt": "Blue Spice Tour Moment 42"
+  },
+  {
+    "id": "gallery_43",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-43.jpeg",
+    "alt": "Blue Spice Tour Moment 43"
+  },
+  {
+    "id": "gallery_44",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-44.jpeg",
+    "alt": "Blue Spice Tour Moment 44"
+  },
+  {
+    "id": "gallery_45",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-45.jpeg",
+    "alt": "Blue Spice Tour Moment 45"
+  },
+  {
+    "id": "gallery_46",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-46.jpeg",
+    "alt": "Blue Spice Tour Moment 46"
+  },
+  {
+    "id": "gallery_47",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-47.jpeg",
+    "alt": "Blue Spice Tour Moment 47"
+  },
+  {
+    "id": "gallery_48",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-48.jpeg",
+    "alt": "Blue Spice Tour Moment 48"
+  },
+  {
+    "id": "gallery_49",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-49.jpeg",
+    "alt": "Blue Spice Tour Moment 49"
+  },
+  {
+    "id": "gallery_50",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-50.jpeg",
+    "alt": "Blue Spice Tour Moment 50"
+  },
+  {
+    "id": "gallery_51",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-51.jpeg",
+    "alt": "Blue Spice Tour Moment 51"
+  },
+  {
+    "id": "gallery_52",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-52.jpeg",
+    "alt": "Blue Spice Tour Moment 52"
+  },
+  {
+    "id": "gallery_53",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-53.jpeg",
+    "alt": "Blue Spice Tour Moment 53"
+  },
+  {
+    "id": "gallery_54",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-54.jpeg",
+    "alt": "Blue Spice Tour Moment 54"
+  },
+  {
+    "id": "gallery_55",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-55.jpeg",
+    "alt": "Blue Spice Tour Moment 55"
+  },
+  {
+    "id": "gallery_56",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-56.jpeg",
+    "alt": "Blue Spice Tour Moment 56"
+  },
+  {
+    "id": "gallery_57",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-57.jpeg",
+    "alt": "Blue Spice Tour Moment 57"
+  },
+  {
+    "id": "gallery_58",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-58.jpeg",
+    "alt": "Blue Spice Tour Moment 58"
+  },
+  {
+    "id": "gallery_59",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-59.jpeg",
+    "alt": "Blue Spice Tour Moment 59"
+  },
+  {
+    "id": "gallery_60",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-60.jpeg",
+    "alt": "Blue Spice Tour Moment 60"
+  },
+  {
+    "id": "gallery_61",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-61.jpeg",
+    "alt": "Blue Spice Tour Moment 61"
+  },
+  {
+    "id": "gallery_62",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-62.jpeg",
+    "alt": "Blue Spice Tour Moment 62"
+  },
+  {
+    "id": "gallery_63",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-63.jpeg",
+    "alt": "Blue Spice Tour Moment 63"
+  },
+  {
+    "id": "gallery_64",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-64.jpeg",
+    "alt": "Blue Spice Tour Moment 64"
+  },
+  {
+    "id": "gallery_65",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-65.jpeg",
+    "alt": "Blue Spice Tour Moment 65"
+  },
+  {
+    "id": "gallery_66",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-66.jpeg",
+    "alt": "Blue Spice Tour Moment 66"
+  },
+  {
+    "id": "gallery_67",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-67.jpeg",
+    "alt": "Blue Spice Tour Moment 67"
+  },
+  {
+    "id": "gallery_68",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-68.jpeg",
+    "alt": "Blue Spice Tour Moment 68"
+  },
+  {
+    "id": "gallery_69",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-69.jpeg",
+    "alt": "Blue Spice Tour Moment 69"
+  },
+  {
+    "id": "gallery_70",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-70.jpeg",
+    "alt": "Blue Spice Tour Moment 70"
+  },
+  {
+    "id": "gallery_71",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-71.jpeg",
+    "alt": "Blue Spice Tour Moment 71"
+  },
+  {
+    "id": "gallery_72",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-72.jpeg",
+    "alt": "Blue Spice Tour Moment 72"
+  },
+  {
+    "id": "gallery_73",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-73.jpeg",
+    "alt": "Blue Spice Tour Moment 73"
+  },
+  {
+    "id": "gallery_74",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-74.jpeg",
+    "alt": "Blue Spice Tour Moment 74"
+  },
+  {
+    "id": "gallery_75",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-75.jpeg",
+    "alt": "Blue Spice Tour Moment 75"
+  },
+  {
+    "id": "gallery_76",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-76.jpeg",
+    "alt": "Blue Spice Tour Moment 76"
+  },
+  {
+    "id": "gallery_77",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-77.jpeg",
+    "alt": "Blue Spice Tour Moment 77"
+  },
+  {
+    "id": "gallery_78",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-78.jpeg",
+    "alt": "Blue Spice Tour Moment 78"
+  },
+  {
+    "id": "gallery_79",
+    "type": "photo",
+    "src": "/gallery/gallery-photo-79.jpeg",
+    "alt": "Blue Spice Tour Moment 79"
+  }
 ];
 
 export default function GalleryPage() {
