@@ -97,6 +97,16 @@ const HERO_SLIDES = [
     poster: '/images/maya-beach-poster.webp'
   },
   {
+    id: 'flyboarding',
+    name: 'Flyboarding & Ocean Thrills',
+    shortName: 'Flyboarding',
+    tagline: 'Defy Gravity. Own the Ocean.',
+    description: 'Soar high above crystal sea spray and feel the exhilarating rush of flying like a superhero over ocean blue.',
+    video: '/images/flyboarding.webm',
+    poster: '/images/flyboarding-poster.webp',
+    extraDuration: 0
+  },
+  {
     id: 'himalayas',
     name: 'Yoga & Wellness Retreats',
     shortName: 'Wellness',
