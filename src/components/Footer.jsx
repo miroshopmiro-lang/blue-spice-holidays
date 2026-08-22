@@ -151,7 +151,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
-          <p className="text-xs text-white/40">© {new Date().getFullYear()} Blue Spice Holidays. All rights reserved.</p>
+          <p className="text-xs text-white/40 flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>© {new Date().getFullYear()} Blue Spice Holidays. All rights reserved.</span>
+            <Link to="/privacy-policy" className="hover:text-white transition-colors underline underline-offset-2">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-white transition-colors underline underline-offset-2">Terms of Use</Link>
+          </p>
           
           <div className="flex flex-wrap items-center gap-5 text-white/50">
             <span className="flex items-center gap-1.5 text-xs uppercase tracking-wider">

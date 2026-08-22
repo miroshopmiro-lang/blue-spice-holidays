@@ -34,6 +34,8 @@ const ContactPage = lazy(() => import('./pages/ContactPage'));
 const CustomItineraryPage = lazy(() => import('./pages/CustomItineraryPage'));
 const CollaboratePage = lazy(() => import('./pages/CollaboratePage'));
 const ReferPage = lazy(() => import('./pages/ReferPage'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfUse = lazy(() => import('./pages/TermsOfUse'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Premium, minimal page loader matching the luxury travel brand aesthetic
@@ -131,6 +133,8 @@ export default function App() {
               <Route path="/custom-itinerary" element={<CustomItineraryPage />} />
               <Route path="/collaborate" element={<CollaboratePage />} />
               <Route path="/refer" element={<ReferPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsOfUse />} />
 
               {/* Kept live, footer-linked only (not in the client's 9-menu spec) */}
               <Route path="/wellness" element={<WellnessRetreatsPage />} />
