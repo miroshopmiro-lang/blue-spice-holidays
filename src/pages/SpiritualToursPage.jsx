@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import useEnquiry from '../hooks/useEnquiry';
 import BrochureStrip from '../components/BrochureStrip';
 
@@ -44,13 +43,6 @@ const DARSHAN_PACKAGES = [
 export default function SpiritualToursPage() {
   const enquire = useEnquiry();
 
-  useEffect(() => {
-    document.title = "Spiritual & Darshan Tours · Blue Spice Holidays";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "VIP temple access, heli-curated Char Dham, and sattvik pilgrimage journeys by Blue Spice Holidays.");
-    }
-  }, []);
 
   const handleRequest = (pkgName) => {
     enquire(`Spiritual Tour: ${pkgName}`);

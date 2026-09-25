@@ -1,14 +1,6 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function PrivacyPolicy() {
-  useEffect(() => {
-    document.title = "Privacy Policy · Blue Spice Holidays";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "How Blue Spice Holidays collects, uses and protects the information you share through this website.");
-    }
-  }, []);
 
   return (
     <div className="bg-brand-surface pt-24 min-h-screen text-brand-ink">

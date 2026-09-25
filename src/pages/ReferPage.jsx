@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function ReferPage() {
   const [data, setData] = useState({ referrerName: '', referrerContact: '', friendName: '', friendContact: '', notes: '' });
@@ -6,13 +6,6 @@ export default function ReferPage() {
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
-  useEffect(() => {
-    document.title = "Refer Us · Blue Spice Holidays";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "Refer a friend or family member to Blue Spice Holidays.");
-    }
-  }, []);
 
   const set = (k, v) => setData((d) => ({ ...d, [k]: v }));
 

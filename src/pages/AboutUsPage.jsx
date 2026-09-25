@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import GroundTeams from '../components/GroundTeams';
 
@@ -55,16 +54,6 @@ const SERVICES = [
 ];
 
 export default function AboutUsPage() {
-  useEffect(() => {
-    document.title = 'About Us · Blue Spice Holidays';
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        'Blue Spice Holidays is a travel operator based in Kochi, Kerala. Specialising in personalised domestic and international holidays since 2009.',
-      );
-    }
-  }, []);
 
   return (
     <div className="bg-white min-h-screen">

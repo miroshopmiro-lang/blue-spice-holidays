@@ -8,6 +8,7 @@ export const MEGA_MENUS = [
     label: 'Holidays',
     path: '/holidays',
     children: [
+      { label: 'All Tour Packages', path: '/packages' },
       { label: 'International Tours', path: '/holidays/international' },
       { label: 'Domestic Tours', path: '/holidays/domestic' },
       { label: 'Ladies Tours', path: '/holidays/ladies' },

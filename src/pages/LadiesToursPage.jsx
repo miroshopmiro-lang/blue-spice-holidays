@@ -1,16 +1,8 @@
-import { useEffect } from 'react';
 import LadiesOnlyTours from '../components/LadiesOnlyTours';
 import CustomItineraryForm from '../components/CustomItineraryForm';
 import BrochureStrip from '../components/BrochureStrip';
 
 export default function LadiesToursPage() {
-  useEffect(() => {
-    document.title = "Ladies Only Tours · Blue Spice Holidays";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "Women-only group tours with dedicated ground support, curated by Blue Spice Holidays.");
-    }
-  }, []);
 
   return (
     <div className="bg-brand-surface pt-24 min-h-screen text-brand-ink">

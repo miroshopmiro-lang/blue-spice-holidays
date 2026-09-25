@@ -1,16 +1,8 @@
-import { useEffect } from 'react';
 import WeddingsEvents from '../components/WeddingsEvents';
 import CustomItineraryForm from '../components/CustomItineraryForm';
 import BrochureStrip from '../components/BrochureStrip';
 
 export default function DestinationWeddingsPage() {
-  useEffect(() => {
-    document.title = "Destination Weddings & Events · Blue Spice Holidays";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "Destination weddings, luxury wedding cars, and full event logistics curated by Blue Spice Holidays.");
-    }
-  }, []);
 
   return (
     <div className="bg-brand-surface pt-24 min-h-screen text-brand-ink">

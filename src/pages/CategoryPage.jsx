@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { PAGE_CONTENT } from '../data/pageContent';
 import { BROCHURES } from '../data/brochures';
@@ -12,12 +11,6 @@ export default function CategoryPage({ group }) {
   const enquire = useEnquiry();
   const entry = PAGE_CONTENT[group]?.[slug];
 
-  useEffect(() => {
-    if (!entry) return;
-    document.title = `${entry.title} · Blue Spice Holidays`;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute('content', entry.lead);
-  }, [entry]);
 
   if (!entry) {
     return <Navigate to="/holidays" replace />;

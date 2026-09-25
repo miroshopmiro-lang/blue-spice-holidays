@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BROCHURES, BROCHURE_CATEGORIES } from '../data/brochures';
 import BrochureGallery from '../components/BrochureGallery';
@@ -6,13 +6,6 @@ import BrochureGallery from '../components/BrochureGallery';
 export default function BrochuresPage() {
   const [activeTab, setActiveTab] = useState('all');
 
-  useEffect(() => {
-    document.title = "Travel Brochures & Curation Guides · Blue Spice Holidays";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "View our organized travel brochures and curation guides connected to Holidays, Services, and Special Tours.");
-    }
-  }, []);
 
   const holidaysBrochures = BROCHURES.filter(b => b.category === 'holidays');
   const servicesBrochures = BROCHURES.filter(b => b.category === 'services');

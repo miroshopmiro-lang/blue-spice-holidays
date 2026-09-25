@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function CollaboratePage() {
   const [data, setData] = useState({ name: '', company: '', email: '', phone: '', category: 'Travel Agent', message: '' });
@@ -6,13 +6,6 @@ export default function CollaboratePage() {
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
-  useEffect(() => {
-    document.title = "Collaborate With Us · Blue Spice Holidays";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "Partner with Blue Spice Holidays as a travel agent, hotel, vendor, or ground operator.");
-    }
-  }, []);
 
   const set = (k, v) => setData((d) => ({ ...d, [k]: v }));
 

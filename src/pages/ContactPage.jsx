@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const WHATSAPP_URL =
   "https://wa.me/919388599000?text=Hi%20Blue%20Spice%2C%20I%20have%20a%20question%20about...";
@@ -9,13 +9,6 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
-  useEffect(() => {
-    document.title = "Contact Us · Blue Spice Holidays";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "Get in touch with Blue Spice Holidays by phone, WhatsApp, or our contact form.");
-    }
-  }, []);
 
   const set = (k, v) => setData((d) => ({ ...d, [k]: v }));
 

@@ -5,6 +5,7 @@ import HeroSection from './components/HeroSection';
 import TrustCrown from './components/TrustCrown';
 import TrustRibbon from './components/TrustRibbon';
 import PopularDestinations from './components/PopularDestinations';
+import RouteSEO from './components/RouteSEO';
 import FullscreenPromoCards from './components/FullscreenPromoCards';
 import QuickContactForm from './components/QuickContactForm';
 import Testimonials from './components/Testimonials';
@@ -15,6 +16,8 @@ import HeroDebug from './components/HeroDebug';
 
 // Subpages using React lazy loading
 const HolidaysHubPage = lazy(() => import('./pages/HolidaysHubPage'));
+const PackagesHubPage = lazy(() => import('./pages/PackagesHubPage'));
+const PackagePage = lazy(() => import('./pages/PackagePage'));
 const ServicesHubPage = lazy(() => import('./pages/ServicesHubPage'));
 const SpecialToursHubPage = lazy(() => import('./pages/SpecialToursHubPage'));
 const CategoryPage = lazy(() => import('./pages/CategoryPage'));
@@ -99,6 +102,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <RouteSEO />
       <div className="min-h-screen bg-brand-surface text-brand-ink flex flex-col justify-between">
         <Header />
         <main id="main-content" className="flex-grow">
@@ -107,6 +111,8 @@ export default function App() {
               <Route path="/" element={<Home />} />
 
               {/* Holidays */}
+              <Route path="/packages" element={<PackagesHubPage />} />
+              <Route path="/packages/:slug" element={<PackagePage />} />
               <Route path="/holidays" element={<HolidaysHubPage />} />
               <Route path="/holidays/domestic" element={<DomesticHolidaysPage />} />
               <Route path="/holidays/international" element={<InternationalHolidaysPage />} />

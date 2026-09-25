@@ -9,16 +9,6 @@ const WHATSAPP_URL =
 export default function CustomItineraryPage() {
   const location = useLocation();
 
-  useEffect(() => {
-    document.title = "Plan Your Private Journey · Blue Spice Holidays";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        "content",
-        "Design a custom, hand-crafted private itinerary with Blue Spice Holidays. Personal travel specialists, bespoke stays, and seamless logistics."
-      );
-    }
-  }, []);
 
   // Handle pre-fill parameters passed via query string (e.g., ?destination=Kashmir) or location state
   useEffect(() => {

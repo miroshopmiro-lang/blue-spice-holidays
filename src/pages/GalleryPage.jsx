@@ -554,13 +554,6 @@ export default function GalleryPage() {
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [filter, setFilter] = useState('all'); // 'all' | 'video' | 'photo'
 
-  useEffect(() => {
-    document.title = "Tour Gallery · Blue Spice Holidays";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "Photos and videos from Blue Spice Holidays tours across India and international destinations.");
-    }
-  }, []);
 
   const filteredItems = GALLERY_ITEMS.filter(item => {
     if (filter === 'video') return item.type === 'video';

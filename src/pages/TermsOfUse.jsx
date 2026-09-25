@@ -1,14 +1,6 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function TermsOfUse() {
-  useEffect(() => {
-    document.title = "Terms of Use · Blue Spice Holidays";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "Terms governing the use of the Blue Spice Holidays website and the enquiries submitted through it.");
-    }
-  }, []);
 
   return (
     <div className="bg-brand-surface pt-24 min-h-screen text-brand-ink">

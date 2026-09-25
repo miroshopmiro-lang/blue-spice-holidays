@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import HubGrid from '../components/HubGrid';
 import BrochureStrip from '../components/BrochureStrip';
 
@@ -15,13 +14,6 @@ const ITEMS = [
 ];
 
 export default function HolidaysHubPage() {
-  useEffect(() => {
-    document.title = "Holiday Tours · Blue Spice Holidays";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "International, domestic, ladies, senior citizen, group, honeymoon, office, educational and spiritual tours curated by Blue Spice Holidays.");
-    }
-  }, []);
 
   return (
     <div className="bg-brand-surface pt-24 min-h-screen text-brand-ink">

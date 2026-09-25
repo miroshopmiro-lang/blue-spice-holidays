@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useEnquiry from '../hooks/useEnquiry';
 import useForexRates, { CURRENCIES } from '../hooks/useForexRates';
 import BrochureStrip from '../components/BrochureStrip';
@@ -17,16 +17,6 @@ export default function ForexPage() {
   const enquire = useEnquiry();
   const { rates, updatedAt, status } = useForexRates();
 
-  useEffect(() => {
-    document.title = 'Forex Assistance & Live Exchange Rates · Blue Spice Holidays';
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        'Forex requirement guidance, indicative live exchange rates, and partner agency coordination for multi-currency cards and currency delivery.'
-      );
-    }
-  }, []);
 
   const rate = rates[currency];
   const amount = parseFloat(inrAmount);

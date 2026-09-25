@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DESTINATIONS } from '../data/travelData';
+import { packagePath } from '../data/seo';
 import useEnquiry from '../hooks/useEnquiry';
 
 const CATEGORIES = ['India', 'International', 'Trending'];
@@ -308,7 +309,10 @@ export default function PopularDestinations() {
                   {/* Content bottom-left */}
                   <div className="absolute bottom-0 inset-x-0 p-6 z-20 translate-y-2 transition-transform duration-500 ease-lux group-hover:translate-y-0 w-full text-left text-white flex flex-col items-start">
                     <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">
-                      {dest.name}
+                      {/* Crawlable link to the destination's own page (/packages/...). */}
+                      <Link to={packagePath(dest)} className="hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold">
+                        {dest.name}
+                      </Link>
                     </h3>
                     <p className="mt-1 max-w-xs text-xs leading-relaxed text-white/80 line-clamp-1 group-hover:line-clamp-none transition-colors duration-300">
                       {dest.tagline}
